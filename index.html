@@ -2455,5 +2455,105 @@
         }
       })();
     </script>
+
+
+
+
+
+
+
+    <!--SOURCE CODE HIDE SCRIPT -->
+
+    <script>
+
+// Disable Right Click
+document.addEventListener("contextmenu", function(e){
+e.preventDefault();
+showWarning();
+});
+
+// Disable Keyboard Shortcuts
+document.onkeydown = function(e){
+
+if(e.keyCode == 123) { // F12
+showWarning();
+return false;
+}
+
+if(e.ctrlKey && e.shiftKey && e.keyCode == 73){ // Ctrl+Shift+I
+showWarning();
+return false;
+}
+
+if(e.ctrlKey && e.shiftKey && e.keyCode == 74){ // Ctrl+Shift+J
+showWarning();
+return false;
+}
+
+if(e.ctrlKey && e.keyCode == 85){ // Ctrl+U
+showWarning();
+return false;
+}
+
+if(e.ctrlKey && e.keyCode == 67){ // Ctrl+C
+showWarning();
+return false;
+}
+
+};
+
+// DevTools detection
+setInterval(function(){
+
+const widthThreshold = window.outerWidth - window.innerWidth > 160;
+const heightThreshold = window.outerHeight - window.innerHeight > 160;
+
+if(widthThreshold || heightThreshold){
+showWarning();
+}
+
+},1000);
+
+
+// Warning Message
+
+function showWarning(){
+
+document.body.innerHTML = `
+<div style="
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+background:#000;
+color:#fff;
+font-family:sans-serif;
+text-align:center;
+padding:20px;
+">
+
+<h1 style="font-size:40px;margin-bottom:20px;">
+⚠ ACCESS DENIED
+</h1>
+
+<p style="font-size:18px;max-width:600px;">
+Inspect Element / Developer Tools detected.<br><br>
+
+This website is protected by security system.<br>
+Copying source code is strictly prohibited.
+</p>
+
+<p style="margin-top:20px;font-size:16px;color:#aaa;">
+© YK OFFICIAL<br>
+Developer: Yegnesh Kamble
+</p>
+
+</div>
+`;
+
+}
+
+</script>
   </body>
 </html>
