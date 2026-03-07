@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>YK OFFICIAL-Admin Dashboard</title>
+<link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
+    />
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-100">
+
+<!-- LOGIN PAGE -->
+
+<div id="loginPage" class="flex items-center justify-center h-screen bg-gradient-to-br from-indigo-600 to-purple-600">
+
+<div class="bg-white p-8 rounded-xl shadow-2xl w-80">
+
+<h2 class="text-2xl font-bold text-center mb-6">
+Admin Login
+</h2>
+
+<input id="user"
+placeholder="Username"
+class="border w-full p-3 rounded mb-3">
+
+<div class="relative">
+
+<input id="pass"
+type="password"
+placeholder="Password"
+class="border w-full p-3 rounded mb-3">
+
+<button onclick="togglePass()"
+class="absolute right-3 top-3 text-gray-500">
+
+👁
+
+</button>
+
+</div>
+
+<button onclick="login()"
+class="bg-indigo-600 hover:bg-indigo-700 text-white w-full py-3 rounded">
+
+Login
+
+</button>
+
+</div>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div id="dashboard" class="hidden">
+
+<!-- NAVBAR -->
+
+<div class="bg-indigo-600 text-white p-4 flex justify-between items-center">
+
+<h1 class="text-xl font-bold">
+Client Dashboard
+</h1>
+
+<div class="flex gap-3">
+
+<button onclick="loadData()"
+class="bg-green-500 px-4 py-1 rounded hover:bg-green-600">
+
+Refresh
+
+</button>
+
+<button onclick="logout()"
+class="bg-red-500 px-4 py-1 rounded hover:bg-red-600">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+<!-- TABLE -->
+
+<div class="p-6">
+
+<div class="overflow-x-auto bg-white shadow rounded">
+
+<table class="min-w-full">
+
+<thead class="bg-gray-800 text-white">
+
+<tr>
+
+<th class="p-3">ID</th>
+<th class="p-3">Name</th>
+<th class="p-3">Email</th>
+<th class="p-3">Phone</th>
+<th class="p-3">Service</th>
+<th class="p-3">Message</th>
+<th class="p-3">Date</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tableData"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const API="https://script.google.com/macros/s/AKfycbwnBjAJdDDIwefyafJ1_1jAh84Vsgr9oslrvaPTYC5BN5Bpra-PkfgcDQ4dlWGw7q6T/exec"
+
+function togglePass(){
+
+let p=document.getElementById("pass")
+
+p.type = p.type==="password" ? "text":"password"
+
+}
+
+function login(){
+
+let u=document.getElementById("user").value
+let p=document.getElementById("pass").value
+
+if(u==="admin" && p==="1234"){
+
+document.getElementById("loginPage").style.display="none"
+document.getElementById("dashboard").style.display="block"
+
+loadData()
+
+}else{
+
+alert("Invalid Login")
+
+}
+
+}
+
+function logout(){
+
+location.reload()
+
+}
+
+async function loadData(){
+
+document.getElementById("tableData").innerHTML=
+
+`<tr><td colspan="7" class="text-center p-4">Loading...</td></tr>`
+
+let res=await fetch(API)
+
+let data=await res.json()
+
+let html=""
+
+data.reverse().forEach(c=>{
+
+html+=`
+
+<tr class="border-b hover:bg-gray-50">
+
+<td class="p-2">${c.id}</td>
+<td class="p-2">${c.name}</td>
+<td class="p-2">${c.email}</td>
+<td class="p-2">${c.phone}</td>
+<td class="p-2">${c.service}</td>
+<td class="p-2">${c.message}</td>
+<td class="p-2">${c.date}</td>
+
+</tr>
+
+`
+
+})
+
+document.getElementById("tableData").innerHTML=html
+
+}
+
+</script>
+
+</body>
+</html>

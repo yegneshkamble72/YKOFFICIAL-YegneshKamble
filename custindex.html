@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>YK OFFICIAL - Client Request Form</title>
+<link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
+    />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<style>
+
+.fade-in{
+animation:fade 0.6s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.loader{
+border:4px solid #eee;
+border-top:4px solid #6366f1;
+border-radius:50%;
+width:40px;
+height:40px;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+0%{transform:rotate(0)}
+100%{transform:rotate(360deg)}
+}
+
+</style>
+
+</head>
+
+<body class="bg-gradient-to-br from-indigo-600 to-purple-600 min-h-screen flex items-center justify-center">
+
+<div class="bg-white shadow-2xl rounded-xl w-full max-w-lg p-8 fade-in">
+
+<h1 class="text-2xl font-bold text-center mb-6">
+Client Request Form
+</h1>
+
+<button onclick="showHelp()"
+class="bg-gray-800 text-white px-4 py-2 rounded mb-4 w-full">
+Help / Instructions
+</button>
+
+<input id="email"
+type="email"
+placeholder="Email Address"
+class="border w-full p-3 rounded mb-3">
+
+<button onclick="sendOTP()"
+class="bg-indigo-600 text-white w-full py-2 rounded mb-4">
+Send OTP
+</button>
+
+<input id="otp"
+placeholder="Enter OTP"
+class="border w-full p-3 rounded mb-4">
+
+<button onclick="verifyOTP()"
+class="bg-green-600 text-white w-full py-2 rounded">
+Verify Email
+</button>
+
+<div id="form" class="hidden mt-6 fade-in">
+
+<input id="name"
+placeholder="Full Name"
+class="border w-full p-3 rounded mb-3">
+
+<input id="phone"
+placeholder="Phone"
+class="border w-full p-3 rounded mb-3">
+
+<select id="service"
+class="border w-full p-3 rounded mb-3">
+
+<option>Website Development</option>
+<option>UI Design</option>
+<option>Portfolio Website</option>
+
+</select>
+
+<textarea id="message"
+placeholder="Project Details"
+class="border w-full p-3 rounded mb-4"></textarea>
+
+<button onclick="submitForm()"
+id="submitBtn"
+class="bg-purple-600 text-white w-full py-3 rounded">
+Submit Request
+</button>
+
+</div>
+
+</div>
+
+<!-- LOADER -->
+
+<div id="loader"
+class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+
+<div class="loader"></div>
+
+</div>
+
+<!-- POPUP -->
+
+<div id="popup"
+class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+
+<div class="bg-white p-8 rounded-xl text-center shadow-xl max-w-sm fade-in">
+
+<h2 id="popupTitle" class="text-2xl font-bold mb-2"></h2>
+
+<p id="popupMsg" class="mb-4"></p>
+
+<button onclick="closePopup()"
+class="bg-indigo-600 text-white px-6 py-2 rounded">
+OK
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+emailjs.init("IjcMdGc7hhe75v6JE")
+
+let otpCode
+let counter = 1
+
+const API="https://script.google.com/macros/s/AKfycbwnBjAJdDDIwefyafJ1_1jAh84Vsgr9oslrvaPTYC5BN5Bpra-PkfgcDQ4dlWGw7q6T/exec"
+
+function showLoader(){
+document.getElementById("loader").style.display="flex"
+}
+
+function hideLoader(){
+document.getElementById("loader").style.display="none"
+}
+
+function showPopup(title,msg){
+
+document.getElementById("popupTitle").innerText=title
+document.getElementById("popupMsg").innerText=msg
+document.getElementById("popup").style.display="flex"
+
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none"
+}
+
+function showHelp(){
+
+showPopup(
+"Form Instructions",
+
+`Step 1: Enter your Email
+
+Step 2: Click Send OTP
+
+Step 3: Check your Email
+
+Step 4: Enter OTP and Verify
+
+Step 5: Fill your details
+
+Step 6: Submit Request
+
+Support will contact you soon.`
+)
+
+}
+
+async function sendOTP(){
+
+let email=document.getElementById("email").value
+
+if(!email){
+showPopup("Error","Enter email first")
+return
+}
+
+otpCode=Math.floor(100000+Math.random()*900000)
+
+showLoader()
+
+try{
+
+await emailjs.send(
+"service_9uwcu9x",
+"template_51t8llg",
+{
+email:email,
+otp:otpCode
+}
+)
+
+hideLoader()
+
+showPopup("OTP Sent","Check your email")
+
+}catch(e){
+
+hideLoader()
+
+showPopup("Error","OTP send failed")
+
+}
+
+}
+
+function verifyOTP(){
+
+let user=document.getElementById("otp").value
+
+if(user==otpCode){
+
+document.getElementById("form").style.display="block"
+
+showPopup("Verified","Email verified. Now fill the form.")
+
+}else{
+
+showPopup("Error","Invalid OTP")
+
+}
+
+}
+
+function generateCustomerID(name){
+
+let prefix = name.substring(0,3).toUpperCase()
+
+let number = String(counter).padStart(4,"0")
+
+counter++
+
+return prefix + number
+
+}
+
+async function submitForm(){
+
+let btn=document.getElementById("submitBtn")
+btn.disabled=true
+
+let name=document.getElementById("name").value
+let customerID = generateCustomerID(name)
+
+let data={
+
+id:customerID,
+name:name,
+email:document.getElementById("email").value,
+phone:document.getElementById("phone").value,
+service:document.getElementById("service").value,
+message:document.getElementById("message").value
+
+}
+
+showLoader()
+
+try{
+
+await fetch(API,{
+method:"POST",
+body:JSON.stringify(data)
+})
+
+await emailjs.send(
+"service_9uwcu9x",
+"template_94xq6yl",
+{
+name:data.name,
+email:data.email,
+phone:data.phone,
+service:data.service,
+customer_id:customerID
+}
+)
+
+hideLoader()
+
+showPopup("Success","Customer ID: "+customerID+"\nPage will refresh automatically")
+
+setTimeout(()=>{
+
+location.reload()
+
+},3000)
+
+}catch(err){
+
+hideLoader()
+
+btn.disabled=false
+
+showPopup("Error","Submission failed")
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
