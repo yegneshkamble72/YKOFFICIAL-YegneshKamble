@@ -5,103 +5,151 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>YK OFFICIAL - Client Request Form</title>
-<link
-      rel="icon"
-      type="image/svg+xml"
-      href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
-    />
+<title>YK OFFICIAL-Client Request Form</title>
+
+<link rel="icon" href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
 <style>
 
-.fade-in{
-animation:fade 0.6s ease;
+/* background animation */
+
+body{
+background:linear-gradient(-45deg,#0f172a,#64637e,#000000,#1e1b4b);
+background-size:400% 400%;
+
 }
 
-@keyframes fade{
-from{opacity:0;transform:translateY(10px)}
-to{opacity:1;transform:translateY(0)}
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
 }
+
+/* glass card */
+
+.glass{
+backdrop-filter:blur(14px);
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.1);
+}
+
+/* loader */
 
 .loader{
-border:4px solid #eee;
-border-top:4px solid #6366f1;
+width:60px;
+height:60px;
 border-radius:50%;
-width:40px;
-height:40px;
+border:5px solid #ffffff30;
+border-top:5px solid #6366f1;
 animation:spin 1s linear infinite;
 }
 
 @keyframes spin{
-0%{transform:rotate(0)}
-100%{transform:rotate(360deg)}
+to{transform:rotate(360deg)}
+}
+
+/* popup animation */
+
+.popup{
+animation:pop .35s ease;
+}
+
+@keyframes pop{
+0%{transform:scale(.7);opacity:0}
+100%{transform:scale(1);opacity:1}
 }
 
 </style>
 
 </head>
 
-<body class="bg-gradient-to-br from-indigo-600 to-purple-600 min-h-screen flex items-center justify-center">
+<body class="min-h-screen text-white flex flex-col">
 
-<div class="bg-white shadow-2xl rounded-xl w-full max-w-lg p-8 fade-in">
+<!-- NAVBAR -->
 
-<h1 class="text-2xl font-bold text-center mb-6">
-Client Request Form
+<nav class="flex justify-between items-center px-6 py-4 bg-black/40 backdrop-blur-md">
+
+<div class="flex items-center gap-3">
+
+<img src="https://i.ibb.co/hJCHgThF/logo-yk-crop.png" class="w-10 rounded-full" alt="YK Logo">
+
+<h1 class="font-bold text-xl">
+YK OFFICIAL
 </h1>
 
-<button onclick="showHelp()"
-class="bg-gray-800 text-white px-4 py-2 rounded mb-4 w-full">
-Help / Instructions
+</div>
+
+<div class="flex gap-4">
+
+<button onclick="showHelp()" class="bg-indigo-600 px-4 py-2 rounded hover:bg-indigo-500">
+Help
 </button>
 
-<input id="email"
-type="email"
-placeholder="Email Address"
-class="border w-full p-3 rounded mb-3">
+<button onclick="showContact()" class="bg-white text-black px-4 py-2 rounded">
+Contact
+</button>
+
+</div>
+
+</nav>
+
+
+<!-- MAIN FORM -->
+
+<div class="flex-grow flex items-center justify-center p-6">
+
+<div class="glass rounded-xl shadow-2xl p-8 w-full max-w-lg">
+
+<h2 class="text-2xl font-bold mb-6 text-center">
+Client Request Form
+</h2>
+
+
+<input id="email" type="email" placeholder="Email Address"
+class="w-full p-3 mb-3 rounded text-black">
 
 <button onclick="sendOTP()"
-class="bg-indigo-600 text-white w-full py-2 rounded mb-4">
+class="w-full bg-indigo-600 py-2 rounded mb-4">
 Send OTP
 </button>
 
-<input id="otp"
-placeholder="Enter OTP"
-class="border w-full p-3 rounded mb-4">
+
+<input id="otp" placeholder="Enter OTP"
+class="w-full p-3 mb-4 rounded text-black">
 
 <button onclick="verifyOTP()"
-class="bg-green-600 text-white w-full py-2 rounded">
+class="w-full bg-green-600 py-2 rounded">
 Verify Email
 </button>
 
-<div id="form" class="hidden mt-6 fade-in">
 
-<input id="name"
-placeholder="Full Name"
-class="border w-full p-3 rounded mb-3">
+<div id="form" class="hidden mt-6">
 
-<input id="phone"
-placeholder="Phone"
-class="border w-full p-3 rounded mb-3">
+<input id="name" placeholder="Full Name"
+class="w-full p-3 mb-3 rounded text-black">
+
+<input id="phone" placeholder="Phone"
+class="w-full p-3 mb-3 rounded text-black">
 
 <select id="service"
-class="border w-full p-3 rounded mb-3">
+class="w-full p-3 mb-3 rounded text-black">
 
 <option>Website Development</option>
 <option>UI Design</option>
 <option>Portfolio Website</option>
+<option>Personal Solution</option>
 
 </select>
 
 <textarea id="message"
 placeholder="Project Details"
-class="border w-full p-3 rounded mb-4"></textarea>
+class="w-full p-3 mb-4 rounded text-black"></textarea>
 
-<button onclick="submitForm()"
-id="submitBtn"
-class="bg-purple-600 text-white w-full py-3 rounded">
+<button onclick="submitForm()" id="submitBtn"
+class="w-full bg-purple-600 py-3 rounded">
 Submit Request
 </button>
 
@@ -109,23 +157,38 @@ Submit Request
 
 </div>
 
+</div>
+
+
+<!-- FOOTER -->
+
+<footer class="bg-black/50 text-center py-4 text-sm">
+
+© 2026 YK OFFICIAL - Yegnesh Kamble 
+<br>
+
+
+</footer>
+
+
 <!-- LOADER -->
 
 <div id="loader"
-class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+class="hidden fixed inset-0 backdrop-blur-md bg-black/40 flex items-center justify-center">
 
 <div class="loader"></div>
 
 </div>
 
+
 <!-- POPUP -->
 
 <div id="popup"
-class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+class="hidden fixed inset-0 bg-black/60 flex items-center justify-center">
 
-<div class="bg-white p-8 rounded-xl text-center shadow-xl max-w-sm fade-in">
+<div class="popup bg-white text-black p-8 rounded-xl text-center max-w-sm">
 
-<h2 id="popupTitle" class="text-2xl font-bold mb-2"></h2>
+<h2 id="popupTitle" class="text-xl font-bold mb-2"></h2>
 
 <p id="popupMsg" class="mb-4"></p>
 
@@ -138,14 +201,43 @@ OK
 
 </div>
 
+
+<!-- CONTACT POPUP -->
+
+<div id="contact"
+class="hidden fixed inset-0 bg-black/60 flex items-center justify-center">
+
+<div class="popup bg-white text-black p-8 rounded-xl text-center max-w-sm">
+
+<h2 class="text-xl font-bold mb-3">
+YK OFFICIAL TEAM
+</h2>
+
+<p class="mb-2 " >📧 yegnesh7219@gmail.com</p>
+
+<p class="mb-4">🌐 YK OFFICIAL Support Team</p>
+
+<button onclick="closeContact()"
+class="bg-indigo-600 text-white px-6 py-2 rounded">
+Close
+</button>
+
+</div>
+
+</div>
+
+
+
 <script>
 
 emailjs.init("IjcMdGc7hhe75v6JE")
 
 let otpCode
-let counter = 1
 
 const API="https://script.google.com/macros/s/AKfycbwnBjAJdDDIwefyafJ1_1jAh84Vsgr9oslrvaPTYC5BN5Bpra-PkfgcDQ4dlWGw7q6T/exec"
+
+
+/* loader */
 
 function showLoader(){
 document.getElementById("loader").style.display="flex"
@@ -154,6 +246,9 @@ document.getElementById("loader").style.display="flex"
 function hideLoader(){
 document.getElementById("loader").style.display="none"
 }
+
+
+/* popup */
 
 function showPopup(title,msg){
 
@@ -167,27 +262,40 @@ function closePopup(){
 document.getElementById("popup").style.display="none"
 }
 
+
+/* contact */
+
+function showContact(){
+document.getElementById("contact").style.display="flex"
+}
+
+function closeContact(){
+document.getElementById("contact").style.display="none"
+}
+
+
+/* help */
+
 function showHelp(){
 
 showPopup(
 "Form Instructions",
 
-`Step 1: Enter your Email
-
+`Step 1: Enter Email
 Step 2: Click Send OTP
-
 Step 3: Check your Email
-
 Step 4: Enter OTP and Verify
-
 Step 5: Fill your details
-
 Step 6: Submit Request
 
-Support will contact you soon.`
+YK Official team will contact you soon.`
+
 )
 
 }
+
+
+/* send otp */
 
 async function sendOTP(){
 
@@ -214,18 +322,19 @@ otp:otpCode
 )
 
 hideLoader()
-
 showPopup("OTP Sent","Check your email")
 
 }catch(e){
 
 hideLoader()
-
 showPopup("Error","OTP send failed")
 
 }
 
 }
+
+
+/* verify otp */
 
 function verifyOTP(){
 
@@ -234,8 +343,7 @@ let user=document.getElementById("otp").value
 if(user==otpCode){
 
 document.getElementById("form").style.display="block"
-
-showPopup("Verified","Email verified. Now fill the form.")
+showPopup("Verified","Email verified. Fill the form.")
 
 }else{
 
@@ -245,17 +353,35 @@ showPopup("Error","Invalid OTP")
 
 }
 
+
+/* customer id */
+
 function generateCustomerID(name){
 
-let prefix = name.substring(0,3).toUpperCase()
+let counter = localStorage.getItem("customerCounter")
+
+if(!counter){
+counter = 1
+}else{
+counter = parseInt(counter) + 1
+}
+
+localStorage.setItem("customerCounter", counter)
+
+// split name
+let parts = name.trim().split(" ")
+
+let first = parts[0].charAt(0).toUpperCase()
+let last = parts.length > 1 ? parts[parts.length-1].charAt(0).toUpperCase() : "X"
 
 let number = String(counter).padStart(4,"0")
 
-counter++
-
-return prefix + number
+return first + last + number
 
 }
+
+
+/* submit */
 
 async function submitForm(){
 
@@ -263,6 +389,7 @@ let btn=document.getElementById("submitBtn")
 btn.disabled=true
 
 let name=document.getElementById("name").value
+
 let customerID = generateCustomerID(name)
 
 let data={
@@ -299,20 +426,16 @@ customer_id:customerID
 
 hideLoader()
 
-showPopup("Success","Customer ID: "+customerID+"\nPage will refresh automatically")
+showPopup("Success","Customer ID: "+customerID+"\nPage will refresh")
 
 setTimeout(()=>{
-
 location.reload()
-
 },3000)
 
 }catch(err){
 
 hideLoader()
-
 btn.disabled=false
-
 showPopup("Error","Submission failed")
 
 }
@@ -320,6 +443,102 @@ showPopup("Error","Submission failed")
 }
 
 </script>
+
+
+ <!--SOURCE CODE HIDE SCRIPT -->
+
+    <script>
+      // Disable Right Click
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+        showWarning();
+      });
+
+      // Disable Keyboard Shortcuts
+      document.onkeydown = function (e) {
+        if (e.keyCode == 123) {
+          // F12
+          showWarning();
+          return false;
+        }
+
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+          // Ctrl+Shift+I
+          showWarning();
+          return false;
+        }
+
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+          // Ctrl+Shift+J
+          showWarning();
+          return false;
+        }
+
+        if (e.ctrlKey && e.keyCode == 85) {
+          // Ctrl+U
+          showWarning();
+          return false;
+        }
+
+        if (e.ctrlKey && e.keyCode == 67) {
+          // Ctrl+C
+          showWarning();
+          return false;
+        }
+      };
+
+      // DevTools detection
+      setInterval(function () {
+        const widthThreshold = window.outerWidth - window.innerWidth > 160;
+        const heightThreshold = window.outerHeight - window.innerHeight > 160;
+
+        if (widthThreshold || heightThreshold) {
+          showWarning();
+        }
+      }, 1000);
+
+      // Warning Message
+
+      function showWarning() {
+        document.body.innerHTML = `
+         <div style="
+         height:100vh;
+         display:flex;
+         align-items:center;
+         justify-content:center;
+         flex-direction:column;
+         background:#000;
+         color:#fff;
+         font-family:sans-serif;
+         text-align:center;
+         padding:20px;
+         ">
+         
+         <h1 style="font-size:40px;margin-bottom:20px;">
+         ⚠ ACCESS DENIED
+         </h1>
+         
+         <p style="font-size:18px;max-width:600px;">
+         Inspect Element / Developer Tools detected.<br><br>
+         
+         This website is protected by security system.<br>
+         Copying source code is strictly prohibited.
+         </p>
+         
+         <p style="margin-top:20px;font-size:16px;color:#aaa;">
+         © YK OFFICIAL - Yegnesh Kamble<br>
+         Founder: <b>Yegnesh Kamble</b> <br>
+         Phone: <b>7219274312</b><br>
+         Email: <b>Yegnesh7219@gmail.com</b>
+         </p>
+         
+         <p style="margin-top:20px;font-size:16px;color:#aaa;">
+         <b>© 2026 YK OFFICIAL. All rights reserved.</b>
+         </p>
+         </div>
+         `;
+      }
+    </script>
 
 </body>
 </html>
