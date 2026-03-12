@@ -696,34 +696,44 @@
           </div>
         </div>
       </div>
+
       <!-- Secondary Navigation -->
+      <!-- Secondary Navigation -->
+
+      <!-- Secondary Navigation -->
+
       <div
         class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white fixed w-full top-16 z-40 shadow-md"
       >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between items-center h-12 text-sm">
-            <div class="flex items-center gap-3 sm:gap-4">
-              <!-- Language Selector -->
+          <div
+            class="flex justify-between items-center h-12 text-sm flex-wrap gap-2"
+          >
+            <!-- LEFT SIDE -->
 
-              <!-- Date Time -->
+            <div class="flex items-center gap-3">
+              <!-- Date Time (Mobile Hidden) -->
+
               <span
                 id="currentDateTime"
-                class="hidden sm:flex items-center text-sm text-white bg-white/10 px-3 py-1.5 rounded-lg backdrop-blur-md border border-white/20"
-              ></span>
+                class="items-center text-sm text-white bg-white/10 px-3 py-1.5 rounded-lg backdrop-blur-md border border-white/20"
+              >
+              </span>
             </div>
 
             <!-- RIGHT SIDE BUTTONS -->
-            <div class="flex items-center gap-3">
+
+            <div class="flex items-center gap-2 sm:gap-3 flex-wrap justify-end">
               <a
                 href="custindex.html"
-                class="bg-white text-purple-700 px-4 py-1 rounded-lg font-semibold hover:bg-gray-200 transition"
+                class="bg-white text-purple-700 px-3 sm:px-4 py-1 rounded-lg font-semibold hover:bg-gray-200 transition text-xs sm:text-sm"
               >
                 Registration
               </a>
 
               <a
                 href="adminindex.html"
-                class="bg-pink-500 px-4 py-1 rounded-lg font-semibold hover:bg-pink-600 transition"
+                class="bg-pink-500 px-3 sm:px-4 py-1 rounded-lg font-semibold hover:bg-pink-600 transition text-xs sm:text-sm"
               >
                 Admin
               </a>
@@ -732,15 +742,19 @@
                 href="https://meet.google.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex items-center space-x-2 bg-white bg-opacity-20 px-4 py-1 rounded-lg hover:bg-opacity-30 transition-all"
+                class="flex items-center space-x-1 sm:space-x-2 bg-white/20 px-3 sm:px-4 py-1 rounded-lg hover:bg-white/30 transition-all text-xs sm:text-sm"
               >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <svg
+                  class="w-4 h-4 sm:w-5 sm:h-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path
                     d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z"
                   />
                 </svg>
 
-                <span>Live Connect</span>
+                <span>Live</span>
               </a>
             </div>
           </div>
@@ -815,7 +829,7 @@
       <!-- Home Section -->
       <section
         id="home"
-        class="min-h-screen relative overflow-hidden pt-28 pb-20 px-4"
+        class="min-h-screen relative overflow-hidden pt-24 md:pt-28 pb-16 md:pb-20 px-4"
       >
         <!-- Animated Background -->
         <div
@@ -823,14 +837,16 @@
         >
           <div class="absolute inset-0 opacity-20">
             <div
-              class="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-float"
+              class="absolute top-20 left-10 w-60 md:w-72 h-60 md:h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-float"
             ></div>
+
             <div
-              class="absolute top-40 right-10 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-float"
+              class="absolute top-40 right-10 w-60 md:w-72 h-60 md:h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-float"
               style="animation-delay: 2s"
             ></div>
+
             <div
-              class="absolute bottom-20 left-1/2 w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl animate-float"
+              class="absolute bottom-20 left-1/2 w-60 md:w-72 h-60 md:h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl animate-float"
               style="animation-delay: 4s"
             ></div>
           </div>
@@ -839,10 +855,12 @@
         <!-- Content -->
         <div class="relative z-10 max-w-7xl mx-auto">
           <div
-            class="grid md:grid-cols-2 gap-12 items-center min-h-[calc(100vh-200px)]"
+            class="grid md:grid-cols-2 gap-10 md:gap-12 items-center min-h-[calc(100vh-200px)]"
           >
-            <!-- Left Side - Text Content -->
-            <div class="text-white space-y-6 animate-slideIn">
+            <!-- Left Side -->
+            <div
+              class="text-white space-y-5 animate-slideIn text-center md:text-left"
+            >
               <div class="inline-block">
                 <span
                   class="bg-white bg-opacity-20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium border border-white border-opacity-30"
@@ -850,64 +868,76 @@
                   👋 Welcome to my portfolio
                 </span>
               </div>
+
               <h1
                 id="heroName"
-                class="text-5xl md:text-7xl font-bold leading-tight"
+                class="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight"
               >
                 Yegnesh Kamble
               </h1>
-              <div class="flex items-center space-x-3">
+
+              <div
+                class="flex items-center justify-center md:justify-start space-x-3"
+              >
                 <div
                   class="h-1 w-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full"
                 ></div>
+
                 <p
                   id="heroDesignation"
-                  class="text-2xl md:text-3xl font-light text-purple-200"
+                  class="text-lg sm:text-xl md:text-3xl font-light text-purple-200"
                 >
                   Web Developer | DevOps | AWS Engineer
                 </p>
               </div>
-              <p class="text-lg text-gray-300 leading-relaxed max-w-xl">
+
+              <p
+                class="text-base md:text-lg text-gray-300 leading-relaxed max-w-xl mx-auto md:mx-0"
+              >
                 Crafting seamless digital experiences with passion and
                 precision. I specialize in building responsive web applications,
                 automating workflows through DevOps practices, and deploying
-                scalable solutions on AWS — turning ideas into reliable,
-                high-performance products that make a real impact.
+                scalable solutions on AWS.
               </p>
-              <div class="flex flex-wrap gap-4 pt-4">
+
+              <div
+                class="flex flex-wrap justify-center md:justify-start gap-4 pt-4"
+              >
                 <button
                   onclick="scrollToSection('projects')"
-                  class="group relative bg-white text-purple-900 px-8 py-4 rounded-lg font-semibold overflow-hidden transition-all hover:scale-105 hover:shadow-2xl"
+                  class="group relative bg-white text-purple-900 px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold overflow-hidden transition-all hover:scale-105 hover:shadow-2xl"
                 >
                   <span class="relative z-0">View My Work</span>
+
                   <div
                     class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity"
                   ></div>
+
                   <span
                     class="relative z-10 opacity-0 group-hover:opacity-100 transition-opacity"
                   >
                     →</span
                   >
                 </button>
+
                 <button
                   onclick="scrollToSection('contact')"
-                  class="bg-white bg-opacity-10 backdrop-blur-sm text-white px-8 py-4 rounded-lg font-semibold border-2 border-white border-opacity-30 hover:bg-opacity-20 transition-all hover:scale-105"
+                  class="bg-white bg-opacity-10 backdrop-blur-sm text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold border-2 border-white border-opacity-30 hover:bg-opacity-20 transition-all hover:scale-105"
                 >
                   Let's Connect
                 </button>
               </div>
             </div>
 
-            <!-- Right Side - Visual Element -->
+            <!-- Right Side -->
             <div class="relative animate-fadeIn">
-              <div class="relative w-full max-w-lg mx-auto">
-                <!-- Main Card -->
+              <div class="relative w-full max-w-sm md:max-w-lg mx-auto">
                 <div
-                  class="relative bg-white bg-opacity-10 backdrop-blur-lg rounded-3xl p-8 border border-white border-opacity-20 shadow-2xl"
+                  class="relative bg-white bg-opacity-10 backdrop-blur-lg rounded-3xl p-6 md:p-8 border border-white border-opacity-20 shadow-2xl"
                 >
-                  <!-- Profile Circle -->
+                  <!-- Profile -->
                   <div
-                    class="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 p-1 animate-pulse-custom"
+                    class="w-36 h-36 md:w-48 md:h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 p-1 animate-pulse-custom"
                   >
                     <div
                       class="w-full h-full rounded-full bg-white flex items-center justify-center"
@@ -915,78 +945,86 @@
                       <img
                         src="1.jpeg"
                         alt="Yegnesh Kamble"
-                        class="w-44 h-44 rounded-full object-cover"
+                        class="w-32 h-32 md:w-44 md:h-44 rounded-full object-cover"
                       />
                     </div>
                   </div>
-                  <!-- Skills Tags -->
+
+                  <!-- Skills -->
                   <div class="flex flex-wrap justify-center gap-2 mb-6">
                     <span
-                      class="bg-purple-500 bg-opacity-30 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm border border-purple-300 border-opacity-30"
-                      >HTMl/CSS/JS</span
+                      class="bg-purple-500 bg-opacity-30 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs md:text-sm border border-purple-300 border-opacity-30"
+                      >HTML/CSS/JS</span
                     >
+
                     <span
-                      class="bg-pink-500 bg-opacity-30 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm border border-pink-300 border-opacity-30"
+                      class="bg-pink-500 bg-opacity-30 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs md:text-sm border border-pink-300 border-opacity-30"
                       >DevOps</span
                     >
+
                     <span
-                      class="bg-indigo-500 bg-opacity-30 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm border border-indigo-300 border-opacity-30"
+                      class="bg-indigo-500 bg-opacity-30 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs md:text-sm border border-indigo-300 border-opacity-30"
                       >Python</span
                     >
+
                     <span
-                      class="bg-purple-500 bg-opacity-30 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm border border-purple-300 border-opacity-30"
+                      class="bg-purple-500 bg-opacity-30 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs md:text-sm border border-purple-300 border-opacity-30"
                       >AWS</span
                     >
                   </div>
-                  <!-- Code Window Mockup -->
-                  <div class="bg-gray-900 rounded-lg p-4 text-left">
+
+                  <!-- Code Window -->
+                  <div class="bg-gray-900 rounded-lg p-3 md:p-4 text-left">
                     <div class="flex space-x-2 mb-3">
                       <div class="w-3 h-3 rounded-full bg-red-500"></div>
                       <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
                       <div class="w-3 h-3 rounded-full bg-green-500"></div>
                     </div>
-                    <div class="font-mono text-xs space-y-1">
+
+                    <div class="font-mono text-[10px] md:text-xs space-y-1">
                       <div class="text-purple-400">
                         const <span class="text-blue-400">developer</span> = {
                       </div>
+
                       <div class="text-green-400 pl-4">
                         name:
                         <span class="text-yellow-300">'Yegnesh Kamble'</span>,
                       </div>
+
                       <div class="text-green-400 pl-4">
                         skills:
                         <span class="text-yellow-300"
-                          >['Web', 'DevOps', 'Python', 'AWS']</span
+                          >['Web','DevOps','Python','AWS']</span
                         >,
                       </div>
+
                       <div class="text-green-400 pl-4">
                         passion:
                         <span class="text-yellow-300"
-                          >'Build' , 'Automation'</span
+                          >'Build','Automation'</span
                         >
                       </div>
+
                       <div class="text-purple-400">};</div>
                     </div>
                   </div>
                 </div>
-                <!-- Floating Elements -->
               </div>
             </div>
           </div>
 
           <!-- Scroll Indicator -->
           <div
-            class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+            class="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce"
           >
-            <div
-              class="flex flex-col items-center text-white opacity-60 top-30"
-            >
+            <div class="flex flex-col items-center text-white opacity-60">
               <span class="text-sm mb-2">Scroll Down</span>
+
               <svg
                 class="w-6 h-6"
                 fill="none"
                 stroke="currentColor"
-                viewbox="0 0 24 24"
+                viewBox="0 0 24 24"
               >
                 <path
                   stroke-linecap="round"
@@ -998,63 +1036,77 @@
             </div>
           </div>
 
-          <!--Chatbot-->
+          <!-- Chatbot Button -->
 
-          <!-- Floating Button -->
           <div
             onclick="toggleChat()"
-            class="fixed bottom-6 left-6 w-14 h-14 rounded-full bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 flex items-center justify-center text-white text-2xl shadow-2xl z-10 cursor-pointer hover:scale-110 transition"
+            class="fixed bottom-6 left-6 w-14 h-14 rounded-full bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 flex items-center justify-center text-white text-2xl shadow-2xl z-50 cursor-pointer hover:scale-110 transition"
           >
             🤖
           </div>
 
           <!-- Chat Box -->
+
           <div
             id="chatBox"
-            class="hidden fixed top-40 bottom-24 left-6 [380px] max-w-[95%] h-[550px] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden"
+            class="hidden fixed bottom-24 left-3 right-3 md:left-6 md:right-auto md:w-[380px] h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50"
           >
+            <!-- Header -->
+
             <div
-              class="bg-gradient-to-r from-purple-400 to-indigo-500 text-white p-4 text-center font-semibold text-lg"
+              class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white p-4 flex justify-between items-center"
             >
-              YK Official Support
+              <span class="font-semibold text-lg"> YK Official Support </span>
+
+              <button
+                onclick="toggleChat()"
+                class="text-white text-xl hover:scale-110 transition"
+              >
+                ✖
+              </button>
             </div>
+
+            <!-- Messages -->
 
             <div
               id="messages"
-              class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50"
+              class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50 text-sm"
             ></div>
+
+            <!-- Form -->
 
             <div class="p-4 border-t bg-white space-y-2">
               <input
                 id="name"
                 type="text"
                 placeholder="Your Name"
-                class="w-full px-3 py-2 border rounded-lg text-sm"
+                class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
               />
 
               <input
                 id="email"
                 type="email"
                 placeholder="Your Email"
-                class="w-full px-3 py-2 border rounded-lg text-sm"
+                class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
               />
 
               <input
                 id="phone"
                 type="text"
                 placeholder="Your Phone"
-                class="w-full px-3 py-2 border rounded-lg text-sm"
+                class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
               />
 
               <textarea
                 id="message"
                 placeholder="Your Message"
-                class="w-full px-3 py-2 border rounded-lg text-sm"
+                rows="2"
+                class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
               ></textarea>
 
               <button
                 onclick="sendMail()"
-                class="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition"
+                class="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition font-medium"
               >
                 Send Message
               </button>
@@ -1065,204 +1117,123 @@
 
       <!-- About Section -->
 
-      <section id="about" class="min-h-screen py-20 px-4 bg-white">
+      <section id="about" class="min-h-screen py-16 md:py-20 px-4 bg-white">
         <div class="max-w-6xl mx-auto">
           <h2
-            class="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-16"
+            class="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12 md:mb-16"
           >
-            <span class="border-b-4 border-purple-600 pb-2" id="aboutTitle"
-              >About Me</span
-            >
+            <span class="border-b-4 border-purple-600 pb-2">About Me</span>
           </h2>
-        </div>
 
-        <div class="grid lg:grid-cols-2 gap-8">
-          <div class="grid md:grid-rows-1 gap-12 items-center">
+          <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <!-- LEFT CONTENT -->
+
             <div class="space-y-6">
-              <p
-                id="aboutDescription"
-                class="text-lg text-gray-700 leading-relaxed"
-              >
+              <p class="text-base md:text-lg text-gray-700 leading-relaxed">
                 I'm Yegnesh Kamble, a passionate Web Developer, DevOps Engineer,
                 and AWS Cloud Specialist dedicated to building efficient,
                 secure, and scalable digital solutions. I love turning complex
                 problems into elegant, user-friendly experiences — whether it’s
                 developing responsive websites, automating deployment pipelines,
-                or optimizing cloud infrastructure. With a strong foundation in
-                modern web technologies, cloud computing, and continuous
-                integration tools, I focus on creating solutions that are both
-                technically robust and visually engaging. My goal is to bridge
-                the gap between development and operations, ensuring every
-                project runs smoothly from concept to deployment. When I’m not
-                coding or configuring servers, I enjoy learning new
-                technologies, contributing to open-source projects, and
-                exploring creative ways to enhance performance and reliability.
+                or optimizing cloud infrastructure.
               </p>
-              <div class="grid grid-cols-2 gap-4">
-                <div class="bg-purple-50 p-4 rounded-lg">
-                  <h3 class="font-bold text-purple-600 mb-2">Experience</h3>
-                  <p class="text-gray-700">1 Years</p>
-                </div>
-                <div class="bg-indigo-50 p-4 rounded-lg">
-                  <h3 class="font-bold text-indigo-600 mb-2">Projects</h3>
-                  <p class="text-gray-700">5+ Completed</p>
-                </div>
-                <div class="bg-pink-50 p-4 rounded-lg">
-                  <h3 class="font-bold text-pink-600 mb-2">Clients</h3>
-                  <p class="text-gray-700">0 Happy</p>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <!-- Video Player Column -->
-          <div class="w-100 h-100 order-2 lg:order-1">
-            <div
-              class="relative bg-zinc-900 rounded-2xl overflow-hidden aspect-video shadow-2xl group"
-            >
-              <!-- Video Poster -->
-              <div
-                id="video-poster"
-                class="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-zinc-800 flex items-center justify-center z-10"
-              >
-                <div class="text-center">
-                  <div
-                    class="w-24 h-24 mx-auto mb-4 rounded-full bg-zinc-800 flex items-center justify-center animate-pulse"
-                  >
-                    <svg
-                      class="w-12 h-12 text-orange-500"
-                      fill="currentColor"
-                      viewbox="0 0 24 24"
-                    >
-                      <path
-                        d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </div>
-                  <p class="text-zinc-400 text-sm">Video Loading...</p>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="bg-purple-50 p-4 rounded-lg text-center">
+                  <h3 class="font-bold text-purple-600 mb-1">Experience</h3>
+                  <p class="text-gray-700">1 Year</p>
                 </div>
-              </div>
 
-              <!-- Video Element (MUTED & AUTOPLAY) -->
-              <video
-                id="main-video"
-                class="w-full h-full object-cover"
-                muted
-                playsinline
-                autoplay
-              >
-                <source src="ome.mp4" type="video/mp4" />
-              </video>
+                <div class="bg-indigo-50 p-4 rounded-lg text-center">
+                  <h3 class="font-bold text-indigo-600 mb-1">Projects</h3>
+                  <p class="text-gray-700">5+</p>
+                </div>
 
-              <!-- Hidden Progress Bar Timeline -->
-              <div
-                class="absolute bottom-0 left-0 right-0 h-1 bg-zinc-700/50 cursor-pointer hover:h-1.5 transition-all"
-              >
                 <div
-                  id="progress-fill"
-                  class="h-full bg-gradient-to-r from-orange-500 to-orange-400 w-0 transition-all"
-                ></div>
-              </div>
-
-              <!-- Controls Overlay (Hidden by Default, Shows on Hover) -->
-              <div
-                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zinc-900 via-zinc-900/50 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity z-20"
-              >
-                <div class="flex items-center justify-between gap-3">
-                  <div class="flex items-center gap-2">
-                    <!-- Play/Pause -->
-
-                    <button
-                      class="p-2 rounded-lg bg-zinc-800/70 hover:bg-orange-500 transition-colors"
-                      id="play-btn"
-                      title="Play/Pause (Space)"
-                    >
-                      <svg
-                        id="play-icon"
-                        class="w-4 h-4 text-white"
-                        fill="currentColor"
-                        viewbox="0 0 24 24"
-                      >
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                      <svg
-                        id="pause-icon"
-                        class="w-4 h-4 text-white hidden"
-                        fill="currentColor"
-                        viewbox="0 0 24 24"
-                      >
-                        <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-                      </svg>
-                    </button>
-                    <!-- Mute/Volume -->
-                    <button
-                      class="p-2 rounded-lg bg-zinc-800/70 hover:bg-orange-500 transition-colors"
-                      id="mute-btn"
-                      title="Mute/Unmute (M)"
-                    >
-                      <svg
-                        id="volume-icon"
-                        class="w-4 h-4 text-white"
-                        fill="currentColor"
-                        viewbox="0 0 24 24"
-                      >
-                        <path
-                          d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"
-                        />
-                      </svg>
-                      <svg
-                        id="mute-icon"
-                        class="w-4 h-4 text-white hidden"
-                        fill="currentColor"
-                        viewbox="0 0 24 24"
-                      >
-                        <path
-                          d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51c.58-.98.93-2.16.93-3.43 0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9z"
-                        />
-                      </svg>
-                    </button>
-                    <!-- Time Display -->
-                    <span
-                      class="text-xs text-zinc-300 font-medium min-w-14"
-                      id="time-display"
-                      >0:00 / 0:00</span
-                    >
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <!-- Speed Control -->
-                    <button
-                      class="px-2 py-1 text-xs font-medium rounded bg-zinc-800/70 hover:bg-orange-500 text-white transition-colors"
-                      id="speed-btn"
-                      title="Playback Speed"
-                    >
-                      1x
-                    </button>
-                    <!-- Fullscreen -->
-                    <button
-                      class="p-2 rounded-lg bg-zinc-800/70 hover:bg-orange-500 transition-colors"
-                      id="fullscreen-btn"
-                      title="Fullscreen (F)"
-                    >
-                      <svg
-                        class="w-4 h-4 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewbox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
-                        />
-                      </svg>
-                    </button>
-                  </div>
+                  class="bg-pink-50 p-4 rounded-lg text-center col-span-2 md:col-span-1"
+                >
+                  <h3 class="font-bold text-pink-600 mb-1">Clients</h3>
+                  <p class="text-gray-700">0</p>
                 </div>
               </div>
             </div>
 
-            <!-- Video Info Cards -->
+            <!-- VIDEO PLAYER -->
+
+            <div class="relative">
+              <div
+                class="relative bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl aspect-video group"
+              >
+                <!-- VIDEO -->
+
+                <video
+                  id="video"
+                  class="w-full h-full object-cover"
+                  playsinline
+                  muted
+                  autoplay
+                >
+                  <source src="ome.mp4" type="video/mp4" />
+                </video>
+
+                <!-- PROGRESS BAR -->
+
+                <div
+                  id="progress"
+                  class="absolute bottom-0 left-0 right-0 h-1 bg-zinc-700 cursor-pointer"
+                >
+                  <div id="progressFill" class="h-full bg-orange-500 w-0"></div>
+                </div>
+
+                <!-- CONTROLS -->
+
+                <div
+                  class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition"
+                >
+                  <div
+                    class="flex items-center justify-between text-white text-sm"
+                  >
+                    <!-- LEFT -->
+
+                    <div class="flex items-center gap-3">
+                      <button
+                        id="playBtn"
+                        class="bg-zinc-800 p-2 rounded hover:bg-orange-500"
+                      >
+                        ▶
+                      </button>
+
+                      <button
+                        id="muteBtn"
+                        class="bg-zinc-800 p-2 rounded hover:bg-orange-500"
+                      >
+                        🔊
+                      </button>
+
+                      <span id="time">0:00 / 0:00</span>
+                    </div>
+
+                    <!-- RIGHT -->
+
+                    <div class="flex items-center gap-3">
+                      <button
+                        id="speedBtn"
+                        class="bg-zinc-800 px-2 py-1 rounded hover:bg-orange-500"
+                      >
+                        1x
+                      </button>
+
+                      <button
+                        id="fullBtn"
+                        class="bg-zinc-800 p-2 rounded hover:bg-orange-500"
+                      >
+                        ⛶
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1677,21 +1648,27 @@
 
       <footer class="bg-gray-900 text-white py-12 px-4 relative">
         <div class="max-w-6xl mx-auto">
-          <div class="grid md:grid-cols-3 gap-8 mb-8">
+          <div
+            class="grid sm:grid-cols-2 md:grid-cols-3 gap-10 mb-10 text-center md:text-left"
+          >
             <!-- Quick Links -->
+
             <div>
               <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+
               <div class="space-y-2">
                 <a
                   href="#home"
                   class="block hover:text-purple-400 transition-colors"
                   >Home</a
                 >
+
                 <a
                   href="#about"
                   class="block hover:text-purple-400 transition-colors"
                   >About</a
                 >
+
                 <a
                   href="#skills"
                   class="block hover:text-purple-400 transition-colors"
@@ -1701,131 +1678,145 @@
             </div>
 
             <!-- More -->
+
             <div>
               <h3 class="text-xl font-bold mb-4">More</h3>
+
               <div class="space-y-2">
                 <a
                   href="#projects"
                   class="block hover:text-purple-400 transition-colors"
                   >Projects</a
                 >
+
                 <a
                   href="#contact"
                   class="block hover:text-purple-400 transition-colors"
                   >Contact</a
                 >
+
                 <button
                   onclick="openResumeModal()"
-                  class="block hover:text-purple-400 transition-colors text-left"
+                  class="block hover:text-purple-400 transition-colors mx-auto md:mx-0"
                 >
                   Resume
                 </button>
 
                 <a
                   href="ykvideoplayer.html"
-                  class="block hover:text-purple-400 transition-colors text-left font-semibold"
                   target="_blank"
+                  class="block hover:text-purple-400 transition-colors font-semibold"
                 >
-                  Video Player</a
-                >
+                  Video Player
+                </a>
               </div>
             </div>
 
-            <!-- Contact & Social -->
-            <div class="space-y-3">
+            <!-- Contact -->
+
+            <div>
               <h3 class="text-xl font-bold mb-4">Contact</h3>
 
-              <!-- Click-to-call phone -->
-              <a
-                href="tel:+917219274312"
-                class="block text-gray-400 hover:text-purple-400 transition-colors"
-              >
-                📞 +91 72192 74312
-              </a>
+              <div class="space-y-2">
+                <a
+                  href="tel:+917219274312"
+                  class="block text-gray-400 hover:text-purple-400 transition-colors"
+                >
+                  📞 +91 72192 74312
+                </a>
 
-              <!-- Click-to-email -->
-              <a
-                href="mailto:yegnesh7219@gmail.com"
-                class="block text-gray-400 hover:text-purple-400 transition-colors"
-              >
-                📧 yegnesh7219@gmail.com
-              </a>
+                <a
+                  href="mailto:yegnesh7219@gmail.com"
+                  class="block text-gray-400 hover:text-purple-400 transition-colors"
+                >
+                  📧 yegnesh7219@gmail.com
+                </a>
 
-              <a
-                href="https://www.google.com/maps?q=Tekadi,+Nagpur,+441404"
-                target="_blank"
-                class="block text-gray-400 hover:text-purple-400 transition-colors"
-              >
-                📍 Tekadi, Nagpur - 441404
-              </a>
-            </div>
+                <a
+                  href="https://www.google.com/maps?q=Tekadi,+Nagpur,+441404"
+                  target="_blank"
+                  class="block text-gray-400 hover:text-purple-400 transition-colors"
+                >
+                  📍 Tekadi, Nagpur - 441404
+                </a>
+              </div>
 
-            <div class="flex space-x-4 mt-4">
-              <!-- Instagram -->
-              <a
-                href="https://instagram.com/yegnesh.kamble"
-                target="_blank"
-                class="hover:text-pink-500 transition"
-              >
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 8.2A3.2 3.2 0 1112 8.8a3.2 3.2 0 010 6.4zm4.8-8.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z"
-                  />
-                </svg>
-              </a>
+              <!-- Social Icons -->
 
-              <!-- Facebook -->
-              <a
-                href="https://facebook.com/yegnesh.kamble"
-                target="_blank"
-                class="hover:text-blue-500 transition"
-              >
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M22 12a10 10 0 10-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.5l-.4 3h-2.1v7A10 10 0 0022 12z"
-                  />
-                </svg>
-              </a>
+              <div class="flex justify-center md:justify-start space-x-5 mt-5">
+                <!-- Instagram -->
 
-              <!-- GitHub -->
-              <a
-                href="https://github.com/yegneshkamble72"
-                target="_blank"
-                class="hover:text-gray-400 transition"
-              >
-                <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
-                  <path
-                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                  />
-                </svg>
-              </a>
+                <a
+                  href="https://instagram.com/yegnesh.kamble"
+                  target="_blank"
+                  class="hover:text-pink-500 transition"
+                >
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 8.2A3.2 3.2 0 1112 8.8a3.2 3.2 0 010 6.4zm4.8-8.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z"
+                    />
+                  </svg>
+                </a>
 
-              <!-- Whatsapp -->
-              <a
-                href="https://alvo.chat/5W5a?fbclid=PAdGRjcAMvT8hleHRuA2FlbQIxMQABpzbPk9UGIhE2Nq1N8aIQIJya5YHJOX7pgMl1gVnCon6QNRkuJDD3QLVsSeO__aem_wYtSZhanLIZQYHyoQVxaUw"
-                target="_blank"
-                class="hover:text-green-500 transition"
-              >
-                <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
-                  <path
-                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
-                  />
-                </svg>
-              </a>
+                <!-- Facebook -->
+
+                <a
+                  href="https://facebook.com/yegnesh.kamble"
+                  target="_blank"
+                  class="hover:text-blue-500 transition"
+                >
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M22 12a10 10 0 10-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.5l-.4 3h-2.1v7A10 10 0 0022 12z"
+                    />
+                  </svg>
+                </a>
+
+                <!-- GitHub -->
+
+                <a
+                  href="https://github.com/yegneshkamble72"
+                  target="_blank"
+                  class="hover:text-gray-400 transition"
+                >
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387..."
+                    />
+                  </svg>
+                </a>
+
+                <!-- WhatsApp -->
+
+                <a
+                  href="https://wa.me/917219274312"
+                  target="_blank"
+                  class="hover:text-green-500 transition"
+                >
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967..."
+                    />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
 
-          <div class="border-t border-gray-700 pt-8 text-center">
-            <p class="text-gray-400">
+          <!-- Bottom -->
+
+          <div class="border-t border-gray-700 pt-6 text-center">
+            <p class="text-gray-400 text-sm md:text-base">
               © 2026 Yegnesh Kamble. All rights reserved.
             </p>
           </div>
         </div>
 
-        <!-- Floating Back to Top Button -->
+        <!-- Back to Top -->
+
         <button
           onclick="scrollToTop()"
-          class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-3 rounded-full shadow-lg transition-all"
+          class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-3 rounded-full shadow-lg transition-all hover:scale-110"
         >
           ↑
         </button>
@@ -1979,128 +1970,83 @@
     </script>
 
     <script>
-      // Video Player Setup
-      const video = document.getElementById("main-video");
-      const playBtn = document.getElementById("play-btn");
-      const playIcon = document.getElementById("play-icon");
-      const pauseIcon = document.getElementById("pause-icon");
-      const muteBtn = document.getElementById("mute-btn");
-      const volumeIcon = document.getElementById("volume-icon");
-      const muteIcon = document.getElementById("mute-icon");
-      const progressBar = document.querySelector(".group");
-      const progressFill = document.getElementById("progress-fill");
-      const timeDisplay = document.getElementById("time-display");
-      const speedBtn = document.getElementById("speed-btn");
-      const fullscreenBtn = document.getElementById("fullscreen-btn");
-      const videoPoster = document.getElementById("video-poster");
+      const video = document.getElementById("video");
+      const playBtn = document.getElementById("playBtn");
+      const muteBtn = document.getElementById("muteBtn");
+      const speedBtn = document.getElementById("speedBtn");
+      const fullBtn = document.getElementById("fullBtn");
+      const progress = document.getElementById("progress");
+      const progressFill = document.getElementById("progressFill");
+      const time = document.getElementById("time");
 
-      let isPlaying = false;
-      const speeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
-      let currentSpeedIndex = 2;
+      let speeds = [1, 1.5, 2];
+      let speedIndex = 0;
 
-      // Format time
-      function formatTime(seconds) {
-        if (!seconds || isNaN(seconds)) return "0:00";
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${mins}:${secs.toString().padStart(2, "0")}`;
-      }
+      // PLAY PAUSE
 
-      // Play/Pause toggle
-      function togglePlay() {
-        if (!video.src || video.src === window.location.href) return;
-        if (isPlaying) {
+      playBtn.onclick = () => {
+        if (video.paused) {
           video.play();
+          playBtn.innerHTML = "⏸";
         } else {
-          video.play();
+          video.pause();
+          playBtn.innerHTML = "▶";
         }
-      }
+      };
 
-      playBtn.addEventListener("click", togglePlay);
-      video.addEventListener("click", togglePlay);
+      // MUTE
 
-      video.addEventListener("play", () => {
-        isPlaying = true;
-        playIcon.classList.add("hidden");
-        pauseIcon.classList.remove("hidden");
-        videoPoster.classList.add("hidden");
-      });
-
-      video.addEventListener("pause", () => {
-        isPlaying = false;
-        playIcon.classList.remove("hidden");
-        pauseIcon.classList.add("hidden");
-      });
-
-      // Mute toggle
-      muteBtn.addEventListener("click", () => {
+      muteBtn.onclick = () => {
         video.muted = !video.muted;
-        if (video.muted) {
-          volumeIcon.classList.add("hidden");
-          muteIcon.classList.remove("hidden");
-        } else {
-          volumeIcon.classList.remove("hidden");
-          muteIcon.classList.add("hidden");
-        }
-      });
+        muteBtn.innerHTML = video.muted ? "🔇" : "🔊";
+      };
 
-      // Progress bar
-      video.addEventListener("timeupdate", () => {
-        if (video.duration) {
-          const progress = (video.currentTime / video.duration) * 100;
-          progressFill.style.width = `${progress}%`;
-          timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
-        }
-      });
+      // SPEED
 
-      progressBar.addEventListener("click", (e) => {
-        const rect = progressBar.getBoundingClientRect();
-        const pos = (e.clientX - rect.left) / rect.width;
+      speedBtn.onclick = () => {
+        speedIndex = (speedIndex + 1) % speeds.length;
+        video.playbackRate = speeds[speedIndex];
+        speedBtn.innerText = speeds[speedIndex] + "x";
+      };
+
+      // FULLSCREEN
+
+      fullBtn.onclick = () => {
+        video.requestFullscreen();
+      };
+
+      // PROGRESS UPDATE
+
+      video.ontimeupdate = () => {
+        let percent = (video.currentTime / video.duration) * 100;
+        progressFill.style.width = percent + "%";
+
+        let current = format(video.currentTime);
+        let total = format(video.duration);
+
+        time.innerText = current + " / " + total;
+      };
+
+      // SEEK
+
+      progress.onclick = (e) => {
+        let rect = progress.getBoundingClientRect();
+
+        let pos = (e.clientX - rect.left) / rect.width;
+
         video.currentTime = pos * video.duration;
-      });
+      };
 
-      // Speed control
-      speedBtn.addEventListener("click", () => {
-        currentSpeedIndex = (currentSpeedIndex + 1) % speeds.length;
-        video.playbackRate = speeds[currentSpeedIndex];
-        speedBtn.textContent = `${speeds[currentSpeedIndex]}x`;
-      });
+      // FORMAT TIME
 
-      // Fullscreen
-      fullscreenBtn.addEventListener("click", () => {
-        const videoContainer = document
-          .querySelector("[aspect-video]")
-          .closest("div");
-        if (!document.fullscreenElement) {
-          videoContainer.requestFullscreen().catch((err) => console.log(err));
-        } else {
-          document.exitFullscreen();
-        }
-      });
+      function format(sec) {
+        let m = Math.floor(sec / 60);
+        let s = Math.floor(sec % 60);
 
-      // Keyboard shortcuts
-      document.addEventListener("keydown", (e) => {
-        if (e.target.tagName === "INPUT") return;
-        switch (e.key) {
-          case " ":
-          case "k":
-            e.preventDefault();
-            togglePlay();
-            break;
-          case "m":
-            video.muted = !video.muted;
-            break;
-          case "ArrowRight":
-            video.currentTime += 10;
-            break;
-          case "ArrowLeft":
-            video.currentTime -= 10;
-            break;
-          case "f":
-            fullscreenBtn.click();
-            break;
-        }
-      });
+        if (s < 10) s = "0" + s;
+
+        return m + ":" + s;
+      }
     </script>
 
     <script>
