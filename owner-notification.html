@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>YK OFFICIAL | Notification Admin</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="icon" href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png" />
+    <style>
+      /* Page Loader */
+
+      #pageLoader {
+        position: fixed;
+        inset: 0;
+        background: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      .loaderRing {
+        width: 60px;
+        height: 60px;
+        border: 5px solid #1e40af;
+        border-top: 5px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 min-h-screen"
+  >
+    ]
+    <!-- PAGE LOADER -->
+
+    <div id="pageLoader">
+      <div class="loaderRing"></div>
+      <br />
+      <div class="text-white text-xl font-bold">
+        YK <span class="text-blue-400">OFFICIAL</span>
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+
+    <header class="backdrop-blur-md bg-white/70 border-b sticky top-0 z-40">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <img src="https://i.ibb.co/hJCHgThF/logo-yk-crop.png" class="w-10" />
+
+          <h1 class="font-bold text-xl text-black tracking-wide">
+            YK <span class="text-blue-600">OFFICIAL</span>
+          </h1>
+        </div>
+
+        <nav class="flex items-center gap-6 text-sm font-medium">
+          <button onclick="openHelp()" class="hover:text-indigo-600 transition">
+            Help
+          </button>
+
+          <button
+            onclick="openContact()"
+            class="hover:text-indigo-600 transition"
+          >
+            Contact
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+
+    <section class="text-center py-12 px-4">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+        Website Notification Panel
+      </h1>
+
+      <p class="text-gray-600 text-sm md:text-base">
+        Send instant notifications to YK Official website users
+      </p>
+    </section>
+
+    <!-- MAIN PANEL -->
+
+    <div class="flex justify-center px-4 pb-16">
+      <div
+        class="bg-white/90 backdrop-blur-lg w-full max-w-lg rounded-3xl shadow-2xl p-8 border"
+      >
+        <h2 class="text-xl font-semibold text-center mb-6 text-gray-700">
+          Create Notification
+        </h2>
+
+        <input
+          id="title"
+          placeholder="Notification Title"
+          class="w-full border border-gray-300 px-4 py-3 rounded-xl mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+        />
+
+        <textarea
+          id="message"
+          rows="4"
+          placeholder="Notification Message"
+          class="w-full border border-gray-300 px-4 py-3 rounded-xl mb-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
+        ></textarea>
+
+        <button
+          onclick="addNotification()"
+          class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-xl font-medium hover:scale-105 active:scale-95 transition"
+        >
+          Send Notification
+        </button>
+
+        <div id="loader" class="hidden flex justify-center mt-4">
+          <div
+            class="w-8 h-8 border-4 border-purple-600 border-t-transparent rounded-full animate-spin"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS POPUP -->
+
+    <div
+      id="successPopup"
+      class="hidden fixed inset-0 flex items-center justify-center bg-black/40 z-50"
+    >
+      <div
+        class="bg-white p-6 rounded-2xl shadow-xl w-[90%] max-w-sm text-center"
+      >
+        <h3 class="text-lg font-semibold text-green-600 mb-2">
+          Notification Sent
+        </h3>
+
+        <p class="text-sm text-gray-600 mb-4">
+          Notification successfully added to YK OFFICIAL website.
+        </p>
+
+        <button
+          onclick="closePopup()"
+          class="bg-green-500 text-white px-4 py-2 rounded-lg"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+
+    <!-- HELP POPUP -->
+
+    <div
+      id="helpPopup"
+      class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-white w-[90%] md:w-[420px] p-6 rounded-2xl shadow-xl relative"
+      >
+        <button onclick="closeHelp()" class="absolute right-4 top-3 text-xl">
+          ✖
+        </button>
+
+        <h2 class="text-xl font-bold mb-3 text-indigo-600">Help</h2>
+
+        <p class="text-sm text-gray-600 leading-relaxed">
+          1. Enter notification title and message. <br />
+          2. Click Add Notification. <br />
+          3. Notification will appear on the YK Official website.
+        </p>
+      </div>
+    </div>
+
+    <!-- CONTACT POPUP -->
+
+    <div
+      id="contactPopup"
+      class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-white w-[90%] md:w-[420px] p-6 rounded-2xl shadow-xl relative"
+      >
+        <button onclick="closeContact()" class="absolute right-4 top-3 text-xl">
+          ✖
+        </button>
+
+        <h2 class="text-xl font-bold mb-3 text-purple-600">Contact</h2>
+
+        <p class="text-sm text-gray-600 mb-2">Owner Support</p>
+
+        <p class="text-sm">📧 Email: YEGNESH7219@email.com</p>
+
+        <p class="text-sm">📱 WhatsApp: +91 7219274312</p>
+      </div>
+    </div>
+
+    <!-- PROFESSIONAL BLACK FOOTER -->
+
+    <footer class="bg-black text-gray-300 mt-16">
+      <div
+        class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10"
+      >
+        <!-- BRAND -->
+
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
+              class="w-10"
+            />
+
+            <h2 class="text-lg font-bold text-white">YK OFFICIAL</h2>
+          </div>
+
+          <p class="text-sm text-gray-400 leading-relaxed">
+            YK Official Admin Notification Panel. Manage and send real-time
+            notifications easily to your website users.
+          </p>
+        </div>
+
+        <!-- QUICK LINKS -->
+
+        <div>
+          <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="index.html" class="hover:text-indigo-400 transition">
+                Home
+              </a>
+            </li>
+
+            <li>
+              <button
+                onclick="openHelp()"
+                class="hover:text-indigo-400 transition"
+              >
+                Help Center
+              </button>
+            </li>
+
+            <li>
+              <button
+                onclick="openContact()"
+                class="hover:text-indigo-400 transition"
+              >
+                Contact Owner
+              </button>
+            </li>
+
+            <li>
+              <a href="privacy.html" class="hover:text-indigo-400 transition">
+                Privacy Policy
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- SERVICES -->
+
+        <div>
+          <h3 class="text-white font-semibold mb-4">Services</h3>
+
+          <ul class="space-y-2 text-sm">
+            <li class="hover:text-indigo-400 transition">
+              Website Development
+            </li>
+
+            <li class="hover:text-indigo-400 transition">UI / UX Design</li>
+
+            <li class="hover:text-indigo-400 transition">Admin Dashboards</li>
+
+            <li class="hover:text-indigo-400 transition">
+              Notification Systems
+            </li>
+          </ul>
+        </div>
+
+        <!-- CONTACT -->
+
+        <div>
+          <h3 class="text-white font-semibold mb-4">Contact</h3>
+
+          <p class="text-sm mb-2">📧 support@ykofficial.com</p>
+
+          <p class="text-sm mb-4">📱 +91 7219274312</p>
+
+          <!-- SOCIAL -->
+
+          <div class="flex gap-4">
+            <a href="#" class="hover:text-indigo-400 transition">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 008 10.93c.6.11.82-.26.82-.58v-2.05c-3.26.71-3.95-1.57-3.95-1.57-.53-1.36-1.3-1.72-1.3-1.72-1.07-.73.08-.71.08-.71 1.18.08 1.8 1.22 1.8 1.22 1.06 1.82 2.78 1.3 3.46 1 .1-.77.42-1.3.76-1.6-2.6-.3-5.34-1.3-5.34-5.8 0-1.28.45-2.32 1.2-3.14-.12-.3-.52-1.52.11-3.16 0 0 .97-.31 3.2 1.2a11 11 0 015.82 0c2.23-1.51 3.2-1.2 3.2-1.2.63 1.64.23 2.86.11 3.16.75.82 1.2 1.86 1.2 3.14 0 4.51-2.75 5.49-5.36 5.78.43.37.82 1.1.82 2.22v3.3c0 .32.22.7.83.58A11.5 11.5 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"
+                />
+              </svg>
+            </a>
+
+            <a href="#" class="hover:text-green-400 transition">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M20.5 3.5A11.8 11.8 0 0012.02 0C5.39 0 .03 5.36.03 11.99c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.63a11.9 11.9 0 005.82 1.48h.01c6.63 0 12-5.36 12-11.99 0-3.2-1.25-6.2-3.53-8.47z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- COPYRIGHT -->
+
+      <div
+        class="border-t border-gray-800 text-center text-xs text-gray-500 py-4"
+      >
+        © 2026 YK OFFICIAL — All Rights Reserved
+      </div>
+    </footer>
+
+    <script>
+      window.addEventListener("load", function () {
+        const loader = document.getElementById("pageLoader");
+
+        setTimeout(() => {
+          loader.style.opacity = "0";
+          loader.style.transition = "opacity 0.5s ease";
+
+          setTimeout(() => {
+            loader.style.display = "none";
+          }, 500);
+        }, 700);
+      });
+    </script>
+
+    <script>
+      function openHelp() {
+        document.getElementById("helpPopup").classList.remove("hidden");
+      }
+
+      function closeHelp() {
+        document.getElementById("helpPopup").classList.add("hidden");
+      }
+
+      function openContact() {
+        document.getElementById("contactPopup").classList.remove("hidden");
+      }
+
+      function closeContact() {
+        document.getElementById("contactPopup").classList.add("hidden");
+      }
+    </script>
+
+    <script>
+      function addNotification() {
+        let title = document.getElementById("title").value.trim();
+        let message = document.getElementById("message").value.trim();
+
+        if (!title || !message) {
+          alert("Fill all fields");
+          return;
+        }
+
+        document.getElementById("loader").classList.remove("hidden");
+
+        setTimeout(() => {
+          let data = JSON.parse(localStorage.getItem("yk_notifications")) || [];
+
+          data.push({
+            title: title,
+            message: message,
+            date: new Date().toLocaleString(),
+          });
+
+          localStorage.setItem("yk_notifications", JSON.stringify(data));
+
+          document.getElementById("loader").classList.add("hidden");
+
+          document.getElementById("successPopup").classList.remove("hidden");
+
+          document.getElementById("title").value = "";
+          document.getElementById("message").value = "";
+        }, 800);
+      }
+
+      function closePopup() {
+        document.getElementById("successPopup").classList.add("hidden");
+      }
+    </script>
+
+    <!--SOURCE CODE HIDE SCRIPT -->
+
+    <script>
+      // Disable Right Click
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+        showWarning();
+      });
+
+      // Disable Keyboard Shortcuts
+      document.onkeydown = function (e) {
+        if (e.keyCode == 123) {
+          // F12
+          showWarning();
+          return false;
+        }
+
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+          // Ctrl+Shift+I
+          showWarning();
+          return false;
+        }
+
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+          // Ctrl+Shift+J
+          showWarning();
+          return false;
+        }
+
+        if (e.ctrlKey && e.keyCode == 85) {
+          // Ctrl+U
+          showWarning();
+          return false;
+        }
+
+        if (e.ctrlKey && e.keyCode == 67) {
+          // Ctrl+C
+          showWarning();
+          return false;
+        }
+      };
+
+      // DevTools detection
+      setInterval(function () {
+        const widthThreshold = window.outerWidth - window.innerWidth > 160;
+        const heightThreshold = window.outerHeight - window.innerHeight > 160;
+
+        if (widthThreshold || heightThreshold) {
+          showWarning();
+        }
+      }, 1000);
+
+      // Warning Message
+
+      function showWarning() {
+        document.body.innerHTML = `
+         <div style="
+         height:100vh;
+         display:flex;
+         align-items:center;
+         justify-content:center;
+         flex-direction:column;
+         background:#000;
+         color:#fff;
+         font-family:sans-serif;
+         text-align:center;
+         padding:20px;
+         ">
+         
+         <h1 style="font-size:40px;margin-bottom:20px;">
+         ⚠ ACCESS DENIED
+         </h1>
+         
+         <p style="font-size:18px;max-width:600px;">
+         Inspect Element / Developer Tools detected.<br><br>
+         
+         This website is protected by security system.<br>
+         Copying source code is strictly prohibited.
+         </p>
+         
+         <p style="margin-top:20px;font-size:16px;color:#aaa;">
+         © YK OFFICIAL - Yegnesh Kamble<br>
+         Founder: <b>Yegnesh Kamble</b> <br>
+         Phone: <b>7219274312</b><br>
+         Email: <b>Yegnesh7219@gmail.com</b>
+         </p>
+         
+         <p style="margin-top:20px;font-size:16px;color:#aaa;">
+         <b>© 2026 YK OFFICIAL. All rights reserved.</b>
+         </p>
+         </div>
+         `;
+      }
+    </script>
+  </body>
+</html>
