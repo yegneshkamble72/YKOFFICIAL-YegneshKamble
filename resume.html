@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>YK OFFICIAL | Resume</title>
+
+    <link rel="icon" href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      /* PRINT STYLE */
+
+      @media print {
+        nav,
+        footer,
+        #printBtn {
+          display: none;
+        }
+
+        body {
+          background: white;
+        }
+
+        #resume {
+          box-shadow: none;
+          margin: 0;
+        }
+      }
+
+      /* A4 SIZE */
+
+      #resume {
+        max-width: 900px;
+      }
+    </style>
+
+    <style>
+      .loaderRing {
+        width: 70px;
+        height: 70px;
+        border: 6px solid #1f2937;
+        border-top: 6px solid #3b82f6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-100">
+    <!-- PAGE LOADER -->
+
+    <div
+      id="pageLoader"
+      class="fixed inset-0 bg-black flex flex-col justify-center items-center z-50"
+    >
+      <div class="loaderRing"></div>
+
+      <h1 class="text-white text-2xl font-bold mt-4">
+        YK <span class="text-blue-400">OFFICIAL</span>
+      </h1>
+
+      <p class="text-gray-400 text-sm mt-1">Loading Resume...</p>
+    </div>
+
+    <!-- NAVBAR -->
+
+    <nav class="bg-black text-white">
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center gap-3">
+          <img
+            src="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
+            class="w-10 rounded-full border"
+          />
+
+          <h1 class="text-xl font-bold">
+            YK <span class="text-blue-400">OFFICIAL</span>
+          </h1>
+        </div>
+
+        <button
+          id="printBtn"
+          onclick="printResume()"
+          class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Print Resume
+        </button>
+      </div>
+    </nav>
+
+    <!-- RESUME -->
+
+    <section id="resume" class="mx-auto bg-white shadow-lg mt-8 p-8 rounded-lg">
+      <h1 class="text-3xl font-bold text-center mb-2">YEGNESH KAMBLE</h1>
+
+      <p class="text-center text-gray-600">
+        📞 7219274312 | 📧 yegnesh7219@gmail.com
+      </p>
+
+      <p class="text-center text-gray-600">
+        Hanuman Nagar, Tekadi, Nagpur - 441404
+      </p>
+
+      <!-- SOCIAL LINKS -->
+
+      <div class="flex justify-center gap-6 mt-4 text-2xl">
+        <a
+          href="https://instagram.com/yegnesh.kamble"
+          target="_blank"
+          class="text-pink-500 hover:scale-110 transition"
+        >
+          <i class="fab fa-instagram"></i>
+        </a>
+
+        <a
+          href="https://github.com/yegneshkamble72"
+          target="_blank"
+          class="hover:scale-110 transition"
+        >
+          <i class="fab fa-github"></i>
+        </a>
+
+        <a
+          href="https://linkedin.com/in/yegnesh-kamble-3a8669211"
+          target="_blank"
+          class="text-blue-600 hover:scale-110 transition"
+        >
+          <i class="fab fa-linkedin"></i>
+        </a>
+
+        <a
+          href="https://wa.me/917219274312"
+          target="_blank"
+          class="text-green-500 hover:scale-110 transition"
+        >
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+
+      <!-- SUMMARY -->
+
+      <h2 class="text-xl font-semibold border-b mt-6 mb-2">Summary</h2>
+
+      <p class="text-gray-700 mb-4">
+        Motivated and detail-oriented B.Tech graduate with strong engineering
+        and problem-solving skills. Passionate about technology, cloud
+        computing, and web development. Quick learner with strong teamwork and
+        innovation mindset.
+      </p>
+
+      <!-- SKILLS -->
+
+      <h2 class="text-xl font-semibold border-b mb-2">Technical Skills</h2>
+
+      <ul class="list-disc ml-6 mb-4">
+        <li>C, C++, JavaScript</li>
+        <li>HTML, CSS</li>
+        <li>AWS, Azure, Docker</li>
+        <li>Git, Jenkins</li>
+        <li>MS-CIT Certification</li>
+      </ul>
+
+      <!-- EXPERIENCE -->
+
+      <!-- EXPERIENCE -->
+
+      <h2 class="text-xl font-semibold border-b mt-6 mb-2">
+        Professional Experience
+      </h2>
+
+      <p class="font-semibold">Pegasus Technologies & Software Pvt. Ltd.</p>
+
+      <p class="text-sm text-gray-600">
+        Cloud Computing & DevOps Intern (Dec 15 2024 – Apr 14 2025)
+      </p>
+
+      <p class="mb-4">
+        Worked with AWS, Azure, Docker, Git and Jenkins to automate development
+        workflows and build scalable cloud solutions.
+      </p>
+
+      <p class="font-semibold">Bharat Intern</p>
+
+      <p class="text-sm text-gray-600">
+        Web Development Intern (Jan 10 – Feb 10 2024)
+      </p>
+
+      <p class="mb-4">
+        Assisted senior developers with web development tasks and suggested
+        project improvements.
+      </p>
+
+      <p class="font-semibold">AD Infocom Systems</p>
+
+      <p class="text-sm text-gray-600">
+        Web Development Intern (Dec 21 2023 – Jan 4 2024)
+      </p>
+
+      <p class="mb-4">
+        Worked on front-end and back-end tasks and improved project
+        functionality.
+      </p>
+
+      <!-- EDUCATION -->
+
+      <h2 class="text-xl font-semibold border-b mb-2">Education</h2>
+
+      <p class="mb-2">B.Tech Computer Science & Engineering (2021–2025)</p>
+
+      <p class="mb-4">KDK College of Engineering, Nagpur</p>
+
+      <p>12th Science (2019–2021) NSJ College Kandri, Kanhan</p>
+
+      <!-- ADDITIONAL -->
+
+      <h2 class="text-xl font-semibold border-b mt-4 mb-2">
+        Additional Information
+      </h2>
+
+      <p>
+        <strong>Languages:</strong>
+        Marathi, Hindi, English
+      </p>
+
+      <p class="mt-2">
+        <strong>Interests:</strong>
+      </p>
+
+      <ul class="list-disc ml-6 text-gray-700">
+        <li>Participating in hackathons and coding competitions</li>
+        <li>Volunteering for community tech initiatives</li>
+      </ul>
+    </section>
+
+    <!-- HELP CONTACT -->
+
+    <section class="max-w-4xl mx-auto mt-8 px-4">
+      <div class="bg-white p-6 shadow rounded-lg text-center">
+        <h2 class="text-xl font-bold mb-2">Help & Contact</h2>
+
+        <p>Email: yegnesh7219@gmail.com</p>
+        <p>Phone: +91 7219274312</p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer class="bg-black text-white mt-10">
+      <div class="max-w-6xl mx-auto px-6 py-8 text-center">
+        <h2 class="text-xl font-bold mb-3">
+          YK <span class="text-blue-400">OFFICIAL</span>
+        </h2>
+
+        <p class="text-gray-400 mb-4">Professional Resume Portfolio</p>
+
+        <div class="flex justify-center gap-6 text-2xl mb-4">
+          <a
+            href="https://instagram.com/yegnesh.kamble"
+            class="hover:text-pink-500"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+
+          <a
+            href="https://github.com/yegneshkamble72"
+            class="hover:text-gray-400"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+
+          <a
+            href="https://linkedin.com/in/yegnesh-kamble-3a8669211"
+            class="hover:text-blue-400"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+
+          <a href="https://wa.me/917219274312" class="hover:text-green-500">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+
+        <p class="text-gray-500 text-sm">
+          © 2026 YK OFFICIAL | All Rights Reserved
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      function printResume() {
+        window.print();
+      }
+    </script>
+
+    <script>
+      window.addEventListener("load", function () {
+        document.getElementById("pageLoader").style.display = "none";
+      });
+    </script>
+
+
+     <!--SOURCE CODE HIDE SCRIPT -->
+
+    <script>
+      // Disable Right Click
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+        showWarning();
+      });
+
+      // Disable Keyboard Shortcuts
+      document.onkeydown = function (e) {
+        if (e.keyCode == 123) {
+          // F12
+          showWarning();
+          return false;
+        }
+
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+          // Ctrl+Shift+I
+          showWarning();
+          return false;
+        }
+
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+          // Ctrl+Shift+J
+          showWarning();
+          return false;
+        }
+
+        if (e.ctrlKey && e.keyCode == 85) {
+          // Ctrl+U
+          showWarning();
+          return false;
+        }
+
+        if (e.ctrlKey && e.keyCode == 67) {
+          // Ctrl+C
+          showWarning();
+          return false;
+        }
+      };
+
+      // DevTools detection
+      setInterval(function () {
+        const widthThreshold = window.outerWidth - window.innerWidth > 160;
+        const heightThreshold = window.outerHeight - window.innerHeight > 160;
+
+        if (widthThreshold || heightThreshold) {
+          showWarning();
+        }
+      }, 1000);
+
+      // Warning Message
+
+      function showWarning() {
+        document.body.innerHTML = `
+         <div style="
+         height:100vh;
+         display:flex;
+         align-items:center;
+         justify-content:center;
+         flex-direction:column;
+         background:#000;
+         color:#fff;
+         font-family:sans-serif;
+         text-align:center;
+         padding:20px;
+         ">
+         
+         <h1 style="font-size:40px;margin-bottom:20px;">
+         ⚠ ACCESS DENIED
+         </h1>
+         
+         <p style="font-size:18px;max-width:600px;">
+         Inspect Element / Developer Tools detected.<br><br>
+         
+         This website is protected by security system.<br>
+         Copying source code is strictly prohibited.
+         </p>
+         
+         <p style="margin-top:20px;font-size:16px;color:#aaa;">
+         © YK OFFICIAL - Yegnesh Kamble<br>
+         Founder: <b>Yegnesh Kamble</b> <br>
+         Phone: <b>7219274312</b><br>
+         Email: <b>Yegnesh7219@gmail.com</b>
+         </p>
+         
+         <p style="margin-top:20px;font-size:16px;color:#aaa;">
+         <b>© 2026 YK OFFICIAL. All rights reserved.</b>
+         </p>
+         </div>
+         `;
+      }
+    </script>
+  </body>
+</html>
