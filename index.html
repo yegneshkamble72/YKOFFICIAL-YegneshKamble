@@ -1968,6 +1968,9 @@
 
     <!--Notification Scripts-->
     <script>
+      const API_URL =
+        "https://script.google.com/macros/s/AKfycbyUXELsEUDhfZHs4yVXNuKPfoEGmniwLeKy-HcHvJz-yYFp2Wm-H1wyeoRlB6m1sldL5w/exec";
+
       function toggleNotify() {
         let box = document.getElementById("notifyBox");
 
@@ -1976,7 +1979,7 @@
         if (!box.classList.contains("hidden")) {
           showLoader();
 
-          setTimeout(loadNotifications, 700);
+          setTimeout(loadNotifications, 500);
         }
       }
 
@@ -1991,30 +1994,27 @@
 
         let loader = document.getElementById("notifyLoader");
 
-        loader.classList.add("hidden");
+        fetch(API_URL)
+          .then((res) => res.json())
 
-        let data = JSON.parse(localStorage.getItem("yk_notifications")) || [];
+          .then((data) => {
+            loader.classList.add("hidden");
 
-        list.innerHTML = "";
+            list.innerHTML = "";
 
-        if (data.length == 0) {
-          list.innerHTML =
-            "<p class='text-gray-500 text-sm'>No notifications</p>";
+            if (data.length == 0) {
+              list.innerHTML =
+                "<p class='text-gray-500 text-sm'>No notifications</p>";
 
-          return;
-        }
+              return;
+            }
 
-        data.reverse().forEach((n, index) => {
-          let div = document.createElement("div");
+            data.reverse().forEach(function (n) {
+              let div = document.createElement("div");
 
-          div.className = "bg-white p-3 rounded-lg shadow relative";
+              div.className = "bg-white p-3 rounded-lg shadow";
 
-          div.innerHTML = `
-
-<button onclick="deleteNotify(${index})"
-class="absolute top-2 right-2 text-red-500 text-xs hover:text-red-700">
-✖
-</button>
+              div.innerHTML = `
 
 <h3 class="font-semibold text-sm">${n.title}</h3>
 
@@ -2024,31 +2024,30 @@ class="absolute top-2 right-2 text-red-500 text-xs hover:text-red-700">
 
 `;
 
-          list.appendChild(div);
-        });
+              list.appendChild(div);
+            });
+          })
 
-        document.getElementById("notifyDot").classList.add("hidden");
+          .catch((err) => {
+            loader.classList.add("hidden");
+
+            list.innerHTML =
+              "<p class='text-red-500 text-sm'>Error loading notifications</p>";
+          });
       }
+    </script>
+    <script>
+      function toggleNotify() {
+        let box = document.getElementById("notifyBox");
 
-      function deleteNotify(index) {
-        let data = JSON.parse(localStorage.getItem("yk_notifications")) || [];
-
-        data.splice(index, 1);
-
-        localStorage.setItem("yk_notifications", JSON.stringify(data));
-
-        loadNotifications();
-      }
-
-      function checkNotify() {
-        let data = JSON.parse(localStorage.getItem("yk_notifications")) || [];
-
-        if (data.length > 0) {
-          document.getElementById("notifyDot").classList.remove("hidden");
+        if (box.classList.contains("hidden")) {
+          box.classList.remove("hidden");
+          showLoader();
+          loadNotifications();
+        } else {
+          box.classList.add("hidden");
         }
       }
-
-      checkNotify();
     </script>
 
     <!--notification movable script-->
@@ -2499,7 +2498,8 @@ Fill Form Again
           title: "Auction Platform",
           description:
             "Real-time bidding platform with secure payment integration",
-          image: "https://i.ibb.co/8kJyB0h/Chat-GPT-Image-Mar-14-2026-09-27-25-AM.png",
+          image:
+            "https://i.ibb.co/8kJyB0h/Chat-GPT-Image-Mar-14-2026-09-27-25-AM.png",
           demo_link: "https://yegneshkamble72.github.io/autionplatform/",
         },
         {
