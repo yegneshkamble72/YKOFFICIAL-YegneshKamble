@@ -460,7 +460,7 @@
               </div>
               <span
                 id="navName"
-                class="text-xl font-montserrat font-bold text-gray-800"
+                class="text-2xl font-montserrat font-bold text-gray-800"
                 >YK <span class="text-blue-600">OFFICIAL</span></span
               >
             </div>
@@ -1494,6 +1494,111 @@
         </div>
       </section>
 
+      <!-- FAQ SECTION -->
+      <section class="py-20 bg-gradient-to-b from-[#f8fafc] to-[#eef2ff]">
+        <div class="max-w-6xl mx-auto px-6">
+          <h2 class="text-4xl font-bold text-center text-gray-800 mb-4">
+            YK OFFICIAL
+          </h2>
+
+          <p class="text-center text-gray-500 mb-12">
+            Frequently Asked Questions
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div
+              onclick="openFAQ('q1')"
+              class="bg-white/70 backdrop-blur-lg border border-gray-200 p-6 rounded-2xl shadow-md hover:shadow-xl transition cursor-pointer"
+            >
+              <h3 class="font-semibold text-lg text-gray-700">
+                What is the purpose of the YK OFFICIAL website?
+              </h3>
+              <p class="text-gray-400 text-sm mt-2">Click to view answer</p>
+            </div>
+
+            <div
+              onclick="openFAQ('q2')"
+              class="bg-white/70 backdrop-blur-lg border border-gray-200 p-6 rounded-2xl shadow-md hover:shadow-xl transition cursor-pointer"
+            >
+              <h3 class="font-semibold text-lg text-gray-700">
+                What kind of projects are displayed on YK OFFICIAL?
+              </h3>
+              <p class="text-gray-400 text-sm mt-2">Click to view answer</p>
+            </div>
+
+            <div
+              onclick="openFAQ('q3')"
+              class="bg-white/70 backdrop-blur-lg border border-gray-200 p-6 rounded-2xl shadow-md hover:shadow-xl transition cursor-pointer"
+            >
+              <h3 class="font-semibold text-lg text-gray-700">
+                Can businesses collaborate with YK OFFICIAL?
+              </h3>
+              <p class="text-gray-400 text-sm mt-2">Click to view answer</p>
+            </div>
+
+            <div
+              onclick="openFAQ('q4')"
+              class="bg-white/70 backdrop-blur-lg border border-gray-200 p-6 rounded-2xl shadow-md hover:shadow-xl transition cursor-pointer"
+            >
+              <h3 class="font-semibold text-lg text-gray-700">
+                How can visitors send inquiries or messages?
+              </h3>
+              <p class="text-gray-400 text-sm mt-2">Click to view answer</p>
+            </div>
+
+            <div
+              onclick="openFAQ('q5')"
+              class="bg-white/70 backdrop-blur-lg border border-gray-200 p-6 rounded-2xl shadow-md hover:shadow-xl transition cursor-pointer"
+            >
+              <h3 class="font-semibold text-lg text-gray-700">
+                Is the YK OFFICIAL website regularly updated with new work?
+              </h3>
+              <p class="text-gray-400 text-sm mt-2">Click to view answer</p>
+            </div>
+
+            <div
+              onclick="openFAQ('q6')"
+              class="bg-white/70 backdrop-blur-lg border border-gray-200 p-6 rounded-2xl shadow-md hover:shadow-xl transition cursor-pointer"
+            >
+              <h3 class="font-semibold text-lg text-gray-700">
+                Does the website ensure a smooth experience across devices?
+              </h3>
+              <p class="text-gray-400 text-sm mt-2">Click to view answer</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- POPUP -->
+      <div
+        id="faqPopup"
+        class="fixed inset-0 bg-black/30 backdrop-blur-md hidden items-center justify-center z-50"
+      >
+        <div
+          class="bg-white/80 backdrop-blur-xl p-8 rounded-2xl shadow-2xl max-w-md w-[90%] relative"
+        >
+          <button
+            onclick="closeFAQ()"
+            class="absolute top-3 right-4 text-2xl text-gray-500 hover:text-red-500"
+          >
+            ✕
+          </button>
+
+          <div id="popupLoader" class="flex justify-center mb-4">
+            <div
+              class="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
+            ></div>
+          </div>
+
+          <h3
+            id="faqTitle"
+            class="text-xl font-bold text-gray-800 mb-3 hidden"
+          ></h3>
+
+          <p id="faqAnswer" class="text-gray-600 hidden"></p>
+        </div>
+      </div>
+
       <!-- Contact Section -->
 
       <section
@@ -1963,6 +2068,70 @@
     <script>
       function scrollToTop() {
         window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    </script>
+
+    <!-- FAQ Scripts -->
+    <script>
+      const faqData = {
+        q1: {
+          title: "What is the purpose of the YK OFFICIAL website?",
+          answer:
+            "YK OFFICIAL is a professional portfolio platform created to showcase projects, digital solutions, and creative work in a modern and organized way.",
+        },
+
+        q2: {
+          title: "What kind of projects are displayed on YK OFFICIAL?",
+          answer:
+            "The website highlights web development projects, UI design work, and innovative digital solutions designed to deliver modern user experiences.",
+        },
+
+        q3: {
+          title: "Can businesses collaborate with YK OFFICIAL?",
+          answer:
+            "Yes. Businesses and individuals can collaborate by contacting through the website to discuss projects, services, or digital solutions.",
+        },
+
+        q4: {
+          title: "How can visitors send inquiries or messages?",
+          answer:
+            "Visitors can easily send inquiries through the contact form available on the website. Messages are securely stored and reviewed promptly.",
+        },
+
+        q5: {
+          title: "Is the YK OFFICIAL website regularly updated with new work?",
+          answer:
+            "Yes. The platform is designed to allow regular updates so new projects, services, and improvements can be added anytime.",
+        },
+
+        q6: {
+          title: "Does the website ensure a smooth experience across devices?",
+          answer:
+            "Absolutely. YK OFFICIAL is fully optimized for mobile phones, tablets, and desktop devices.",
+        },
+      };
+
+      function openFAQ(id) {
+        document.getElementById("faqPopup").classList.remove("hidden");
+        document.getElementById("faqPopup").classList.add("flex");
+
+        document.getElementById("popupLoader").style.display = "flex";
+        document.getElementById("faqTitle").style.display = "none";
+        document.getElementById("faqAnswer").style.display = "none";
+
+        setTimeout(() => {
+          document.getElementById("popupLoader").style.display = "none";
+
+          document.getElementById("faqTitle").style.display = "block";
+          document.getElementById("faqAnswer").style.display = "block";
+
+          document.getElementById("faqTitle").innerText = faqData[id].title;
+          document.getElementById("faqAnswer").innerText = faqData[id].answer;
+        }, 700);
+      }
+
+      function closeFAQ() {
+        document.getElementById("faqPopup").classList.add("hidden");
       }
     </script>
 
