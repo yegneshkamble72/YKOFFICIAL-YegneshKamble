@@ -1,0 +1,2030 @@
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YK OFFICIAL | Documentation</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
+    />
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <script src="/_sdk/element_sdk.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/index.min.js"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        scroll-behavior: smooth;
+      }
+      * {
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg: #020617;
+        --surface: #0f172a;
+        --text: #e2e8f0;
+        --primary: #2563eb;
+        --secondary: #06b6d4;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .font-heading {
+        font-family: "Sora", sans-serif;
+      }
+
+      /* Glassmorphism card */
+      .glass-card {
+        background: rgba(19, 24, 41, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(99, 102, 241, 0.15);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .glass-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: rgba(99, 102, 241, 0.4);
+        box-shadow:
+          0 25px 50px rgba(99, 102, 241, 0.15),
+          0 0 30px rgba(99, 102, 241, 0.05);
+      }
+
+      /* Gradient text */
+      .gradient-text {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Animated background orbs */
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.3;
+        animation: float 8s ease-in-out infinite;
+      }
+      .orb-1 {
+        width: 400px;
+        height: 400px;
+        background: var(--primary);
+        top: -100px;
+        left: -100px;
+      }
+      .orb-2 {
+        width: 300px;
+        height: 300px;
+        background: var(--secondary);
+        top: 50%;
+        right: -80px;
+        animation-delay: -3s;
+      }
+      .orb-3 {
+        width: 250px;
+        height: 250px;
+        background: #a855f7;
+        bottom: -50px;
+        left: 30%;
+        animation-delay: -5s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(30px, -30px) scale(1.05);
+        }
+        66% {
+          transform: translate(-20px, 20px) scale(0.95);
+        }
+      }
+
+      /* Notification styles */
+      .notif-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        pointer-events: none;
+      }
+
+      .notif {
+        pointer-events: auto;
+        min-width: 320px;
+        max-width: 420px;
+        padding: 16px 20px;
+        border-radius: 16px;
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        animation: notifSlideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+          forwards;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        position: relative;
+        overflow: hidden;
+      }
+      .notif.removing {
+        animation: notifSlideOut 0.4s cubic-bezier(0.6, -0.28, 0.735, 0.045)
+          forwards;
+      }
+
+      .notif-success {
+        background: rgba(16, 185, 129, 0.15);
+        border-color: rgba(16, 185, 129, 0.3);
+      }
+      .notif-info {
+        background: rgba(99, 102, 241, 0.15);
+        border-color: rgba(99, 102, 241, 0.3);
+      }
+      .notif-warning {
+        background: rgba(245, 158, 11, 0.15);
+        border-color: rgba(245, 158, 11, 0.3);
+      }
+      .notif-error {
+        background: rgba(239, 68, 68, 0.15);
+        border-color: rgba(239, 68, 68, 0.3);
+      }
+
+      .notif-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        border-radius: 0 0 16px 16px;
+        animation: notifProgress 4s linear forwards;
+      }
+      .notif-success .notif-progress {
+        background: #10b981;
+      }
+      .notif-info .notif-progress {
+        background: #6366f1;
+      }
+      .notif-warning .notif-progress {
+        background: #f59e0b;
+      }
+      .notif-error .notif-progress {
+        background: #ef4444;
+      }
+
+      .notif-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .notif-success .notif-icon {
+        background: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+      }
+      .notif-info .notif-icon {
+        background: rgba(99, 102, 241, 0.2);
+        color: #6366f1;
+      }
+      .notif-warning .notif-icon {
+        background: rgba(245, 158, 11, 0.2);
+        color: #f59e0b;
+      }
+      .notif-error .notif-icon {
+        background: rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+      }
+
+      @keyframes notifSlideIn {
+        from {
+          transform: translateX(120%) scale(0.8);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0) scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes notifSlideOut {
+        from {
+          transform: translateX(0) scale(1);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(120%) scale(0.8);
+          opacity: 0;
+        }
+      }
+      @keyframes notifProgress {
+        from {
+          width: 100%;
+        }
+        to {
+          width: 0%;
+        }
+      }
+
+      /* Loader styles */
+      .loader-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(10, 14, 26, 0.85);
+        backdrop-filter: blur(8px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+      }
+      .loader-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .loader-spinner {
+        position: relative;
+        width: 80px;
+        height: 80px;
+      }
+      .loader-ring {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        animation: spin 1.5s linear infinite;
+      }
+      .loader-ring:nth-child(1) {
+        border-top-color: var(--primary);
+      }
+      .loader-ring:nth-child(2) {
+        inset: 8px;
+        border-right-color: var(--secondary);
+        animation-duration: 2s;
+        animation-direction: reverse;
+      }
+      .loader-ring:nth-child(3) {
+        inset: 16px;
+        border-bottom-color: #a855f7;
+        animation-duration: 1s;
+      }
+
+      .loader-text {
+        margin-top: 24px;
+        font-family: "Sora", sans-serif;
+        font-size: 14px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* Contact panel */
+      .contact-panel {
+        position: fixed;
+        bottom: 100px;
+        right: 24px;
+        width: 380px;
+        max-height: 500px;
+        border-radius: 24px;
+        background: rgba(19, 24, 41, 0.95);
+        backdrop-filter: blur(30px);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+        transform: scale(0.8) translateY(20px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        overflow: hidden;
+      }
+      .contact-panel.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .help-fab {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9998;
+        cursor: pointer;
+        box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+        transition: all 0.3s;
+        border: none;
+        color: white;
+      }
+      .help-fab:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 40px rgba(99, 102, 241, 0.6);
+      }
+      .help-fab.active {
+        background: linear-gradient(135deg, #ef4444, #f97316);
+      }
+
+      /* Section reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Feature chip */
+      .feature-chip {
+        background: rgba(37, 99, 235, 0.1);
+        border: 1px solid rgba(37, 99, 235, 0.25);
+      }
+      .feature-chip:hover {
+        background: rgba(37, 99, 235, 0.2);
+        border-color: rgba(37, 99, 235, 0.4);
+        transform: scale(1.05);
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(37, 99, 235, 0.4);
+        border-radius: 3px;
+      }
+      /* Nav link */
+      .nav-link {
+        position: relative;
+        color: rgba(226, 232, 240, 0.6);
+        transition: color 0.3s;
+      }
+      .nav-link:hover {
+        color: var(--secondary);
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--secondary);
+        transition: width 0.3s;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      /* Stagger children */
+      .stagger > * {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      .stagger.visible > * {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .stagger.visible > *:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      .stagger.visible > *:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+      .stagger.visible > *:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+      .stagger.visible > *:nth-child(4) {
+        transition-delay: 0.4s;
+      }
+
+      /* Mobile contact panel */
+      @media (max-width: 640px) {
+        .contact-panel {
+          right: 12px;
+          left: 12px;
+          width: auto;
+          bottom: 90px;
+        }
+        .notif {
+          min-width: auto;
+          max-width: calc(100% - 24px);
+        }
+        .notif-container {
+          right: 12px;
+          left: 12px;
+        }
+      }
+
+      /* Inline confirm */
+      .inline-confirm {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      /* Toast at bottom */
+      .toast-bottom {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        z-index: 10001;
+        padding: 12px 24px;
+        border-radius: 12px;
+        backdrop-filter: blur(20px);
+        font-size: 14px;
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        pointer-events: none;
+      }
+      .toast-bottom.show {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
+    </style>
+    <style>
+      body {
+        box-sizing: border-box;
+      }
+    </style>
+
+    <style>
+      #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #020617;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      .loader-center {
+        text-align: center;
+      }
+
+      /* dots */
+
+      .dot-loader {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-bottom: 15px;
+      }
+
+      .dot-loader span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #6366f1, #06b6d4);
+        animation: wave 1.2s infinite ease-in-out;
+      }
+
+      .dot-loader span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .dot-loader span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      dot-loader span:nth-child(4) {
+        animation-delay: 0.6s;
+      }
+      dot-loader span:nth-child(5) {
+        animation-delay: 0.8s;
+      }
+
+      .loader-text {
+        font-size: 14px;
+        color: #94a3b8;
+        letter-spacing: 1px;
+      }
+
+      /* animation */
+
+      @keyframes wave {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+    </style>
+
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  </head>
+  <body class="h-full">
+    <!-- PROFESSIONAL LOADER -->
+    <div id="loader">
+      <div class="loader-center">
+        <div class="dot-loader">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <p class="loader-text text-xl">
+          YK <span class="gradient-text tracking-wide">OFFICIAL</span>
+        </p>
+      </div>
+    </div>
+
+    <div id="app-wrapper" class="w-full h-full overflow-auto relative">
+      <!-- Background orbs -->
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+
+      <!-- Notification container -->
+      <div
+        id="notif-container"
+        class="notif-container"
+        role="status"
+        aria-live="polite"
+      ></div>
+
+      <!-- Loader overlay -->
+      <div
+        id="loader-overlay"
+        class="loader-overlay"
+        role="alert"
+        aria-label="Loading"
+      >
+        <div class="text-center">
+          <div class="loader-spinner mx-auto">
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+          </div>
+          <div class="loader-text" id="loader-text">Loading</div>
+        </div>
+      </div>
+
+      <!-- Toast bottom -->
+      <div
+        id="toast-bottom"
+        class="toast-bottom bg-green-500/20 border border-green-500/30 text-green-300"
+      ></div>
+
+      <!-- HEADER -->
+      <header
+        class="sticky top-0 z-50 backdrop-blur-xl border-b border-white/5"
+        style="background: rgba(2, 6, 23, 0.85)"
+      >
+        <div
+          class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"
+        >
+          <!-- LOGO / BRAND -->
+          <h1
+            class="font-heading text-xl font-bold flex items-center gap-3"
+            id="brand-name"
+          >
+            <img
+              src="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
+              alt="YK OFFICIAL Logo"
+              class="w-10 h-10 rounded-full border border-white/10 object-contain"
+            />
+
+            <span class="tracking-wide">YK</span>
+            <span class="gradient-text tracking-wide">OFFICIAL</span>
+          </h1>
+
+          <!-- NAV MENU -->
+          <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="#uses" class="nav-link">Uses</a>
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#security" class="nav-link">Security</a>
+            <a href="#copyright" class="nav-link">Copyright</a>
+          </nav>
+
+          <!-- MOBILE MENU BUTTON -->
+          <button
+            id="mobile-menu-btn"
+            class="md:hidden p-2 rounded-lg hover:bg-white/5 transition"
+          >
+            <i data-lucide="menu" style="width: 22px; height: 22px"></i>
+          </button>
+        </div>
+
+        <!-- Mobile nav -->
+        <!-- Mobile Menu Button -->
+
+        <!-- Mobile Menu Overlay -->
+        <div
+          id="mobile-overlay"
+          class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden"
+        ></div>
+
+        <!-- Mobile Side Menu -->
+        <div
+          id="mobile-menu"
+          class="fixed top-0 left-0 h-full w-72 bg-slate-900 border-r border-white/10 z-50 transform -translate-x-full transition-transform duration-300"
+        >
+          <div
+            class="flex items-center justify-between px-6 py-5 border-b border-white/10"
+          >
+            <h2 class="font-heading text-lg font-bold">YK OFFICIAL</h2>
+            <button id="mobile-close">
+              <i data-lucide="x" style="width: 22px; height: 22px"></i>
+            </button>
+          </div>
+
+          <nav class="flex flex-col gap-4 px-6 py-6 text-sm">
+            <a
+              href="#uses"
+              class="flex items-center gap-3 hover:text-cyan-400 transition"
+            >
+              <i data-lucide="globe" style="width: 18px"></i>
+              Website Uses
+            </a>
+
+            <a
+              href="#features"
+              class="flex items-center gap-3 hover:text-cyan-400 transition"
+            >
+              <i data-lucide="star" style="width: 18px"></i>
+              Features
+            </a>
+
+            <a
+              href="#security"
+              class="flex items-center gap-3 hover:text-cyan-400 transition"
+            >
+              <i data-lucide="shield" style="width: 18px"></i>
+              Security
+            </a>
+
+            <a
+              href="#copyright"
+              class="flex items-center gap-3 hover:text-cyan-400 transition"
+            >
+              <i data-lucide="copyright" style="width: 18px"></i>
+              Copyright
+            </a>
+          </nav>
+        </div>
+      </header>
+      <main>
+        <!-- HERO -->
+        <section class="py-24 md:py-32 text-center px-6 relative">
+          <div class="reveal" data-reveal>
+            <div
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium mb-8 feature-chip"
+            >
+              <i
+                data-lucide="zap"
+                style="width: 14px; height: 14px; color: #6366f1"
+              ></i>
+              <span style="color: rgba(226, 232, 240, 0.8)"
+                >Professional Documentation Platform</span
+              >
+            </div>
+            <h2
+              class="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight"
+              id="hero-title"
+            >
+              Website <span class="gradient-text">Documentation</span>
+            </h2>
+            <p
+              class="max-w-2xl mx-auto text-base md:text-lg mb-10 leading-relaxed"
+              id="hero-subtitle"
+              style="color: rgba(226, 232, 240, 0.6)"
+            >
+              This documentation explains the functionality, benefits, security
+              practices, and professional structure of the YK OFFICIAL website
+              platform.
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center">
+              <button
+                onclick="
+                  showLoader('Exploring features', 2000, function () {
+                    showNotif(
+                      'success',
+                      'Welcome!',
+                      'Documentation loaded successfully.',
+                    );
+                  })
+                "
+                class="px-8 py-3 rounded-xl font-semibold text-sm text-white transition-all hover:scale-105"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--secondary)
+                  );
+                  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3);
+                "
+              >
+                Get Started
+              </button>
+              <button
+                onclick="toggleContactPanel()"
+                class="px-8 py-3 rounded-xl font-semibold text-sm transition-all hover:scale-105 feature-chip"
+                style="color: var(--text)"
+              >
+                <span class="flex items-center gap-2"
+                  ><i
+                    data-lucide="message-circle"
+                    style="width: 16px; height: 16px"
+                  ></i>
+                  Contact Us</span
+                >
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- DEMO NOTIFICATIONS -->
+        <section class="py-16 px-6">
+          <div class="max-w-7xl mx-auto reveal" data-reveal>
+            <h2
+              class="font-heading text-2xl md:text-3xl font-bold mb-4 text-center"
+            >
+              Notification <span class="gradient-text">System</span>
+            </h2>
+            <p
+              class="text-center mb-10 text-sm"
+              style="color: rgba(226, 232, 240, 0.5)"
+            >
+              Try our unique popup notifications
+            </p>
+            <div
+              class="flex flex-wrap gap-4 justify-center stagger"
+              data-stagger
+            >
+              <button
+                onclick="
+                  showNotif(
+                    'success',
+                    'Action Complete',
+                    'Your changes have been saved successfully.',
+                  )
+                "
+                class="px-5 py-3 rounded-xl text-sm font-medium transition-all hover:scale-105"
+                style="
+                  background: rgba(16, 185, 129, 0.15);
+                  border: 1px solid rgba(16, 185, 129, 0.3);
+                  color: #10b981;
+                "
+              >
+                <span class="flex items-center gap-2"
+                  ><i
+                    data-lucide="check-circle"
+                    style="width: 16px; height: 16px"
+                  ></i>
+                  Success</span
+                >
+              </button>
+              <button
+                onclick="
+                  showNotif(
+                    'info',
+                    'System Update',
+                    'New features are now available for your account.',
+                  )
+                "
+                class="px-5 py-3 rounded-xl text-sm font-medium transition-all hover:scale-105"
+                style="
+                  background: rgba(99, 102, 241, 0.15);
+                  border: 1px solid rgba(99, 102, 241, 0.3);
+                  color: #6366f1;
+                "
+              >
+                <span class="flex items-center gap-2"
+                  ><i data-lucide="info" style="width: 16px; height: 16px"></i>
+                  Info</span
+                >
+              </button>
+              <button
+                onclick="
+                  showNotif(
+                    'warning',
+                    'Attention Needed',
+                    'Please review your account settings.',
+                  )
+                "
+                class="px-5 py-3 rounded-xl text-sm font-medium transition-all hover:scale-105"
+                style="
+                  background: rgba(245, 158, 11, 0.15);
+                  border: 1px solid rgba(245, 158, 11, 0.3);
+                  color: #f59e0b;
+                "
+              >
+                <span class="flex items-center gap-2"
+                  ><i
+                    data-lucide="alert-triangle"
+                    style="width: 16px; height: 16px"
+                  ></i>
+                  Warning</span
+                >
+              </button>
+              <button
+                onclick="
+                  showNotif(
+                    'error',
+                    'Error Occurred',
+                    'Unable to process your request right now.',
+                  )
+                "
+                class="px-5 py-3 rounded-xl text-sm font-medium transition-all hover:scale-105"
+                style="
+                  background: rgba(239, 68, 68, 0.15);
+                  border: 1px solid rgba(239, 68, 68, 0.3);
+                  color: #ef4444;
+                "
+              >
+                <span class="flex items-center gap-2"
+                  ><i
+                    data-lucide="x-circle"
+                    style="width: 16px; height: 16px"
+                  ></i>
+                  Error</span
+                >
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- WEBSITE USES -->
+        <section id="uses" class="py-16 px-6">
+          <div class="max-w-7xl mx-auto reveal" data-reveal>
+            <h2
+              class="font-heading text-2xl md:text-3xl font-bold mb-10 text-center"
+            >
+              Website <span class="gradient-text">Uses</span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6 stagger" data-stagger>
+              <div class="glass-card p-8 rounded-2xl">
+                <div
+                  class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                  style="background: rgba(99, 102, 241, 0.15)"
+                >
+                  <i
+                    data-lucide="globe"
+                    style="width: 24px; height: 24px; color: #6366f1"
+                  ></i>
+                </div>
+                <h3 class="font-heading font-semibold text-lg mb-3">
+                  Business Presence
+                </h3>
+                <p
+                  class="text-sm leading-relaxed"
+                  style="color: rgba(226, 232, 240, 0.6)"
+                >
+                  A professional website allows businesses to maintain an online
+                  presence accessible worldwide.
+                </p>
+              </div>
+              <div class="glass-card p-8 rounded-2xl">
+                <div
+                  class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                  style="background: rgba(34, 211, 238, 0.15)"
+                >
+                  <i
+                    data-lucide="message-square"
+                    style="width: 24px; height: 24px; color: #22d3ee"
+                  ></i>
+                </div>
+                <h3 class="font-heading font-semibold text-lg mb-3">
+                  Customer Communication
+                </h3>
+                <p
+                  class="text-sm leading-relaxed"
+                  style="color: rgba(226, 232, 240, 0.6)"
+                >
+                  Users can easily communicate through forms, chat systems, and
+                  digital contact features.
+                </p>
+              </div>
+              <div class="glass-card p-8 rounded-2xl">
+                <div
+                  class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                  style="background: rgba(168, 85, 247, 0.15)"
+                >
+                  <i
+                    data-lucide="shopping-bag"
+                    style="width: 24px; height: 24px; color: #a855f7"
+                  ></i>
+                </div>
+                <h3 class="font-heading font-semibold text-lg mb-3">
+                  Product &amp; Service Showcase
+                </h3>
+                <p
+                  class="text-sm leading-relaxed"
+                  style="color: rgba(226, 232, 240, 0.6)"
+                >
+                  Websites help display services, products, and company
+                  information professionally.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- KEY FEATURES -->
+        <section id="features" class="py-16 px-6">
+          <div class="max-w-7xl mx-auto reveal" data-reveal>
+            <h2
+              class="font-heading text-2xl md:text-3xl font-bold mb-10 text-center"
+            >
+              Key <span class="gradient-text">Features</span>
+            </h2>
+            <div
+              class="grid grid-cols-2 md:grid-cols-4 gap-4 stagger"
+              data-stagger
+            >
+              <div
+                class="feature-chip p-6 rounded-2xl text-center cursor-pointer"
+                onclick="
+                  showNotif(
+                    'info',
+                    'Responsive Design',
+                    'The website adapts to all screen sizes and devices.',
+                  )
+                "
+              >
+                <i
+                  data-lucide="monitor"
+                  style="
+                    width: 28px;
+                    height: 28px;
+                    color: #6366f1;
+                    margin: 0 auto 12px;
+                    display: block;
+                  "
+                ></i>
+                <span class="text-sm font-medium">Responsive Design</span>
+              </div>
+              <div
+                class="feature-chip p-6 rounded-2xl text-center cursor-pointer"
+                onclick="
+                  showNotif(
+                    'info',
+                    'Fast Performance',
+                    'Optimized loading times for the best experience.',
+                  )
+                "
+              >
+                <i
+                  data-lucide="zap"
+                  style="
+                    width: 28px;
+                    height: 28px;
+                    color: #22d3ee;
+                    margin: 0 auto 12px;
+                    display: block;
+                  "
+                ></i>
+                <span class="text-sm font-medium">Fast Performance</span>
+              </div>
+              <div
+                class="feature-chip p-6 rounded-2xl text-center cursor-pointer"
+                onclick="
+                  showNotif(
+                    'info',
+                    'Admin Management',
+                    'Full administrative control over content and users.',
+                  )
+                "
+              >
+                <i
+                  data-lucide="settings"
+                  style="
+                    width: 28px;
+                    height: 28px;
+                    color: #a855f7;
+                    margin: 0 auto 12px;
+                    display: block;
+                  "
+                ></i>
+                <span class="text-sm font-medium">Admin Management</span>
+              </div>
+              <div
+                class="feature-chip p-6 rounded-2xl text-center cursor-pointer"
+                onclick="
+                  showNotif(
+                    'info',
+                    'Notifications',
+                    'Real-time notification system for updates and alerts.',
+                  )
+                "
+              >
+                <i
+                  data-lucide="bell"
+                  style="
+                    width: 28px;
+                    height: 28px;
+                    color: #f59e0b;
+                    margin: 0 auto 12px;
+                    display: block;
+                  "
+                ></i>
+                <span class="text-sm font-medium">Notification System</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- BENEFITS -->
+        <section class="py-16 px-6">
+          <div class="max-w-7xl mx-auto reveal" data-reveal>
+            <h2
+              class="font-heading text-2xl md:text-3xl font-bold mb-10 text-center"
+            >
+              <span class="gradient-text">Benefits</span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6 stagger" data-stagger>
+              <div class="glass-card p-8 rounded-2xl flex items-start gap-4">
+                <div
+                  class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style="background: rgba(16, 185, 129, 0.15)"
+                >
+                  <i
+                    data-lucide="clock"
+                    style="width: 20px; height: 20px; color: #10b981"
+                  ></i>
+                </div>
+                <div>
+                  <h3 class="font-heading font-semibold mb-2">
+                    24/7 Availability
+                  </h3>
+                  <p class="text-sm" style="color: rgba(226, 232, 240, 0.6)">
+                    Business availability for customers worldwide, around the
+                    clock.
+                  </p>
+                </div>
+              </div>
+              <div class="glass-card p-8 rounded-2xl flex items-start gap-4">
+                <div
+                  class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style="background: rgba(99, 102, 241, 0.15)"
+                >
+                  <i
+                    data-lucide="award"
+                    style="width: 20px; height: 20px; color: #6366f1"
+                  ></i>
+                </div>
+                <div>
+                  <h3 class="font-heading font-semibold mb-2">
+                    Brand Credibility
+                  </h3>
+                  <p class="text-sm" style="color: rgba(226, 232, 240, 0.6)">
+                    Professional brand credibility and digital identity
+                    building.
+                  </p>
+                </div>
+              </div>
+              <div class="glass-card p-8 rounded-2xl flex items-start gap-4">
+                <div
+                  class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style="background: rgba(34, 211, 238, 0.15)"
+                >
+                  <i
+                    data-lucide="trending-up"
+                    style="width: 20px; height: 20px; color: #22d3ee"
+                  ></i>
+                </div>
+                <div>
+                  <h3 class="font-heading font-semibold mb-2">
+                    Customer Reach
+                  </h3>
+                  <p class="text-sm" style="color: rgba(226, 232, 240, 0.6)">
+                    Improved customer reach and marketing opportunities
+                    globally.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- SECURITY -->
+        <section id="security" class="py-16 px-6">
+          <div class="max-w-7xl mx-auto reveal" data-reveal>
+            <h2
+              class="font-heading text-2xl md:text-3xl font-bold mb-6 text-center"
+            >
+              Security &amp; <span class="gradient-text">Protection</span>
+            </h2>
+            <p
+              class="text-center max-w-3xl mx-auto mb-12 text-sm leading-relaxed"
+              style="color: rgba(226, 232, 240, 0.5)"
+            >
+              The YK OFFICIAL website uses secure coding practices, protected
+              data storage methods, and privacy-aware systems to ensure user
+              information safety and platform stability.
+            </p>
+            <div
+              class="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto stagger"
+              data-stagger
+            >
+              <div class="flex items-center gap-3 p-4 rounded-xl feature-chip">
+                <i
+                  data-lucide="shield"
+                  style="width: 20px; height: 20px; color: #10b981"
+                ></i>
+                <span class="text-sm">Secure data storage</span>
+              </div>
+              <div class="flex items-center gap-3 p-4 rounded-xl feature-chip">
+                <i
+                  data-lucide="check-square"
+                  style="width: 20px; height: 20px; color: #6366f1"
+                ></i>
+                <span class="text-sm">Form input validation</span>
+              </div>
+              <div class="flex items-center gap-3 p-4 rounded-xl feature-chip">
+                <i
+                  data-lucide="lock"
+                  style="width: 20px; height: 20px; color: #a855f7"
+                ></i>
+                <span class="text-sm">Admin access control</span>
+              </div>
+              <div class="flex items-center gap-3 p-4 rounded-xl feature-chip">
+                <i
+                  data-lucide="alert-octagon"
+                  style="width: 20px; height: 20px; color: #f59e0b"
+                ></i>
+                <span class="text-sm"
+                  >Protection against spam &amp; misuse</span
+                >
+              </div>
+              <div
+                class="flex items-center gap-3 p-4 rounded-xl feature-chip md:col-span-2"
+              >
+                <i
+                  data-lucide="eye-off"
+                  style="width: 20px; height: 20px; color: #22d3ee"
+                ></i>
+                <span class="text-sm">Privacy-focused architecture</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- COPYRIGHT -->
+        <section id="copyright" class="py-16 px-6">
+          <div class="max-w-3xl mx-auto text-center reveal" data-reveal>
+            <h2 class="font-heading text-2xl md:text-3xl font-bold mb-6">
+              Copyright &amp; <span class="gradient-text">Legal</span>
+            </h2>
+            <div class="glass-card p-8 rounded-2xl text-left">
+              <p
+                class="text-sm leading-relaxed mb-4"
+                style="color: rgba(226, 232, 240, 0.6)"
+              >
+                All content, design, code, and materials on this website are the
+                intellectual property of
+                <strong style="color: var(--text)">YK OFFICIAL</strong>.
+                Unauthorized reproduction, distribution, or modification of any
+                part of this website is strictly prohibited.
+              </p>
+              <p
+                class="text-sm leading-relaxed"
+                style="color: rgba(226, 232, 240, 0.6)"
+              >
+                © 2026 YK OFFICIAL. All rights reserved. For permissions or
+                inquiries, please use the contact form.
+              </p>
+            </div>
+          </div>
+          <!-- FOOTER -->
+          <footer class="py-12 px-6 border-t border-white/5">
+            <div class="max-w-7xl mx-auto text-center">
+              <p class="font-heading font-bold text-lg mb-2" id="footer-brand">
+                YK <span class="gradient-text">OFFICIAL</span>
+              </p>
+              <p class="text-xs" style="color: rgba(226, 232, 240, 0.3)">
+                © 2026 All rights reserved. Built with precision.
+              </p>
+            </div>
+          </footer>
+          <!-- CONTACT PANEL -->
+          <div id="contact-panel" class="contact-panel">
+            <div class="p-6 border-b border-white/5">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-heading font-bold text-lg">
+                    Help &amp; Contact
+                  </h3>
+                  <p
+                    class="text-xs mt-1"
+                    style="color: rgba(226, 232, 240, 0.5)"
+                  >
+                    We're here to assist you
+                  </p>
+                </div>
+                <button
+                  onclick="toggleContactPanel()"
+                  class="p-2 rounded-lg hover:bg-white/5"
+                  aria-label="Close contact panel"
+                >
+                  <i data-lucide="x" style="width: 18px; height: 18px"></i>
+                </button>
+              </div>
+            </div>
+            <div class="p-6 overflow-auto" style="max-height: 380px">
+              <!-- Quick links -->
+              <div class="mb-6">
+                <p
+                  class="text-xs font-semibold uppercase tracking-wider mb-3"
+                  style="color: rgba(226, 232, 240, 0.4)"
+                >
+                  Quick Help
+                </p>
+                <div class="flex flex-col gap-2">
+                  <button
+                    onclick="
+                      showNotif(
+                        'info',
+                        'Documentation',
+                        'Visit our documentation section above for detailed guides.',
+                      )
+                    "
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-all text-left w-full"
+                  >
+                    <i
+                      data-lucide="book-open"
+                      style="width: 18px; height: 18px; color: #6366f1"
+                    ></i>
+                    <span class="text-sm">Documentation</span>
+                  </button>
+                  <button
+                    onclick="
+                      showNotif(
+                        'info',
+                        'FAQ',
+                        'Common questions are covered in our features section.',
+                      )
+                    "
+                    class="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-all text-left w-full"
+                  >
+                    <i
+                      data-lucide="help-circle"
+                      style="width: 18px; height: 18px; color: #22d3ee"
+                    ></i>
+                    <span class="text-sm">FAQ</span>
+                  </button>
+                </div>
+              </div>
+              <!-- Contact info -->
+              <div class="mb-6">
+                <p
+                  class="text-xs font-semibold uppercase tracking-wider mb-3"
+                  style="color: rgba(226, 232, 240, 0.4)"
+                >
+                  Contact Info
+                </p>
+                <div class="flex flex-col gap-3">
+                  <div class="flex items-center gap-3 text-sm">
+                    <i
+                      data-lucide="mail"
+                      style="width: 16px; height: 16px; color: #6366f1"
+                    ></i>
+                    <span
+                      id="contact-email-display"
+                      style="color: rgba(226, 232, 240, 0.7)"
+                      >Yegnesh7219@gmail.com</span
+                    >
+                  </div>
+                  <div class="flex items-center gap-3 text-sm">
+                    <i
+                      data-lucide="phone"
+                      style="width: 16px; height: 16px; color: #22d3ee"
+                    ></i>
+                    <span
+                      id="contact-phone-display"
+                      style="color: rgba(226, 232, 240, 0.7)"
+                      >7219274312</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Message form -->
+              <div>
+                <p
+                  class="text-xs font-semibold uppercase tracking-wider mb-3"
+                  style="color: rgba(226, 232, 240, 0.4)"
+                >
+                  Send a Message
+                </p>
+                <form id="contact-form" class="flex flex-col gap-3">
+                  <div>
+                    <label
+                      for="contact-name"
+                      class="text-xs mb-1 block"
+                      style="color: rgba(226, 232, 240, 0.5)"
+                      >Name</label
+                    >
+                    <input
+                      type="text"
+                      id="contact-name"
+                      required
+                      placeholder="Your name"
+                      class="w-full px-4 py-2.5 rounded-xl text-sm bg-white/5 border border-white/10 focus:border-indigo-500 focus:outline-none transition-colors"
+                      style="color: var(--text)"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="contact-email-form"
+                      class="text-xs mb-1 block"
+                      style="color: rgba(226, 232, 240, 0.5)"
+                      >Email</label
+                    >
+                    <input
+                      type="email"
+                      id="contact-email-form"
+                      required
+                      placeholder="your@email.com"
+                      class="w-full px-4 py-2.5 rounded-xl text-sm bg-white/5 border border-white/10 focus:border-indigo-500 focus:outline-none transition-colors"
+                      style="color: var(--text)"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="contact-message"
+                      class="text-xs mb-1 block"
+                      style="color: rgba(226, 232, 240, 0.5)"
+                      >Message</label
+                    >
+                    <textarea
+                      id="contact-message"
+                      required
+                      placeholder="How can we help?"
+                      rows="3"
+                      class="w-full px-4 py-2.5 rounded-xl text-sm bg-white/5 border border-white/10 focus:border-indigo-500 focus:outline-none transition-colors resize-none"
+                      style="color: var(--text)"
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    id="submit-btn"
+                    class="w-full py-3 rounded-xl text-sm font-semibold text-white transition-all hover:scale-[1.02]"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        var(--primary),
+                        var(--secondary)
+                      );
+                    "
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- HELP FAB -->
+          <button
+            id="help-fab"
+            class="help-fab"
+            onclick="toggleContactPanel()"
+            aria-label="Open help and contact"
+          >
+            <i
+              data-lucide="message-circle"
+              style="width: 24px; height: 24px"
+              id="fab-icon"
+            ></i>
+          </button>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          document.getElementById("loader").style.opacity = "0";
+          document.getElementById("loader").style.transition = "0.5s";
+
+          setTimeout(function () {
+            document.getElementById("loader").style.display = "none";
+          }, 500);
+        }, 1000);
+      });
+    </script>
+    <script>
+      // ============== CONFIG & ELEMENT SDK ==============
+      const defaultConfig = {
+        background_color: "#020617",
+        surface_color: "#0f172a",
+        text_color: "#e2e8f0",
+        primary_color: "#2563eb",
+        secondary_color: "#06b6d4",
+        font_family: "Sora",
+        font_size: 16,
+        brand_name: "YK OFFICIAL",
+        hero_title: "Website Documentation",
+        hero_subtitle:
+          "This documentation explains the functionality, benefits, security practices, and professional structure of the YK OFFICIAL website platform.",
+        contact_email: "hello@ykofficial.com",
+        contact_phone: "+1 (555) 000-0000",
+      };
+
+      function applyConfig(config) {
+        const c = { ...defaultConfig, ...config };
+        const root = document.documentElement;
+        root.style.setProperty("--bg", c.background_color);
+        root.style.setProperty("--surface", c.surface_color);
+        root.style.setProperty("--text", c.text_color);
+        root.style.setProperty("--primary", c.primary_color);
+        root.style.setProperty("--secondary", c.secondary_color);
+
+        document.body.style.background = c.background_color;
+        document.body.style.color = c.text_color;
+
+        const baseFont = c.font_family + ", DM Sans, sans-serif";
+        document.querySelectorAll(".font-heading").forEach((el) => {
+          el.style.fontFamily = baseFont;
+        });
+
+        const bs = c.font_size || 16;
+        document.querySelectorAll(".font-heading").forEach((el) => {
+          // Scale headings proportionally based on existing relative sizes
+        });
+
+        // Text content
+        const brandEl = document.getElementById("brand-name");
+        if (brandEl) {
+          const parts = c.brand_name.split(" ");
+          brandEl.innerHTML = `
+<img src="https://i.ibb.co/hJCHgThF/logo-yk-crop.png" style="width:36px;height:36px;object-fit:contain;">
+<span>${parts[0] || "YK"}</span>
+<span class="gradient-text">${parts.slice(1).join(" ") || "OFFICIAL"}</span>
+`;
+        }
+
+        const heroTitle = document.getElementById("hero-title");
+        if (heroTitle) {
+          const words = c.hero_title.split(" ");
+          const last = words.pop();
+          heroTitle.innerHTML =
+            words.join(" ") +
+            ' <span class="gradient-text">' +
+            last +
+            "</span>";
+        }
+
+        const heroSub = document.getElementById("hero-subtitle");
+        if (heroSub) heroSub.textContent = c.hero_subtitle;
+
+        const emailDisplay = document.getElementById("contact-email-display");
+        if (emailDisplay) emailDisplay.textContent = c.contact_email;
+
+        const phoneDisplay = document.getElementById("contact-phone-display");
+        if (phoneDisplay) phoneDisplay.textContent = c.contact_phone;
+
+        const footerBrand = document.getElementById("footer-brand");
+        if (footerBrand) {
+          const parts = c.brand_name.split(" ");
+          footerBrand.innerHTML =
+            (parts[0] || "YK") +
+            ' <span class="gradient-text">' +
+            (parts.slice(1).join(" ") || "OFFICIAL") +
+            "</span>";
+        }
+
+        // Update gradient text elements with primary/secondary
+        const style = document.getElementById("dynamic-gradient-style");
+        if (style) {
+          style.textContent = `.gradient-text { background: linear-gradient(135deg, ${c.primary_color}, ${c.secondary_color}) !important; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; background-clip: text !important; }`;
+        }
+      }
+
+      // Dynamic style element for gradient updates
+      const dynStyle = document.createElement("style");
+      dynStyle.id = "dynamic-gradient-style";
+      document.head.appendChild(dynStyle);
+
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange: async (config) => {
+            applyConfig(config);
+          },
+          mapToCapabilities: (config) => ({
+            recolorables: [
+              {
+                get: () =>
+                  config.background_color || defaultConfig.background_color,
+                set: (v) => {
+                  config.background_color = v;
+                  window.elementSdk.setConfig({ background_color: v });
+                },
+              },
+              {
+                get: () => config.surface_color || defaultConfig.surface_color,
+                set: (v) => {
+                  config.surface_color = v;
+                  window.elementSdk.setConfig({ surface_color: v });
+                },
+              },
+              {
+                get: () => config.text_color || defaultConfig.text_color,
+                set: (v) => {
+                  config.text_color = v;
+                  window.elementSdk.setConfig({ text_color: v });
+                },
+              },
+              {
+                get: () => config.primary_color || defaultConfig.primary_color,
+                set: (v) => {
+                  config.primary_color = v;
+                  window.elementSdk.setConfig({ primary_color: v });
+                },
+              },
+              {
+                get: () =>
+                  config.secondary_color || defaultConfig.secondary_color,
+                set: (v) => {
+                  config.secondary_color = v;
+                  window.elementSdk.setConfig({ secondary_color: v });
+                },
+              },
+            ],
+            borderables: [],
+            fontEditable: {
+              get: () => config.font_family || defaultConfig.font_family,
+              set: (v) => {
+                config.font_family = v;
+                window.elementSdk.setConfig({ font_family: v });
+              },
+            },
+            fontSizeable: {
+              get: () => config.font_size || defaultConfig.font_size,
+              set: (v) => {
+                config.font_size = v;
+                window.elementSdk.setConfig({ font_size: v });
+              },
+            },
+          }),
+          mapToEditPanelValues: (config) =>
+            new Map([
+              ["brand_name", config.brand_name || defaultConfig.brand_name],
+              ["hero_title", config.hero_title || defaultConfig.hero_title],
+              [
+                "hero_subtitle",
+                config.hero_subtitle || defaultConfig.hero_subtitle,
+              ],
+              [
+                "contact_email",
+                config.contact_email || defaultConfig.contact_email,
+              ],
+              [
+                "contact_phone",
+                config.contact_phone || defaultConfig.contact_phone,
+              ],
+            ]),
+        });
+      }
+
+      // ============== NOTIFICATIONS ==============
+      let notifCount = 0;
+      function showNotif(type, title, message) {
+        const container = document.getElementById("notif-container");
+        const id = "notif-" + ++notifCount;
+        const icons = {
+          success: "check-circle",
+          info: "info",
+          warning: "alert-triangle",
+          error: "x-circle",
+        };
+
+        const notif = document.createElement("div");
+        notif.id = id;
+        notif.className = "notif notif-" + type;
+        notif.innerHTML = `
+      <div class="notif-icon"><i data-lucide="${icons[type]}" style="width:18px;height:18px;"></i></div>
+      <div class="flex-1 min-w-0">
+        <div class="font-semibold text-sm">${title}</div>
+        <div class="text-xs mt-1" style="color: rgba(226,232,240,0.6);">${message}</div>
+      </div>
+      <button onclick="dismissNotif('${id}')" class="p-1 rounded-lg hover:bg-white/10 flex-shrink-0" aria-label="Dismiss notification">
+        <i data-lucide="x" style="width:14px;height:14px;"></i>
+      </button>
+      <div class="notif-progress"></div>
+    `;
+        container.appendChild(notif);
+        lucide.createIcons({ nodes: [notif] });
+
+        setTimeout(() => dismissNotif(id), 4200);
+      }
+
+      function dismissNotif(id) {
+        const el = document.getElementById(id);
+        if (!el || el.classList.contains("removing")) return;
+        el.classList.add("removing");
+        setTimeout(() => el.remove(), 400);
+      }
+
+      // ============== LOADER ==============
+      function showLoader(text, duration, callback) {
+        const overlay = document.getElementById("loader-overlay");
+        const loaderText = document.getElementById("loader-text");
+        loaderText.textContent = text || "Loading";
+        overlay.classList.add("active");
+        setTimeout(() => {
+          overlay.classList.remove("active");
+          if (callback) callback();
+        }, duration || 2000);
+      }
+
+      // ============== CONTACT PANEL ==============
+      let panelOpen = false;
+      function toggleContactPanel() {
+        panelOpen = !panelOpen;
+        const panel = document.getElementById("contact-panel");
+        const fab = document.getElementById("help-fab");
+        panel.classList.toggle("open", panelOpen);
+        fab.classList.toggle("active", panelOpen);
+        // Swap icon
+        const fabIconEl = fab.querySelector("[data-lucide]");
+        if (fabIconEl) {
+          fabIconEl.setAttribute(
+            "data-lucide",
+            panelOpen ? "x" : "message-circle",
+          );
+          lucide.createIcons({ nodes: [fab] });
+        }
+      }
+
+      // Contact form with EmailJS
+      // Initialize with your credentials from emailjs.com
+      const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY_HERE";
+      const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID_HERE";
+      const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID_HERE";
+      const RECIPIENT_EMAIL = "your-email@example.com";
+
+      if (EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY_HERE") {
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+      }
+
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("contact-name").value.trim();
+          const email = document
+            .getElementById("contact-email-form")
+            .value.trim();
+          const message = document
+            .getElementById("contact-message")
+            .value.trim();
+
+          if (!name || !email || !message) {
+            showNotif("warning", "Missing Info", "Please fill in all fields.");
+            return;
+          }
+
+          // Check if EmailJS is configured
+          if (EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY_HERE") {
+            showNotif(
+              "info",
+              "Demo Mode",
+              "EmailJS not configured. Add your credentials to the code.",
+            );
+            return;
+          }
+
+          const submitBtn = document.getElementById("submit-btn");
+          const originalText = submitBtn.textContent;
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Sending...";
+
+          showLoader("Sending message", 2000, function () {
+            emailjs
+              .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                to_email: RECIPIENT_EMAIL,
+                from_name: name,
+                from_email: email,
+                message: message,
+                reply_to: email,
+              })
+              .then(
+                function (response) {
+                  showNotif(
+                    "success",
+                    "Message Sent!",
+                    "Thanks " + name + "! We'll get back to you soon.",
+                  );
+                  document.getElementById("contact-form").reset();
+                  submitBtn.disabled = false;
+                  submitBtn.textContent = originalText;
+                  setTimeout(() => toggleContactPanel(), 800);
+                },
+                function (error) {
+                  showNotif(
+                    "error",
+                    "Send Failed",
+                    "Please try again or contact us directly.",
+                  );
+                  submitBtn.disabled = false;
+                  submitBtn.textContent = originalText;
+                },
+              );
+          });
+        });
+
+      // ============== MOBILE MENU ==============
+      // MOBILE SIDE MENU
+      const menuBtn = document.getElementById("mobile-menu-btn");
+      const closeBtn = document.getElementById("mobile-close");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const overlay = document.getElementById("mobile-overlay");
+
+      function openMenu() {
+        mobileMenu.classList.remove("-translate-x-full");
+        overlay.classList.remove("hidden");
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      }
+
+      menuBtn.addEventListener("click", openMenu);
+      closeBtn.addEventListener("click", closeMenu);
+      overlay.addEventListener("click", closeMenu);
+
+      // close when clicking links
+      document.querySelectorAll("#mobile-menu a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+      // ============== SCROLL REVEAL ==============
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll("[data-reveal]")
+        .forEach((el) => observer.observe(el));
+      document
+        .querySelectorAll("[data-stagger]")
+        .forEach((el) => observer.observe(el));
+
+      // ============== SHOW TOAST ==============
+      function showToast(msg) {
+        const t = document.getElementById("toast-bottom");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 3000);
+      }
+
+      // ============== INIT ==============
+      lucide.createIcons();
+      applyConfig(defaultConfig);
+
+      // Welcome notification after brief delay
+      setTimeout(() => {
+        showNotif(
+          "info",
+          "Welcome!",
+          "Explore the YK OFFICIAL documentation. Click items to learn more.",
+        );
+      }, 1500);
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'9dd03c3f45fa4bfa',t:'MTc3MzYyNzE3Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+
+
+<!-- DOC PAGE SOURCE PROTECTION -->
+<script>
+
+document.addEventListener("contextmenu", e => {
+  e.preventDefault();
+  triggerDocSecurity();
+});
+
+document.onkeydown = function(e){
+  if(e.keyCode == 123){ triggerDocSecurity(); return false;} // F12
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 73){ triggerDocSecurity(); return false;} // Ctrl+Shift+I
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 74){ triggerDocSecurity(); return false;} // Ctrl+Shift+J
+  if(e.ctrlKey && e.keyCode == 85){ triggerDocSecurity(); return false;} // Ctrl+U
+};
+
+setInterval(function(){
+  const devtools =
+    window.outerWidth - window.innerWidth > 160 ||
+    window.outerHeight - window.innerHeight > 160;
+  if(devtools){
+    triggerDocSecurity();
+  }
+}, 1000);
+
+function triggerDocSecurity(){
+
+document.body.innerHTML = `
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#1e293b,#0f172a,#1e293b);
+background-size:300% 300%;
+animation:bgMove 6s infinite alternate;
+font-family:Poppins, sans-serif;
+color:white;
+}
+
+.security-box{
+position:relative;
+text-align:center;
+padding:50px;
+border-radius:16px;
+backdrop-filter:blur(12px);
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+box-shadow:0 0 40px rgba(0,0,0,0.6);
+animation:fadeIn 0.6s ease;
+max-width:650px;
+}
+
+.close-btn{
+position:absolute;
+top:15px;
+right:18px;
+font-size:22px;
+cursor:pointer;
+color:#94a3b8;
+transition:0.3s;
+}
+
+.close-btn:hover{
+color:white;
+transform:scale(1.2);
+}
+
+.warning-icon{
+font-size:60px;
+animation:pulse 1.5s infinite;
+margin-bottom:20px;
+}
+
+.title{
+font-size:34px;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.subtitle{
+font-size:16px;
+color:#cbd5f5;
+line-height:1.6;
+}
+
+.footer{
+margin-top:25px;
+font-size:14px;
+color:#94a3b8;
+}
+
+.brand{
+margin-top:20px;
+font-weight:600;
+color:#38bdf8;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.15)}
+100%{transform:scale(1)}
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+100%{background-position:100% 50%}
+}
+
+</style>
+
+<div class="security-box">
+
+<div class="close-btn" onclick="location.reload()">✕</div>
+
+<div class="warning-icon">📄</div>
+
+<div class="title">Documentation Protection</div>
+
+<div class="subtitle">
+Access to this documentation page is restricted.<br><br>
+Inspect Element / Developer Tools detected.<br>
+Unauthorized copying or modification of documentation is prohibited.
+</div>
+
+<div class="footer">
+Founder : <b>Yegnesh Kamble</b><br>
+Phone : <b>7219274312</b><br>
+Email : <b>Yegnesh7219@gmail.com</b>
+</div>
+
+<div class="brand">
+© 2026 YK OFFICIAL • All Rights Reserved
+</div>
+
+</div>
+
+`;
+
+}
+
+</script>
+  </body>
+</html>
