@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>YK Official | Documentation</title>
+    <title>YK OFFICIAL | Documentation</title>
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
@@ -842,7 +842,7 @@
     <script>
       // ================= INIT EMAILJS =================
       window.addEventListener("load", () => {
-        emailjs.init("YOUR_PUBLIC_KEY"); // 🔥 replace
+        emailjs.init("9P9_Nz0_Es2Y6Ffvm"); // 🔥 replace
 
         // Auto open (verified user)
         setTimeout(() => {
@@ -913,7 +913,7 @@
 
         // SEND EMAIL
         emailjs
-          .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+          .send("service_dgrc179", "template_07qnqwl", {
             name: name,
             email: email,
             rating: rating,
@@ -1545,5 +1545,192 @@
         }
       })();
     </script>
+
+     <!-- ADVANCED SOURCE PROTECTION -->
+  
+<script>
+
+document.addEventListener("contextmenu", e=>{
+e.preventDefault();
+triggerSecurity();
+});
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="F12"){triggerSecurity();}
+
+if(e.ctrlKey && e.shiftKey && e.key==="I"){triggerSecurity();}
+
+if(e.ctrlKey && e.shiftKey && e.key==="J"){triggerSecurity();}
+
+if(e.ctrlKey && e.key==="U"){triggerSecurity();}
+
+});
+
+setInterval(function(){
+
+const devtools =
+window.outerWidth - window.innerWidth > 160 ||
+window.outerHeight - window.innerHeight > 160;
+
+if(devtools){
+triggerSecurity();
+}
+
+},1000);
+
+function triggerSecurity(){
+
+document.body.innerHTML = `
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#020617,#0f172a,#020617);
+background-size:300% 300%;
+animation:bgMove 8s infinite alternate;
+font-family:system-ui;
+color:white;
+}
+
+.security-box{
+position:relative;
+text-align:center;
+padding:50px;
+border-radius:16px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.08);
+box-shadow:0 0 40px rgba(0,0,0,0.6);
+max-width:600px;
+animation:fadeIn .6s ease;
+}
+
+.close-btn{
+position:absolute;
+top:12px;
+right:16px;
+font-size:20px;
+cursor:pointer;
+color:#94a3b8;
+}
+
+.close-btn:hover{
+color:white;
+}
+
+.icon{
+font-size:60px;
+margin-bottom:15px;
+animation:pulse 1.5s infinite;
+}
+
+.title{
+font-size:32px;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.subtitle{
+font-size:15px;
+color:#cbd5f5;
+line-height:1.6;
+}
+
+.reload{
+margin-top:15px;
+font-size:18px;
+color:#38bdf8;
+}
+
+.footer{
+margin-top:25px;
+font-size:14px;
+color:#94a3b8;
+}
+
+.brand{
+margin-top:20px;
+font-weight:600;
+color:#38bdf8;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.15)}
+100%{transform:scale(1)}
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+100%{background-position:100% 50%}
+}
+
+</style>
+
+<div class="security-box">
+
+<div class="close-btn" onclick="location.reload()">✕</div>
+
+<div class="icon">⚠</div>
+
+<div class="title">Developer Tools Detected</div>
+
+<div class="subtitle">
+
+Access to developer tools or page source has been blocked.<br><br>
+
+This website is protected by <b>YK OFFICIAL Security</b>.<br>
+Unauthorized inspection or copying of source code is not allowed.
+
+</div>
+
+<div class="reload">
+Reloading in <span id="count">5</span> seconds...
+</div>
+
+<div class="footer">
+Founder : <b>Yegnesh Kamble</b><br>
+Phone : <b>7219274312</b><br>
+Email : <b>Yegnesh7219@gmail.com</b>
+</div>
+
+<div class="brand">
+© 2026 YK OFFICIAL
+</div>
+
+</div>
+`;
+
+let sec = 5;
+
+let timer = setInterval(function(){
+
+sec--;
+
+const el=document.getElementById("count");
+
+if(el){el.innerText=sec;}
+
+if(sec<=0){
+clearInterval(timer);
+location.reload();
+}
+
+},1000);
+
+}
+
+</script>
   </body>
 </html>
