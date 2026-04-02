@@ -1,0 +1,1518 @@
+<!doctype html>
+<html lang="en" class="h-full scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YK OFFICIAL - Gallery</title>
+     <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
+    />
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="/_sdk/element_sdk.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Sora:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sora: ["Sora", "sans-serif"],
+              grotesk: ["Space Grotesk", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Glassmorphism styles */
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+      }
+      .glass-dark {
+        background: rgba(15, 23, 42, 0.5);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .glass-hover:hover {
+        background: rgba(255, 255, 255, 0.85);
+        box-shadow: 0 20px 60px rgba(51, 65, 85, 0.15);
+      }
+
+      /* Logo animation */
+      .yk-logo-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+      }
+      .yk-letter {
+        font-weight: 900;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, #0f5bff, #00d4ff, #0f5bff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: logoGlide 4s ease-in-out infinite;
+      }
+      .yk-letter:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .yk-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0f5bff, #00d4ff);
+        animation: dotPulse 2.5s ease-in-out infinite;
+      }
+      @keyframes logoGlide {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-3px);
+        }
+      }
+      @keyframes dotPulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: scale(1.3);
+          opacity: 0.4;
+        }
+      }
+
+      
+
+      /* Popup */
+      .popup-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(8px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .popup-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .popup-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.85) 100%
+        );
+        transform: scale(0.9) translateY(20px);
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 25px 80px rgba(15, 23, 42, 0.25);
+      }
+      .popup-overlay.active .popup-card {
+        transform: scale(1) translateY(0);
+      }
+
+      /* Cards */
+      .card-modern {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.85);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      .card-modern.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .card-modern:hover {
+        background: rgba(255, 255, 255, 0.8);
+        border-color: rgba(15, 91, 255, 0.3);
+        box-shadow: 0 15px 50px rgba(15, 91, 255, 0.15);
+        transform: translateY(-5px);
+      }
+
+      /* Gradient accents */
+      .accent-blue {
+        background: linear-gradient(135deg, #0f5bff, #00d4ff);
+      }
+      .accent-dark {
+        background: linear-gradient(135deg, #1e293b, #0f172a);
+      }
+
+      /* Input fields */
+      .input-glass {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        color: #1e293b;
+        transition: all 0.3s;
+      }
+      .input-glass::placeholder {
+        color: rgba(30, 41, 59, 0.4);
+      }
+      .input-glass:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.8);
+        border-color: #0f5bff;
+        box-shadow: 0 0 0 3px rgba(15, 91, 255, 0.1);
+      }
+
+      /* Button animations */
+      .btn-primary {
+        background: linear-gradient(135deg, #0f5bff, #00d4ff);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 10px 30px rgba(15, 91, 255, 0.25);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 40px rgba(15, 91, 255, 0.35);
+      }
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+
+      .btn-glass {
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        transition: all 0.3s;
+      }
+      .btn-glass:hover {
+        background: rgba(255, 255, 255, 0.5);
+        border-color: rgba(255, 255, 255, 0.8);
+      }
+
+      /* Stagger animations */
+      .stagger > * {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 0.6s forwards;
+      }
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .stagger > *:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .stagger > *:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .stagger > *:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .stagger > *:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .stagger > *:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .stagger > *:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+
+      /* Shimmer */
+      .shimmer {
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.4) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        background-size: 200% 100%;
+        animation: shimmerMove 2s infinite;
+      }
+      @keyframes shimmerMove {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+
+      /* Section dividers */
+      .section-divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(15, 91, 255, 0.3),
+          transparent
+        );
+      }
+
+      /* Hero gradient text */
+      .text-gradient {
+        background: linear-gradient(135deg, #0f5bff, #00d4ff, #0099ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Floating elements */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .float-element {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      /* Mobile responsive */
+      @media (max-width: 768px) {
+        .glass-effect,
+        .glass-dark {
+          backdrop-filter: blur(10px);
+        }
+      }
+
+      /* Category button styling */
+      .category-btn {
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        color: #1e293b;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .category-btn:hover {
+        background: rgba(255, 255, 255, 0.6);
+        border-color: rgba(15, 91, 255, 0.3);
+      }
+      .category-btn.active {
+        background: linear-gradient(135deg, #0f5bff, #00d4ff);
+        color: white;
+        border-color: transparent;
+        box-shadow: 0 8px 25px rgba(15, 91, 255, 0.3);
+      }
+    </style>
+    <style>
+      body {
+        box-sizing: border-box;
+      }
+    </style>
+    <style>
+      @keyframes scaleUp {
+        from {
+          transform: scale(0.7);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .animate-scale {
+        animation: scaleUp 0.3s ease;
+      }
+    </style>
+    <style>
+      /* POPUP ANIMATION */
+      @keyframes popupIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.7) translateY(40px);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      .animate-popup {
+        animation: popupIn 0.35s ease;
+      }
+
+      /* OPTIONAL GLOW */
+      .popup-glow {
+        box-shadow: 0 0 40px rgba(0, 255, 150, 0.2);
+      }
+    </style>
+
+    <style>
+#loader {
+  transition: opacity 0.6s ease;
+}
+</style>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  </head>
+  <body
+    class="h-full font-sora bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 text-slate-900 overflow-auto"
+  >
+    <!-- LOADER -->
+<div id="loader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-black via-slate-900 to-black">
+
+  <!-- GLOW BACKGROUND -->
+  <div class="absolute w-72 h-72 bg-blue-500/20 blur-[120px] rounded-full"></div>
+
+  <!-- CONTENT -->
+  <div class="relative text-center">
+
+    <!-- LOGO CIRCLE -->
+    <div class="relative w-24 h-24 mx-auto mb-6">
+
+      <!-- SPIN RING -->
+      <div class="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-500 border-b-blue-400 animate-spin"></div>
+
+      <!-- INNER LOGO
+      <div class="w-full h-full rounded-full bg-white flex items-center justify-center shadow-xl overflow-hidden">
+        <img src="https://i.ibb.co/RpjD8n0C/Chat-GPT-Image-Jan-20-2026-08-56-30-AM.png"
+          class="w-full h-full object-cover">
+      </div> -->
+
+    </div>
+
+    <!-- BRAND TEXT -->
+    <h1 class="text-2xl font-bold text-white tracking-wide">
+      YK <span class="text-blue-500">OFFICIAL</span>
+    </h1>
+
+    <!-- LOADING TEXT -->
+    <p class="text-slate-400 text-sm mt-2 animate-pulse">
+      Loading Gallery...
+    </p>
+
+    <!-- DOTS -->
+    <div class="flex justify-center gap-2 mt-4">
+      <span class="w-2 h-2 bg-blue-500 rounded-full animate-bounce"></span>
+      <span class="w-2 h-2 bg-blue-400 rounded-full animate-bounce delay-150"></span>
+      <span class="w-2 h-2 bg-blue-300 rounded-full animate-bounce delay-300"></span>
+    </div>
+
+  </div>
+
+</div> 
+<!-- loader -->
+<script>
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    const loader = document.getElementById("loader");
+    loader.style.opacity = "0";
+    loader.style.transition = "0.6s ease";
+
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 600);
+
+  }, 1500); // loader time (1.5 sec)
+});
+</script>
+
+    <!-- IMAGE POPUP -->
+    <div
+      class="popup-overlay"
+      id="imagePopup"
+      onclick="if (event.target === this) closeImagePopup();"
+    >
+      <div class="relative max-w-4xl w-full mx-4">
+        <button
+          onclick="closeImagePopup()"
+          class="absolute -top-12 right-0 w-10 h-10 rounded-full glass-effect flex items-center justify-center hover:bg-white/80 transition"
+        >
+          <i
+            data-lucide="x"
+            style="width: 18px; height: 18px; color: #1e293b"
+          ></i>
+        </button>
+        <div class="popup-card rounded-3xl p-6 overflow-hidden">
+          <div
+            class="accent-dark h-96 flex items-center justify-center rounded-xl"
+          >
+            <i
+              data-lucide="image"
+              style="width: 80px; height: 80px; color: rgba(255, 255, 255, 0.2)"
+            ></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-slate-900 mb-2" id="popupTitle">
+              Gallery Item
+            </h3>
+            <p class="text-slate-600" id="popupDesc">
+              Professional photography and videography
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN APP -->
+    <div class="w-full min-h-full flex flex-col" id="app">
+      <!-- NAVBAR -->
+      <nav class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-3">
+        <!-- GLASS BACKGROUND -->
+        <div
+          class="max-w-7xl mx-auto flex items-center justify-between bg-white/60 backdrop-blur-xl border border-white/30 shadow-lg rounded-2xl px-5 py-3"
+        >
+          <!-- LOGO -->
+          <div class="flex items-center gap-3">
+            <div
+              class="w-11 h-11 rounded-xl overflow-hidden border border-white/40 shadow"
+            >
+              <img
+                src="https://i.ibb.co/RpjD8n0C/Chat-GPT-Image-Jan-20-2026-08-56-30-AM.png"
+                class="w-full h-full object-cover"
+              />
+            </div>
+
+            <h2 class="text-xl font-bold tracking-wide">
+              YK <span class="text-blue-600">OFFICIAL</span>
+            </h2>
+          </div>
+
+          <!-- NAV LINKS -->
+          <div class="hidden md:flex items-center gap-3">
+            <!-- GALLERY -->
+            <a
+              href="#gallery"
+              class="group relative flex items-center gap-2 px-5 py-2 rounded-xl border border-slate-200 bg-white/70 backdrop-blur-md hover:bg-gradient-to-r hover:from-slate-900 hover:to-black hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl"
+            >
+              <!-- ICON -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 text-slate-600 group-hover:text-white transition"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 16l4-4a3 3 0 014 0l4 4M4 12l4-4a3 3 0 014 0l4 4m0 0l4-4m-4 4v6"
+                />
+              </svg>
+
+              <span class="font-medium">Gallery</span>
+
+              <!-- GLOW -->
+              <span
+                class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 bg-gradient-to-r from-white/10 to-white/0 blur transition"
+              ></span>
+            </a>
+
+            <!-- CONTACT -->
+            <a
+              href="#"
+              onclick="openContact()"
+              class="group relative flex items-center gap-2 px-5 py-2 rounded-xl border border-blue-300 bg-blue-500/90 text-white hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl"
+            >
+              <!-- icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 transition"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"
+                />
+
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 7l9 6 9-6"
+                />
+              </svg>
+
+              <span class="font-medium">Contact</span>
+            </a>
+          </div>
+
+          <!-- MOBILE MENU BUTTON -->
+          <button
+            onclick="toggleMenu()"
+            class="md:hidden p-2 rounded-lg bg-white/50 backdrop-blur border border-white/30"
+          >
+            ☰
+          </button>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div
+          id="mobileMenu"
+          class="hidden mt-3 max-w-7xl mx-auto bg-white/70 backdrop-blur-xl border border-white/30 rounded-2xl p-4 shadow-lg"
+        >
+          <a href="#gallery" class="block py-2 text-slate-700 hover:text-black"
+            >Gallery</a
+          >
+          <a
+            href="#"
+            onclick="openContact()"
+            class="block py-2 text-slate-700 hover:text-black"
+            >Contact</a
+          >
+        </div>
+      </nav>
+
+      <script>
+        function toggleMenu() {
+          const menu = document.getElementById("mobileMenu");
+          menu.classList.toggle("hidden");
+        }
+      </script>
+      <script>
+        window.addEventListener("scroll", () => {
+          const nav = document.querySelector("nav div");
+          if (window.scrollY > 50) {
+            nav.classList.add("bg-white/90", "shadow-xl");
+          } else {
+            nav.classList.remove("bg-white/90", "shadow-xl");
+          }
+        });
+      </script>
+
+      <!-- HERO SECTION -->
+      <header
+        class="pt-32 pb-16 px-4 sm:px-8 text-center relative overflow-hidden"
+      >
+        <div class="absolute inset-0 -z-10">
+          <div
+            class="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"
+          ></div>
+          <div
+            class="absolute top-40 right-10 w-72 h-72 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"
+          ></div>
+        </div>
+        <div class="max-w-4xl mx-auto stagger">
+          <p
+            class="text-sm font-semibold text-blue-600 uppercase tracking-widest mb-4"
+            id="tagline"
+          >
+            ✦ Visual Excellence
+          </p>
+          <h1
+            class="text-5xl md:text-7xl font-grotesk font-bold leading-tight text-slate-900 mb-4"
+            id="galleryTitle"
+          >
+            Our Gallery
+          </h1>
+          <p
+            class="text-xl text-slate-600 max-w-2xl mx-auto"
+            id="gallerySubtitle"
+          >
+            Capturing Excellence
+          </p>
+        </div>
+      </header>
+
+      <!-- GALLERY SECTION -->
+      <section
+        id="gallery"
+        class="hidden px-4 sm:px-8 py-14 bg-gradient-to-b from-white to-slate-100"
+      >
+        <div class="max-w-7xl mx-auto">
+          <!-- GRID -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- CARD -->
+            <a
+              href="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d"
+              target="_blank"
+              class="group relative rounded-2xl overflow-hidden shadow-lg"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d"
+                class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+              />
+
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"
+              ></div>
+
+              <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="font-bold text-lg">Sunset Portrait</h3>
+                <p class="text-sm opacity-80">Photography</p>
+              </div>
+
+              <!-- HOVER ICON -->
+              <div
+                class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
+              >
+                <div class="bg-white/20 backdrop-blur-md p-3 rounded-full">
+                  🔍
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD -->
+            <a
+              href="https://images.unsplash.com/photo-1492724441997-5dc865305da7"
+              target="_blank"
+              class="group relative rounded-2xl overflow-hidden shadow-lg"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1492724441997-5dc865305da7"
+                class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+              />
+
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"
+              ></div>
+
+              <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="font-bold text-lg">Corporate Film</h3>
+                <p class="text-sm opacity-80">Videography</p>
+              </div>
+
+              <div
+                class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
+              >
+                <div class="bg-white/20 backdrop-blur-md p-3 rounded-full">
+                  ▶
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD -->
+            <a
+              href="https://images.unsplash.com/photo-1522673607200-164d1b6ce486"
+              target="_blank"
+              class="group relative rounded-2xl overflow-hidden shadow-lg"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486"
+                class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+              />
+
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"
+              ></div>
+
+              <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="font-bold text-lg">Wedding Moments</h3>
+                <p class="text-sm opacity-80">Events</p>
+              </div>
+
+              <div
+                class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
+              >
+                <div class="bg-white/20 backdrop-blur-md p-3 rounded-full">
+                  📸
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD -->
+            <a
+              href="https://images.unsplash.com/photo-1512496015851-a90fb38ba796"
+              target="_blank"
+              class="group relative rounded-2xl overflow-hidden shadow-lg"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796"
+                class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+              />
+
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"
+              ></div>
+
+              <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="font-bold text-lg">Product Showcase</h3>
+                <p class="text-sm opacity-80">Photography</p>
+              </div>
+            </a>
+
+            <!-- CARD -->
+            <a
+              href="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
+              target="_blank"
+              class="group relative rounded-2xl overflow-hidden shadow-lg"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
+                class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+              />
+
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"
+              ></div>
+
+              <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="font-bold text-lg">Brand Story</h3>
+                <p class="text-sm opacity-80">Videography</p>
+              </div>
+            </a>
+
+            <!-- CARD -->
+            <a
+              href="https://images.unsplash.com/photo-1511578314322-379afb476865"
+              target="_blank"
+              class="group relative rounded-2xl overflow-hidden shadow-lg"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1511578314322-379afb476865"
+                class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+              />
+
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"
+              ></div>
+
+              <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="font-bold text-lg">Conference Coverage</h3>
+                <p class="text-sm opacity-80">Events</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMING SOON -->
+      <section class="min-h-[80vh] flex items-center justify-center px-4">
+        <div
+          class="relative text-center p-10 md:p-14 rounded-3xl bg-white/60 backdrop-blur-xl border border-white/40 shadow-2xl max-w-lg w-full"
+        >
+          <!-- GLOW BG -->
+          <div
+            class="absolute -top-10 -left-10 w-40 h-40 bg-blue-400/20 blur-3xl rounded-full"
+          ></div>
+          <div
+            class="absolute -bottom-10 -right-10 w-40 h-40 bg-pink-400/20 blur-3xl rounded-full"
+          ></div>
+
+          <!-- ICON -->
+          <div
+            class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-blue-500/20 text-3xl animate-pulse"
+          >
+            🚀
+          </div>
+
+          <!-- TEXT -->
+          <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
+            Coming Soon
+          </h1>
+
+          <p class="text-slate-600 mb-6">
+            We’re building something amazing for you. Stay tuned!
+          </p>
+
+          <!-- COUNTDOWN -->
+          <div id="countdown" class="text-xl font-mono text-blue-600"></div>
+        </div>
+      </section>
+
+      <script>
+        const target = new Date("2026-06-01").getTime();
+
+        setInterval(() => {
+          const now = new Date().getTime();
+          const diff = target - now;
+
+          const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const m = Math.floor((diff / (1000 * 60)) % 60);
+          const s = Math.floor((diff / 1000) % 60);
+
+          document.getElementById("countdown").innerHTML =
+            `${d}d ${h}h ${m}m ${s}s`;
+        }, 1000);
+      </script>
+
+      <!-- SECTION DIVIDER -->
+      <div class="section-divider mx-4 sm:mx-8"></div>
+
+      <div class="section-divider mx-4 sm:mx-8"></div>
+
+      <!-- FOOTER -->
+      <footer class="mt-auto px-4 sm:px-8 py-16 relative overflow-hidden">
+        <!-- BACKGROUND -->
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#020617]"
+        ></div>
+        <div
+          class="absolute w-96 h-96 bg-pink-500/20 blur-[120px] rounded-full top-[-50px] left-[-50px]"
+        ></div>
+        <div
+          class="absolute w-96 h-96 bg-blue-500/20 blur-[120px] rounded-full bottom-[-50px] right-[-50px]"
+        ></div>
+
+        <div class="relative max-w-7xl mx-auto text-white">
+          <!-- GRID -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-12 text-center sm:text-left"
+          >
+            <!-- BRAND -->
+            <div>
+              <div
+                class="flex items-center justify-center sm:justify-start gap-3 mb-3"
+              >
+                <img
+                  src="https://i.ibb.co/RpjD8n0C/Chat-GPT-Image-Jan-20-2026-08-56-30-AM.png"
+                  class="w-14 h-14 rounded-full bg-white p-1"
+                />
+                <h2 class="text-2xl font-bold">
+                  YK <span class="text-blue-400">OFFICIAL</span>
+                </h2>
+              </div>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                YK OFFICIAL specializes in developing scalable, responsive and professional web solutions with cutting-edge design and seamless performance.
+              </p>
+            </div>
+
+            <!-- QUICK LINKS -->
+            <div>
+              <h4 class="font-semibold mb-4">Quick Links</h4>
+              <ul class="space-y-2 text-sm text-gray-400">
+                <li>
+                  <a href="#" class="hover:text-white transition">Home</a>
+                </li>
+                <li>
+                  <a href="#gallery" class="hover:text-white transition"
+                    >Gallery</a
+                  >
+                </li>
+                <!-- <li><a href="#" class="hover:text-white transition">Services</a></li> -->
+                <li>
+                  <a
+                    href="#"
+                    onclick="openContact()"
+                    class="hover:text-white transition"
+                    >Contact</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- SUPPORT / CONTACT -->
+            <div>
+              <h4 class="font-semibold mb-4">Support</h4>
+
+              <div class="text-sm text-gray-400 space-y-2">
+                <p>📧 yegnesh7219@gmail.com</p>
+                <p>📱 +91 7219274312</p>
+                <p>📍 Tekadi, Nagpur, India - 441404</p>
+              </div>
+
+              <!-- EMAIL INPUT -->
+              <!-- <div class="mt-4">
+                 <input 
+                   id="userEmail"
+                   type="email" 
+                   placeholder="Enter your email"
+                   class="w-full px-3 py-2 rounded-lg bg-white/10 border border-white/10 text-sm focus:outline-none"
+                 >
+               
+                 <button onclick="submitForm()" 
+                   class="w-full mt-2 bg-blue-500 hover:bg-blue-600 transition py-2 rounded-lg text-sm font-medium">
+                   Send Request
+                 </button>
+               </div> -->
+
+              <div class="justify-center items-center mt-4">
+                <!-- SUCCESS POPUP -->
+                <div
+                  id="popup"
+                  class="fixed inset-0 hidden items-center justify-center z-50"
+                >
+                  <!-- OVERLAY -->
+                  <div
+                    class="absolute inset-0 bg-black/60 backdrop-blur-md"
+                  ></div>
+
+                  <!-- CARD -->
+                  <div
+                    class="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 w-[90%] max-w-sm text-center shadow-2xl animate-popup"
+                  >
+                    <!-- ICON -->
+                    <div
+                      class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-green-500/20"
+                    >
+                      <span class="text-3xl animate-bounce">✅</span>
+                    </div>
+
+                    <!-- TEXT -->
+                    <h2 class="text-xl font-bold text-white mb-2">Success</h2>
+                    <p class="text-gray-300 text-sm">
+                      Your request has been sent successfully 🚀
+                    </p>
+
+                    <!-- BUTTON -->
+                    <button
+                      onclick="closePopup()"
+                      class="mt-6 w-full py-2 rounded-xl bg-gradient-to-r from-green-400 to-green-600 text-white font-medium hover:scale-105 transition"
+                    >
+                      Continue
+                    </button>
+                  </div>
+                </div>
+
+                <!-- ERROR POPUP -->
+                <div
+                  id="errorPopup"
+                  class="fixed inset-0 hidden items-center justify-center z-50"
+                >
+                  <!-- OVERLAY -->
+                  <div
+                    class="absolute inset-0 bg-black/60 backdrop-blur-md"
+                  ></div>
+
+                  <!-- CARD -->
+                  <div
+                    class="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 w-[90%] max-w-sm text-center shadow-2xl animate-popup"
+                  >
+                    <!-- ICON -->
+                    <div
+                      class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-red-500/20"
+                    >
+                      <span class="text-3xl animate-pulse">❌</span>
+                    </div>
+
+                    <!-- TEXT -->
+                    <h2 class="text-xl font-bold text-white mb-2">Failed</h2>
+                    <p id="errorText" class="text-gray-300 text-sm">
+                      Something went wrong. Try again!
+                    </p>
+
+                    <!-- BUTTON -->
+                    <button
+                      onclick="closeErrorPopup()"
+                      class="mt-6 w-full py-2 rounded-xl bg-gradient-to-r from-red-400 to-red-600 text-white font-medium hover:scale-105 transition"
+                    >
+                      Retry
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <script>
+                (function () {
+                  emailjs.init("YOUR_PUBLIC_KEY"); // <-- yaha apna key daal
+                })();
+
+                function submitForm() {
+                  const email = document.getElementById("userEmail").value;
+
+                  if (!email) {
+                    showError("Please enter email first!");
+                    return;
+                  }
+
+                  emailjs
+                    .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+                      user_email: email,
+                    })
+                    .then(() => {
+                      fetch("YOUR_GOOGLE_SCRIPT_URL", {
+                        method: "POST",
+                        body: JSON.stringify({ email: email }),
+                      });
+
+                      document
+                        .getElementById("popup")
+                        .classList.remove("hidden");
+                      document.getElementById("userEmail").value = "";
+                    })
+                    .catch(() => {
+                      showError("Failed to send request!");
+                    });
+                }
+
+                // SUCCESS CLOSE
+                function closePopup() {
+                  document.getElementById("popup").classList.add("hidden");
+                }
+
+                // ERROR FUNCTIONS
+                function showError(msg) {
+                  document.getElementById("errorText").innerText = msg;
+                  document
+                    .getElementById("errorPopup")
+                    .classList.remove("hidden");
+                }
+
+                function closeErrorPopup() {
+                  document.getElementById("errorPopup").classList.add("hidden");
+                }
+              </script>
+            </div>
+
+            <!-- SOCIAL -->
+            <div class="flex flex-col items-center sm:items-start">
+              <h4 class="font-semibold mb-4">Connect</h4>
+
+              <div class="flex gap-4 flex-wrap justify-center sm:justify-start">
+                <a href="https://instagram.com/yegnesh.kamble" class="group">
+                  <div
+                    class="p-3 rounded-xl bg-white/10 group-hover:bg-pink-500/30 transition shadow-lg"
+                  >
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                  </div>
+                </a>
+
+                <a href="https://github.com/yegneshkamble72" class="group">
+                  <div
+                    class="p-3 rounded-xl bg-white/10 group-hover:bg-gray-500/30 transition shadow-lg"
+                  >
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                  </div>
+                </a>
+
+                <a
+                  href="https://wa.me/917219274312"
+                  target="_blank"
+                  class="group"
+                >
+                  <div
+                    class="p-3 rounded-xl bg-white/10 group-hover:bg-green-500/30 transition shadow-lg"
+                  >
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                  </div>
+                </a>
+
+                <a href="https://facebook.com/yegnesh.kamble" class="group">
+                  <div
+                    class="p-3 rounded-xl bg-white/10 group-hover:bg-blue-500/30 transition shadow-lg"
+                  >
+                    <i data-lucide="facebook" class="w-5 h-5"></i>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIVIDER -->
+          <div class="h-px bg-white/10 mb-6"></div>
+
+          <!-- BOTTOM -->
+          <div
+            class="flex flex-col md:flex-row justify-between items-center text-sm text-slate-400 gap-3 text-center md:text-left"
+          >
+            <p>© <span id="year"></span> YK Official. All rights reserved.</p>
+
+            <p id="liveTime" class="text-xs text-slate-500"></p>
+
+            <p class="text-xs">
+              <a href="terms.html" class="text-blue-400 hover:text-white"
+                >Terms</a
+              >
+              •
+              <a href="privacy.html" class="text-blue-400 hover:text-white"
+                >Privacy</a
+              >
+            </p>
+          </div>
+        </div>
+      </footer>
+
+      <!-- SCRIPT -->
+      <script>
+        // YEAR
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // LIVE TIME
+        function updateTime() {
+          const now = new Date();
+          document.getElementById("liveTime").textContent =
+            now.toLocaleDateString() + " | " + now.toLocaleTimeString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+      </script>
+
+      <!-- OVERLAY -->
+      <div
+        id="contactOverlay"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50"
+      >
+        <!-- POPUP -->
+        <div
+          id="contactPopup"
+          class="bg-white/80 backdrop-blur-xl rounded-2xl p-6 w-[90%] max-w-md shadow-2xl transform scale-95 opacity-0 transition duration-300"
+        >
+          <!-- HEADER -->
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold text-slate-900">Contact Us</h2>
+            <button
+              onclick="closeContact()"
+              class="text-slate-500 hover:text-red-500 text-xl"
+            >
+              ✕
+            </button>
+          </div>
+
+          <!-- CONTENT -->
+          <div id="contactContent" class="space-y-4 text-sm text-slate-700">
+            <div class="flex items-center gap-3">
+              <i data-lucide="mail" class="w-5 h-5 text-gray-500"></i>
+              <span>yegnesh7219@gmail.com</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <i data-lucide="phone" class="w-5 h-5 text-gray-500"></i>
+              <span>7219274312</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <i data-lucide="map-pin" class="w-5 h-5 text-gray-500"></i>
+              <span>Hanuman Nagar, Tekadi, Nagpur - 441404</span>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="flex gap-3 pt-3">
+              <a
+                href="mailto:yegnesh7219@gmail.com"
+                class="flex-1 bg-white hover:bg-gray-100 text-black py-2 border border-black rounded-lg text-center transition"
+              >
+                Email
+              </a>
+
+              <a
+                href="https://wa.me/917219274312"
+                target="_blank"
+                class="flex-1 bg-white hover:bg-gray-100 text-black py-2 border border-black rounded-lg text-center transition"
+              >
+                WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- LOADER -->
+          <div
+            id="contactLoader"
+            class="hidden flex flex-col items-center justify-center py-10"
+          >
+            <div class="flex gap-2 mb-3">
+              <span
+                class="w-3 h-3 bg-gray-500 rounded-full animate-bounce"
+              ></span>
+              <span
+                class="w-3 h-3 bg-gray-500 rounded-full animate-bounce delay-150"
+              ></span>
+              <span
+                class="w-3 h-3 bg-gray-500 rounded-full animate-bounce delay-300"
+              ></span>
+            </div>
+            <p class="text-sm text-slate-600">Loading details...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SCRIPT -->
+    <script>
+      const overlay = document.getElementById("contactOverlay");
+      const popup = document.getElementById("contactPopup");
+      const loader = document.getElementById("contactLoader");
+      const content = document.getElementById("contactContent");
+
+      function openContact() {
+        overlay.classList.remove("hidden");
+        overlay.classList.add("flex");
+
+        popup.classList.remove("scale-95", "opacity-0");
+        popup.classList.add("scale-100", "opacity-100");
+
+        // Show loader first
+        loader.classList.remove("hidden");
+        content.classList.add("hidden");
+
+        setTimeout(() => {
+          loader.classList.add("hidden");
+          content.classList.remove("hidden");
+        }, 1200);
+      }
+
+      function closeContact() {
+        popup.classList.remove("scale-100", "opacity-100");
+        popup.classList.add("scale-95", "opacity-0");
+
+        setTimeout(() => {
+          overlay.classList.add("hidden");
+          overlay.classList.remove("flex");
+        }, 200);
+      }
+
+      // CLICK OUTSIDE CLOSE
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) {
+          closeContact();
+        }
+      });
+    </script>
+    <script>
+      // Popup functions
+      function openImagePopup(title, desc) {
+        document.getElementById("popupTitle").textContent = title;
+        document.getElementById("popupDesc").textContent = desc;
+        document.getElementById("imagePopup").classList.add("active");
+      }
+      function closeImagePopup() {
+        document.getElementById("imagePopup").classList.remove("active");
+      }
+
+      // Filter gallery
+      function filterGallery(category) {
+        const items = document.querySelectorAll(".gallery-item");
+        const buttons = document.querySelectorAll(".category-btn");
+
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        event.target.classList.add("active");
+
+        items.forEach((item) => {
+          if (category === "all" || item.dataset.category === category) {
+            item.style.display = "block";
+            setTimeout(() => item.classList.add("fade-in"), 10);
+          } else {
+            item.style.display = "none";
+            item.classList.remove("fade-in");
+          }
+        });
+      }
+
+      
+      // Initialize Lucide icons
+      lucide.createIcons();
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'9e594088239780bc',t:'MTc3NTA2Mzg5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+
+    <!-- ADVANCED SOURCE PROTECTION -->
+
+    <script>
+      document.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+        triggerSecurity();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "F12") {
+          triggerSecurity();
+        }
+
+        if (e.ctrlKey && e.shiftKey && e.key === "I") {
+          triggerSecurity();
+        }
+
+        if (e.ctrlKey && e.shiftKey && e.key === "J") {
+          triggerSecurity();
+        }
+
+        if (e.ctrlKey && e.key === "U") {
+          triggerSecurity();
+        }
+      });
+
+      setInterval(function () {
+        const devtools =
+          window.outerWidth - window.innerWidth > 160 ||
+          window.outerHeight - window.innerHeight > 160;
+
+        if (devtools) {
+          triggerSecurity();
+        }
+      }, 1000);
+
+      function triggerSecurity() {
+        document.body.innerHTML = `
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#020617,#0f172a,#020617);
+background-size:300% 300%;
+animation:bgMove 8s infinite alternate;
+font-family:system-ui;
+color:white;
+}
+
+.security-box{
+position:relative;
+text-align:center;
+padding:50px;
+border-radius:16px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.08);
+box-shadow:0 0 40px rgba(0,0,0,0.6);
+max-width:600px;
+animation:fadeIn .6s ease;
+}
+
+.close-btn{
+position:absolute;
+top:12px;
+right:16px;
+font-size:20px;
+cursor:pointer;
+color:#94a3b8;
+}
+
+.close-btn:hover{
+color:black;
+}
+
+.icon{
+font-size:60px;
+margin-bottom:15px;
+animation:pulse 1.5s infinite;
+}
+
+.title{
+font-size:32px;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.subtitle{
+font-size:15px;
+color:black;
+line-height:1.6;
+}
+
+.reload{
+margin-top:15px;
+font-size:18px;
+color:#38bdf8;
+}
+
+.footer{
+margin-top:25px;
+font-size:14px;
+color:black;
+}
+
+.brand{
+margin-top:20px;
+font-weight:600;
+color:#38bdf8;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.15)}
+100%{transform:scale(1)}
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+100%{background-position:100% 50%}
+}
+
+</style>
+
+<div class="security-box">
+
+<div class="close-btn" onclick="location.reload()">✕</div>
+
+<div class="icon">⚠</div>
+
+<div class="title">Developer Tools Detected</div>
+
+<div class="subtitle">
+
+Access to developer tools or page source has been blocked.<br><br>
+
+This website is protected by <b>YK OFFICIAL Security</b>.<br>
+Unauthorized inspection or copying of source code is not allowed.
+
+</div>
+
+<div class="reload">
+Reloading in <span id="count">5</span> seconds...
+</div>
+
+<div class="footer">
+Founder : <b>Yegnesh Kamble</b><br>
+Phone : <b>7219274312</b><br>
+Email : <b>Yegnesh7219@gmail.com</b>
+</div>
+
+<div class="brand">
+© 2026 YK OFFICIAL
+</div>
+
+</div>
+`;
+
+        let sec = 5;
+
+        let timer = setInterval(function () {
+          sec--;
+
+          const el = document.getElementById("count");
+
+          if (el) {
+            el.innerText = sec;
+          }
+
+          if (sec <= 0) {
+            clearInterval(timer);
+            location.reload();
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
