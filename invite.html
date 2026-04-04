@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>YK OFFICIAL - Invite Me</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <style>
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fadeUp {
+        animation: fadeUp 0.6s ease;
+      }
+    </style>
+
+    <style>
+      @keyframes progressLoad {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      .loading-bar {
+        animation: progressLoad 3s linear forwards;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-gradient-to-br from-purple-100 via-white to-indigo-100 min-h-screen"
+  >
+    <!-- YK OFFICIAL CORPORATE LOADER -->
+    <div
+      id="ykLoader"
+      class="fixed inset-0 flex items-center justify-center bg-[#020617] z-50"
+    >
+      <div class="flex flex-col items-center">
+        <!-- RING + BRAND -->
+        <div class="relative flex items-center justify-center mb-6">
+          <!-- OUTER SOFT RING -->
+          <div class="w-24 h-24 rounded-full border border-white/10"></div>
+
+          <!-- SPINNING RING -->
+          <div
+            class="absolute w-24 h-24 rounded-full border-2 border-transparent border-t-purple-500 border-r-purple-400 animate-spin"
+          ></div>
+
+          <!-- CENTER TEXT -->
+          <div class="absolute text-center leading-tight">
+            <h1 class="text-white text-sm tracking-[3px] font-semibold">YK</h1>
+            <p class="text-blue-500 text-[10px] tracking-[2px]">OFFICIAL</p>
+          </div>
+        </div>
+
+        <!-- LOADING TEXT -->
+        <p class="text-gray-500 text-xs tracking-wide mb-5 animated-pulse">
+          Loading Invite Page...
+        </p>
+
+        <!-- PROGRESS BAR -->
+        <div class="w-56 h-[3px] bg-white/10 rounded-full overflow-hidden">
+          <div
+            id="progressBar"
+            class="h-full w-0 bg-white transition-all duration-300"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.addEventListener("load", () => {
+        const loader = document.getElementById("ykLoader");
+        const bar = document.getElementById("progressBar");
+
+        // start progress animation
+        bar.classList.add("loading-bar");
+
+        // hide loader after 3 sec
+        setTimeout(() => {
+          loader.style.opacity = "0";
+          loader.style.transition = "0.5s";
+
+          setTimeout(() => (loader.style.display = "none"), 500);
+        }, 3000);
+      });
+    </script>
+    <!-- HEADER -->
+    <header class="text-center py-10">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800">
+        YK
+        <span
+          class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent"
+        >
+          OFFICIAL
+        </span>
+      </h1>
+      <p class="text-gray-600 mt-2">Invite Request Portal</p>
+    </header>
+
+    <!-- FORM SECTION -->
+    <section class="flex justify-center px-4 pb-16">
+      <div
+        class="bg-white/80 backdrop-blur-xl shadow-2xl rounded-2xl w-full max-w-2xl p-8 animate-fadeUp"
+      >
+        <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">
+          Send Invitation Request
+        </h2>
+
+        <!-- INFO -->
+        <p class="text-sm text-gray-500 text-center mb-6">
+          📩 We will review your request and respond within
+          <span class="font-semibold text-purple-600">24 hours</span> on your
+          email.
+        </p>
+
+        <!-- FORM -->
+        <form id="inviteForm" class="space-y-4">
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-purple-400"
+            required
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-purple-400"
+            required
+          />
+
+          <input
+            type="text"
+            name="phone"
+            placeholder="Phone Number"
+            class="w-full border p-3 rounded-lg"
+            required
+          />
+
+          <input
+            type="text"
+            name="address"
+            placeholder="Full Address"
+            class="w-full border p-3 rounded-lg"
+            required
+          />
+
+          <input
+            type="text"
+            name="event"
+            placeholder="Event Name (Wedding / Business / etc.)"
+            class="w-full border p-3 rounded-lg"
+            required
+          />
+
+          <textarea
+            name="purpose"
+            placeholder="Purpose for Inviting (Details)"
+            class="w-full border p-3 rounded-lg h-24"
+          ></textarea>
+
+          <input
+            type="date"
+            name="date"
+            class="w-full border p-3 rounded-lg"
+            required
+          />
+
+          <button
+            type="submit"
+            class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 rounded-lg hover:scale-105 transition"
+          >
+            🚀 Submit Invitation
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- LOADER -->
+    <div
+      id="loader"
+      class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50"
+    >
+      <div class="bg-white px-6 py-4 rounded-xl shadow-xl animate-pulse">
+        ⏳ Sending Request...
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div
+      id="successPopup"
+      class="fixed top-5 right-5 bg-green-500 text-white px-6 py-3 rounded-lg hidden shadow-lg"
+    >
+      ✅ Request Sent Successfully!
+    </div>
+
+    <!-- ERROR -->
+    <div
+      id="errorPopup"
+      class="fixed top-5 right-5 bg-red-500 text-white px-6 py-3 rounded-lg hidden shadow-lg"
+    >
+      ❌ Failed to send!
+    </div>
+
+    <script>
+      // EMAILJS INIT
+      emailjs.init("9P9_Nz0_Es2Y6Ffvm");
+
+      // FORM SUBMIT
+      document
+        .getElementById("inviteForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const loader = document.getElementById("loader");
+          loader.classList.remove("hidden");
+          loader.classList.add("flex");
+
+          const formData = new FormData(this);
+          const data = Object.fromEntries(formData);
+
+          try {
+            // GOOGLE SHEET
+            await fetch(
+              "https://script.google.com/macros/s/AKfycbxqQWXt8JMQlyPZFqjJfSLwynDqi9GmzjyflVYujRmUu3HR2vV0S-CrT33CGKV1FMNj/exec",
+              {
+                method: "POST",
+                body: JSON.stringify(data),
+              },
+            );
+
+            // EMAIL SEND
+            await emailjs.send("service_dgrc179", "template_qxhyh7i", data);
+
+            showSuccess();
+            this.reset();
+          } catch (err) {
+            showError();
+          }
+
+          loader.classList.add("hidden");
+        });
+
+      // SUCCESS
+      function showSuccess() {
+        const el = document.getElementById("successPopup");
+        el.classList.remove("hidden");
+        setTimeout(() => el.classList.add("hidden"), 3000);
+      }
+
+      // ERROR
+      function showError() {
+        const el = document.getElementById("errorPopup");
+        el.classList.remove("hidden");
+        setTimeout(() => el.classList.add("hidden"), 3000);
+      }
+    </script>
+
+    <script>
+// RIGHT CLICK BLOCK
+document.addEventListener("contextmenu", function(e){
+  e.preventDefault();
+  showAccessPopup();
+});
+
+function showAccessPopup(){
+
+  // Prevent multiple popups
+  if(document.getElementById("accessPopup")) return;
+
+  // CREATE POPUP
+  const popup = document.createElement("div");
+  popup.id = "accessPopup";
+
+  popup.innerHTML = `
+  <style>
+    #accessPopup{
+      position:fixed;
+      inset:0;
+      background:rgba(2,6,23,0.85);
+      backdrop-filter:blur(8px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      font-family:system-ui;
+    }
+
+    .box{
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+      backdrop-filter:blur(14px);
+      border-radius:16px;
+      padding:30px;
+      width:90%;
+      max-width:320px;
+      text-align:center;
+      color:white;
+      box-shadow:0 10px 40px rgba(0,0,0,0.6);
+      animation:fadeIn .3s ease;
+    }
+
+    .icon{
+      font-size:36px;
+      margin-bottom:10px;
+    }
+
+    .title{
+      font-size:20px;
+      font-weight:600;
+      margin-bottom:6px;
+    }
+
+    .msg{
+      font-size:13px;
+      color:#94a3b8;
+      margin-bottom:15px;
+    }
+
+    .timer{
+      background:linear-gradient(135deg,#7c3aed,#38bdf8);
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:12px;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0; transform:scale(0.9)}
+      to{opacity:1; transform:scale(1)}
+    }
+  </style>
+
+  <div class="box">
+    <div class="icon">🚫</div>
+    <div class="title">Access Denied</div>
+    <div class="msg">
+      This website is protected by YK OFFICIAL Security.
+Unauthorized inspection or copying of source code is not allowed.
+    </div>
+
+    <div class="timer">
+      Refreshing in <span id="count">5</span>s
+    </div>
+  </div>
+  `;
+
+  document.body.appendChild(popup);
+
+  // TIMER
+  let sec = 5;
+
+  const interval = setInterval(()=>{
+    sec--;
+
+    const el = document.getElementById("count");
+    if(el) el.innerText = sec;
+
+    if(sec <= 0){
+      clearInterval(interval);
+      location.reload();
+    }
+
+  },1000);
+}
+</script>
+  </body>
+</html>
+
+<!-- google sheet code -->
+
+<!-- GOOGLE SHEET CODE (GOOGLE APPS SCRIPT) -->
+
+<!-- Date | Name | Email | Phone | Address | Event | Purpose | Event Date 
+ 
+
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp
+      .openById("YOUR_SHEET_ID")
+      .getSheetByName("Sheet1");
+
+    var data = JSON.parse(e.postData.contents);
+
+    sheet.appendRow([
+      new Date(),
+      data.name || "",
+      data.email || "",
+      data.phone || "",
+      data.address || "",
+      data.event || "",
+      data.purpose || "",
+      data.date || ""
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({status:"success"}))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({status:"error", message: err}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+  
+-->
