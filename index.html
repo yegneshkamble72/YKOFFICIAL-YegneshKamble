@@ -725,16 +725,42 @@
                 ></span>
               </a>
 
-              <a
-                href="invite.html"
-                target="_blank"
-                class="nav-link relative text-gray-700 font-medium group"
-              >
-                Invite Me
-                <span
-                  class="absolute left-0 -bottom-1 w-0 h-[2px] bg-purple-600 transition-all group-hover:w-full"
-                ></span>
-              </a>
+              <div class="relative group">
+  
+  <!-- MAIN BUTTON -->
+  <button class="nav-link relative text-gray-700 font-medium flex items-center gap-1">
+    Other <svg
+                    class="w-4 h-4 transition-transform group-hover:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M19 9l-7 7-7-7" />
+                  </svg>
+    <span class="absolute left-0 -bottom-1 w-0 h-[2px] bg-purple-600 transition-all group-hover:w-full"></span>
+  </button>
+
+  <!-- DROPDOWN -->
+  <div class="absolute top-10 left-0 w-48 bg-white/100 backdrop-blur-xl shadow-xl rounded-xl p-2 opacity-0 invisible translate-y-2 
+              group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 
+              transition-all duration-300 z-50">
+
+    <!-- ITEM 1 -->
+    <a href="invite.html" target="_blank"
+      class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-purple-100 transition">
+      🎁 Invite Me
+    </a>
+    <!-- ITEM 1 -->
+    <a href="refer.html" target="_blank"
+      class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-purple-100 transition">
+      🤝 Refer a Friend
+    </a>
+
+    
+
+  </div>
+</div>
 
               <!-- GALLERY BUTTON -->
               <a
@@ -902,24 +928,65 @@
               ><span class="font-medium">Contact</span>
             </a>
 
-            <a
-              href="invite.html"
-              target="_blank"
-              class="mobile-nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-all"
-            >
-              <svg
-                class="w-5 h-5 group-hover:rotate-6 transition"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                viewBox="0 0 24 24"
-              >
-                <rect x="4" y="4" width="16" height="16" rx="3"></rect>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="4" y1="10" x2="20" y2="10"></line></svg
-              ><span class="font-medium">Invite Me</span>
-            </a>
+            <div class="w-full">
+
+  <!-- MAIN BUTTON -->
+  <button onclick="toggleMobileDropdown()" 
+    class="w-full flex items-center justify-between px-4 py-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-all">
+
+    <div class="flex items-center space-x-3">
+      <!-- ICON -->
+      <svg class="w-5 h-5 transition group-hover:rotate-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <rect x="4" y="4" width="16" height="16" rx="3"></rect>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="4" y1="10" x2="20" y2="10"></line>
+      </svg>
+
+      <span class="font-medium">Other</span>
+    </div>
+
+    <!-- ARROW -->
+    <svg id="arrowIcon" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M6 9l6 6 6-6"/>
+    </svg>
+  </button>
+
+  <!-- DROPDOWN ITEMS -->
+  <div id="mobileDropdown" class="max-h-0 overflow-hidden transition-all duration-300">
+
+    <!-- Invite -->
+    <a href="invite.html" target="_blank"
+      class="flex items-center space-x-3 px-8 py-3 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition">
+      🎁 <span>Invite Me</span>
+    </a>
+
+    <!-- Refer -->
+    
+    <a href="refer.html" target="_blank"
+      class="flex items-center space-x-3 px-8 py-3 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition">
+      🤝 <span>Refer a Friend</span>
+    </a>
+
+  </div>
+</div>
+
+<script>
+function toggleMobileDropdown(){
+  const menu = document.getElementById("mobileDropdown");
+  const arrow = document.getElementById("arrowIcon");
+
+  if(menu.classList.contains("max-h-0")){
+    menu.classList.remove("max-h-0");
+    menu.classList.add("max-h-40");
+    arrow.classList.add("rotate-180");
+  } else {
+    menu.classList.add("max-h-0");
+    menu.classList.remove("max-h-40");
+    arrow.classList.remove("rotate-180");
+  }
+}
+</script>
           </nav>
           <div class="mt-8 pt-6 border-t border-gray-200">
             <button
@@ -1511,26 +1578,31 @@
           </div>
 
           <!-- SCROLL INDICATOR -->
+          <!-- 
           <div
             class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center z-40"
           >
-            <!-- TEXT -->
+            
             <span
               class="text-xs tracking-widest text-white/70 mb-2 animate-pulse"
             >
               SCROLL
             </span>
 
-            <!-- MOUSE DESIGN -->
+            
             <div
               class="w-6 h-10 rounded-full border-2 border-white/50 flex justify-center items-start p-1 backdrop-blur-md bg-white/10"
             >
-              <!-- DOT ANIMATION -->
+              
               <div
                 class="w-1.5 h-1.5 bg-white rounded-full animate-[scrollDot_1.5s_infinite]"
               ></div>
             </div>
-          </div>
+          
+          </div> 
+          --> 
+
+
           <!-- CHATBOT BUTTON -->
           <div class="fixed bottom-6 left-6 z-50 group">
             <!-- Tooltip -->
