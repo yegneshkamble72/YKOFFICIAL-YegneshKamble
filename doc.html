@@ -3,6 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YK OFFICIAL - Documentation</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
+    /><!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YK OFFICIAL | Documentation</title>
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
@@ -12,6 +25,1740 @@
       type="image/svg+xml"
       href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
     />
+    <!-- <script src="/_sdk/element_sdk.js"></script> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&amp;family=Source+Serif+4:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Playfair Display", "serif"],
+              body: ["Source Serif 4", "serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      /* Glassmorphism effect */
+      .glass {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+      }
+
+      .glass-dark {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 20px 60px 0 rgba(31, 38, 135, 0.12);
+      }
+
+      /* Book page flip animation */
+      .book-container {
+        perspective: 2000px;
+        transform-style: preserve-3d;
+      }
+
+      .page {
+        transform-origin: left center;
+        transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        backface-visibility: hidden;
+      }
+
+      .page-flip-right {
+        animation: flipRight 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+      }
+      .page-flip-left {
+        animation: flipLeft 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+      }
+
+      @keyframes flipRight {
+        0% {
+          transform: rotateY(0deg);
+        }
+        100% {
+          transform: rotateY(-180deg);
+        }
+      }
+      @keyframes flipLeft {
+        0% {
+          transform: rotateY(-180deg);
+        }
+        100% {
+          transform: rotateY(0deg);
+        }
+      }
+
+      /* Page edge shadow */
+      .page-shadow {
+        box-shadow:
+          inset -8px 0 20px -6px rgba(0, 0, 0, 0.04),
+          4px 0 12px -2px rgba(0, 0, 0, 0.08);
+      }
+      .page-shadow-left {
+        box-shadow:
+          inset 8px 0 20px -6px rgba(0, 0, 0, 0.04),
+          -4px 0 12px -2px rgba(0, 0, 0, 0.08);
+      }
+
+      /* Loader */
+      .book-loader {
+        width: 60px;
+        height: 50px;
+        position: relative;
+      }
+      .book-loader .page-load {
+        position: absolute;
+        width: 28px;
+        height: 40px;
+        border: 2px solid #3b82f6;
+        border-radius: 0 4px 4px 0;
+        transform-origin: left center;
+      }
+      .book-loader .page-load:nth-child(1) {
+        animation: bookFlip 1.4s ease-in-out infinite;
+        z-index: 3;
+        background: rgba(255, 255, 255, 0.9);
+      }
+      .book-loader .page-load:nth-child(2) {
+        animation: bookFlip 1.4s ease-in-out 0.2s infinite;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.8);
+      }
+      .book-loader .page-load:nth-child(3) {
+        animation: bookFlip 1.4s ease-in-out 0.4s infinite;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.7);
+      }
+      .book-loader .spine {
+        position: absolute;
+        left: 0;
+        width: 4px;
+        height: 40px;
+        background: #3b82f6;
+        border-radius: 2px 0 0 2px;
+      }
+
+      @keyframes bookFlip {
+        0%,
+        100% {
+          transform: rotateY(0deg);
+        }
+        50% {
+          transform: rotateY(-180deg);
+        }
+      }
+
+      /* Toast */
+      .toast {
+        animation: toastIn 0.4s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
+      }
+      .toast-out {
+        animation: toastOut 0.3s ease-in forwards;
+      }
+      @keyframes toastIn {
+        0% {
+          transform: translateY(20px) scale(0.95);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes toastOut {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-20px);
+          opacity: 0;
+        }
+      }
+
+      /* Modal */
+      .modal-backdrop {
+        backdrop-filter: blur(6px);
+        animation: fadeIn 0.3s ease forwards;
+      }
+      .modal-content {
+        animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes modalPop {
+        0% {
+          transform: scale(0.8) translateY(30px);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1) translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Code block */
+      .code-block {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        border-left: 3px solid #e2725b;
+      }
+
+      /* Decorative corner */
+      .corner-decor::before,
+      .corner-decor::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-color: #8b4513;
+        border-style: solid;
+      }
+      .corner-decor::before {
+        top: 8px;
+        left: 8px;
+        border-width: 2px 0 0 2px;
+      }
+      .corner-decor::after {
+        bottom: 8px;
+        right: 8px;
+        border-width: 0 2px 2px 0;
+      }
+
+      /* Page number ornament */
+      .page-num {
+        font-variant-numeric: oldstyle-nums;
+      }
+
+      /* Scroll */
+      .page-content::-webkit-scrollbar {
+        width: 6px;
+      }
+      .page-content::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .page-content::-webkit-scrollbar-thumb {
+        background: #d4a574;
+        border-radius: 3px;
+      }
+
+      /* Stagger animations */
+      .stagger-1 {
+        animation-delay: 0.1s;
+      }
+      .stagger-2 {
+        animation-delay: 0.2s;
+      }
+      .stagger-3 {
+        animation-delay: 0.3s;
+      }
+      .stagger-4 {
+        animation-delay: 0.4s;
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(15px);
+        animation: fadeUp 0.5s ease forwards;
+      }
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Ribbon bookmark */
+      .ribbon {
+        position: absolute;
+        top: -4px;
+        right: 20px;
+        width: 24px;
+        height: 50px;
+        background: #c0392b;
+        z-index: 10;
+      }
+      .ribbon::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-left: 12px solid #c0392b;
+        border-right: 12px solid #c0392b;
+        border-bottom: 8px solid transparent;
+      }
+
+      /* Tooltip */
+      .help-tooltip {
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.2s ease;
+      }
+      .help-trigger:hover .help-tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .book-spread {
+        display: flex;
+        flex-direction: row;
+      }
+
+      @media (max-width: 768px) {
+        .book-spread {
+          flex-direction: column;
+        }
+
+        #left-page,
+        #right-page {
+          width: 100% !important;
+          max-height: none !important;
+        }
+
+        #right-page {
+          display: none; /* mobile pe single page */
+        }
+      }
+      @media (max-width: 768px) {
+        body {
+          font-size: 14px;
+        }
+
+        header {
+          padding: 10px 14px !important;
+        }
+
+        nav {
+          flex-direction: row;
+          gap: 10px;
+        }
+
+        nav button {
+          flex: 1;
+          justify-content: center;
+        }
+
+        #page-indicator {
+          font-size: 12px;
+        }
+      }
+      /* Paper texture overlay */
+      .paper-texture {
+        background-image:
+          radial-gradient(
+            ellipse at 20% 50%,
+            rgba(139, 69, 19, 0.03) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 20%,
+            rgba(139, 69, 19, 0.02) 0%,
+            transparent 50%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(255, 248, 240, 1) 0%,
+            rgba(255, 243, 230, 1) 100%
+          );
+      }
+    </style>
+    <style>
+      body {
+        box-sizing: border-box;
+      }
+    </style>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  </head>
+  <body
+    class="h-full overflow-auto"
+    style="
+      background: linear-gradient(
+        135deg,
+        #e0f2fe 0%,
+        #f0f9ff 50%,
+        #dbeafe 100%
+      );
+    "
+  >
+    <!-- LOADER SCREEN -->
+    <div
+      id="loader-screen"
+      class="fixed inset-0 z-50 flex flex-col items-center justify-center"
+      style="
+        background: linear-gradient(
+          135deg,
+          #e0f2fe 0%,
+          #f0f9ff 50%,
+          #dbeafe 100%
+        );
+      "
+    >
+      <div class="book-loader item-center mb-6">
+        <div class="spine"></div>
+        <div class="page-load" style="left: 4px"></div>
+        <div class="page-load" style="left: 4px"></div>
+        <div class="page-load" style="left: 4px"></div>
+      </div>
+
+      <p class="font-display text-blue-600 text-lg tracking-widest">
+        Opening documentation...
+      </p>
+      <br />
+
+      <p class="font-display text-xl text-center font-bold tracking-widest">
+        YK <span class="text-blue-600">OFFICIAL</span>
+      </p>
+    </div>
+    <!-- TOAST CONTAINER -->
+    <div
+      id="toast-container"
+      class="fixed top-4 right-4 z-50 flex flex-col gap-2"
+    ></div>
+    <!-- HELP MODAL -->
+    <div id="help-modal" class="fixed inset-0 z-40 hidden">
+      <div
+        class="modal-backdrop absolute inset-0 bg-black/30 flex items-center justify-center p-4"
+        onclick="closeHelpModal(event)"
+      >
+        <div
+          class="modal-content glass-dark rounded-2xl max-w-lg w-full p-8 relative"
+          onclick="event.stopPropagation()"
+        >
+          <button
+            onclick="closeHelpModal()"
+            class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full hover:bg-blue-100 transition-colors"
+            aria-label="Close help"
+          >
+            <i
+              data-lucide="x"
+              style="width: 18px; height: 18px; color: #1e40af"
+            ></i>
+          </button>
+          <h3
+            class="font-display text-2xl font-bold mb-4"
+            style="color: #1e40af"
+          >
+            📖 How to Navigate
+          </h3>
+          <div class="space-y-3 font-body" style="color: #1e3a8a">
+            <div class="flex items-start gap-3">
+              <span
+                class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold text-white"
+                style="background: #3b82f6"
+                >1</span
+              >
+              <p>
+                Use the <strong>arrow buttons</strong> at the bottom or swipe to
+                turn pages.
+              </p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span
+                class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold text-white"
+                style="background: #3b82f6"
+                >2</span
+              >
+              <p>
+                Click <strong>chapter titles</strong> in the Table of Contents
+                to jump directly.
+              </p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span
+                class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold text-white"
+                style="background: #3b82f6"
+                >3</span
+              >
+              <p>
+                Use <strong>keyboard arrows</strong> ← → for quick navigation.
+              </p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span
+                class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold text-white"
+                style="background: #3b82f6"
+                >4</span
+              >
+              <p>Click the <strong>?</strong> button anytime for help.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- CONTACT MODAL -->
+    <div id="contact-modal" class="fixed inset-0 z-40 hidden">
+      <div
+        class="modal-backdrop absolute inset-0 bg-black/30 flex items-center justify-center p-4"
+        onclick="closeContactModal(event)"
+      >
+        <div
+          class="modal-content glass-dark rounded-2xl max-w-md w-full p-8 relative"
+          onclick="event.stopPropagation()"
+        >
+          <button
+            onclick="closeContactModal()"
+            class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full hover:bg-blue-100 transition-colors"
+            aria-label="Close contact"
+          >
+            <i
+              data-lucide="x"
+              style="width: 18px; height: 18px; color: #1e40af"
+            ></i>
+          </button>
+          <h3
+            class="font-display text-2xl font-bold mb-1"
+            style="color: #1e40af"
+          >
+            ✉️ Get in Touch
+          </h3>
+          <p
+            class="font-body text-sm mb-5"
+            style="color: #64748b"
+            id="contact-email-display"
+          >
+            contact@ykofficiel.com
+          </p>
+          <form onsubmit="handleContact(event)" class="space-y-4">
+            <div>
+              <label
+                for="c-name"
+                class="block font-body text-sm font-medium mb-1"
+                style="color: #1e3a8a"
+                >Name</label
+              >
+              <input
+                id="c-name"
+                type="text"
+                required
+                class="w-full px-3 py-2 rounded-lg border-2 font-body text-sm focus:outline-none transition-colors"
+                style="
+                  border-color: #93c5fd;
+                  background: rgba(255, 255, 255, 0.8);
+                  color: #0c2340;
+                "
+                placeholder="Your name"
+              />
+            </div>
+            <div>
+              <label
+                for="c-email"
+                class="block font-body text-sm font-medium mb-1"
+                style="color: #1e3a8a"
+                >Email</label
+              >
+              <input
+                id="c-email"
+                type="email"
+                required
+                class="w-full px-3 py-2 rounded-lg border-2 font-body text-sm focus:outline-none transition-colors"
+                style="
+                  border-color: #93c5fd;
+                  background: rgba(255, 255, 255, 0.8);
+                  color: #0c2340;
+                "
+                placeholder="your@email.com"
+              />
+            </div>
+            <div>
+              <label
+                for="c-msg"
+                class="block font-body text-sm font-medium mb-1"
+                style="color: #1e3a8a"
+                >Message</label
+              >
+              <textarea
+                id="c-msg"
+                rows="3"
+                required
+                class="w-full px-3 py-2 rounded-lg border-2 font-body text-sm focus:outline-none transition-colors resize-none"
+                style="
+                  border-color: #93c5fd;
+                  background: rgba(255, 255, 255, 0.8);
+                  color: #0c2340;
+                "
+                placeholder="How can we help?"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full py-2.5 rounded-lg font-display font-semibold tracking-wide text-sm transition-all hover:shadow-lg text-white"
+              style="background: #3b82f6"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- MAIN APP -->
+    <div
+      id="app"
+      class="h-full w-full flex flex-col opacity-0 transition-opacity duration-500"
+    >
+      <!-- Top bar -->
+      <header
+        class="flex  items-center justify-between px-4 md:px-8 py-4 flex-shrink-0 glass rounded-b-2xl"
+        style="
+          border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+          backdrop-filter: blur(12px);
+        "
+      >
+        <div class="flex items-center gap-3">
+          <!-- LOGO IMAGE -->
+          <div
+            class="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center bg-white shadow"
+          >
+            <img
+              src="https://i.ibb.co/RpjD8n0C/Chat-GPT-Image-Jan-20-2026-08-56-30-AM.png"
+              alt="Logo"
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          <!-- TEXT -->
+          <div>
+            <h1
+              id="site-title"
+              class="font-display font-bold text-base md:text-lg"
+              style="color: #0f172a"
+            >
+              YK <span class="text-blue-600">OFFICIAL</span>
+            </h1>
+            <p class="font-body text-xs" style="color: #64748b">
+              Documentation Platform
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          
+          <button
+            onclick="openHelpModal()"
+            class="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:bg-blue-100 help-trigger relative"
+            aria-label="Help"
+            style="color: #1e40af"
+          >
+            <i data-lucide="help-circle" style="width: 18px; height: 18px"></i>
+            <span
+              class="help-tooltip absolute top-full mt-1 right-0 px-2 py-1 rounded text-xs whitespace-nowrap"
+              style="background: #1e40af; color: white"
+              >Need help?</span
+            >
+          </button>
+          <button
+            onclick="openContactModal()"
+            class="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:bg-blue-100"
+            aria-label="Contact"
+            style="color: #1e40af"
+          >
+            <i data-lucide="mail" style="width: 18px; height: 18px"></i>
+            <span
+              class="help-tooltip absolute top-full mt-1 right-0 px-2 py-1 rounded text-xs whitespace-nowrap"
+              style="background: #1e40af; color: white"
+              >Contact</span
+            >
+          </button>
+
+          <button
+            onclick="openFeedbackModal()"
+            class="px-3 py-2 rounded-lg text-white text-sm font-semibold"
+            style="background: linear-gradient(135deg, #3b82f6, #1e40af)"
+          >
+             Feedback
+          </button>
+        </div>
+      </header>
+      <!-- Book area -->
+      <main
+        class="flex-1 flex items-center justify-center p-3 md:p-6 overflow-auto"
+      >
+        <div class="book-container w-full max-w-5xl">
+          <div
+            class="book-spread flex flex-col md:flex-row rounded-2xl overflow-hidden shadow-2xl glass"
+            style="min-height: 480px"
+          >
+            <!-- <div class="book-spread flex flex-col md:flex-row rounded-2xl overflow-hidden shadow-2xl glass"> -->
+            <!-- LEFT PAGE -->
+            <div
+              id="left-page"
+              class="page-shadow-left w-full md:w-1/2 bg-white/90 p-6 md:p-10 relative page-content overflow-auto"
+              style="max-height: 560px"
+            >
+              <div class="ribbon" style="background: #3b82f6"></div>
+            </div>
+            <!-- Book spine -->
+            <div
+              class="hidden md:block w-1 flex-shrink-0"
+              style="
+                background: linear-gradient(
+                  90deg,
+                  rgba(59, 130, 246, 0.2),
+                  rgba(59, 130, 246, 0.1)
+                );
+              "
+            ></div>
+            <!-- RIGHT PAGE -->
+            <div
+              id="right-page"
+              class="page-shadow w-full md:w-1/2 bg-white/90 p-6 md:p-10 relative page-content overflow-auto"
+              style="max-height: 560px"
+            ></div>
+          </div>
+        </div>
+      </main>
+      <!-- Navigation -->
+      <nav
+        class="flex items-center justify-center gap-4 px-4 py-4 flex-shrink-0 glass rounded-t-2xl"
+        style="border-top: 1px solid rgba(255, 255, 255, 0.5)"
+      >
+        <button
+          onclick="prevPage()"
+          id="btn-prev"
+          class="flex items-center gap-1.5 px-4 py-2 rounded-lg font-display text-sm font-semibold transition-all hover:shadow-md disabled:opacity-30 disabled:cursor-not-allowed text-white"
+          style="background: linear-gradient(135deg, #3b82f6, #1e40af)"
+          aria-label="Previous page"
+        >
+          <i data-lucide="chevron-left" style="width: 16px; height: 16px"></i>
+          <span class="hidden sm:inline">Previous</span>
+        </button>
+        <span
+          id="page-indicator"
+          class="font-display text-sm page-num"
+          style="color: #0f172a"
+          >Page 1 of 7</span
+        >
+        <button
+          onclick="nextPage()"
+          id="btn-next"
+          class="flex items-center gap-1.5 px-4 py-2 rounded-lg font-display text-sm font-semibold transition-all hover:shadow-md disabled:opacity-30 disabled:cursor-not-allowed text-white"
+          style="background: linear-gradient(135deg, #3b82f6, #1e40af)"
+          aria-label="Next page"
+        >
+          <span class="hidden sm:inline">Next</span>
+          <i data-lucide="chevron-right" style="width: 16px; height: 16px"></i>
+        </button>
+      </nav>
+    </div>
+    <!-- Feedback Modal -->
+    <div id="feedback-modal" class="fixed inset-0 z-[9999] hidden">
+      <div
+        class="modal-backdrop absolute inset-0 bg-black/40 flex items-center justify-center p-4"
+        onclick="closeFeedbackModal(event)"
+      >
+        <div
+          class="modal-content glass-dark rounded-2xl w-full max-w-md p-6 relative"
+          onclick="event.stopPropagation()"
+        >
+          <!-- CLOSE -->
+          <button
+            onclick="closeFeedbackModal()"
+            class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full hover:bg-blue-100"
+          >
+            ✕
+          </button>
+
+          <h3 class="text-xl font-bold mb-1 text-blue-900">⭐ Give Feedback</h3>
+          <p class="text-sm text-gray-500 mb-4">
+            Only verified users can submit feedback
+          </p>
+
+          <form onsubmit="submitFeedback(event)" class="space-y-3">
+            <!-- EMAIL -->
+            <input
+              id="f-email"
+              type="email"
+              required
+              placeholder="Enter your email"
+              class="w-full px-3 py-2 rounded-lg border focus:outline-none"
+            />
+
+            <!-- NAME -->
+            <input
+              id="f-name"
+              type="text"
+              required
+              placeholder="Your Name"
+              class="w-full px-3 py-2 rounded-lg border focus:outline-none"
+            />
+
+            <!-- RATING -->
+            <select
+              id="f-rating"
+              required
+              class="w-full px-3 py-2 rounded-lg border"
+            >
+              <option value="">Select Rating</option>
+              <option>⭐⭐⭐⭐⭐ Excellent</option>
+              <option>⭐⭐⭐⭐ Good</option>
+              <option>⭐⭐⭐ Average</option>
+              <option>⭐⭐ Poor</option>
+            </select>
+
+            <!-- MESSAGE -->
+            <textarea
+              id="f-msg"
+              rows="3"
+              required
+              placeholder="Write your feedback..."
+              class="w-full px-3 py-2 rounded-lg border resize-none"
+            ></textarea>
+
+            <!-- SUBMIT -->
+            <button
+              type="submit"
+              class="w-full py-2 rounded-lg text-white font-semibold"
+              style="background: #3b82f6"
+            >
+              Submit Feedback
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="success-popup"
+      class="fixed inset-0 z-[10000] hidden flex items-center justify-center"
+    >
+      <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+      <div
+        class="relative bg-white rounded-2xl p-6 w-[90%] max-w-sm text-center shadow-2xl animate-popup"
+      >
+        <div
+          class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-green-100"
+        >
+          ✔️
+        </div>
+
+        <h3 class="text-lg font-bold text-gray-800">Feedback Sent!</h3>
+        <p class="text-sm text-gray-500 mb-4">Thank you 💙</p>
+
+        <button
+          onclick="closeSuccessPopup()"
+          class="px-4 py-2 rounded-lg text-white bg-blue-500"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+    <script>
+      // ================= INIT EMAILJS =================
+      window.addEventListener("load", () => {
+        emailjs.init("9P9_Nz0_Es2Y6Ffvm"); // 🔥 replace
+
+        // Auto open (verified user)
+        setTimeout(() => {
+          const userEmail = localStorage.getItem("userEmail");
+          if (userEmail) {
+            openFeedbackModal();
+          }
+        }, 4000);
+      });
+
+      // ================= MODAL CONTROL =================
+      function openFeedbackModal() {
+        const modal = document.getElementById("feedback-modal");
+        if (!modal) return console.error("Modal not found");
+        modal.classList.remove("hidden");
+      }
+
+      function closeFeedbackModal(e) {
+        const modal = document.getElementById("feedback-modal");
+        if (!modal) return;
+
+        if (!e || e.target === e.currentTarget) {
+          modal.classList.add("hidden");
+        }
+      }
+
+      // ================= SUCCESS POPUP =================
+      function openSuccessPopup() {
+        const popup = document.getElementById("success-popup");
+        if (popup) popup.classList.remove("hidden");
+
+        // auto close
+        setTimeout(() => {
+          closeSuccessPopup();
+        }, 3000);
+      }
+
+      function closeSuccessPopup() {
+        const popup = document.getElementById("success-popup");
+        if (popup) popup.classList.add("hidden");
+      }
+
+      // ================= FEEDBACK SUBMIT =================
+      function submitFeedback(e) {
+        e.preventDefault();
+
+        const btn = e.target.querySelector("button");
+        btn.disabled = true;
+        btn.innerText = "Sending...";
+
+        const email = document.getElementById("f-email").value.trim();
+        const name = document.getElementById("f-name").value.trim();
+        const rating = document.getElementById("f-rating").value;
+        const message = document.getElementById("f-msg").value.trim();
+
+        // Validation
+        if (!email || !name || !message) {
+          showToast("❌ Fill all fields", "error");
+          resetBtn(btn);
+          return;
+        }
+
+        if (!email.includes("@")) {
+          showToast("❌ Invalid email", "error");
+          resetBtn(btn);
+          return;
+        }
+
+        // SEND EMAIL
+        emailjs
+          .send("service_dgrc179", "template_07qnqwl", {
+            name: name,
+            email: email,
+            rating: rating,
+            message: message,
+          })
+          .then(() => {
+            closeFeedbackModal();
+            openSuccessPopup(); // 🔥 premium popup
+            e.target.reset();
+          })
+          .catch((err) => {
+            console.error(err);
+            showToast("❌ Failed to send", "error");
+          })
+          .finally(() => {
+            resetBtn(btn);
+          });
+      }
+
+      // ================= BUTTON RESET =================
+      function resetBtn(btn) {
+        btn.disabled = false;
+        btn.innerText = "Submit Feedback";
+      }
+    </script>
+    <script>
+      // ===== CONFIG & SDK =====
+      const defaultConfig = {
+        site_title: "YK Official",
+        welcome_heading: "YK Official Documentation",
+        contact_email: "contact@ykofficiel.com",
+        background_color: "#e0f2fe",
+        surface_color: "#ffffff",
+        text_color: "#0f172a",
+        primary_action_color: "#3b82f6",
+        secondary_action_color: "#0ea5e9",
+        font_family: "Playfair Display",
+        font_size: 16,
+      };
+
+      let config = { ...defaultConfig };
+
+      // ===== PAGES DATA =====
+      const pages = [
+        // Page 1: Cover
+        { left: "cover", right: "toc" },
+        // Page 2: Website Uses
+        { left: "getting-started", right: "installation" },
+        // Page 3: Benefits
+        { left: "api", right: "advanced" },
+        // Page 4: Data Protection & Legal
+        { left: "faq", right: "copyright" },
+      ];
+
+      let currentSpread = 0;
+      let isAnimating = false;
+
+      function getPageHTML(id) {
+        const c = config;
+        const textColor = c.text_color || defaultConfig.text_color;
+        const headColor = "#0f172a";
+        const accent =
+          c.primary_action_color || defaultConfig.primary_action_color;
+        const ribbon =
+          c.secondary_action_color || defaultConfig.secondary_action_color;
+
+        switch (id) {
+          case "cover":
+            return `
+<div class="flex flex-col items-center justify-center h-full text-center space-y-6 fade-up">
+
+  <div class="w-16 h-16 rounded-full flex items-center justify-center mb-2" style="background:linear-gradient(135deg,${accent}20,${accent}10);">
+    <i data-lucide="book-open" style="width:32px;height:32px;color:${accent};"></i>
+  </div>
+
+  <h2 id="cover-title" class="font-display text-3xl md:text-4xl font-black leading-tight" style="color:${headColor};">
+    ${c.welcome_heading || defaultConfig.welcome_heading}
+  </h2>
+
+  <div class="w-16 h-0.5 mx-auto" style="background:${accent};"></div>
+
+  <p class="font-body text-base max-w-xs" style="color:${textColor}cc;">
+    Complete guide to YK <span class="text-blue-600">OFFICIAL</span> platform, features, security practices, and professional documentation standards.
+  </p>
+
+  <p class="font-body text-xs tracking-widest uppercase" style="color:${accent};">
+    Version 2.9 · 2026
+  </p> <br>
+  <br><br>
+
+  <!-- 🔥 BUTTONS -->
+  <div class="text-center mt-4 text-xs" style="color:${textColor}aa;">
+  By continuing, you agree to our 
+  <span onclick="window.open('terms.html','_blank')" 
+        class="cursor-pointer hover:underline font-semibold"
+        style="color:${accent};">
+    Terms 
+  </span> 
+  & 
+  <span onclick="window.open('privacy.html','_blank')" 
+        class="cursor-pointer hover:underline font-semibold"
+        style="color:${accent};">
+    Privacy Policy
+  </span>
+</div>
+
+</div>
+`;
+
+          case "toc":
+            return `
+          <div class="space-y-4 fade-up">
+            <h3 class="font-display text-xl font-bold mb-5" style="color:${headColor};"><i data-lucide="list" style="width:18px;height:18px;display:inline;vertical-align:middle;color:${accent};margin-right:6px;"></i>Table of Contents</h3>
+            ${[
+              { ch: "I", title: "Website Uses", p: 1 },
+              { ch: "II", title: "Key Features", p: 1 },
+              { ch: "III", title: "Benefits", p: 2 },
+              { ch: "IV", title: "Security", p: 2 },
+              { ch: "V", title: "Data Protection", p: 3 },
+              { ch: "VI", title: "Copyright & Legal", p: 3 },
+            ]
+              .map(
+                (item, i) => `
+              <button onclick="goToSpread(${item.p})" class="w-full flex items-center justify-between py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors group fade-up stagger-${(i % 4) + 1}" style="color:${textColor};">
+                <span class="flex items-center gap-3">
+                  <span class="font-display text-xs font-bold" style="color:${accent};">${item.ch}</span>
+                  <span class="font-body text-sm">${item.title}</span>
+                </span>
+                <span class="font-mono text-xs opacity-50 group-hover:opacity-100 transition-opacity">${item.p * 2}-${item.p * 2 + 1}</span>
+              </button>
+            `,
+              )
+              .join("")}
+          </div>`;
+
+          case "getting-started":
+            return `
+          <div class="space-y-4 fade-up">
+            <span class="inline-block px-2 py-0.5 rounded text-xs font-bold font-mono" style="background:${accent}15;color:${accent};">CHAPTER I</span>
+            <h3 class="font-display text-2xl font-bold" style="color:${headColor};">Website Uses</h3>
+            <p class="font-body text-sm leading-relaxed" style="color:${textColor}dd;">YK Official is a comprehensive documentation platform providing businesses with professional digital solutions for online presence, customer communication, and service showcasing.</p>
+            <div class="rounded-lg p-4 space-y-3" style="background:${accent}08;border:1px solid ${accent}22;">
+              ${[
+                "Business Presence",
+                "Customer Communication",
+                "Product Showcase",
+                "24/7 Availability",
+                "Brand Building",
+                "Global Reach",
+              ]
+                .map(
+                  (item, i) => `
+                <div class="flex items-center gap-2">
+                  <i data-lucide="check-circle" style="width:16px;height:16px;color:${accent};flex-shrink:0;"></i>
+                  <span class="font-body text-xs" style="color:${textColor}cc;">${item}</span>
+                </div>
+              `,
+                )
+                .join("")}
+            </div>
+          </div>`;
+
+          case "installation":
+            return `
+          <div class="space-y-4 fade-up">
+            <span class="inline-block px-2 py-0.5 rounded text-xs font-bold font-mono" style="background:${accent}15;color:${accent};">CHAPTER II</span>
+            <h3 class="font-display text-2xl font-bold" style="color:${headColor};">Key Features</h3>
+            <div class="space-y-3">
+              ${[
+                {
+                  icon: "smartphone",
+                  name: "Responsive Design",
+                  desc: "Perfect on all devices - desktop, tablet, mobile",
+                },
+                {
+                  icon: "zap",
+                  name: "Fast Performance",
+                  desc: "Optimized loading speeds for better UX",
+                },
+                {
+                  icon: "settings",
+                  name: "Admin Management",
+                  desc: "Easy control panel for site administration",
+                },
+                {
+                  icon: "bell",
+                  name: "Notifications",
+                  desc: "Real-time alerts and user communication",
+                },
+              ]
+                .map(
+                  (item, i) => `
+                <div class="flex items-start gap-3 p-3 rounded-lg hover:bg-blue-50 transition-colors fade-up stagger-${i + 1}">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:${accent}15;">
+                    <i data-lucide="${item.icon}" style="width:16px;height:16px;color:${accent};"></i>
+                  </div>
+                  <div>
+                    <p class="font-display text-sm font-bold" style="color:${headColor};">${item.name}</p>
+                    <p class="font-body text-xs" style="color:${textColor}99;">${item.desc}</p>
+                  </div>
+                </div>
+              `,
+                )
+                .join("")}
+            </div>
+          </div>`;
+
+          case "api":
+            return `
+          <div class="space-y-4 fade-up">
+            <span class="inline-block px-2 py-0.5 rounded text-xs font-bold font-mono" style="background:${accent}15;color:${accent};">CHAPTER III</span>
+            <h3 class="font-display text-2xl font-bold" style="color:${headColor};">Benefits</h3>
+            <div class="space-y-3">
+              ${[
+                {
+                  icon: "globe",
+                  title: "24/7 Availability",
+                  text: "Your business accessible worldwide around the clock",
+                },
+                {
+                  icon: "shield",
+                  title: "Brand Credibility",
+                  text: "Professional online presence builds customer trust",
+                },
+                {
+                  icon: "trending-up",
+                  title: "Customer Reach",
+                  text: "Expand your market globally with digital presence",
+                },
+                {
+                  icon: "target",
+                  title: "Better Engagement",
+                  text: "Direct communication channels with your audience",
+                },
+              ]
+                .map(
+                  (item, i) => `
+                <div class="p-3 rounded-lg fade-up stagger-${i + 1}" style="background:${accent}06;border:1px solid ${accent}15;">
+                  <div class="flex items-center gap-2 mb-1">
+                    <i data-lucide="${item.icon}" style="width:14px;height:14px;color:${accent};"></i>
+                    <p class="font-display text-sm font-bold" style="color:${headColor};">${item.title}</p>
+                  </div>
+                  <p class="font-body text-xs ml-6" style="color:${textColor}bb;">${item.text}</p>
+                </div>
+              `,
+                )
+                .join("")}
+            </div>
+          </div>`;
+
+          case "advanced":
+            return `
+          <div class="space-y-4 fade-up">
+            <span class="inline-block px-2 py-0.5 rounded text-xs font-bold font-mono" style="background:${accent}15;color:${accent};">CHAPTER IV</span>
+            <h3 class="font-display text-2xl font-bold" style="color:${headColor};">Security Practices</h3>
+            <div class="space-y-3">
+              ${[
+                {
+                  title: "Secure Data Storage",
+                  desc: "Industry-standard encryption for data protection",
+                },
+                {
+                  title: "Input Validation",
+                  desc: "Protection against malicious data and injections",
+                },
+                {
+                  title: "Access Control",
+                  desc: "Secure admin authentication and authorization",
+                },
+                {
+                  title: "Anti-Spam Protection",
+                  desc: "Robust systems against unauthorized usage",
+                },
+              ]
+                .map(
+                  (item, i) => `
+                <details class="group rounded-lg border overflow-hidden fade-up stagger-${i + 1}" style="border-color:${accent}22;">
+                  <summary class="flex items-center gap-2 p-3 cursor-pointer hover:bg-blue-50 transition-colors font-display text-sm font-bold" style="color:${headColor};">
+                    <i data-lucide="lock" style="width:14px;height:14px;color:${accent};"></i>
+                    ${item.title}
+                    <i data-lucide="chevron-down" style="width:14px;height:14px;color:${accent};margin-left:auto;" class="transition-transform group-open:rotate-180"></i>
+                  </summary>
+                  <div class="p-3 font-body text-xs" style="color:${textColor}bb;border-top:1px solid ${accent}11;">${item.desc}</div>
+                </details>
+              `,
+                )
+                .join("")}
+            </div>
+          </div>`;
+
+          case "faq":
+            return `
+          <div class="space-y-4 fade-up">
+            <span class="inline-block px-2 py-0.5 rounded text-xs font-bold font-mono" style="background:${accent}15;color:${accent};">CHAPTER V</span>
+            <h3 class="font-display text-2xl font-bold" style="color:${headColor};">Data Protection</h3>
+            ${[
+              {
+                q: "How is data stored?",
+                a: "Data is stored on secure, encrypted servers with automatic backups.",
+              },
+              {
+                q: "Is personal info safe?",
+                a: "Yes. We use industry-standard encryption and privacy protocols.",
+              },
+              {
+                q: "Do you share user data?",
+                a: "No. User data is never shared without explicit consent.",
+              },
+            ]
+              .map(
+                (item, i) => `
+              <div class="p-3 rounded-lg fade-up stagger-${i + 1}" style="background:${accent}06;border:1px solid ${accent}15;">
+                <p class="font-display text-sm font-bold mb-1" style="color:${headColor};">Q: ${item.q}</p>
+                <p class="font-body text-xs" style="color:${textColor}bb;">${item.a}</p>
+              </div>
+            `,
+              )
+              .join("")}
+          </div>`;
+
+          case "copyright":
+            return `
+          <div class="space-y-4 fade-up">
+            <span class="inline-block px-2 py-0.5 rounded text-xs font-bold font-mono" style="background:${accent}15;color:${accent};">CHAPTER VI</span>
+            <h3 class="font-display text-2xl font-bold" style="color:${headColor};">Copyright & Legal</h3>
+            <div class="space-y-3 font-body text-xs" style="color:${textColor}bb;">
+              <p><strong>© 2025 YK OFFICIAL. All rights reserved.</strong></p>
+              <p>All content, design, code, and materials on this platform are the intellectual property of YK OFFICIAL.</p>
+              <div class="p-3 rounded-lg" style="background:${accent}06;border:1px solid ${accent}15;">
+                <p class="font-bold mb-1" style="color:${headColor};">⚠️ Terms of Use</p>
+                <ul class="space-y-1 ml-4">
+                  <li>✓ Unauthorized reproduction is prohibited</li>
+                  <li>✓ Distribution only with permission</li>
+                  <li>✓ Modification rights reserved</li>
+                </ul>
+              </div>
+              <div class="text-center mt-4 pt-4" style="border-top:1px solid ${accent}22;">
+                <button onclick="openContactModal()" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-display text-xs font-bold transition-all hover:shadow-lg text-white" style="background:${accent};">
+                  <i data-lucide="mail" style="width:14px;height:14px;"></i>
+                  Contact for Permissions
+                </button>
+              </div>
+            </div>
+          </div>`;
+
+          default:
+            return "";
+        }
+      }
+
+      function renderCurrentSpread() {
+        const leftPage = document.getElementById("left-page");
+        const rightPage = document.getElementById("right-page");
+
+        const isMobile = window.innerWidth < 768;
+
+        if (isMobile) {
+          // 👉 MOBILE MODE (single page with full sequence)
+          const pageId = mobilePages[currentSpread];
+          leftPage.innerHTML = getPageHTML(pageId);
+          rightPage.style.display = "none";
+
+          document.getElementById("page-indicator").textContent =
+            `Page ${currentSpread + 1} of ${mobilePages.length}`;
+
+          document.getElementById("btn-prev").disabled = currentSpread === 0;
+          document.getElementById("btn-next").disabled =
+            currentSpread === mobilePages.length - 1;
+        } else {
+          // 👉 DESKTOP MODE (spread)
+          const spread = pages[currentSpread];
+
+          leftPage.innerHTML = getPageHTML(spread.left);
+          rightPage.innerHTML = getPageHTML(spread.right);
+          rightPage.style.display = "block";
+
+          const pageNum = currentSpread * 2 + 1;
+          document.getElementById("page-indicator").textContent =
+            `Page ${pageNum}-${pageNum + 1} of ${pages.length * 2}`;
+
+          document.getElementById("btn-prev").disabled = currentSpread === 0;
+          document.getElementById("btn-next").disabled =
+            currentSpread === pages.length - 1;
+        }
+
+        lucide.createIcons();
+      }
+
+      function nextPage() {
+        const isMobile = window.innerWidth < 768;
+
+        if (isMobile) {
+          if (currentSpread >= mobilePages.length - 1) return;
+          currentSpread++;
+        } else {
+          if (currentSpread >= pages.length - 1) return;
+          currentSpread++;
+        }
+
+        renderCurrentSpread();
+      }
+
+      function prevPage() {
+        if (currentSpread <= 0) return;
+        currentSpread--;
+        renderCurrentSpread();
+      }
+      const mobilePages = [
+        "cover",
+        "toc",
+        "getting-started",
+        "installation",
+        "api",
+        "advanced",
+        "faq",
+        "copyright",
+      ];
+
+      function goToSpread(index) {
+        if (isAnimating || index === currentSpread) return;
+        isAnimating = true;
+        const leftPage = document.getElementById("left-page");
+        const rightPage = document.getElementById("right-page");
+        leftPage.style.opacity = "0";
+        rightPage.style.opacity = "0";
+        setTimeout(() => {
+          currentSpread = index;
+          renderCurrentSpread();
+          leftPage.style.opacity = "1";
+          rightPage.style.opacity = "1";
+          isAnimating = false;
+        }, 300);
+      }
+
+      // Keyboard nav
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") nextPage();
+        else if (e.key === "ArrowLeft") prevPage();
+      });
+
+      // Touch swipe
+      let touchStartX = 0;
+      document.addEventListener("touchstart", (e) => {
+        touchStartX = e.touches[0].clientX;
+      });
+      document.addEventListener("touchend", (e) => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 60) {
+          diff > 0 ? nextPage() : prevPage();
+        }
+      });
+
+      // ===== MODALS =====
+      function openHelpModal() {
+        document.getElementById("help-modal").classList.remove("hidden");
+        lucide.createIcons();
+      }
+      function closeHelpModal(e) {
+        if (!e || e.target === e.currentTarget)
+          document.getElementById("help-modal").classList.add("hidden");
+      }
+      function openContactModal() {
+        document.getElementById("contact-modal").classList.remove("hidden");
+        lucide.createIcons();
+      }
+      function closeContactModal(e) {
+        if (!e || e.target === e.currentTarget)
+          document.getElementById("contact-modal").classList.add("hidden");
+      }
+
+      // ===== TOAST =====
+      function showToast(msg, type = "success") {
+        const container = document.getElementById("toast-container");
+        const colors =
+          type === "success"
+            ? "background:#27ae60;color:#fff;"
+            : "background:#c0392b;color:#fff;";
+        const icon = type === "success" ? "check-circle" : "alert-circle";
+        const el = document.createElement("div");
+        el.className =
+          "toast flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg font-body text-sm";
+        el.style.cssText = colors;
+        el.innerHTML = `<i data-lucide="${icon}" style="width:16px;height:16px;"></i>${msg}`;
+        container.appendChild(el);
+        lucide.createIcons();
+        setTimeout(() => {
+          el.classList.add("toast-out");
+          setTimeout(() => el.remove(), 300);
+        }, 3000);
+      }
+
+      function handleContact(e) {
+        e.preventDefault();
+        e.target.reset();
+        closeContactModal();
+        showToast("Message sent successfully!");
+      }
+
+      // ===== ELEMENT SDK =====
+      function applyConfig(c) {
+        const font = c.font_family || defaultConfig.font_family;
+        const baseSize = c.font_size || defaultConfig.font_size;
+        const bg = c.background_color || defaultConfig.background_color;
+        const accent =
+          c.primary_action_color || defaultConfig.primary_action_color;
+        const textC = c.text_color || defaultConfig.text_color;
+
+        document.body.style.background = `linear-gradient(135deg, ${bg} 0%, ${darken(bg, 10)} 50%, ${bg} 100%)`;
+
+        const siteTitle = document.getElementById("site-title");
+        if (siteTitle) {
+          siteTitle.textContent = c.site_title || defaultConfig.site_title;
+          siteTitle.style.fontFamily = `${font}, serif`;
+        }
+
+        const contactEmail = document.getElementById("contact-email-display");
+        if (contactEmail)
+          contactEmail.textContent =
+            c.contact_email || defaultConfig.contact_email;
+
+        // Re-render pages to apply colors
+        renderCurrentSpread();
+
+        // Apply font sizing
+        document.querySelectorAll(".font-display").forEach((el) => {
+          el.style.fontFamily = `${font}, serif`;
+        });
+
+        // All buttons with accent
+        document
+          .querySelectorAll('button[style*="background"]')
+          .forEach((btn) => {
+            if (
+              btn.style.background &&
+              btn.style.background.includes("#8B4513")
+            ) {
+              btn.style.background = accent;
+            }
+          });
+      }
+
+      function darken(hex, amount) {
+        hex = hex.replace("#", "");
+        let r = Math.max(0, parseInt(hex.substr(0, 2), 16) - amount);
+        let g = Math.max(0, parseInt(hex.substr(2, 2), 16) - amount);
+        let b = Math.max(0, parseInt(hex.substr(4, 2), 16) - amount);
+        return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
+      }
+
+      // Init SDK
+      // window.elementSdk.init({
+      //   defaultConfig,
+      //   onConfigChange: async (c) => {
+      //     config = { ...defaultConfig, ...c };
+      //     applyConfig(config);
+      //   },
+      //   mapToCapabilities: (c) => ({
+      //     recolorables: [
+      //       { get: () => c.background_color || defaultConfig.background_color, set: v => { c.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+      //       { get: () => c.surface_color || defaultConfig.surface_color, set: v => { c.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+      //       { get: () => c.text_color || defaultConfig.text_color, set: v => { c.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+      //       { get: () => c.primary_action_color || defaultConfig.primary_action_color, set: v => { c.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+      //       { get: () => c.secondary_action_color || defaultConfig.secondary_action_color, set: v => { c.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } },
+      //     ],
+      //     borderables: [],
+      //     fontEditable: {
+      //       get: () => c.font_family || defaultConfig.font_family,
+      //       set: v => { c.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+      //     },
+      //     fontSizeable: {
+      //       get: () => c.font_size || defaultConfig.font_size,
+      //       set: v => { c.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+      //     }
+      //   }),
+      //   mapToEditPanelValues: (c) => new Map([
+      //     ['site_title', c.site_title || defaultConfig.site_title],
+      //     ['welcome_heading', c.welcome_heading || defaultConfig.welcome_heading],
+      //     ['contact_email', c.contact_email || defaultConfig.contact_email],
+      //   ])
+      // });
+
+      // ===== INIT =====
+      renderCurrentSpread();
+      lucide.createIcons();
+
+      // Loader dismiss
+      setTimeout(() => {
+        const loader = document.getElementById("loader-screen");
+        loader.style.transition = "opacity 0.5s ease";
+        loader.style.opacity = "0";
+        setTimeout(() => {
+          loader.remove();
+          document.getElementById("app").style.opacity = "1";
+        }, 500);
+      }, 1000);
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'9e4408f8d0e0c6be',t:'MTc3NDg0MTQyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+
+
+
+<!-- ADVANCED SOURCE PROTECTION -->
+  
+<script>
+
+document.addEventListener("contextmenu", e=>{
+e.preventDefault();
+triggerSecurity();
+});
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="F12"){triggerSecurity();}
+
+if(e.ctrlKey && e.shiftKey && e.key==="I"){triggerSecurity();}
+
+if(e.ctrlKey && e.shiftKey && e.key==="J"){triggerSecurity();}
+
+if(e.ctrlKey && e.key==="U"){triggerSecurity();}
+
+});
+
+setInterval(function(){
+
+const devtools =
+window.outerWidth - window.innerWidth > 160 ||
+window.outerHeight - window.innerHeight > 160;
+
+if(devtools){
+triggerSecurity();
+}
+
+},1000);
+
+function triggerSecurity(){
+
+document.body.innerHTML = `
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:linear-gradient(135deg,#020617,#0f172a,#020617);
+background-size:300% 300%;
+animation:bgMove 8s infinite alternate;
+font-family:system-ui;
+color:white;
+}
+
+.security-box{
+position:relative;
+text-align:center;
+padding:50px;
+border-radius:16px;
+background:black;
+
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.08);
+box-shadow:0 0 40px rgba(0,0,0,0.6);
+max-width:600px;
+animation:fadeIn .6s ease;
+}
+
+.close-btn{
+position:absolute;
+top:12px;
+right:16px;
+font-size:20px;
+cursor:pointer;
+color:#94a3b8;
+}
+
+.close-btn:hover{
+color:white;
+}
+
+.icon{
+font-size:60px;
+margin-bottom:15px;
+animation:pulse 1.5s infinite;
+}
+
+.title{
+font-size:32px;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.subtitle{
+font-size:15px;
+color:#cbd5f5;
+line-height:1.6;
+}
+
+.reload{
+margin-top:15px;
+font-size:18px;
+color:#38bdf8;
+}
+
+.footer{
+margin-top:25px;
+font-size:14px;
+color:#94a3b8;
+}
+
+.brand{
+margin-top:20px;
+font-weight:600;
+color:#38bdf8;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.15)}
+100%{transform:scale(1)}
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+100%{background-position:100% 50%}
+}
+
+</style>
+
+<div class="security-box">
+
+<div class="close-btn" onclick="location.reload()">✕</div>
+
+<div class="icon">⚠</div>
+
+<div class="title">SYSTEM BREACH DETECTED</div>
+
+<div class="subtitle">
+
+Access to developer tools or page source has been blocked.<br><br>
+
+This website is protected by <b>YK <span class="text-blue-400">OFFICIAL</span> Security</b>.<br>
+Unauthorized inspection or copying of source code is not allowed.
+
+</div>
+
+<div class="reload">
+Reloading in <span id="count">5</span> seconds...
+</div>
+
+<div class="footer">
+Founder : <b>Yegnesh Kamble</b><br>
+Phone : <b>7219274312</b><br>
+Email : <b>Yegnesh7219@gmail.com</b>
+</div>
+
+<div class="brand">
+© 2026 YK OFFICIAL
+</div>
+
+</div>
+`;
+
+let sec = 5;
+
+let timer = setInterval(function(){
+
+sec--;
+
+const el=document.getElementById("count");
+
+if(el){el.innerText=sec;}
+
+if(sec<=0){
+clearInterval(timer);
+location.reload();
+}
+
+},1000);
+
+}
+
+</script>
+  </body>
+</html>
+
     <!-- <script src="/_sdk/element_sdk.js"></script> -->
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&amp;family=Source+Serif+4:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
