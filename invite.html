@@ -278,113 +278,130 @@
       }
     </script>
 
-    <script>
-// RIGHT CLICK BLOCK
-document.addEventListener("contextmenu", function(e){
-  e.preventDefault();
-  showAccessPopup();
-});
 
-function showAccessPopup(){
 
-  // Prevent multiple popups
-  if(document.getElementById("accessPopup")) return;
+<!-- security shield -->
 
-  // CREATE POPUP
-  const popup = document.createElement("div");
-  popup.id = "accessPopup";
+<div id="ykShield" class="fixed inset-0 hidden items-center justify-center z-[9999] font-sans">
+  
+  <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-md"></div>
 
-  popup.innerHTML = `
-  <style>
-    #accessPopup{
-      position:fixed;
-      inset:0;
-      background:rgba(2,6,23,0.85);
-      backdrop-filter:blur(8px);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:9999;
-      font-family:system-ui;
-    }
-
-    .box{
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.08);
-      backdrop-filter:blur(14px);
-      border-radius:16px;
-      padding:30px;
-      width:90%;
-      max-width:320px;
-      text-align:center;
-      color:white;
-      box-shadow:0 10px 40px rgba(0,0,0,0.6);
-      animation:fadeIn .3s ease;
-    }
-
-    .icon{
-      font-size:36px;
-      margin-bottom:10px;
-    }
-
-    .title{
-      font-size:20px;
-      font-weight:600;
-      margin-bottom:6px;
-    }
-
-    .msg{
-      font-size:13px;
-      color:#94a3b8;
-      margin-bottom:15px;
-    }
-
-    .timer{
-      background:linear-gradient(135deg,#7c3aed,#38bdf8);
-      display:inline-block;
-      padding:6px 12px;
-      border-radius:999px;
-      font-size:12px;
-    }
-
-    @keyframes fadeIn{
-      from{opacity:0; transform:scale(0.9)}
-      to{opacity:1; transform:scale(1)}
-    }
-  </style>
-
-  <div class="box">
-    <div class="icon">🚫</div>
-    <div class="title">Access Denied</div>
-    <div class="msg">
-      This website is protected by YK OFFICIAL Security.
-Unauthorized inspection or copying of source code is not allowed.
+  <div class="relative bg-white/90 border border-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-3xl p-10 w-[380px] text-center animate-premium-in">
+    
+    <div class="relative w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+      <div class="absolute inset-0 border-2 border-slate-100 rounded-full"></div>
+      <div class="absolute inset-0 border-t-2 border-blue-600 rounded-full animate-spin-slow"></div>
+      
+      <img src="https://i.ibb.co/hJCHgThF/logo-yk-crop.png" 
+           alt="YK Official" 
+           class="w-14 h-14 object-contain relative rounded-full z-10 drop-shadow-sm">
     </div>
 
-    <div class="timer">
-      Refreshing in <span id="count">5</span>s
+    <div class="space-y-2">
+      <h2 class="text-xs uppercase tracking-[0.2em] text-blue-600 font-bold">
+        Security Authenticated
+      </h2>
+      <h1 class="text-xl font-semibold text-slate-800">
+        YK Official Protection
+      </h1>
+      <p id="ykMsg" class="text-[13px] text-slate-500 leading-relaxed h-10 px-4">
+        </p>
     </div>
+
+    <div class="mt-8 space-y-3">
+      <div class="h-[3px] w-full bg-slate-100 rounded-full overflow-hidden">
+        <div id="ykBar" class="h-full bg-slate-800 transition-all duration-1000 ease-linear" style="width: 0%"></div>
+      </div>
+      
+      <div class="flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+        <span id="ykStatus">Initializing...</span>
+        <span id="ykCount">5s</span>
+      </div>
+    </div>
+
   </div>
-  `;
+</div>
 
-  document.body.appendChild(popup);
+<style>
+/* Smooth Entrance */
+@keyframes premiumIn {
+  0% { transform: scale(0.9) translateY(30px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+.animate-premium-in {
+  animation: premiumIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
 
-  // TIMER
-  let sec = 5;
+/* Subtle Spin for the Ring */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spinSlow 3s linear infinite;
+}
 
-  const interval = setInterval(()=>{
-    sec--;
+/* Base Font */
+.font-sans {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+</style>
 
-    const el = document.getElementById("count");
-    if(el) el.innerText = sec;
+<script>
+let ykTriggered = false;
+const message = "Access restricted. System integrity check in progress to protect secure assets.";
+let index = 0;
 
-    if(sec <= 0){
-      clearInterval(interval);
+function typeEffect() {
+  const el = document.getElementById("ykMsg");
+  if (index < message.length) {
+    el.innerHTML += message.charAt(index);
+    index++;
+    setTimeout(typeEffect, 30);
+  }
+}
+
+function showYKShield() {
+  if (ykTriggered) return;
+  ykTriggered = true;
+
+  const shield = document.getElementById("ykShield");
+  const bar = document.getElementById("ykBar");
+  const status = document.getElementById("ykStatus");
+  const countEl = document.getElementById("ykCount");
+
+  shield.classList.remove("hidden");
+  shield.classList.add("flex");
+
+  typeEffect();
+
+  let time = 5;
+  bar.style.width = "100%";
+  
+  const timer = setInterval(() => {
+    time--;
+    countEl.innerText = `${time}s`;
+    
+    if(time === 3) status.innerText = "Encrypting...";
+    if(time === 1) status.innerText = "Finalizing...";
+
+    if (time <= 0) {
+      clearInterval(timer);
       location.reload();
     }
-
-  },1000);
+  }, 1000);
 }
+
+// Blocks
+document.addEventListener("contextmenu", (e) => { e.preventDefault(); showYKShield(); });
+document.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey && (e.key === 'u' || e.key === 's')) || 
+      (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) || 
+      e.key === 'F12') {
+    e.preventDefault();
+    showYKShield();
+  }
+});
 </script>
   </body>
 </html>
