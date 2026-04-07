@@ -10,6 +10,7 @@
       href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
     />
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -398,7 +399,6 @@
       }
     </style>
 
-    
     <style>
       /* chat bot */
       @keyframes fadeInUp {
@@ -413,7 +413,7 @@
       }
     </style>
 
-   <!-- scroll indicator -->
+    <!-- scroll indicator -->
     <style>
       @keyframes scrollDot {
         0% {
@@ -466,6 +466,37 @@
       }
     </style>
 
+
+    <style>
+      @keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Custom button focus states */
+button:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Smooth icons */
+.fa-solid {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+</style>
+
+
+/* qr */
+<style>
+  /* Panel Classes for Logic */
+  .qr-open { left: 0 !important; }
+  .qr-closed { left: -12rem !important; } /* Adjust based on width */
+  
+  #qrPanel i { transition: transform 0.5s ease; }
+  .rotate-180 { transform: rotate(180deg); }
+</style>
+
     <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
   </head>
 
@@ -494,7 +525,7 @@
         <h1
           class="text-white text-xl md:text-2xl font-semibold tracking-widest"
         >
-          YK OFFICIAL
+          YK <span class="text-indigo-400">OFFICIAL</span>
         </h1>
 
         <p class="text-gray-400 text-sm mt-2">Loading Experience...</p>
@@ -726,10 +757,12 @@
               </a>
 
               <div class="relative group">
-  
-  <!-- MAIN BUTTON -->
-  <button class="nav-link relative text-gray-700 font-medium flex items-center gap-1">
-    Other <svg
+                <!-- MAIN BUTTON -->
+                <button
+                  class="nav-link relative text-gray-700 font-medium flex items-center gap-1"
+                >
+                  Other
+                  <svg
                     class="w-4 h-4 transition-transform group-hover:rotate-180"
                     fill="none"
                     stroke="currentColor"
@@ -738,29 +771,33 @@
                   >
                     <path d="M19 9l-7 7-7-7" />
                   </svg>
-    <span class="absolute left-0 -bottom-1 w-0 h-[2px] bg-purple-600 transition-all group-hover:w-full"></span>
-  </button>
+                  <span
+                    class="absolute left-0 -bottom-1 w-0 h-[2px] bg-purple-600 transition-all group-hover:w-full"
+                  ></span>
+                </button>
 
-  <!-- DROPDOWN -->
-  <div class="absolute top-10 left-0 w-48 bg-white/100 backdrop-blur-xl shadow-xl rounded-xl p-2 opacity-0 invisible translate-y-2 
-              group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 
-              transition-all duration-300 z-50">
-
-    <!-- ITEM 1 -->
-    <a href="invite.html" target="_blank"
-      class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-purple-100 transition">
-      🎁 Invite Me
-    </a>
-    <!-- ITEM 1 -->
-    <a href="refer.html" target="_blank"
-      class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-purple-100 transition">
-      🤝 Refer a Friend
-    </a>
-
-    
-
-  </div>
-</div>
+                <!-- DROPDOWN -->
+                <div
+                  class="absolute top-10 left-0 w-48 bg-white/100 backdrop-blur-xl shadow-xl rounded-xl p-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50"
+                >
+                  <!-- ITEM 1 -->
+                  <a
+                    href="invite.html"
+                    target="_blank"
+                    class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-purple-100 transition"
+                  >
+                    🎁 Invite Me
+                  </a>
+                  <!-- ITEM 1 -->
+                  <a
+                    href="refer.html"
+                    target="_blank"
+                    class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-purple-100 transition"
+                  >
+                    🤝 Refer a Friend
+                  </a>
+                </div>
+              </div>
 
               <!-- GALLERY BUTTON -->
               <a
@@ -929,64 +966,84 @@
             </a>
 
             <div class="w-full">
+              <!-- MAIN BUTTON -->
+              <button
+                onclick="toggleMobileDropdown()"
+                class="w-full flex items-center justify-between px-4 py-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-all"
+              >
+                <div class="flex items-center space-x-3">
+                  <!-- ICON -->
+                  <svg
+                    class="w-5 h-5 transition group-hover:rotate-6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <rect x="4" y="4" width="16" height="16" rx="3"></rect>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="4" y1="10" x2="20" y2="10"></line>
+                  </svg>
 
-  <!-- MAIN BUTTON -->
-  <button onclick="toggleMobileDropdown()" 
-    class="w-full flex items-center justify-between px-4 py-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-all">
+                  <span class="font-medium">Other</span>
+                </div>
 
-    <div class="flex items-center space-x-3">
-      <!-- ICON -->
-      <svg class="w-5 h-5 transition group-hover:rotate-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-        <rect x="4" y="4" width="16" height="16" rx="3"></rect>
-        <line x1="8" y1="2" x2="8" y2="6"></line>
-        <line x1="16" y1="2" x2="16" y2="6"></line>
-        <line x1="4" y1="10" x2="20" y2="10"></line>
-      </svg>
+                <!-- ARROW -->
+                <svg
+                  id="arrowIcon"
+                  class="w-4 h-4 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </button>
 
-      <span class="font-medium">Other</span>
-    </div>
+              <!-- DROPDOWN ITEMS -->
+              <div
+                id="mobileDropdown"
+                class="max-h-0 overflow-hidden transition-all duration-300"
+              >
+                <!-- Invite -->
+                <a
+                  href="invite.html"
+                  target="_blank"
+                  class="flex items-center space-x-3 px-8 py-3 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition"
+                >
+                  🎁 <span>Invite Me</span>
+                </a>
 
-    <!-- ARROW -->
-    <svg id="arrowIcon" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path d="M6 9l6 6 6-6"/>
-    </svg>
-  </button>
+                <!-- Refer -->
 
-  <!-- DROPDOWN ITEMS -->
-  <div id="mobileDropdown" class="max-h-0 overflow-hidden transition-all duration-300">
+                <a
+                  href="refer.html"
+                  target="_blank"
+                  class="flex items-center space-x-3 px-8 py-3 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition"
+                >
+                  🤝 <span>Refer a Friend</span>
+                </a>
+              </div>
+            </div>
 
-    <!-- Invite -->
-    <a href="invite.html" target="_blank"
-      class="flex items-center space-x-3 px-8 py-3 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition">
-      🎁 <span>Invite Me</span>
-    </a>
+            <script>
+              function toggleMobileDropdown() {
+                const menu = document.getElementById("mobileDropdown");
+                const arrow = document.getElementById("arrowIcon");
 
-    <!-- Refer -->
-    
-    <a href="refer.html" target="_blank"
-      class="flex items-center space-x-3 px-8 py-3 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition">
-      🤝 <span>Refer a Friend</span>
-    </a>
-
-  </div>
-</div>
-
-<script>
-function toggleMobileDropdown(){
-  const menu = document.getElementById("mobileDropdown");
-  const arrow = document.getElementById("arrowIcon");
-
-  if(menu.classList.contains("max-h-0")){
-    menu.classList.remove("max-h-0");
-    menu.classList.add("max-h-40");
-    arrow.classList.add("rotate-180");
-  } else {
-    menu.classList.add("max-h-0");
-    menu.classList.remove("max-h-40");
-    arrow.classList.remove("rotate-180");
-  }
-}
-</script>
+                if (menu.classList.contains("max-h-0")) {
+                  menu.classList.remove("max-h-0");
+                  menu.classList.add("max-h-40");
+                  arrow.classList.add("rotate-180");
+                } else {
+                  menu.classList.add("max-h-0");
+                  menu.classList.remove("max-h-40");
+                  arrow.classList.remove("rotate-180");
+                }
+              }
+            </script>
           </nav>
           <div class="mt-8 pt-6 border-t border-gray-200">
             <button
@@ -1261,7 +1318,9 @@ function toggleMobileDropdown(){
 
       <!-- Side Cart Buttons -->
       <!-- SIDE FLOAT NAV -->
-      <div class="hidden md:flex fixed right-4 top-1/2 -translate-y-1/2 z-50 flex-col gap-3">
+      <div
+        class="hidden md:flex fixed right-4 top-1/2 -translate-y-1/2 z-50 flex-col gap-3"
+      >
         <!-- BUTTON -->
         <div class="group relative">
           <button
@@ -1600,8 +1659,7 @@ function toggleMobileDropdown(){
             </div>
           
           </div> 
-          --> 
-
+          -->
 
           <!-- CHATBOT BUTTON -->
           <div class="fixed bottom-6 left-6 z-50 group">
@@ -1638,7 +1696,7 @@ function toggleMobileDropdown(){
           <!-- CHAT BOX -->
           <div
             id="chatBox"
-            class="hidden fixed z-100 bottom-24 left-3 right-3   md:left-6 md:right-auto md:w-[300px] h-[520px] backdrop-blur-xl bg-white/70 border border-white/30 rounded-3xl shadow-2xl flex flex-col overflow-hidden z-50 transition-all duration-500 animate-[fadeInUp_0.4s_ease]"
+            class="hidden fixed z-100 bottom-24 left-3 right-3 md:left-6 md:right-auto md:w-[300px] h-[520px] backdrop-blur-xl bg-white/70 border border-white/30 rounded-3xl shadow-2xl flex flex-col overflow-hidden z-50 transition-all duration-500 animate-[fadeInUp_0.4s_ease]"
           >
             <!-- HEADER -->
             <div
@@ -1995,7 +2053,7 @@ function toggleMobileDropdown(){
               <!-- Close Button -->
               <button
                 onclick="closeProjectModal()"
-                class="absolute top-3 right-3 text-gray-600 hover:text-red-600 text-3xl font-bold z-10"
+                class="absolute top-3 right-3 text-gray-600 hover:text-red-600 text-3xl font-bold z-10 animate-pulse transition"
               >
                 ✖
               </button>
@@ -2021,6 +2079,55 @@ function toggleMobileDropdown(){
           </div>
         </div>
       </section>
+
+
+      <!--buyyer model-->
+
+      <!-- PAYMENT MODAL -->
+<div id="paymentModal" class="fixed inset-0 hidden items-center justify-center bg-black/70 backdrop-blur-lg z-[60] transition-all duration-300">
+
+  <div class="relative w-[99%] md:w-[900px] h-[90vh] md:h-[650px] rounded-3xl overflow-hidden bg-white/90 backdrop-blur-xl border border-white/20 shadow-[0_20px_80px_rgba(0,0,0,0.6)] flex flex-col animate-[fadeIn_.4s_ease]">
+
+    <!-- Close Button -->
+    
+              <button
+                onclick="closePaymentModal()"
+                class="absolute top-3 right-3 text-gray-600 hover:text-red-600 text-3xl font-bold z-10 animate-pulse transition"
+              >
+                ✖
+              </button>
+
+    <!-- Header -->
+    <div class="p-5 bg-white text-black text-center flex flex-col items-center border-b border-gray-200">
+      <h2 id="paymentModalTitle" class="text-2xl font-bold w-full h-full bg-gradient-to-r from-indigo-500 to-purple-500 text-transparent bg-clip-text">Secure Checkout</h2>
+      
+      <p class="text-xs text-gray-500 mt-2">🔒 100% Secure Payment Gateway</p>
+      <p id="buyingProjectName" class="text-sm opacity-80 mt-1  font-bold "></p>
+    </div>
+
+    <!-- Security Badge -->
+    
+
+    <!-- Loader -->
+    <div id="paymentLoader" class="absolute inset-0 flex items-center justify-center bg-white z-10">
+      <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+    </div>
+
+    <!-- Iframe -->
+    <iframe id="paymentIframe"
+      class="w-full h-full bg-gray-50"
+      src=""
+      frameborder="0"
+      onload="document.getElementById('paymentLoader').style.display='none'">
+    </iframe>
+
+  </div>
+</div>
+
+
+
+
+      
 
       <!-- FAQ SECTION -->
       <section class="py-20 bg-gradient-to-b from-[#f8fafc] to-[#eef2ff]">
@@ -2666,7 +2773,7 @@ function toggleMobileDropdown(){
 
           <button
             onclick="closeProjectModal()"
-            class="text-2xl hover:scale-110 hover:text-red-300 transition"
+            class="text-2xl hover:scale-110 hover:text-red-700 transition animation-[pulse_1s_infinite]"
           >
             ✖
           </button>
@@ -2685,43 +2792,83 @@ function toggleMobileDropdown(){
     <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
 
-    <!-- QR PANEL -->
+
+    <!-- QR Code Panel -->
     <div
-      id="qrPanel"
-      class="fixed top-1/2 -left-80 transform -translate-y-1/2 w-40 bg-indigo-600 text-white p-4 rounded-r-2xl shadow-2xl transition-all duration-500 z-10"
-    >
-      <!-- Arrow Button -->
-      <button
-        onclick="toggleQR()"
-        class="group absolute -right-7 top-1/2 -translate-y-1/2 w-8 h-14 flex items-center justify-center rounded-r-xl bg-indigo-600 text-white shadow-lg hover:shadow-[0_0_15px_rgba(99,102,241,0.7)] active:scale-95 transition duration-300"
-      >
-        <!-- ARROW ICON -->
-        <svg
-          class="w-4 h-4 transform transition duration-300 group-hover:translate-x-1"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </button>
+  id="qrPanel"
+  class="fixed top-1/2 -left-48 transform -translate-y-1/2 w-44 bg-blue-500 backdrop-blur-xl border border-white/20 p-5 rounded-r-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-700 z-[100] group"
+>
+  <button
+    onclick="toggleQR()"
+    class="absolute -right-10 top-1/2 -translate-y-1/2 w-10 h-16 flex flex-col items-center justify-center rounded-r-2xl bg-indigo-600 text-white shadow-xl hover:bg-indigo-500 transition-all duration-300 group-hover:scale-105"
+  >
+    <span id="qrIcon" class="transition-transform duration-500">
+      <i class="fa-solid fa-qrcode text-lg"></i>
+    </span>
+    <i id="qrArrow" class="fa-solid fa-chevron-right text-[10px] mt-1 animate-pulse"></i>
+  </button>
 
-      <!-- QR Content -->
-      <div class="text-center">
-        <img
-          src="https://i.ibb.co/4Zyq659Y/qr-code.png"
-          class="mx-auto rounded-lg bg-white p-2"
-        />
-
-        <p class="mt-3 font-semibold text-s">Scan Me</p>
-      </div>
+  <div class="relative text-center">
+    <div class="absolute inset-0 bg-indigo-500/20 blur-2xl rounded-full -z-10"></div>
+    
+    <div class="bg-white p-2.5 rounded-2xl shadow-inner inline-block transform transition-transform ">
+      <img
+        src="https://i.ibb.co/4Zyq659Y/qr-code.png"
+        alt="QR Code"
+        class="w-40 h-35 rounded-lg"
+      />
     </div>
 
+    <div class="mt-4">
+        <p class="text-[10px] uppercase tracking-[0.2em] text-black font-black mb-1">Official Payment</p>
+        <p class="text-white font-bold text-sm">Scan to Pay</p>
+    </div>
+  </div>
+</div>
+
+ <!--QR Panel Scripts-->
+
+<script>
+  const qrPanel = document.getElementById("qrPanel");
+  const qrIcon = document.getElementById("qrIcon");
+  const qrArrow = document.getElementById("qrArrow");
+  let isVisible = false;
+
+  function showQR() {
+    qrPanel.classList.add("qr-open");
+    qrIcon.classList.add("rotate-180");
+    qrArrow.style.opacity = "0";
+    isVisible = true;
+  }
+
+  function hideQR() {
+    qrPanel.classList.remove("qr-open");
+    qrIcon.classList.remove("rotate-180");
+    qrArrow.style.opacity = "1";
+    isVisible = false;
+  }
+
+  function toggleQR() {
+    isVisible ? hideQR() : showQR();
+  }
+
+  // --- LOGIC: Page Load pe open, then 1 min baad repeat ---
+  
+  // 1. Initial Launch (Page load ke 2 sec baad)
+  setTimeout(() => {
+    showQR();
+    // 8 second tak dikhao, phir band kardo
+    setTimeout(hideQR, 8000); 
+  }, 2000);
+
+  // 2. Continuous Loop (Every 1 Minute)
+  setInterval(() => {
+    showQR();
+    setTimeout(hideQR, 10000); // Har baar 10 sec ke liye show hoga
+  }, 60000); // 60,000ms = 1 Minute gap
+</script>
+
+      
     <script>
       function scrollToTop() {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -2848,13 +2995,13 @@ function toggleMobileDropdown(){
 
               div.innerHTML = `
 
-<h3 class="font-semibold text-sm">${n.title}</h3>
-
-<p class="text-xs text-gray-600">${n.message}</p>
-
-<span class="text-[10px] text-gray-400">${n.date}</span>
-
-`;
+              <h3 class="font-semibold text-sm">${n.title}</h3>
+              
+              <p class="text-xs text-gray-600">${n.message}</p>
+              
+              <span class="text-[10px] text-gray-400">${n.date}</span>
+              
+              `;
 
               list.appendChild(div);
             });
@@ -3319,29 +3466,65 @@ Fill Form Again
         },
       ];
 
-      // ===== RENDER PROJECTS =====
-      function renderProjects() {
-        const container = document.getElementById("projectsContainer");
-        container.innerHTML = projects
-          .map(
-            (p, index) => `
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-          <div class="bg-gradient-to-br from-purple-400 to-indigo-500 h-48 flex items-center justify-center text-6xl">
-            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-2">${p.title}</h3>
-            <p class="text-gray-600 mb-4">${p.description}</p>
-            <button onclick="openProjectModal(${index})"
-                    class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-all">
-              🔍 Open Project
-            </button>
-          </div>
-        </div>`,
-          )
-          .join("");
-      }
-      renderProjects();
+     // ===== RENDER PROJECTS =====
+function renderProjects() {
+  const container = document.getElementById("projectsContainer");
+  container.innerHTML = projects.map((p, index) => `
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
+      <div class="h-48 overflow-hidden">
+        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover transform hover:scale-105 transition duration-300" />
+      </div>
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-gray-800 mb-2">${p.title}</h3>
+        <p class="text-gray-600 mb-4 text-sm line-clamp-2">${p.description}</p>
+        
+        <div class="flex flex-col gap-3 mt-6">
+  <button onclick="openProjectModal(${index})" 
+          class="group relative w-full flex items-center justify-center gap-2 bg-slate-50 text-slate-700 px-4 py-3 rounded-xl border border-slate-200 hover:bg-white hover:border-purple-400 hover:text-purple-600 hover:shadow-md transition-all duration-300">
+    <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:scale-110 transition-transform"></i>
+    <span class="text-sm font-bold tracking-tight">Live Preview</span>
+  </button>
+
+  <button onclick="openPaymentModal('${p.title}', ${p.price})" 
+          class="relative w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-3 rounded-xl font-bold text-sm shadow-[0_10px_20px_-10px_rgba(79,70,229,0.5)] hover:shadow-[0_15px_25px_-5px_rgba(79,70,229,0.4)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full hover:animate-[shimmer_1.5s_infinite]"></div>
+    
+    <i class="fa-solid fa-bag-shopping text-sm"></i>
+    <span class="tracking-wide">Purchase License</span>
+  </button>
+</div>
+      </div>
+    </div>`).join("");
+}
+
+// ===== PROJECT MODAL LOGIC =====
+function openProjectModal(index) {
+  const project = projects[index];
+  document.getElementById("projectModalTitle").innerText = project.title;
+  document.getElementById("projectIframe").src = project.demo_link;
+  document.getElementById("projectModal").style.display = "flex";
+}
+
+function closeProjectModal() {
+  document.getElementById("projectIframe").src = "";
+  document.getElementById("projectModal").style.display = "none";
+}
+
+// ===== PAYMENT MODAL LOGIC (New) =====
+function openPaymentModal(projectName) {
+  document.getElementById("buyingProjectName").innerText = "Item: " + projectName;
+  document.getElementById("paymentIframe").src = "payment.html"; // Aapki payment file
+  document.getElementById("paymentModal").style.display = "flex";
+}
+
+function closePaymentModal() {
+  document.getElementById("paymentIframe").src = "";
+  document.getElementById("paymentModal").style.display = "none";
+}
+
+// Initialize
+renderProjects();
+      
 
       // ===== MODAL FUNCTIONS =====
       function openProjectModal(index) {
@@ -3736,41 +3919,9 @@ Fill Form Again
       })();
     </script>
 
-    <!--QR CODE-->
+    
 
-    <script>
-      let panel = document.getElementById("qrPanel");
-      let visible = false;
-
-      function showQR() {
-        panel.classList.remove("-left-80");
-        panel.classList.add("left-0");
-        visible = true;
-      }
-
-      function hideQR() {
-        panel.classList.remove("left-0");
-        panel.classList.add("-left-80");
-        visible = false;
-      }
-
-      function toggleQR() {
-        visible ? hideQR() : showQR();
-      }
-
-      // Auto show every 10 sec
-      setInterval(() => {
-        showQR();
-
-        setTimeout(() => {
-          hideQR();
-        }, 5000); // 10 sec visible
-      }, 10000); // every 5 sec
-    </script>
-
-
-
-     <!-- Accept cookies -->
+    <!-- Accept cookies -->
 
     <div
       id="cookieBox"
@@ -3993,8 +4144,6 @@ Fill Form Again
       }
     </script>
 
-
-    
     <!-- ADVANCED SOURCE PROTECTION -->
 
     <script>
@@ -4034,134 +4183,134 @@ Fill Form Again
       function triggerSecurity() {
         document.body.innerHTML = `
 
-<style>
-
-body{
-margin:0;
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-background:linear-gradient(135deg,#020617,#0f172a,#020617);
-background-size:300% 300%;
-animation:bgMove 8s infinite alternate;
-font-family:system-ui;
-color:white;
-}
-
-.security-box{
-position:relative;
-text-align:center;
-padding:50px;
-border-radius:16px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(12px);
-border:1px solid rgba(255,255,255,0.08);
-box-shadow:0 0 40px rgba(0,0,0,0.6);
-max-width:600px;
-animation:fadeIn .6s ease;
-}
-
-.close-btn{
-position:absolute;
-top:12px;
-right:16px;
-font-size:20px;
-cursor:pointer;
-color:#94a3b8;
-}
-
-.close-btn:hover{
-color:white;
-}
-
-.icon{
-font-size:60px;
-margin-bottom:15px;
-animation:pulse 1.5s infinite;
-}
-
-.title{
-font-size:32px;
-font-weight:700;
-margin-bottom:10px;
-}
-
-.subtitle{
-font-size:15px;
-color:#cbd5f5;
-line-height:1.6;
-}
-
-.reload{
-margin-top:15px;
-font-size:18px;
-color:#38bdf8;
-}
-
-.footer{
-margin-top:25px;
-font-size:14px;
-color:#94a3b8;
-}
-
-.brand{
-margin-top:20px;
-font-weight:600;
-color:#38bdf8;
-}
-
-@keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.15)}
-100%{transform:scale(1)}
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(20px)}
-to{opacity:1;transform:translateY(0)}
-}
-
-@keyframes bgMove{
-0%{background-position:0% 50%}
-100%{background-position:100% 50%}
-}
-
-</style>
-
-<div class="security-box">
-
-<div class="close-btn" onclick="location.reload()">✕</div>
-
-<div class="icon">⚠</div>
-
-<div class="title">Developer Tools Detected</div>
-
-<div class="subtitle">
-
-Access to developer tools or page source has been blocked.<br><br>
-
-This website is protected by <b>YK OFFICIAL Security</b>.<br>
-Unauthorized inspection or copying of source code is not allowed.
-
-</div>
-
-<div class="reload">
-Reloading in <span id="count">5</span> seconds...
-</div>
-
-<div class="footer">
-Founder : <b>Yegnesh Kamble</b><br>
-Phone : <b>7219274312</b><br>
-Email : <b>Yegnesh7219@gmail.com</b>
-</div>
-
-<div class="brand">
-© 2026 YK OFFICIAL
-</div>
-
-</div>
-`;
+        <style>
+        
+        body{
+        margin:0;
+        height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:linear-gradient(135deg,#020617,#0f172a,#020617);
+        background-size:300% 300%;
+        animation:bgMove 8s infinite alternate;
+        font-family:system-ui;
+        color:white;
+        }
+        
+        .security-box{
+        position:relative;
+        text-align:center;
+        padding:50px;
+        border-radius:16px;
+        background:rgba(255,255,255,0.05);
+        backdrop-filter:blur(12px);
+        border:1px solid rgba(255,255,255,0.08);
+        box-shadow:0 0 40px rgba(0,0,0,0.6);
+        max-width:600px;
+        animation:fadeIn .6s ease;
+        }
+        
+        .close-btn{
+        position:absolute;
+        top:12px;
+        right:16px;
+        font-size:20px;
+        cursor:pointer;
+        color:#94a3b8;
+        }
+        
+        .close-btn:hover{
+        color:white;
+        }
+        
+        .icon{
+        font-size:60px;
+        margin-bottom:15px;
+        animation:pulse 1.5s infinite;
+        }
+        
+        .title{
+        font-size:32px;
+        font-weight:700;
+        margin-bottom:10px;
+        }
+        
+        .subtitle{
+        font-size:15px;
+        color:#cbd5f5;
+        line-height:1.6;
+        }
+        
+        .reload{
+        margin-top:15px;
+        font-size:18px;
+        color:#38bdf8;
+        }
+        
+        .footer{
+        margin-top:25px;
+        font-size:14px;
+        color:#94a3b8;
+        }
+        
+        .brand{
+        margin-top:20px;
+        font-weight:600;
+        color:#38bdf8;
+        }
+        
+        @keyframes pulse{
+        0%{transform:scale(1)}
+        50%{transform:scale(1.15)}
+        100%{transform:scale(1)}
+        }
+        
+        @keyframes fadeIn{
+        from{opacity:0;transform:translateY(20px)}
+        to{opacity:1;transform:translateY(0)}
+        }
+        
+        @keyframes bgMove{
+        0%{background-position:0% 50%}
+        100%{background-position:100% 50%}
+        }
+        
+        </style>
+        
+        <div class="security-box">
+        
+        <div class="close-btn" onclick="location.reload()">✕</div>
+        
+        <div class="icon">⚠</div>
+        
+        <div class="title">Developer Tools Detected</div>
+        
+        <div class="subtitle">
+        
+        Access to developer tools or page source has been blocked.<br><br>
+        
+        This website is protected by <b>YK OFFICIAL Security</b>.<br>
+        Unauthorized inspection or copying of source code is not allowed.
+        
+        </div>
+        
+        <div class="reload">
+        Reloading in <span id="count">5</span> seconds...
+        </div>
+        
+        <div class="footer">
+        Founder : <b>Yegnesh Kamble</b><br>
+        Phone : <b>7219274312</b><br>
+        Email : <b>Yegnesh7219@gmail.com</b>
+        </div>
+        
+        <div class="brand">
+        © 2026 YK OFFICIAL
+        </div>
+        
+        </div>
+        `;
 
         let sec = 5;
 
