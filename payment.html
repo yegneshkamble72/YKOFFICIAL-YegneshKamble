@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YK OFFICIAL | Buy Now</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-bg {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .project-card {
+            background: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e2e8f0;
+            border-radius: 2rem;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.15);
+            border-color: #6366f1;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Modal Logic */
+        .step { display: none; }
+        .step.active { display: flex; animation: slideUp 0.4s ease-out; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Landscape adjustments */
+        @media (min-width: 768px) {
+            .modal-container { min-height: 550px; }
+        }
+    </style>
+</head>
+<body class="p-6 md:p-12 bg-slate-50">
+
+    <header class="max-w-7xl mx-auto flex justify-between items-center mb-16">
+        <div>
+            <h1 class="text-3xl font-black tracking-tighter text-slate-900">Project <span class="text-indigo-600"></span></h1>
+            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest mt-1"> Source Code Store</p>
+        </div>
+        <div class="hidden md:block text-right">
+            <p class="text-sm font-bold text-slate-800">Support Available</p>
+            <p class="text-xs text-slate-500">24/7 Delivery</p>
+        </div>
+    </header>
+
+    <main id="project-grid" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-20">
+        </main>
+
+    <div id="buyModal" class="fixed inset-0 z-50 hidden items-center justify-center p-2 md:p-4">
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-md" onclick="closeModal()"></div>
+
+    <div class="relative z-10 w-full max-w-5xl glass-bg   overflow-hidden flex flex-col md:flex-row shadow-2xl max-h-[95vh] md:max-h-none overflow-y-auto md:overflow-visible">
+        
+        <div class="w-full md:w-5/12 bg-indigo-600 p-6 md:p-14 text-white flex flex-col justify-between shrink-0">
+            <div>
+                <i class="fa-solid fa-cart-shopping text-2xl md:text-4xl mb-4 md:mb-8 opacity-50 hidden md:block"></i>
+                
+                <h2 class="text-2xl md:text-4xl font-bold leading-tight mb-1 md:mb-2">Secure Checkout</h2>
+                <p class="text-indigo-100 text-xs md:text-sm opacity-80 mb-4 md:mb-8" id="modalProjectTitle">Project Title</p>
+                
+                <div class="space-y-4 md:space-y-6 pt-4 md:pt-8 border-t border-white/20">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] md:text-xs uppercase tracking-widest opacity-60">Amount Payable</span>
+                        <span id="finalPrice" class="text-2xl md:text-4xl font-black">₹0</span>
+                    </div>
+                    
+                    <div class="bg-white/10 p-3 md:p-4 rounded-xl md:rounded-2xl">
+                        <p class="text-[9px] md:text-[10px] uppercase font-bold tracking-widest mb-1 opacity-60">Verified ID</p>
+                        <p class="text-xs md:text-sm font-mono tracking-wider break-all">7219274312@ybl</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-[10px] uppercase tracking-widest opacity-50 mt-6 hidden md:block">© 2026 YK OFFICIAL </p>
+        </div>
+
+        <div class="flex-1 p-6 md:p-14 flex flex-col justify-center relative bg-white/95">
+            <button onclick="closeModal()" class="absolute top-4 right-4 md:top-8 md:right-8 text-slate-400 hover:text-red-500 transition text-2xl md:text-3xl z-30">×</button>
+
+            <div id="step1" class="step active flex-col w-full">
+                <h3 class="text-xl md:text-2xl font-bold text-slate-800 mb-1 md:mb-2">Who's buying?</h3>
+                <p class="text-slate-400 text-xs md:text-sm mb-6 md:mb-8">We need this to track your order on WhatsApp.</p>
+                
+                <div class="space-y-3 md:space-y-4">
+                    <input id="userName" type="text" placeholder="Full Name" class="w-full px-5 py-4 md:px-6 md:py-5 rounded-xl md:rounded-2xl bg-slate-100 border-none focus:ring-2 focus:ring-indigo-500 transition font-bold text-sm md:text-base" />
+                    <input id="userPhone" type="tel" placeholder="WhatsApp Number" class="w-full px-5 py-4 md:px-6 md:py-5 rounded-xl md:rounded-2xl bg-slate-100 border-none focus:ring-2 focus:ring-indigo-500 transition font-bold text-sm md:text-base" />
+                    <button onclick="validateStep1()" class="btn-gradient w-full text-white py-4 md:py-5 rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs mt-4">Next: Generate QR</button>
+                </div>
+            </div>
+
+            <div id="step2" class="step flex-col items-center text-center w-full">
+                <h3 class="text-xl md:text-2xl font-bold text-slate-800 mb-2">Scan & Pay</h3>
+                <p class="text-slate-400 text-[10px] md:text-xs mb-6 md:mb-8">Scan this unique QR with any UPI App</p>
+                
+                <div class="bg-white p-3 md:p-5 rounded-[1.5rem] md:rounded-[2.5rem] shadow-xl border border-slate-100 mb-6 md:mb-8">
+                    <canvas id="qrCanvas" class="w-40 h-40 md:w-48 md:h-48 mx-auto"></canvas>
+                </div>
+                
+                <button onclick="goStep(3)" class="w-full bg-slate-900 text-white py-4 md:py-5 rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs">I Have Paid Successfully</button>
+                <p class="text-[9px] md:text-[10px] text-slate-400 mt-4 font-bold uppercase tracking-widest">Transaction is safe & secure</p>
+            </div>
+
+            <div id="step3" class="step flex-col items-center text-center w-full">
+                <div class="w-16 h-16 md:w-24 md:h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-2xl md:text-4xl mb-4 md:mb-6">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-slate-800 mb-2">One Final Step!</h3>
+                <p class="text-slate-500 text-xs md:text-sm mb-6 md:mb-8 px-2 md:px-6">Click below to send your payment proof to our WhatsApp. We'll send your code immediately.</p>
+                
+                <button onclick="completeOrder()" class="btn-gradient w-full text-white py-4 md:py-5 rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs flex items-center justify-center gap-2 md:gap-3">
+                    <i class="fa-brands fa-whatsapp text-lg md:text-xl"></i> Send Screenshot
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        const projects = [
+            { title: "FeastHive Restaurant", price: 1000, desc: "Modern ordering & reservation system.", img: "https://i.ibb.co/cc8Yd1kc/reshome.png" },
+            { title: "Netflix Home Clone", price: 299, desc: "Pixel-perfect UI with dynamic content.", img: "https://i.ibb.co/fYWPQ9QY/nethome.png" },
+            { title: "Weather App", price: 199, desc: "Real-time weather tracking with API.", img: "https://i.ibb.co/rRXgLbD4/wether.png" },
+            { title: "Portfolio Builder AI", price: 799, desc: "AI-powered professional portfolio builder.", img: "https://i.ibb.co/mW0M5sB/porthome.png" },
+            { title: "Auction Platform", price: 999, desc: "Real-time bidding with secure payments.", img: "https://i.ibb.co/8kJyB0h/Chat-GPT-Image-Mar-14-2026-09-27-25-AM.png" },
+            { title: "Fake News Detector", price: 599, desc: "ML tool to identify fake news articles.", img: "https://i.ibb.co/GfJBfnsz/Screenshot-2026-03-27-220640.png" },
+            { title: "Jewellery E-Shop", price: 499, desc: "Exquisite jewellery catalog with premium UI.", img: "https://i.ibb.co/1GWW563v/pkbetjwhome.png" },
+            { title: "Smart Grocery App", price: 599, desc: "Smart categorization and recipe suggestions.", img: "https://i.ibb.co/Z6tRtzj3/gloseryhome.png" },
+            { title: "Iron Forge Gym", price: 1500, desc: "Premium gym platform with workout plans.", img: "https://i.ibb.co/p6qks9kF/Chat-GPT-Image-Mar-18-2026-11-39-13-PM.png" },
+            { title: "UPI QR Generator", price: 899, desc: "Secure QR generator for digital payments.", img: "https://i.ibb.co/xKw2S1mk/Screenshot-2026-03-28-130859.png" }
+        ];
+
+        let activeProject = { title: "", price: 0 };
+
+        // Render Projects
+        const grid = document.getElementById("project-grid");
+        projects.forEach(p => {
+            grid.innerHTML += `
+                <div class="project-card overflow-hidden">
+                    <img src="${p.img}" class="w-full h-56 object-cover" alt="${p.title}">
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">${p.title}</h3>
+                        <p class="text-slate-400 text-sm mb-8 leading-relaxed">${p.desc}</p>
+                        <div class="flex items-center justify-between pt-6 border-t border-slate-100">
+                            <div>
+                                <span class="text-[10px] text-slate-400 uppercase font-black block tracking-widest">Price</span>
+                                <span class="text-2xl font-black text-indigo-600">₹${p.price}</span>
+                            </div>
+                            <button onclick="openBuyModal('${p.title}', ${p.price})" class="btn-gradient px-8 py-3 rounded-2xl text-white font-bold text-xs uppercase tracking-widest">Purchase</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        function openBuyModal(title, price) {
+            activeProject = { title, price };
+            document.getElementById("modalProjectTitle").innerText = title;
+            document.getElementById("finalPrice").innerText = `₹${price}`;
+            document.getElementById("buyModal").classList.remove("hidden");
+            document.getElementById("buyModal").classList.add("flex");
+            goStep(1);
+        }
+
+        function closeModal() {
+            document.getElementById("buyModal").classList.add("hidden");
+            document.getElementById("buyModal").classList.remove("flex");
+        }
+
+        function validateStep1() {
+            if(!document.getElementById("userName").value || !document.getElementById("userPhone").value) {
+                alert("Please enter your details first.");
+                return;
+            }
+            goStep(2);
+        }
+
+        function goStep(n) {
+            document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
+            document.getElementById("step" + n).classList.add("active");
+
+            if (n === 2) {
+                new QRious({
+                    element: document.getElementById("qrCanvas"),
+                    value: `upi://pay?pa=7219274312@ybl&pn=YK%20OFFICIAL&am=${activeProject.price}&cu=INR`,
+                    size: 200,
+                    foreground: "#1e293b",
+                });
+            }
+        }
+
+        function completeOrder() {
+            const name = document.getElementById("userName").value;
+            const text = encodeURIComponent(`Hi YK OFFICIAL, I've paid ₹${activeProject.price} for ${activeProject.title}.\n\nMy Name: ${name}\nScreenshot attached:`);
+            window.open(`https://wa.me/917219274312?text=${text}`, "_blank");
+            closeModal();
+        }
+    </script>
+</body>
+</html>
