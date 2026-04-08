@@ -9,493 +9,18 @@
       type="image/svg+xml"
       href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
     />
+    <link rel="stylesheet" href="style1.css" />
+
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="/_sdk/element_sdk.js"></script>
-    <style>
-      body {
-        box-sizing: border-box;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
-        height: 100%;
-        scroll-behavior: smooth;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes slideIn {
-        from {
-          transform: translateX(-100%);
-        }
-        to {
-          transform: translateX(0);
-        }
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-20px);
-        }
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.05);
-        }
-      }
-
-      .animate-fadeIn {
-        animation: fadeIn 0.8s ease-out;
-      }
-
-      .animate-slideIn {
-        animation: slideIn 0.6s ease-out;
-      }
-
-      .animate-float {
-        animation: float 3s ease-in-out infinite;
-      }
-
-      .animate-pulse-custom {
-        animation: pulse 2s ease-in-out infinite;
-      }
-
-      .skill-bar {
-        transition: width 1.5s ease-out;
-      }
-
-      .project-card {
-        transition: all 0.3s ease;
-      }
-
-      .project-card:hover {
-        transform: translateY(-10px);
-      }
-
-      .social-icon {
-        transition: all 0.3s ease;
-      }
-
-      .social-icon:hover {
-        transform: scale(1.2) rotate(5deg);
-      }
-
-      .captcha-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #868a9d 0%, #8f8a95 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        transition: opacity 0.5s ease;
-      }
-
-      .captcha-box {
-        background: white;
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        text-align: center;
-        max-width: 400px;
-        width: 90%;
-      }
-
-      .captcha-input {
-        width: 100%;
-        padding: 12px;
-        border: 2px solid #e2e8f0;
-        border-radius: 8px;
-        font-size: 18px;
-        text-align: center;
-        margin: 20px 0;
-      }
-
-      .captcha-code {
-        background: #f7fafc;
-        padding: 20px;
-        border-radius: 10px;
-        font-size: 32px;
-        font-weight: bold;
-        letter-spacing: 10px;
-        color: #667eea;
-        user-select: none;
-        margin: 20px 0;
-      }
-
-      /* .hidden {
-        display: none;
-      } */
-
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-      }
-
-      .modal.active {
-        opacity: 1;
-        pointer-events: all;
-      }
-
-      .modal-content {
-        background: white;
-        padding: 30px;
-        border-radius: 15px;
-        max-width: 90%;
-        max-height: 90%;
-        overflow: auto;
-        transform: scale(0.9);
-        transition: transform 0.3s ease;
-      }
-
-      .modal.active .modal-content {
-        transform: scale(1);
-      }
-
-      .toast {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background: #10b981;
-        color: white;
-        padding: 16px 24px;
-        border-radius: 10px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        z-index: 2000;
-        opacity: 0;
-        transform: translateY(100px);
-        transition: all 0.3s ease;
-      }
-
-      .toast.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .side-cart {
-        position: fixed;
-        right: 30px;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        z-index: 100;
-      }
-
-      .side-cart-btn {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: white;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-
-      .side-cart-btn:hover {
-        transform: scale(1.1);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      }
-
-      @media (max-width: 768px) {
-        .side-cart {
-          display: none;
-        }
-
-        #home {
-          padding-top: 120px !important;
-        }
-
-        #home .grid {
-          grid-template-columns: 1fr;
-          gap: 40px;
-        }
-
-        #home h1 {
-          font-size: 2.5rem !important;
-        }
-
-        #home .text-2xl {
-          font-size: 1.5rem !important;
-        }
-
-        .floating-element {
-          width: 60px !important;
-          height: 60px !important;
-          font-size: 2rem !important;
-        }
-
-        .stats-grid {
-          grid-template-columns: repeat(3, 1fr);
-          gap: 12px;
-        }
-
-        #languageSelect {
-          display: hidden;
-          width: 2px;
-        }
-
-        #currentDateTime {
-          display: hidden;
-        }
-      }
-
-      .mobile-menu-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 45;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-      }
-
-      .mobile-menu-overlay.active {
-        opacity: 1;
-        pointer-events: all;
-      }
-
-      #mobileMenu {
-        position: fixed;
-        top: 64px;
-        right: -100%;
-        width: 280px;
-        height: calc(100% - 64px);
-        background: white;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease;
-        z-index: 50;
-        overflow-y: auto;
-      }
-
-      #mobileMenu.active {
-        right: 0;
-      }
-
-      .hamburger {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        cursor: pointer;
-      }
-
-      .hamburger span {
-        width: 24px;
-        height: 3px;
-        background: #374151;
-        border-radius: 2px;
-        transition: all 0.3s ease;
-      }
-
-      .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(7px, 7px);
-      }
-
-      .hamburger.active span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -7px);
-      }
-    </style>
-    <style>
-      @view-transition {
-        navigation: auto;
-      }
-    </style>
-
-    <style>
-      /* Modal hidden by default */
-      #projectModal {
-        display: none;
-      }
-      /* Show when active */
-      #projectModal.active {
-        display: flex;
-      }
-    </style>
-
-    <style>
-      .chat-animate {
-        animation: slideUp 0.3s ease forwards;
-      }
-
-      @keyframes slideUp {
-        0% {
-          transform: translateY(30px);
-          opacity: 0;
-        }
-        100% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-    </style>
-
-    <style>
-      #loader-bar {
-        width: 0%;
-        animation: loading 2.5s linear forwards;
-      }
-
-      @keyframes loading {
-        0% {
-          width: 0%;
-        }
-        100% {
-          width: 100%;
-        }
-      }
-    </style>
-
-    <style>
-      /* chat bot */
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(40px) scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-      }
-    </style>
-
-    <!-- scroll indicator -->
-    <style>
-      @keyframes scrollDot {
-        0% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-        50% {
-          transform: translateY(10px);
-          opacity: 0.5;
-        }
-        100% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-    </style>
-
-    <!-- TOOLTIP STYLE contact form follow me icons -->
-    <style>
-      .tooltip {
-        position: absolute;
-        bottom: 52px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 12px;
-        background: rgba(0, 0, 0, 0.7);
-        color: #fff;
-        padding: 4px 8px;
-        border-radius: 6px;
-        opacity: 0;
-        transition: 0.3s;
-        backdrop-filter: blur(6px);
-      }
-      .group:hover .tooltip {
-        opacity: 1;
-      }
-    </style>
-
-    <!-- ANIMATION project model -->
-    <style>
-      @keyframes fadeInScale {
-        0% {
-          opacity: 0;
-          transform: scale(0.8) translateY(30px);
-        }
-        100% {
-          opacity: 1;
-          transform: scale(1) translateY(0);
-        }
-      }
-    </style>
-
-
-    <style>
-      @keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-/* Custom button focus states */
-button:focus-visible {
-  outline: 2px solid #6366f1;
-  outline-offset: 2px;
-}
-
-/* Smooth icons */
-.fa-solid {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-</style>
-
-
-/* qr */
-<style>
-  /* Panel Classes for Logic */
-  .qr-open { left: 0 !important; }
-  .qr-closed { left: -12rem !important; } /* Adjust based on width */
-  
-  #qrPanel i { transition: transform 0.5s ease; }
-  .rotate-180 { transform: rotate(180deg); }
-</style>
 
     <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
   </head>
@@ -616,44 +141,7 @@ button:focus-visible {
     </div>
 
     <!-- SCRIPT -->
-    <script>
-      const popup = document.getElementById("welcomePopup");
-      const card = document.getElementById("popupCard");
-
-      // SHOW ON LOAD (if not disabled)
-      window.addEventListener("load", () => {
-        if (localStorage.getItem("yk_popup_closed")) return;
-
-        setTimeout(() => {
-          popup.classList.remove("opacity-0", "pointer-events-none");
-          card.classList.remove("scale-95");
-          card.classList.add("scale-100");
-        }, 400);
-      });
-
-      // AUTO CLOSE AFTER 10s
-      setTimeout(() => {
-        closePopup();
-      }, 10000);
-
-      // CLOSE FUNCTION
-      function closePopup() {
-        popup.classList.add("opacity-0", "pointer-events-none");
-        card.classList.add("scale-95");
-
-        // SAVE PREF
-        if (document.getElementById("dontShow").checked) {
-          localStorage.setItem("yk_popup_closed", "true");
-        }
-      }
-
-      // START BUTTON
-      function startNow() {
-        closePopup();
-        // optional redirect:
-        // window.location.href = "#home";
-      }
-    </script>
+    <script></script>
 
     <!-- Main Website -->
     <div id="mainWebsite" class="">
@@ -1027,23 +515,6 @@ button:focus-visible {
                 </a>
               </div>
             </div>
-
-            <script>
-              function toggleMobileDropdown() {
-                const menu = document.getElementById("mobileDropdown");
-                const arrow = document.getElementById("arrowIcon");
-
-                if (menu.classList.contains("max-h-0")) {
-                  menu.classList.remove("max-h-0");
-                  menu.classList.add("max-h-40");
-                  arrow.classList.add("rotate-180");
-                } else {
-                  menu.classList.add("max-h-0");
-                  menu.classList.remove("max-h-40");
-                  arrow.classList.remove("rotate-180");
-                }
-              }
-            </script>
           </nav>
           <div class="mt-8 pt-6 border-t border-gray-200">
             <button
@@ -1700,7 +1171,7 @@ button:focus-visible {
           >
             <!-- HEADER -->
             <div
-              class="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white p-4 flex justify-between items-center relative overflow-hidden"
+              class="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white p-4  flex justify-between items-center relative overflow-hidden"
             >
               <!-- Glow Effect -->
               <div
@@ -2078,56 +1549,76 @@ button:focus-visible {
             </div>
           </div>
         </div>
+
+
+
+         <!-- PAYMENT MODAL -->
+      <div
+        id="paymentModal"
+        class="fixed inset-0 hidden items-center justify-center bg-black/70 backdrop-blur-lg z-[60] transition-all duration-300"
+      >
+        <div
+          class="relative w-[99%] md:w-[900px] h-[90vh] md:h-[650px] rounded-3xl overflow-hidden bg-white/90 backdrop-blur-xl border border-white/20 shadow-[0_20px_80px_rgba(0,0,0,0.6)] flex flex-col animate-[fadeIn_.4s_ease]"
+        >
+          <!-- Close Button -->
+
+          <button
+            onclick="closePaymentModal()"
+            class="absolute top-3 right-3 text-gray-600 hover:text-red-600 text-3xl font-bold z-10 animate-pulse transition"
+          >
+            ✖
+          </button>
+
+          <!-- Header -->
+          <div
+            class="p-5 bg-white text-black text-center flex flex-col items-center border-b border-gray-200"
+          >
+            <h2
+              id="paymentModalTitle"
+              class="text-2xl font-bold w-full h-full bg-gradient-to-r from-indigo-500 to-purple-500 text-transparent bg-clip-text"
+            >
+              Secure Checkout
+            </h2>
+
+            <p class="text-xs text-gray-500 mt-2">
+              🔒 100% Secure Payment Gateway
+            </p>
+            <p
+              id="buyingProjectName"
+              class="text-sm opacity-80 mt-1 font-bold"
+            ></p>
+          </div>
+
+          <!-- Security Badge -->
+
+          <!-- Loader -->
+          <div
+            id="paymentLoader"
+            class="absolute inset-0 flex items-center justify-center bg-white z-10"
+          >
+            <div
+              class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"
+            ></div>
+          </div>
+
+          <!-- Iframe -->
+          <iframe
+            id="paymentIframe"
+            class="w-full h-full bg-gray-50"
+            src=""
+            frameborder="0"
+            onload="
+              document.getElementById('paymentLoader').style.display = 'none'
+            "
+          >
+          </iframe>
+        </div>
+      </div>
       </section>
 
-
-      <!--buyyer model-->
-
-      <!-- PAYMENT MODAL -->
-<div id="paymentModal" class="fixed inset-0 hidden items-center justify-center bg-black/70 backdrop-blur-lg z-[60] transition-all duration-300">
-
-  <div class="relative w-[99%] md:w-[900px] h-[90vh] md:h-[650px] rounded-3xl overflow-hidden bg-white/90 backdrop-blur-xl border border-white/20 shadow-[0_20px_80px_rgba(0,0,0,0.6)] flex flex-col animate-[fadeIn_.4s_ease]">
-
-    <!-- Close Button -->
-    
-              <button
-                onclick="closePaymentModal()"
-                class="absolute top-3 right-3 text-gray-600 hover:text-red-600 text-3xl font-bold z-10 animate-pulse transition"
-              >
-                ✖
-              </button>
-
-    <!-- Header -->
-    <div class="p-5 bg-white text-black text-center flex flex-col items-center border-b border-gray-200">
-      <h2 id="paymentModalTitle" class="text-2xl font-bold w-full h-full bg-gradient-to-r from-indigo-500 to-purple-500 text-transparent bg-clip-text">Secure Checkout</h2>
-      
-      <p class="text-xs text-gray-500 mt-2">🔒 100% Secure Payment Gateway</p>
-      <p id="buyingProjectName" class="text-sm opacity-80 mt-1  font-bold "></p>
-    </div>
-
-    <!-- Security Badge -->
     
 
-    <!-- Loader -->
-    <div id="paymentLoader" class="absolute inset-0 flex items-center justify-center bg-white z-10">
-      <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-    </div>
-
-    <!-- Iframe -->
-    <iframe id="paymentIframe"
-      class="w-full h-full bg-gray-50"
-      src=""
-      frameborder="0"
-      onload="document.getElementById('paymentLoader').style.display='none'">
-    </iframe>
-
-  </div>
-</div>
-
-
-
-
-      
+     
 
       <!-- FAQ SECTION -->
       <section class="py-20 bg-gradient-to-b from-[#f8fafc] to-[#eef2ff]">
@@ -2202,7 +1693,7 @@ button:focus-visible {
         </div>
       </section>
 
-      <!-- POPUP -->
+      <!-- FAQ POPUP -->
       <div
         id="faqPopup"
         class="fixed inset-0 bg-black/30 backdrop-blur-md hidden items-center justify-center z-50"
@@ -2269,7 +1760,7 @@ button:focus-visible {
 
           <div class="grid md:grid-cols-2 gap-10 items-start">
             <!-- ================= LEFT: CONTACT INFO ================= -->
-            <div class="space-y-5">
+            <div class="space-y-5 ">
               <h3 class="text-2xl font-bold text-gray-800 mb-4">
                 Contact Information
               </h3>
@@ -2792,1134 +2283,49 @@ button:focus-visible {
     <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
 
-
     <!-- QR Code Panel -->
     <div
-  id="qrPanel"
-  class="fixed top-1/2 -left-48 transform -translate-y-1/2 w-44 bg-blue-500 backdrop-blur-xl border border-white/20 p-5 rounded-r-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-700 z-[100] group"
->
-  <button
-    onclick="toggleQR()"
-    class="absolute -right-10 top-1/2 -translate-y-1/2 w-10 h-16 flex flex-col items-center justify-center rounded-r-2xl bg-indigo-600 text-white shadow-xl hover:bg-indigo-500 transition-all duration-300 group-hover:scale-105"
-  >
-    <span id="qrIcon" class="transition-transform duration-500">
-      <i class="fa-solid fa-qrcode text-lg"></i>
-    </span>
-    <i id="qrArrow" class="fa-solid fa-chevron-right text-[10px] mt-1 animate-pulse"></i>
-  </button>
-
-  <div class="relative text-center">
-    <div class="absolute inset-0 bg-indigo-500/20 blur-2xl rounded-full -z-10"></div>
-    
-    <div class="bg-white p-2.5 rounded-2xl shadow-inner inline-block transform transition-transform ">
-      <img
-        src="https://i.ibb.co/4Zyq659Y/qr-code.png"
-        alt="QR Code"
-        class="w-40 h-35 rounded-lg"
-      />
-    </div>
-
-    <div class="mt-4">
-        <p class="text-[10px] uppercase tracking-[0.2em] text-black font-black mb-1">Official Payment</p>
-        <p class="text-white font-bold text-sm">Scan to Pay</p>
-    </div>
-  </div>
-</div>
-
- <!--QR Panel Scripts-->
-
-<script>
-  const qrPanel = document.getElementById("qrPanel");
-  const qrIcon = document.getElementById("qrIcon");
-  const qrArrow = document.getElementById("qrArrow");
-  let isVisible = false;
-
-  function showQR() {
-    qrPanel.classList.add("qr-open");
-    qrIcon.classList.add("rotate-180");
-    qrArrow.style.opacity = "0";
-    isVisible = true;
-  }
-
-  function hideQR() {
-    qrPanel.classList.remove("qr-open");
-    qrIcon.classList.remove("rotate-180");
-    qrArrow.style.opacity = "1";
-    isVisible = false;
-  }
-
-  function toggleQR() {
-    isVisible ? hideQR() : showQR();
-  }
-
-  // --- LOGIC: Page Load pe open, then 1 min baad repeat ---
-  
-  // 1. Initial Launch (Page load ke 2 sec baad)
-  setTimeout(() => {
-    showQR();
-    // 8 second tak dikhao, phir band kardo
-    setTimeout(hideQR, 8000); 
-  }, 2000);
-
-  // 2. Continuous Loop (Every 1 Minute)
-  setInterval(() => {
-    showQR();
-    setTimeout(hideQR, 10000); // Har baar 10 sec ke liye show hoga
-  }, 60000); // 60,000ms = 1 Minute gap
-</script>
-
-      
-    <script>
-      function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    </script>
-
-    <!-- icon script -->
-
-    <script>
-      lucide.createIcons();
-    </script>
-
-    <!-- FAQ Scripts -->
-    <script>
-      const faqData = {
-        q1: {
-          title: "What is the purpose of the YK OFFICIAL website?",
-          answer:
-            "YK OFFICIAL is a professional portfolio platform created to showcase projects, digital solutions, and creative work in a modern and organized way.",
-        },
-
-        q2: {
-          title: "What kind of projects are displayed on YK OFFICIAL?",
-          answer:
-            "The website highlights web development projects, UI design work, and innovative digital solutions designed to deliver modern user experiences.",
-        },
-
-        q3: {
-          title: "Can businesses collaborate with YK OFFICIAL?",
-          answer:
-            "Yes. Businesses and individuals can collaborate by contacting through the website to discuss projects, services, or digital solutions.",
-        },
-
-        q4: {
-          title: "How can visitors send inquiries or messages?",
-          answer:
-            "Visitors can easily send inquiries through the contact form available on the website. Messages are securely stored and reviewed promptly.",
-        },
-
-        q5: {
-          title: "Is the YK OFFICIAL website regularly updated with new work?",
-          answer:
-            "Yes. The platform is designed to allow regular updates so new projects, services, and improvements can be added anytime.",
-        },
-
-        q6: {
-          title: "Does the website ensure a smooth experience across devices?",
-          answer:
-            "Absolutely. YK OFFICIAL is fully optimized for mobile phones, tablets, and desktop devices.",
-        },
-      };
-
-      function openFAQ(id) {
-        document.getElementById("faqPopup").classList.remove("hidden");
-        document.getElementById("faqPopup").classList.add("flex");
-
-        document.getElementById("popupLoader").style.display = "flex";
-        document.getElementById("faqTitle").style.display = "none";
-        document.getElementById("faqAnswer").style.display = "none";
-
-        setTimeout(() => {
-          document.getElementById("popupLoader").style.display = "none";
-
-          document.getElementById("faqTitle").style.display = "block";
-          document.getElementById("faqAnswer").style.display = "block";
-
-          document.getElementById("faqTitle").innerText = faqData[id].title;
-          document.getElementById("faqAnswer").innerText = faqData[id].answer;
-        }, 700);
-      }
-
-      function closeFAQ() {
-        document.getElementById("faqPopup").classList.add("hidden");
-      }
-    </script>
-
-    <!--Notification Scripts-->
-    <script>
-      const API_URL =
-        "https://script.google.com/macros/s/AKfycbyUXELsEUDhfZHs4yVXNuKPfoEGmniwLeKy-HcHvJz-yYFp2Wm-H1wyeoRlB6m1sldL5w/exec";
-
-      function toggleNotify() {
-        let box = document.getElementById("notifyBox");
-
-        box.classList.toggle("hidden");
-
-        if (!box.classList.contains("hidden")) {
-          showLoader();
-
-          setTimeout(loadNotifications, 500);
-        }
-      }
-
-      function showLoader() {
-        document.getElementById("notifyLoader").classList.remove("hidden");
-
-        document.getElementById("notifyList").innerHTML = "";
-      }
-
-      function loadNotifications() {
-        let list = document.getElementById("notifyList");
-
-        let loader = document.getElementById("notifyLoader");
-
-        fetch(API_URL)
-          .then((res) => res.json())
-
-          .then((data) => {
-            loader.classList.add("hidden");
-
-            list.innerHTML = "";
-
-            if (data.length == 0) {
-              list.innerHTML =
-                "<p class='text-gray-500 text-sm'>No notifications</p>";
-
-              return;
-            }
-
-            data.reverse().forEach(function (n) {
-              let div = document.createElement("div");
-
-              div.className = "bg-white p-3 rounded-lg shadow";
-
-              div.innerHTML = `
-
-              <h3 class="font-semibold text-sm">${n.title}</h3>
-              
-              <p class="text-xs text-gray-600">${n.message}</p>
-              
-              <span class="text-[10px] text-gray-400">${n.date}</span>
-              
-              `;
-
-              list.appendChild(div);
-            });
-          })
-
-          .catch((err) => {
-            loader.classList.add("hidden");
-
-            list.innerHTML =
-              "<p class='text-red-500 text-sm'>Error loading notifications</p>";
-          });
-      }
-    </script>
-    <script>
-      function toggleNotify() {
-        let box = document.getElementById("notifyBox");
-
-        if (box.classList.contains("hidden")) {
-          box.classList.remove("hidden");
-          showLoader();
-          loadNotifications();
-        } else {
-          box.classList.add("hidden");
-        }
-      }
-    </script>
-
-    <!--notification movable script-->
-
-    <script>
-      const box = document.getElementById("notifyBox");
-      const header = document.getElementById("notifyHeader");
-
-      let offsetX = 0;
-      let offsetY = 0;
-      let isDragging = false;
-
-      // Mouse Drag
-
-      header.addEventListener("mousedown", (e) => {
-        isDragging = true;
-
-        offsetX = e.clientX - box.offsetLeft;
-        offsetY = e.clientY - box.offsetTop;
-      });
-
-      document.addEventListener("mousemove", (e) => {
-        if (!isDragging) return;
-
-        box.style.left = e.clientX - offsetX + "px";
-        box.style.top = e.clientY - offsetY + "px";
-      });
-
-      document.addEventListener("mouseup", () => {
-        isDragging = false;
-      });
-
-      // Touch Drag (Mobile)
-
-      header.addEventListener("touchstart", (e) => {
-        let touch = e.touches[0];
-
-        isDragging = true;
-
-        offsetX = touch.clientX - box.offsetLeft;
-        offsetY = touch.clientY - box.offsetTop;
-      });
-
-      document.addEventListener("touchmove", (e) => {
-        if (!isDragging) return;
-
-        let touch = e.touches[0];
-
-        box.style.left = touch.clientX - offsetX + "px";
-        box.style.top = touch.clientY - offsetY + "px";
-      });
-
-      document.addEventListener("touchend", () => {
-        isDragging = false;
-      });
-    </script>
-
-    <script>
-      (function () {
-        emailjs.init("MjC-JZctQdQadbLo4");
-      })();
-
-      let formSubmitted = false;
-
-      function toggleChat() {
-        let box = document.getElementById("chatBox");
-
-        box.classList.toggle("hidden");
-
-        if (!box.classList.contains("hidden")) {
-          if (!formSubmitted) {
-            addBotMessage(
-              "👋 Welcome to YK Official Support. Please fill the form below.",
-            );
-          }
-        }
-      }
-
-      function addBotMessage(text) {
-        let div = document.createElement("div");
-
-        div.className = "bg-white p-3 rounded-xl shadow text-sm";
-
-        div.innerText = text;
-
-        document.getElementById("messages").appendChild(div);
-
-        scrollBottom();
-      }
-
-      function addUserMessage(text) {
-        let div = document.createElement("div");
-
-        div.className = "bg-green-50 p-3 rounded-xl shadow text-sm ml-auto";
-
-        div.innerHTML = text;
-
-        document.getElementById("messages").appendChild(div);
-
-        scrollBottom();
-      }
-
-      function addFormButton() {
-        let div = document.createElement("div");
-
-        div.innerHTML = `
-<button
-onclick="openForm()"
-class="bg-purple-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-purple-700 transition">
-Fill Form Again
-</button>
-`;
-
-        document.getElementById("messages").appendChild(div);
-
-        scrollBottom();
-      }
-
-      function openForm() {
-        document.getElementById("chatForm").style.display = "block";
-      }
-
-      function generateID() {
-        return "YK-" + Math.floor(Math.random() * 1000000);
-      }
-
-      function sendMail() {
-        let name = document.getElementById("name").value.trim();
-
-        let email = document.getElementById("email").value.trim();
-
-        let phone = document.getElementById("phone").value.trim();
-
-        let message = document.getElementById("message").value.trim();
-
-        if (!name || !email || !phone || !message) {
-          addBotMessage("⚠️ Please fill all fields.");
-
-          return;
-        }
-
-        addUserMessage(
-          "<b>Name:</b> " +
-            name.toUpperCase() +
-            "<br><b>Message:</b> " +
-            message.toUpperCase(),
-        );
-
-        let userID = generateID();
-
-        let templateParams = {
-          name: name,
-
-          email: email,
-
-          phone: phone,
-
-          message: message,
-
-          user_id: userID,
-        };
-
-        emailjs
-          .send("service_zyg352n", "template_s2su8xr", templateParams)
-
-          .then(function () {
-            addBotMessage("✅ Successfully Sent!\nYour Request ID: " + userID);
-
-            document.getElementById("chatForm").style.display = "none";
-
-            formSubmitted = true;
-
-            addBotMessage("If you want to submit another request:");
-
-            addFormButton();
-
-            document.getElementById("name").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("phone").value = "";
-            document.getElementById("message").value = "";
-          })
-
-          .catch(function () {
-            addBotMessage("❌ Mail Failed. Please check EmailJS settings.");
-          });
-      }
-
-      function scrollBottom() {
-        let box = document.getElementById("messages");
-
-        box.scrollTop = box.scrollHeight;
-      }
-    </script>
-
-    <script>
-      const video = document.getElementById("video");
-      const playBtn = document.getElementById("playBtn");
-      const muteBtn = document.getElementById("muteBtn");
-      const speedBtn = document.getElementById("speedBtn");
-      const fullBtn = document.getElementById("fullBtn");
-      const progress = document.getElementById("progress");
-      const progressFill = document.getElementById("progressFill");
-      const time = document.getElementById("time");
-
-      let speeds = [1, 1.5, 2];
-      let speedIndex = 0;
-
-      // PLAY PAUSE
-
-      playBtn.onclick = () => {
-        if (video.paused) {
-          video.play();
-          playBtn.innerHTML = "⏸";
-        } else {
-          video.pause();
-          playBtn.innerHTML = "▶";
-        }
-      };
-
-      // MUTE
-
-      muteBtn.onclick = () => {
-        video.muted = !video.muted;
-        muteBtn.innerHTML = video.muted ? "🔇" : "🔊";
-      };
-
-      // SPEED
-
-      speedBtn.onclick = () => {
-        speedIndex = (speedIndex + 1) % speeds.length;
-        video.playbackRate = speeds[speedIndex];
-        speedBtn.innerText = speeds[speedIndex] + "x";
-      };
-
-      // FULLSCREEN
-
-      fullBtn.onclick = () => {
-        video.requestFullscreen();
-      };
-
-      // PROGRESS UPDATE
-
-      video.ontimeupdate = () => {
-        let percent = (video.currentTime / video.duration) * 100;
-        progressFill.style.width = percent + "%";
-
-        let current = format(video.currentTime);
-        let total = format(video.duration);
-
-        time.innerText = current + " / " + total;
-      };
-
-      // SEEK
-
-      progress.onclick = (e) => {
-        let rect = progress.getBoundingClientRect();
-
-        let pos = (e.clientX - rect.left) / rect.width;
-
-        video.currentTime = pos * video.duration;
-      };
-
-      // FORMAT TIME
-
-      function format(sec) {
-        let m = Math.floor(sec / 60);
-        let s = Math.floor(sec % 60);
-
-        if (s < 10) s = "0" + s;
-
-        return m + ":" + s;
-      }
-    </script>
-
-    <script>
-      window.addEventListener("load", () => {
-        setTimeout(() => {
-          const loader = document.getElementById("yk-loader");
-
-          loader.style.opacity = "0";
-          loader.style.transition = "opacity 0.6s ease";
-
-          setTimeout(() => {
-            loader.style.display = "none";
-          }, 600);
-        }, 2500);
-      });
-    </script>
-
-    <script>
-      // Date and time update
-      function updateDateTime() {
-        const now = new Date();
-
-        const options = {
-          weekday: "short",
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        };
-
-        const date = now.toLocaleDateString("en-US", options);
-        const time = now.toLocaleTimeString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-
-        document.getElementById("currentDateTime").textContent =
-          `${date} | ${time}`;
-      }
-
-      // Update every second
-      setInterval(updateDateTime, 1000);
-
-      // Run once immediately
-      updateDateTime();
-
-      // Skills data dynamicaly rendering with animation
-      const skills = [
-        { name: "HTML/CSS", level: 85, color: "bg-indigo-500" },
-        { name: "JavaScript", level: 90, color: "bg-indigo-500" },
-        { name: "Talwind", level: 75, color: "bg-indigo-500" },
-        { name: "AWS", level: 80, color: "bg-indigo-500" },
-        { name: "Python", level: 75, color: "bg-indigo-500" },
-        { name: "C/C++", level: 70, color: "bg-indigo-500" },
-        { name: "VN Video Editor", level: 85, color: "bg-indigo-500" },
-      ];
-
-      function renderSkills() {
-        const container = document.getElementById("skillsContainer");
-        container.innerHTML = skills
-          .map(
-            (skill) => `
-        <div class="bg-red-500 z-10 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all">
-          <div class="flex justify-between items-center mb-3">
-            <h3 class="text-xl font-bold text-gray-800">${skill.name}</h3>
-            <span class="text-purple-600 font-bold">${skill.level}%</span>
-          </div>
-          <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-            <div class="skill-bar ${skill.color} h-full rounded-full" style="width: 0%" data-width="${skill.level}%"></div>
-          </div>
+      id="qrPanel"
+      class="fixed top-1/2 -left-48 transform -translate-y-1/2 w-44 bg-blue-500 backdrop-blur-xl border border-white/20 p-5 rounded-r-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-700 z-[100] group"
+    >
+      <button
+        onclick="toggleQR()"
+        class="absolute -right-10 top-1/2 -translate-y-1/2 w-10 h-16 flex flex-col items-center justify-center rounded-r-2xl bg-indigo-600 text-white shadow-xl hover:bg-indigo-500 transition-all duration-300 group-hover:scale-105"
+      >
+        <span id="qrIcon" class="transition-transform duration-500">
+          <i class="fa-solid fa-qrcode text-lg"></i>
+        </span>
+        <i
+          id="qrArrow"
+          class="fa-solid fa-chevron-right text-[10px] mt-1 animate-pulse"
+        ></i>
+      </button>
+
+      <div class="relative text-center">
+        <div
+          class="absolute inset-0 bg-indigo-500/20 blur-2xl rounded-full -z-10"
+        ></div>
+
+        <div
+          class="bg-white p-2.5 rounded-2xl shadow-inner inline-block transform transition-transform"
+        >
+          <img
+            src="https://i.ibb.co/4Zyq659Y/qr-code.png"
+            alt="QR Code"
+            class="w-40 h-35 rounded-lg"
+          />
         </div>
-      `,
-          )
-          .join("");
 
-        setTimeout(() => {
-          document.querySelectorAll(".skill-bar").forEach((bar) => {
-            bar.style.width = bar.dataset.width;
-          });
-        }, 100);
-      }
-
-      // ===== PROJECT DATA =====
-      const projects = [
-        {
-          title: "FeastHive Restaurant",
-          description:
-            "Modern restaurant website with online ordering and reservation system",
-          image: "https://i.ibb.co/cc8Yd1kc/reshome.png",
-          demo_link: " https://yegneshkamble72.github.io/FeastHiveRestaurant/",
-        },
-        {
-          title: "Netflix Home Clone",
-          description:
-            "Pixel-perfect Netflix homepage replica with dynamic content",
-          image: "https://i.ibb.co/fYWPQ9QY/nethome.png",
-          demo_link: "https://yegneshkamble72.github.io/Netflix/",
-        },
-        {
-          title: "Weather App",
-          description:
-            "Real-time weather application with location-based forecasts",
-          image: "https://i.ibb.co/rRXgLbD4/wether.png",
-          demo_link: "https://yegneshkamble72.github.io/Weather/",
-        },
-        {
-          title: "Portfolio Builder AI",
-          description:
-            "AI-powered website builder for creating professional portfolios",
-          image: "https://i.ibb.co/mW0M5sB/porthome.png",
-          demo_link: "https://go.screenpal.com/watch/cTXQ1YnFgoW",
-        },
-        {
-          title: "Auction Platform",
-          description:
-            "Real-time bidding platform with secure payment integration",
-          image:
-            "https://i.ibb.co/8kJyB0h/Chat-GPT-Image-Mar-14-2026-09-27-25-AM.png",
-          demo_link: "https://yegneshkamble72.github.io/autionplatform/",
-        },
-        {
-          title: "Fake News Detector",
-          description:
-            "ML-powered tool to identify and classify fake news articles",
-          image: "https://i.ibb.co/GfJBfnsz/Screenshot-2026-03-27-220640.png",
-          demo_link: "https://yegneshkamble72.github.io/fake-news-detect/",
-        },
-        {
-          title: "Priyanshu bentex jewellery",
-          description:
-            "Priyanshu bentex jewellery has been creating exquisite handcrafted jewellery for over a decade. ",
-          image: "https://i.ibb.co/1GWW563v/pkbetjwhome.png",
-          demo_link:
-            "https://yegneshkamble72.github.io/Priyanshu-bentex-jewellery/",
-        },
-        {
-          title: "Smart Grocery List App",
-          description:
-            "Start building your grocery list with this smart app that categorizes items and suggests recipes.",
-          image: "https://i.ibb.co/Z6tRtzj3/gloseryhome.png",
-          demo_link: "https://yegneshkamble72.github.io/kirana-list-maker/",
-        },
-        {
-          title: "Gopshila Enterprises",
-          description:
-            "GOPSHILA ENTERPRISES is a trusted company led by Owner Priyanshu Kamble, providing reliable and quality business services.",
-          image: "https://i.ibb.co/21DcJJRK/Screenshot-2026-02-17-200811.png",
-          demo_link:
-            "https://gopshilaenterprises.github.io/Gopshila-Enterprises/",
-        },
-
-        {
-          title: "Iron Forge Gym",
-          description:
-            "Where steel meets will. Transform your body, ignite your spirit, and forge your legacy.",
-          image:
-            "https://i.ibb.co/p6qks9kF/Chat-GPT-Image-Mar-18-2026-11-39-13-PM.png",
-          demo_link: "https://yegneshkamble72.github.io/IRON-FORGE-GYM/",
-        },
-        {
-          title: "UPI QR Generator",
-          description:
-            "Secure and smart UPI QR generator for fast, seamless digital payments.",
-          image: "https://i.ibb.co/xKw2S1mk/Screenshot-2026-03-28-130859.png",
-          demo_link: "https://yegneshkamble72.github.io/upiqrgenerator/",
-        },
-      ];
-
-     // ===== RENDER PROJECTS =====
-function renderProjects() {
-  const container = document.getElementById("projectsContainer");
-  container.innerHTML = projects.map((p, index) => `
-    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
-      <div class="h-48 overflow-hidden">
-        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover transform hover:scale-105 transition duration-300" />
+        <div class="mt-4">
+          <p
+            class="text-[10px] uppercase tracking-[0.2em] text-black font-black mb-1"
+          >
+            Official Profile
+          </p>
+          <p class="text-white font-bold text-sm">Scan Me</p>
+        </div>
       </div>
-      <div class="p-6">
-        <h3 class="text-xl font-bold text-gray-800 mb-2">${p.title}</h3>
-        <p class="text-gray-600 mb-4 text-sm line-clamp-2">${p.description}</p>
-        
-        <div class="flex flex-col gap-3 mt-6">
-  <button onclick="openProjectModal(${index})" 
-          class="group relative w-full flex items-center justify-center gap-2 bg-slate-50 text-slate-700 px-4 py-3 rounded-xl border border-slate-200 hover:bg-white hover:border-purple-400 hover:text-purple-600 hover:shadow-md transition-all duration-300">
-    <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:scale-110 transition-transform"></i>
-    <span class="text-sm font-bold tracking-tight">Live Preview</span>
-  </button>
-
-  <button onclick="openPaymentModal('${p.title}', ${p.price})" 
-          class="relative w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-3 rounded-xl font-bold text-sm shadow-[0_10px_20px_-10px_rgba(79,70,229,0.5)] hover:shadow-[0_15px_25px_-5px_rgba(79,70,229,0.4)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full hover:animate-[shimmer_1.5s_infinite]"></div>
-    
-    <i class="fa-solid fa-bag-shopping text-sm"></i>
-    <span class="tracking-wide">Purchase License</span>
-  </button>
-</div>
-      </div>
-    </div>`).join("");
-}
-
-// ===== PROJECT MODAL LOGIC =====
-function openProjectModal(index) {
-  const project = projects[index];
-  document.getElementById("projectModalTitle").innerText = project.title;
-  document.getElementById("projectIframe").src = project.demo_link;
-  document.getElementById("projectModal").style.display = "flex";
-}
-
-function closeProjectModal() {
-  document.getElementById("projectIframe").src = "";
-  document.getElementById("projectModal").style.display = "none";
-}
-
-// ===== PAYMENT MODAL LOGIC (New) =====
-function openPaymentModal(projectName) {
-  document.getElementById("buyingProjectName").innerText = "Item: " + projectName;
-  document.getElementById("paymentIframe").src = "payment.html"; // Aapki payment file
-  document.getElementById("paymentModal").style.display = "flex";
-}
-
-function closePaymentModal() {
-  document.getElementById("paymentIframe").src = "";
-  document.getElementById("paymentModal").style.display = "none";
-}
-
-// Initialize
-renderProjects();
-      
-
-      // ===== MODAL FUNCTIONS =====
-      function openProjectModal(index) {
-        const project = projects[index];
-        document.getElementById("projectModalTitle").textContent =
-          project.title;
-        document.getElementById("projectIframe").src = project.demo_link;
-        document.getElementById("projectModal").classList.add("active");
-      }
-
-      function closeProjectModal() {
-        const modal = document.getElementById("projectModal");
-        const iframe = document.getElementById("projectIframe");
-
-        iframe.src = ""; // Stop iframe loading when closed
-        modal.classList.remove("active");
-      }
-
-      // ===== DROPDOWN RENDER =====
-      function renderProjectDropdown() {
-        const desktopList = document.getElementById("projectDropdownList");
-        const mobileList = document.getElementById("mobileProjectList");
-
-        const items = projects
-          .map(
-            (p, i) => `
-    <button onclick="openProjectModal(${i})"
-      class="w-full text-left px-4 py-3 hover:bg-purple-50 text-gray-700 hover:text-purple-600 transition">
-      ${p.title}
-    </button>
-  `,
-          )
-          .join("");
-
-        desktopList.innerHTML = items;
-        mobileList.innerHTML = items;
-      }
-
-      renderProjectDropdown();
-
-      // ===== MOBILE TOGGLE =====
-      function toggleMobileProjects() {
-        const el = document.getElementById("mobileProjectList");
-        el.classList.toggle("hidden");
-      }
-
-      function openResumeModal() {
-        document.getElementById("resumeModal").classList.add("active");
-      }
-
-      function closeResumeModal() {
-        document.getElementById("resumeModal").classList.remove("active");
-      }
-
-      function scrollToSection(sectionId) {
-        document
-          .getElementById(sectionId)
-          .scrollIntoView({ behavior: "smooth" });
-      }
-
-      function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-
-      function showToast(message) {
-        const toast = document.getElementById("toast");
-        toast.textContent = message;
-        toast.classList.add("show");
-        setTimeout(() => {
-          toast.classList.remove("show");
-        }, 3000);
-      }
-
-      // Mobile menu toggle
-      function toggleMobileMenu() {
-        const menu = document.getElementById("mobileMenu");
-        const overlay = document.getElementById("mobileMenuOverlay");
-        const hamburger = document.getElementById("mobileMenuBtn");
-
-        menu.classList.toggle("active");
-        overlay.classList.toggle("active");
-        hamburger.classList.toggle("active");
-      }
-
-      function closeMobileMenu() {
-        const menu = document.getElementById("mobileMenu");
-        const overlay = document.getElementById("mobileMenuOverlay");
-        const hamburger = document.getElementById("mobileMenuBtn");
-
-        menu.classList.remove("active");
-        overlay.classList.remove("active");
-        hamburger.classList.remove("active");
-      }
-
-      document
-        .getElementById("mobileMenuBtn")
-        .addEventListener("click", toggleMobileMenu);
-      document
-        .getElementById("mobileMenuOverlay")
-        .addEventListener("click", closeMobileMenu);
-
-      // Close mobile menu when clicking a link
-      document.querySelectorAll(".mobile-nav-link").forEach((link) => {
-        link.addEventListener("click", () => {
-          closeMobileMenu();
-        });
-      });
-
-      // Form submission
-
-      // EmailJS Init
-      (function () {
-        emailjs.init("MjC-JZctQdQadbLo4");
-      })();
-
-      // Unique 6 Digit ID Generator
-      function generateID() {
-        const number = Math.floor(100000 + Math.random() * 900000);
-        return "YK" + number;
-      }
-
-      document
-        .getElementById("contactForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          const userName = document.getElementById("name").value.trim();
-          const userEmail = document.getElementById("email").value.trim();
-          const userMessage = document.getElementById("message").value.trim();
-
-          const uniqueID = generateID();
-
-          // Hidden input me ID set
-          document.getElementById("request_id").value = uniqueID;
-
-          // EmailJS Send
-          emailjs.sendForm("service_vdvjq06", "template_8zo34mz", this).then(
-            function () {
-              // Google Sheet Send
-              fetch(
-                "https://script.google.com/macros/s/AKfycby8zdl1bJX3nnCG8WGu6bD95ojgPr2mj2rLnx3fSMB8ruGVgNAH7h82rbvEC--wtOWJ5Q/exec",
-                {
-                  method: "POST",
-                  body: JSON.stringify({
-                    id: uniqueID,
-                    name: userName,
-                    email: userEmail,
-                    message: userMessage,
-                  }),
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                },
-              );
-
-              showPopup(userName, uniqueID);
-              document.getElementById("contactForm").reset();
-            },
-            function (error) {
-              showPopup("Error", "Something went wrong!");
-              console.log("EmailJS Error:", error);
-            },
-          );
-        });
-
-      // Popup Function
-      function showPopup(name, id) {
-        const popup = document.createElement("div");
-
-        popup.innerHTML = `
-         <div style="
-         position:fixed;
-         top:0;
-         left:0;
-         width:100%;
-         height:100%;
-         background:rgba(0,0,0,0.6);
-         display:flex;
-         justify-content:center;
-         align-items:center;
-         z-index:9999;">
-         
-         <div style="
-         background:#fff;
-         padding:30px;
-         border-radius:15px;
-         text-align:center;
-         width:90%;
-         max-width:420px;
-         box-shadow:0 10px 30px rgba(0,0,0,0.2);">
-         
-         <h2 style="margin-bottom:10px;color:#6d28d9;">
-         Thank You, ${name}!
-         </h2>
-       
-         <p style="color:#333;margin-bottom:10px;">
-         Your message has been sent successfully.
-         </p>
-       
-         <p style="font-weight:bold;margin-bottom:20px;">
-         Request ID : ${id}
-         </p>
-       
-         <button onclick="this.closest('.popup-container').remove()" 
-         style="
-         background:#6d28d9;
-         color:white;
-         padding:10px 25px;
-         border:none;
-         border-radius:6px;
-         cursor:pointer;">
-         Close
-         </button>
-       
-         </div>
-         </div>
-         `;
-
-        popup.classList.add("popup-container");
-        document.body.appendChild(popup);
-      }
-      // Language change
-      let currentLang = "en";
-
-      function changeLanguage(lang) {
-        currentLang = lang;
-        const t = translations[lang];
-
-        // Update navigation
-        const navLinks = document.querySelectorAll(".nav-link");
-        navLinks[0].textContent = t.home;
-        navLinks[1].textContent = t.about;
-        navLinks[2].textContent = t.skills;
-        navLinks[3].textContent = t.projects;
-        navLinks[4].textContent = t.contact;
-
-        // Update mobile menu
-        const mobileLinks = document.querySelectorAll("#mobileMenu a");
-        mobileLinks[0].textContent = t.home;
-        mobileLinks[1].textContent = t.about;
-        mobileLinks[2].textContent = t.skills;
-        mobileLinks[3].textContent = t.projects;
-        mobileLinks[4].textContent = t.contact;
-
-        // Update hero section buttons
-        document.querySelector(
-          "button[onclick=\"scrollToSection('projects')\"]",
-        ).textContent = t.viewProjects;
-        document.querySelector(
-          'button[onclick="openResumeModal()"]',
-        ).textContent = t.downloadResume;
-
-        // Update section titles
-        document.querySelectorAll("section h2 span")[0].textContent = t.aboutMe;
-        document.querySelectorAll("section h2 span")[1].textContent =
-          t.mySkills;
-        document.querySelectorAll("section h2 span")[2].textContent =
-          t.myProjects;
-        document.querySelectorAll("section h2 span")[3].textContent =
-          t.getInTouch;
-
-        // Update contact section
-        document.querySelector("#contact h3").textContent = t.contactInfo;
-        document.querySelectorAll("#contact h3")[1].textContent = t.followMe;
-        document.querySelector(
-          '#contactForm button[type="submit"]',
-        ).textContent = t.sendMessage;
-
-        // Update footer
-        document.querySelectorAll("footer h3")[0].textContent = t.quickLinks;
-        document.querySelectorAll("footer h3")[1].textContent = t.more;
-        document.querySelectorAll("footer h3")[2].textContent = t.connect;
-        document.querySelector('button[onclick="scrollToTop()"]').textContent =
-          t.backToTop;
-
-        showToast(
-          `Language changed to ${
-            lang === "en" ? "English" : lang === "hi" ? "हिंदी" : "मराठी"
-          }`,
-        );
-      }
-
-      document
-        .getElementById("languageSelect")
-        .addEventListener("change", (e) => {
-          changeLanguage(e.target.value);
-        });
-
-      // Element SDK implementation
-      async function onConfigChange(newConfig) {
-        config = { ...config, ...newConfig };
-
-        document.getElementById("navName").textContent =
-          config.full_name || defaultConfig.full_name;
-        document.getElementById("heroName").textContent =
-          config.full_name || defaultConfig.full_name;
-        document.getElementById("heroDesignation").textContent =
-          config.designation || defaultConfig.designation;
-        document.getElementById("aboutTitle").textContent =
-          config.about_title || defaultConfig.about_title;
-        document.getElementById("aboutDescription").textContent =
-          config.about_description || defaultConfig.about_description;
-        document.getElementById("contactEmail").textContent =
-          config.contact_email || defaultConfig.contact_email;
-        document.getElementById("contactPhone").textContent =
-          config.contact_phone || defaultConfig.contact_phone;
-        document.getElementById("footerText").textContent =
-          config.footer_text || defaultConfig.footer_text;
-      }
-
-      if (window.elementSdk) {
-        window.elementSdk.init({
-          defaultConfig,
-          onConfigChange,
-          mapToCapabilities: (config) => ({
-            recolorables: [],
-            borderables: [],
-            fontEditable: undefined,
-            fontSizeable: undefined,
-          }),
-          mapToEditPanelValues: (config) =>
-            new Map([
-              ["full_name", config.full_name || defaultConfig.full_name],
-              ["designation", config.designation || defaultConfig.designation],
-              ["about_title", config.about_title || defaultConfig.about_title],
-              [
-                "about_description",
-                config.about_description || defaultConfig.about_description,
-              ],
-              [
-                "contact_email",
-                config.contact_email || defaultConfig.contact_email,
-              ],
-              [
-                "contact_phone",
-                config.contact_phone || defaultConfig.contact_phone,
-              ],
-              ["footer_text", config.footer_text || defaultConfig.footer_text],
-            ]),
-        });
-      }
-
-      // Initialize
-      generateCaptcha();
-      updateDateTime();
-      setInterval(updateDateTime, 60000);
-      renderSkills();
-      renderProjects();
-
-      // Captcha input enter key
-      document
-        .getElementById("captchaInput")
-        .addEventListener("keypress", (e) => {
-          if (e.key === "Enter") {
-            verifyCaptcha();
-          }
-        });
-    </script>
-    <script>
-      (function () {
-        function c() {
-          var b = a.contentDocument || a.contentWindow.document;
-          if (b) {
-            var d = b.createElement("script");
-            d.innerHTML =
-              "window.__CF$cv$params={r:'99aac093828f8ef4',t:'MTc2MjQ5NjcxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
-            b.getElementsByTagName("head")[0].appendChild(d);
-          }
-        }
-        if (document.body) {
-          var a = document.createElement("iframe");
-          a.height = 1;
-          a.width = 1;
-          a.style.position = "absolute";
-          a.style.top = 0;
-          a.style.left = 0;
-          a.style.border = "none";
-          a.style.visibility = "hidden";
-          document.body.appendChild(a);
-          if ("loading" !== document.readyState) c();
-          else if (window.addEventListener)
-            document.addEventListener("DOMContentLoaded", c);
-          else {
-            var e = document.onreadystatechange || function () {};
-            document.onreadystatechange = function (b) {
-              e(b);
-              "loading" !== document.readyState &&
-                ((document.onreadystatechange = e), c());
-            };
-          }
-        }
-      })();
-    </script>
-
-    
+    </div>
 
     <!-- Accept cookies -->
 
@@ -4083,66 +2489,6 @@ renderProjects();
         </div>
       </div>
     </div>
-
-    <script>
-      const cookieBox = document.getElementById("cookieBox");
-      const settingsBox = document.getElementById("cookieSettings");
-      const settingsContent = document.getElementById("settingsContent");
-
-      window.onload = () => {
-        if (!localStorage.getItem("yk_cookie_consent")) {
-          setTimeout(() => {
-            cookieBox.classList.remove("hidden");
-            // Trigger animation after removing hidden
-            requestAnimationFrame(() => {
-              cookieBox.classList.remove("opacity-0", "translate-y-10");
-            });
-          }, 1000);
-        }
-      };
-
-      function hideBanner() {
-        cookieBox.classList.add("opacity-0", "translate-y-10");
-        setTimeout(() => cookieBox.classList.add("hidden"), 500);
-      }
-
-      function acceptCookies() {
-        localStorage.setItem("yk_cookie_consent", "all");
-        hideBanner();
-      }
-
-      function rejectCookies() {
-        localStorage.setItem("yk_cookie_consent", "rejected");
-        hideBanner();
-      }
-
-      function openSettings() {
-        settingsBox.classList.remove("hidden");
-        setTimeout(() => {
-          settingsContent.classList.remove("scale-95", "opacity-0");
-        }, 10);
-      }
-
-      function closeSettings() {
-        settingsContent.classList.add("scale-95", "opacity-0");
-        setTimeout(() => settingsBox.classList.add("hidden"), 300);
-      }
-
-      function savePreferences() {
-        const prefs = {
-          analytics: document.getElementById("analytics").checked,
-          marketing: document.getElementById("marketing").checked,
-          timestamp: new Date().getTime(),
-        };
-        localStorage.setItem("yk_cookie_consent", JSON.stringify(prefs));
-        closeSettings();
-        hideBanner();
-      }
-
-      function closeCookies() {
-        hideBanner();
-      }
-    </script>
 
     <!-- ADVANCED SOURCE PROTECTION -->
 
@@ -4330,5 +2676,8 @@ renderProjects();
         }, 1000);
       }
     </script>
+
+
+    <script src="script1.js"></script>
   </body>
 </html>
