@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>YK OFFICIAL-Yegnesh Kamble</title>
+    <title>YK OFFICIAL - Yegnesh Kamble</title>
     <link
       rel="icon"
       type="image/svg+xml"
@@ -22,59 +22,121 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="/_sdk/element_sdk.js"></script>
     <style>
+      @keyframes bounce-slow {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .animate-bounce-slow {
+        animation: bounce-slow 4s ease-in-out infinite;
+      }
+    </style>
+    <style>
+      @keyframes popIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.9) translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
 
-      
-  @keyframes bounce-slow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-  .animate-bounce-slow {
-    animation: bounce-slow 4s ease-in-out infinite;
-  }
-</style>
-<style>
-  @keyframes popIn {
-    0% { opacity: 0; transform: scale(0.9) translateY(20px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
-  }
-  
-  /* Hide scrollbar for cleaner look */
-  #projectModal iframe::-webkit-scrollbar {
-    width: 6px;
-  }
-  #projectModal iframe::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 10px;
-  }
+      /* Hide scrollbar for cleaner look */
+      #projectModal iframe::-webkit-scrollbar {
+        width: 6px;
+      }
+      #projectModal iframe::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+      }
 
+      /* Responsive height adjustment for smaller screens */
+      @media (max-height: 700px) {
+        #paymentModal > div {
+          max-height: 95vh;
+        }
+        #paymentModal iframe {
+          height: 350px;
+        }
+      }
+    </style>
 
-  /* Responsive height adjustment for smaller screens */
-  @media (max-height: 700px) {
-    #paymentModal > div {
-      max-height: 95vh;
-    }
-    #paymentModal iframe {
-      height: 350px;
-    }
-  }
-</style>
+    <style>
+      /* Premium pop-in animation with bounce */
+      @keyframes popIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.9) translateY(40px);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
 
-<style>
-  /* Premium pop-in animation with bounce */
-  @keyframes popIn {
-    0% { opacity: 0; transform: scale(0.9) translateY(40px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
-  }
+      /* Custom Scrollbar for the modal content if needed */
+      #paymentIframe::-webkit-scrollbar {
+        width: 8px;
+      }
+      #paymentIframe::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
+        border-radius: 10px;
+      }
+    </style>
 
-  /* Custom Scrollbar for the modal content if needed */
-  #paymentIframe::-webkit-scrollbar {
-    width: 8px;
-  }
-  #paymentIframe::-webkit-scrollbar-thumb {
-    background: #e2e8f0;
-    border-radius: 10px;
-  }
-</style>
+    <style>
+      /* feedback css */
+      /* GLASS CARD */
+      .testimonial-card {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.4s ease;
+      }
+
+      /* HOVER EFFECT */
+      .testimonial-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+      }
+
+      /* QUOTE ICON */
+      .quote-icon {
+        position: absolute;
+        top: -15px;
+        right: 20px;
+        font-size: 40px;
+        color: rgba(99, 102, 241, 0.1);
+      }
+    </style>
+
+    <style>
+      .dots::after {
+        content: "";
+        animation: dotsAnim 1.5s infinite steps(3);
+      }
+
+      @keyframes dotsAnim {
+        0% {
+          content: "";
+        }
+        33% {
+          content: ".";
+        }
+        66% {
+          content: "..";
+        }
+        100% {
+          content: "...";
+        }
+      }
+    </style>
 
     <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
   </head>
@@ -338,6 +400,15 @@
                   >
                     🤝 Refer a Friend
                   </a>
+
+                  <!-- ITEM 1 -->
+                  <a
+                    href="feedbackyk.html"
+                    target="_blank"
+                    class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-purple-100 transition"
+                  >
+                    ⭐ Feedback
+                  </a>
                 </div>
               </div>
 
@@ -416,7 +487,10 @@
       </nav>
 
       <!-- Mobile Menu Overlay -->
-      <div id="mobileMenuOverlay" class="mobile-menu-overlay md:hidden z-40"></div>
+      <div
+        id="mobileMenuOverlay"
+        class="mobile-menu-overlay md:hidden z-40"
+      ></div>
       <!-- Mobile Menu -->
       <div id="mobileMenu" class="md:hidden">
         <div class="p-6">
@@ -566,6 +640,16 @@
                   class="flex items-center space-x-3 px-8 py-3 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition"
                 >
                   🤝 <span>Refer a Friend</span>
+                </a>
+
+                <!-- Feedback -->
+
+                <a
+                  href="feedbackyk.html"
+                  target="_blank"
+                  class="flex items-center space-x-3 px-8 py-3 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition"
+                >
+                  ⭐ <span>Feedback</span>
                 </a>
               </div>
             </div>
@@ -1035,7 +1119,7 @@
                   onclick="scrollToSection('projects')"
                   class="group relative px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold text-white overflow-hidden bg-gradient-to-r from-purple-600 to-indigo-600 shadow-lg hover:shadow-[0_0_25px_rgba(99,102,241,0.6)] transition-all duration-300"
                 >
-                  <span class="relative  flex items-center gap-2">
+                  <span class="relative flex items-center gap-2">
                     <!-- ICON -->
                     <svg
                       class="w-5 h-5 transform transition group-hover:translate-x-1"
@@ -1187,780 +1271,1620 @@
           -->
           <!-- CHAT BOT BTN -->
           <div class="fixed bottom-8 left-8 z-[999] group">
-  <div class="absolute left-20 top-1/2 -translate-y-1/2 px-4 py-2 bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap shadow-xl border border-slate-800">
-    Neural Assistant Active
-  </div>
+            <div
+              class="absolute left-20 top-1/2 -translate-y-1/2 px-4 py-2 bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap shadow-xl border border-slate-800"
+            >
+              Neural Assistant Active
+            </div>
 
-  <div class="absolute inset-0 rounded-2xl bg-indigo-500/20 animate-ping"></div>
+            <div
+              class="absolute inset-0 rounded-2xl bg-indigo-500/20 animate-ping"
+            ></div>
 
-  <button
-    onclick="toggleChat()"
-    class="relative w-14 h-14 rounded-2xl bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-slate-100 flex items-center justify-center transition-all duration-500 hover:shadow-indigo-500/20 hover:-translate-y-1 active:scale-95 group-hover:bg-indigo-600 overflow-hidden"
-  >
-    <i data-lucide="bot" class="w-6 h-6 text-indigo-600 group-hover:text-white transition-colors duration-300"></i>
-    
-    <span class="absolute top-3 right-3 flex h-2 w-2">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-    </span>
-  </button>
-</div>
-<!-- CHAT BOX -->
-<div
-  id="chatBox"
-  class="hidden fixed z-1000 bottom-28 left-4 right-4 md:left-8 md:right-auto md:w-[380px] h-[500px] bg-white/95 backdrop-blur-2xl rounded-[2.5rem] shadow-2xl border border-slate-100 flex flex-col overflow-hidden animate-[chatOpen_0.5s_cubic-bezier(0.175,0.885,0.32,1.275)]"
->
-  <div class="bg-slate-900 z-[1000] p-6 flex justify-between items-center relative overflow-hidden shrink-0">
-    <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/40 to-transparent"></div>
-    
-    <div class="relative z-10 flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
-        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-      </div>
-      <div>
-        <h3 class="text-white font-bold text-sm tracking-tight">System Assistant</h3>
-        <p class="text-[9px] text-slate-400 uppercase font-black tracking-widest">YK OFFICIAL V3.0</p>
-      </div>
-    </div>
+            <button
+              onclick="toggleChat()"
+              class="relative w-14 h-14 rounded-2xl bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-slate-100 flex items-center justify-center transition-all duration-500 hover:shadow-indigo-500/20 hover:-translate-y-1 active:scale-95 group-hover:bg-indigo-600 overflow-hidden"
+            >
+              <i
+                data-lucide="bot"
+                class="w-6 h-6 text-indigo-600 group-hover:text-white transition-colors duration-300"
+              ></i>
 
-    <button
-      onclick="toggleChat()"
-      class="relative z-10 w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-white hover:bg-red-500 transition-all"
-    >
-      ✕
-    </button>
-  </div>
+              <span class="absolute top-3 right-3 flex h-2 w-2">
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"
+                ></span>
+                <span
+                  class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"
+                ></span>
+              </span>
+            </button>
+          </div>
+          <!-- CHAT BOX -->
+          <div
+            id="chatBox"
+            class="hidden fixed z-1000 bottom-28 left-4 right-4 md:left-8 md:right-auto md:w-[380px] h-[500px] bg-white/95 backdrop-blur-2xl rounded-[2.5rem] shadow-2xl border border-slate-100 flex flex-col overflow-hidden animate-[chatOpen_0.5s_cubic-bezier(0.175,0.885,0.32,1.275)]"
+          >
+            <div
+              class="bg-slate-900 z-[1000] p-6 flex justify-between items-center relative overflow-hidden shrink-0"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-indigo-900/40 to-transparent"
+              ></div>
 
-  <div
-    id="messages"
-    class="flex-1 p-6 overflow-y-auto bg-slate-50/50 space-y-4"
-  >
-    <div class="flex gap-3">
-      <div class="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center shrink-0">
-        🤖
-      </div>
-      <div class="bg-white border border-slate-100 p-3 rounded-2xl rounded-tl-none shadow-sm text-xs text-slate-600 leading-relaxed">
-        Welcome to **YK Official**. How can I assist with your deployment or development needs today?
-      </div>
-    </div>
-  </div>
+              <div class="relative z-10 flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center"
+                >
+                  <div
+                    class="w-2 h-2 bg-green-500 rounded-full animate-pulse"
+                  ></div>
+                </div>
+                <div>
+                  <h3 class="text-white font-bold text-sm tracking-tight">
+                    System Assistant
+                  </h3>
+                  <p
+                    class="text-[9px] text-slate-400 uppercase font-black tracking-widest"
+                  >
+                    YK OFFICIAL V3.0
+                  </p>
+                </div>
+              </div>
 
-  <div
-    id="chatForm"
-    class="p-6 bg-white border-t border-slate-100 space-y-3"
-  >
-    <div class="grid grid-cols-2 gap-2">
-      <input
-        id="name"
-        type="text"
-        placeholder="Name"
-        class="w-full px-4 py-2 text-xs rounded-xl bg-slate-50 border border-transparent focus:border-indigo-500 focus:bg-white outline-none transition-all"
-      />
-      <input
-        id="email"
-        type="email"
-        placeholder="Email"
-        class="w-full px-4 py-2 text-xs rounded-xl bg-slate-50 border border-transparent focus:border-indigo-500 focus:bg-white outline-none transition-all"
-      />
-    </div>
+              <button
+                onclick="toggleChat()"
+                class="relative z-10 w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-white hover:bg-red-500 transition-all"
+              >
+                ✕
+              </button>
+            </div>
 
-    <input
-      id="phone"
-      type="text"
-      placeholder="Phone / WhatsApp"
-      class="w-full px-4 py-2 text-xs rounded-xl bg-slate-50 border border-transparent focus:border-indigo-500 focus:bg-white outline-none transition-all"
-    />
+            <div
+              id="messages"
+              class="flex-1 p-6 overflow-y-auto bg-slate-50/50 space-y-4"
+            >
+              <div class="flex gap-3">
+                <div
+                  class="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center shrink-0"
+                >
+                  🤖
+                </div>
+                <div
+                  class="bg-white border border-slate-100 p-3 rounded-2xl rounded-tl-none shadow-sm text-xs text-slate-600 leading-relaxed"
+                >
+                  Welcome to **YK Official**. How can I assist with your
+                  deployment or development needs today?
+                </div>
+              </div>
+            </div>
 
-    <div class="relative">
-      <textarea
-        id="message"
-        rows="2"
-        placeholder="Specify your inquiry..."
-        class="w-full px-4 py-3 text-xs rounded-xl bg-slate-50 border border-transparent focus:border-indigo-500 focus:bg-white outline-none transition-all resize-none"
-      ></textarea>
-    </div>
+            <div
+              id="chatForm"
+              class="p-6 bg-white border-t border-slate-100 space-y-3"
+            >
+              <div class="grid grid-cols-2 gap-2">
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="Name"
+                  class="w-full px-4 py-2 text-xs rounded-xl bg-slate-50 border border-transparent focus:border-indigo-500 focus:bg-white outline-none transition-all"
+                />
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="Email"
+                  class="w-full px-4 py-2 text-xs rounded-xl bg-slate-50 border border-transparent focus:border-indigo-500 focus:bg-white outline-none transition-all"
+                />
+              </div>
 
-    <button
-      onclick="sendMail()"
-      class="w-full h-12 rounded-xl bg-indigo-600 z-10 text-white text-[11px] font-black uppercase tracking-widest shadow-lg shadow-indigo-200 hover:bg-slate-900 hover:shadow-none hover:-translate-y-0.5 transition-all duration-300"
-    >
-      Initiate Request
-    </button>
-  </div>
-</div>
+              <input
+                id="phone"
+                type="text"
+                placeholder="Phone / WhatsApp"
+                class="w-full px-4 py-2 text-xs rounded-xl bg-slate-50 border border-transparent focus:border-indigo-500 focus:bg-white outline-none transition-all"
+              />
+
+              <div class="relative">
+                <textarea
+                  id="message"
+                  rows="2"
+                  placeholder="Specify your inquiry..."
+                  class="w-full px-4 py-3 text-xs rounded-xl bg-slate-50 border border-transparent focus:border-indigo-500 focus:bg-white outline-none transition-all resize-none"
+                ></textarea>
+              </div>
+
+              <button
+                onclick="sendMail()"
+                class="w-full h-12 rounded-xl bg-indigo-600 z-10 text-white text-[11px] font-black uppercase tracking-widest shadow-lg shadow-indigo-200 hover:bg-slate-900 hover:shadow-none hover:-translate-y-0.5 transition-all duration-300"
+              >
+                Initiate Request
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
-
-
-
-
-      
-
       <!-- About Section -->
 
-      <section id="about" class="min-h-screen py-24 px-6 bg-[#fcfcfd] flex items-center overflow-hidden">
-  <div class="max-w-7xl mx-auto w-full">
-    
-    <div class="mb-16 md:mb-24">
-      <div class="flex items-center gap-4 mb-2">
-        <span class="h-px w-12 bg-indigo-600"></span>
-        <span class="text-indigo-600 font-semibold tracking-widest uppercase text-sm">Profile</span>
-      </div>
-      <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-        Delivering Digital <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Excellence.</span>
-      </h2>
-    </div>
-
-    <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-      
-      <div class="lg:col-span-6 space-y-10">
-        <div class="prose prose-lg text-slate-600 leading-relaxed">
-          <p class="text-xl font-medium text-slate-800">
-            I am <span class="text-indigo-600">Yegnesh Kamble</span> — specializing in the intersection of scalable development and cloud architecture.
-          </p>
-          <p>
-            With a focus on AWS Cloud infrastructure and DevOps automation, I bridge the gap between complex backend systems and seamless user experiences. My approach is rooted in efficiency, security, and the relentless pursuit of elegant code.
-          </p>
-        </div>
-
-        <div class="flex flex-wrap gap-6">
-          <div class="flex-1 min-w-[140px] bg-white border border-slate-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-            <p class="text-3xl font-bold text-slate-900">1<span class="text-indigo-600">+</span></p>
-            <p class="text-sm text-slate-500 font-medium uppercase tracking-wider">Year Exp.</p>
-          </div>
-          <div class="flex-1 min-w-[140px] bg-white border border-slate-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-            <p class="text-3xl font-bold text-slate-900">5<span class="text-purple-600">+</span></p>
-            <p class="text-sm text-slate-500 font-medium uppercase tracking-wider">Deployments</p>
-          </div>
-          <div class="flex-1 min-w-[140px] bg-indigo-600 p-6 rounded-2xl shadow-xl shadow-indigo-100">
-            <p class="text-3xl font-bold text-white">0</p>
-            <p class="text-sm text-indigo-100 font-medium uppercase tracking-wider">Clients</p>
+      <section
+        id="about"
+        class="min-h-screen py-24 px-6 bg-[#fcfcfd] flex items-center overflow-hidden"
+      >
+        <div class="max-w-7xl mx-auto w-full">
+          <div class="mb-16 md:mb-24">
+            <div class="flex items-center gap-4 mb-2">
+              <span class="h-px w-12 bg-indigo-600"></span>
+              <span
+                class="text-indigo-600 font-semibold tracking-widest uppercase text-sm"
+                >Profile</span
+              >
+            </div>
+            <h2
+              class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight"
+            >
+              Delivering Digital
+              <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600"
+                >Excellence.</span
+              >
+            </h2>
           </div>
 
-          
-        </div>
-        
-      </div>
-
-      <div class="lg:col-span-6 relative">
-        <div class="absolute -top-10 -right-10 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -z-10"></div>
-        
-        <div class="group relative bg-white p-3 rounded-[2rem] shadow-2xl border border-slate-100">
-          <div class="relative aspect-video rounded-3xl overflow-hidden bg-slate-900 shadow-inner">
-            
-            <video id="video" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" playsinline muted autoplay loop>
-              <source src="ykvideo.mp4" type="video/mp4" />
-            </video>
-
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6">
-              
-              <div id="progress" class="w-full h-1.5 bg-white/20 rounded-full mb-4 cursor-pointer overflow-hidden">
-                <div id="progressFill" class="h-full bg-indigo-500 w-0 transition-all duration-100"></div>
+          <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+            <div class="lg:col-span-6 space-y-10">
+              <div class="prose prose-lg text-slate-600 leading-relaxed">
+                <p class="text-xl font-medium text-slate-800">
+                  I am <span class="text-indigo-600">Yegnesh Kamble</span> —
+                  specializing in the intersection of scalable development and
+                  cloud architecture.
+                </p>
+                <p>
+                  With a focus on AWS Cloud infrastructure and DevOps
+                  automation, I bridge the gap between complex backend systems
+                  and seamless user experiences. My approach is rooted in
+                  efficiency, security, and the relentless pursuit of elegant
+                  code.
+                </p>
               </div>
 
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                  <button id="playBtn" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white hover:text-indigo-600 transition">
-                    ▶
-                  </button>
-                  <button id="muteBtn" class="text-white hover:scale-110 transition">🔊</button>
-                  <span id="time" class="text-xs font-mono text-white/80">0:00 / 0:00</span>
+              <div class="flex flex-wrap gap-6">
+                <div
+                  class="flex-1 min-w-[140px] bg-white border border-slate-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <p class="text-3xl font-bold text-slate-900">
+                    1<span class="text-indigo-600">+</span>
+                  </p>
+                  <p
+                    class="text-sm text-slate-500 font-medium uppercase tracking-wider"
+                  >
+                    Year Exp.
+                  </p>
                 </div>
+                <div
+                  class="flex-1 min-w-[140px] bg-white border border-slate-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <p class="text-3xl font-bold text-slate-900">
+                    5<span class="text-purple-600">+</span>
+                  </p>
+                  <p
+                    class="text-sm text-slate-500 font-medium uppercase tracking-wider"
+                  >
+                    Deployments
+                  </p>
+                </div>
+                <div
+                  class="flex-1 min-w-[140px] bg-indigo-600 p-6 rounded-2xl shadow-xl shadow-indigo-100"
+                >
+                  <p class="text-3xl font-bold text-white">0</p>
+                  <p
+                    class="text-sm text-indigo-100 font-medium uppercase tracking-wider"
+                  >
+                    Clients
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                <div class="flex items-center gap-3">
-                  <button id="speedBtn" class="text-xs font-bold px-3 py-1 rounded-full border border-white/30 text-white hover:bg-white/20">1x</button>
-                  <button id="fullBtn" class="text-white hover:rotate-12 transition">⛶</button>
+            <div class="lg:col-span-6 relative">
+              <div
+                class="absolute -top-10 -right-10 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -z-10"
+              ></div>
+
+              <div
+                class="group relative bg-white p-3 rounded-[2rem] shadow-2xl border border-slate-100"
+              >
+                <div
+                  class="relative aspect-video rounded-3xl overflow-hidden bg-slate-900 shadow-inner"
+                >
+                  <video
+                    id="video"
+                    class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                    playsinline
+                    muted
+                    autoplay
+                    loop
+                  >
+                    <source src="ykvideo.mp4" type="video/mp4" />
+                  </video>
+
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6"
+                  >
+                    <div
+                      id="progress"
+                      class="w-full h-1.5 bg-white/20 rounded-full mb-4 cursor-pointer overflow-hidden"
+                    >
+                      <div
+                        id="progressFill"
+                        class="h-full bg-indigo-500 w-0 transition-all duration-100"
+                      ></div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-4">
+                        <button
+                          id="playBtn"
+                          class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white hover:text-indigo-600 transition"
+                        >
+                          ▶
+                        </button>
+                        <button
+                          id="muteBtn"
+                          class="text-white hover:scale-110 transition"
+                        >
+                          🔊
+                        </button>
+                        <span id="time" class="text-xs font-mono text-white/80"
+                          >0:00 / 0:00</span
+                        >
+                      </div>
+
+                      <div class="flex items-center gap-3">
+                        <button
+                          id="speedBtn"
+                          class="text-xs font-bold px-3 py-1 rounded-full border border-white/30 text-white hover:bg-white/20"
+                        >
+                          1x
+                        </button>
+                        <button
+                          id="fullBtn"
+                          class="text-white hover:rotate-12 transition"
+                        >
+                          ⛶
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br /><br /><br />
+
+              <div
+                class="absolute -bottom-6 -left-6 bg-white shadow-xl rounded-2xl p-4 border border-slate-50 hidden md:flex items-center gap-3 animate-bounce-slow"
+              >
+                <div
+                  class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center"
+                >
+                  <div
+                    class="w-3 h-3 bg-green-500 rounded-full animate-ping"
+                  ></div>
+                </div>
+                <div>
+                  <p
+                    class="text-xs text-slate-500 font-bold uppercase tracking-tighter"
+                  >
+                    Status
+                  </p>
+                  <p class="text-sm font-bold text-slate-800">
+                    Available for Projects
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-        </div><br><br><br>
-
-        <div class="absolute -bottom-6 -left-6 bg-white shadow-xl rounded-2xl p-4 border border-slate-50 hidden md:flex items-center gap-3 animate-bounce-slow">
-          <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-            <div class="w-3 h-3 bg-green-500 rounded-full animate-ping"></div>
-          </div>
-          <div>
-            <p class="text-xs text-slate-500 font-bold uppercase tracking-tighter">Status</p>
-            <p class="text-sm font-bold text-slate-800">Available for Projects</p>
-          </div>
         </div>
-        
-        
-      </div>
-
-    </div>
-  </div>
-</section>
+      </section>
 
       <!-- Skills Section -->
-    <section id="skills" class="min-h-screen py-24 px-6 bg-white relative overflow-hidden">
-  <div class="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" 
-       style="background-image: radial-gradient(#4f46e5 1px, transparent 1px); background-size: 40px 40px;">
-  </div>
+      <section
+        id="skills"
+        class="min-h-screen py-24 px-6 bg-white relative overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+          style="
+            background-image: radial-gradient(#4f46e5 1px, transparent 1px);
+            background-size: 40px 40px;
+          "
+        ></div>
 
-  <div class="max-w-7xl mx-auto relative ">
-    
-    <div class="text-center mb-20">
-      <h2 class="text-sm font-bold tracking-[0.3em] text-indigo-600 uppercase mb-4">Core Competencies</h2>
-      <p class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
-        Technical <span class="text-slate-400">Expertise</span>
-      </p>
-      <div class="mt-6 flex justify-center">
-        <div class="h-1.5 w-20 bg-indigo-600 rounded-full"></div>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="skillsContainer">
-      
-      <div class="group relative bg-white border border-slate-100 p-8 rounded-[2rem] transition-all duration-500 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-100/50">
-        <div class="flex justify-between items-start mb-6">
-          <div class="space-y-1">
-            <h3 class="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Development</h3>
-            <p class="text-sm text-slate-400 font-medium italic">HTML5 / CSS3 / Modern Web</p>
+        <div class="max-w-7xl mx-auto relative">
+          <div class="text-center mb-20">
+            <h2
+              class="text-sm font-bold tracking-[0.3em] text-indigo-600 uppercase mb-4"
+            >
+              Core Competencies
+            </h2>
+            <p
+              class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight"
+            >
+              Technical <span class="text-slate-400">Expertise</span>
+            </p>
+            <div class="mt-6 flex justify-center">
+              <div class="h-1.5 w-20 bg-indigo-600 rounded-full"></div>
+            </div>
           </div>
-          <span class="text-2xl font-black text-indigo-100 group-hover:text-indigo-600 transition-colors">85%</span>
-        </div>
-        
-        <div class="relative w-full h-2 bg-slate-50 rounded-full overflow-hidden">
-          <div class="absolute top-0 left-0 h-full bg-indigo-600 rounded-full w-[85%] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ease-out"></div>
-        </div>
-      </div>
 
-      <div class="group relative bg-white border border-slate-100 p-8 rounded-[2rem] transition-all duration-500 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-100/50">
-        <div class="flex justify-between items-start mb-6">
-          <div class="space-y-1">
-            <h3 class="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Logic</h3>
-            <p class="text-sm text-slate-400 font-medium italic">ES6+ / JavaScript Architecture</p>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            id="skillsContainer"
+          >
+            <div
+              class="group relative bg-white border border-slate-100 p-8 rounded-[2rem] transition-all duration-500 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-100/50"
+            >
+              <div class="flex justify-between items-start mb-6">
+                <div class="space-y-1">
+                  <h3
+                    class="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors"
+                  >
+                    Development
+                  </h3>
+                  <p class="text-sm text-slate-400 font-medium italic">
+                    HTML5 / CSS3 / Modern Web
+                  </p>
+                </div>
+                <span
+                  class="text-2xl font-black text-indigo-100 group-hover:text-indigo-600 transition-colors"
+                  >85%</span
+                >
+              </div>
+
+              <div
+                class="relative w-full h-2 bg-slate-50 rounded-full overflow-hidden"
+              >
+                <div
+                  class="absolute top-0 left-0 h-full bg-indigo-600 rounded-full w-[85%] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ease-out"
+                ></div>
+              </div>
+            </div>
+
+            <div
+              class="group relative bg-white border border-slate-100 p-8 rounded-[2rem] transition-all duration-500 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-100/50"
+            >
+              <div class="flex justify-between items-start mb-6">
+                <div class="space-y-1">
+                  <h3
+                    class="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors"
+                  >
+                    Logic
+                  </h3>
+                  <p class="text-sm text-slate-400 font-medium italic">
+                    ES6+ / JavaScript Architecture
+                  </p>
+                </div>
+                <span
+                  class="text-2xl font-black text-indigo-100 group-hover:text-indigo-600 transition-colors"
+                  >90%</span
+                >
+              </div>
+              <div
+                class="relative w-full h-2 bg-slate-50 rounded-full overflow-hidden"
+              >
+                <div
+                  class="absolute top-0 left-0 h-full bg-indigo-600 rounded-full w-[90%] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ease-out"
+                ></div>
+              </div>
+            </div>
+
+            <div
+              class="group relative bg-slate-900 p-8 rounded-[2rem] transition-all duration-500 hover:shadow-2xl shadow-slate-900/40"
+            >
+              <div class="flex justify-between items-start mb-6">
+                <div class="space-y-1">
+                  <h3 class="text-xl font-bold text-white">Infrastructure</h3>
+                  <p class="text-sm text-slate-400 font-medium italic">
+                    AWS Cloud / Solutions
+                  </p>
+                </div>
+                <span
+                  class="text-2xl font-black text-slate-700 group-hover:text-indigo-400 transition-colors"
+                  >80%</span
+                >
+              </div>
+              <div
+                class="relative w-full h-2 bg-white/10 rounded-full overflow-hidden"
+              >
+                <div
+                  class="absolute top-0 left-0 h-full bg-indigo-400 rounded-full w-[80%] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ease-out"
+                ></div>
+              </div>
+            </div>
+
+            <div
+              class="group relative bg-white border border-slate-100 p-8 rounded-[2rem] transition-all duration-500 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-100/50"
+            >
+              <div class="flex justify-between items-start mb-6">
+                <div class="space-y-1">
+                  <h3
+                    class="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors"
+                  >
+                    Styling
+                  </h3>
+                  <p class="text-sm text-slate-400 font-medium italic">
+                    Tailwind CSS / UI Design
+                  </p>
+                </div>
+                <span
+                  class="text-2xl font-black text-indigo-100 group-hover:text-indigo-600 transition-colors"
+                  >75%</span
+                >
+              </div>
+              <div
+                class="relative w-full h-2 bg-slate-50 rounded-full overflow-hidden"
+              >
+                <div
+                  class="absolute top-0 left-0 h-full bg-indigo-600 rounded-full w-[75%] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ease-out"
+                ></div>
+              </div>
+            </div>
+
+            <div
+              class="group relative bg-white border border-slate-100 p-8 rounded-[2rem] transition-all duration-500 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-100/50"
+            >
+              <div class="flex justify-between items-start mb-6">
+                <div class="space-y-1">
+                  <h3
+                    class="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors"
+                  >
+                    Scripting
+                  </h3>
+                  <p class="text-sm text-slate-400 font-medium italic">
+                    Python / Automation
+                  </p>
+                </div>
+                <span
+                  class="text-2xl font-black text-indigo-100 group-hover:text-indigo-600 transition-colors"
+                  >75%</span
+                >
+              </div>
+              <div
+                class="relative w-full h-2 bg-slate-50 rounded-full overflow-hidden"
+              >
+                <div
+                  class="absolute top-0 left-0 h-full bg-indigo-600 rounded-full w-[75%] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ease-out"
+                ></div>
+              </div>
+            </div>
+
+            <div
+              class="group relative bg-white border border-slate-100 p-8 rounded-[2rem] transition-all duration-500 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-100/50"
+            >
+              <div class="flex justify-between items-start mb-6">
+                <div class="space-y-1">
+                  <h3
+                    class="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors"
+                  >
+                    Creative
+                  </h3>
+                  <p class="text-sm text-slate-400 font-medium italic">
+                    VN Video / Content Production
+                  </p>
+                </div>
+                <span
+                  class="text-2xl font-black text-indigo-100 group-hover:text-indigo-600 transition-colors"
+                  >85%</span
+                >
+              </div>
+              <div
+                class="relative w-full h-2 bg-slate-50 rounded-full overflow-hidden"
+              >
+                <div
+                  class="absolute top-0 left-0 h-full bg-indigo-600 rounded-full w-[85%] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ease-out"
+                ></div>
+              </div>
+            </div>
           </div>
-          <span class="text-2xl font-black text-indigo-100 group-hover:text-indigo-600 transition-colors">90%</span>
-        </div>
-        <div class="relative w-full h-2 bg-slate-50 rounded-full overflow-hidden">
-          <div class="absolute top-0 left-0 h-full bg-indigo-600 rounded-full w-[90%] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ease-out"></div>
-        </div>
-      </div>
 
-      <div class="group relative bg-slate-900 p-8 rounded-[2rem] transition-all duration-500 hover:shadow-2xl shadow-slate-900/40">
-        <div class="flex justify-between items-start mb-6">
-          <div class="space-y-1">
-            <h3 class="text-xl font-bold text-white">Infrastructure</h3>
-            <p class="text-sm text-slate-400 font-medium italic">AWS Cloud / Solutions</p>
+          <div
+            class="mt-20 flex flex-col items-center justify-center space-y-4"
+          >
+            <p
+              class="text-slate-400 font-medium italic text-sm text-center max-w-md"
+            >
+              Continuously evolving. Currently exploring Advanced DevOps
+              Pipelines and Microservices Architecture.
+            </p>
           </div>
-          <span class="text-2xl font-black text-slate-700 group-hover:text-indigo-400 transition-colors">80%</span>
         </div>
-        <div class="relative w-full h-2 bg-white/10 rounded-full overflow-hidden">
-          <div class="absolute top-0 left-0 h-full bg-indigo-400 rounded-full w-[80%] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ease-out"></div>
-        </div>
-      </div>
-
-      <div class="group relative bg-white border border-slate-100 p-8 rounded-[2rem] transition-all duration-500 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-100/50">
-        <div class="flex justify-between items-start mb-6">
-          <div class="space-y-1">
-            <h3 class="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Styling</h3>
-            <p class="text-sm text-slate-400 font-medium italic">Tailwind CSS / UI Design</p>
-          </div>
-          <span class="text-2xl font-black text-indigo-100 group-hover:text-indigo-600 transition-colors">75%</span>
-        </div>
-        <div class="relative w-full h-2 bg-slate-50 rounded-full overflow-hidden">
-          <div class="absolute top-0 left-0 h-full bg-indigo-600 rounded-full w-[75%] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ease-out"></div>
-        </div>
-      </div>
-
-      <div class="group relative bg-white border border-slate-100 p-8 rounded-[2rem] transition-all duration-500 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-100/50">
-        <div class="flex justify-between items-start mb-6">
-          <div class="space-y-1">
-            <h3 class="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Scripting</h3>
-            <p class="text-sm text-slate-400 font-medium italic">Python / Automation</p>
-          </div>
-          <span class="text-2xl font-black text-indigo-100 group-hover:text-indigo-600 transition-colors">75%</span>
-        </div>
-        <div class="relative w-full h-2 bg-slate-50 rounded-full overflow-hidden">
-          <div class="absolute top-0 left-0 h-full bg-indigo-600 rounded-full w-[75%] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ease-out"></div>
-        </div>
-      </div>
-
-      <div class="group relative bg-white border border-slate-100 p-8 rounded-[2rem] transition-all duration-500 hover:border-indigo-200 hover:shadow-2xl hover:shadow-indigo-100/50">
-        <div class="flex justify-between items-start mb-6">
-          <div class="space-y-1">
-            <h3 class="text-xl font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Creative</h3>
-            <p class="text-sm text-slate-400 font-medium italic">VN Video / Content Production</p>
-          </div>
-          <span class="text-2xl font-black text-indigo-100 group-hover:text-indigo-600 transition-colors">85%</span>
-        </div>
-        <div class="relative w-full h-2 bg-slate-50 rounded-full overflow-hidden">
-          <div class="absolute top-0 left-0 h-full bg-indigo-600 rounded-full w-[85%] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ease-out"></div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="mt-20 flex flex-col items-center justify-center space-y-4">
-        <p class="text-slate-400 font-medium italic text-sm text-center max-w-md">
-          Continuously evolving. Currently exploring Advanced DevOps Pipelines and Microservices Architecture.
-        </p>
-    </div>
-  </div>
-</section>
+      </section>
       <!-- Projects Section -->
 
-     <section id="projects" class="min-h-screen py-24 px-6 bg-[#f8fafc] relative">
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
-
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-      <div>
-        <h2 class="text-sm font-bold tracking-[0.3em] text-indigo-600 uppercase mb-3">Portfolio</h2>
-        <p class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">Featured <span class="text-indigo-600">Projects</span></p>
-      </div>
-      <p class="text-slate-500 max-w-md md:text-right italic">
-        A curated selection of cloud-integrated web solutions and automated deployment systems.
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10" id="projectsContainer">
-      </div>
-
-    <div id="projectModal" class="fixed inset-0 hidden bg-slate-900/40 backdrop-blur-md justify-center items-center z-[100] p-4 transition-all duration-500">
-      <div class="bg-white w-full max-w-6xl h-[85vh] rounded-[2rem] shadow-[0_30px_100px_rgba(0,0,0,0.4)] relative flex flex-col overflow-hidden border border-white/20">
-        
-        <div class="bg-slate-50 px-6 py-4 border-b flex items-center justify-between">
-          <div class="flex gap-2">
-            <div class="w-3 h-3 rounded-full bg-red-400"></div>
-            <div class="w-3 h-3 rounded-full bg-amber-400"></div>
-            <div class="w-3 h-3 rounded-full bg-green-400"></div>
-          </div>
-          <h2 id="projectModalTitle" class="text-sm font-bold text-slate-500 tracking-wide uppercase"></h2>
-          <button onclick="closeProjectModal()" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-200 text-slate-600 hover:bg-red-500 hover:text-white transition-all font-bold">
-            ✕
-          </button>
-        </div>
-
-        <div class="flex-1 bg-slate-100 relative">
-          <iframe id="projectIframe" class="w-full h-full" src="" frameborder="0"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <div 
-  id="paymentModal" 
-  class="fixed inset-0 hidden items-center justify-center bg-slate-900/60 backdrop-blur-xl z-[110] p-2 md:p-6 transition-all duration-500"
->
-  <div 
-    class="relative w-full max-w-4xl bg-white rounded-[2rem] shadow-[0_40px_120px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col border border-white/20 animate-[popIn_0.4s_cubic-bezier(0.175,0.885,0.32,1.275)] h-[90vh]"
-  >
-    
-    <div class="bg-slate-50 px-6 py-5 border-b flex items-center justify-between shrink-0">
-      <div class="flex gap-2.5">
-        <div class="w-3.5 h-3.5 rounded-full bg-[#ff5f56] shadow-sm"></div>
-        <div class="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] shadow-sm"></div>
-        <div class="w-3.5 h-3.5 rounded-full bg-[#27c93f] shadow-sm"></div>
-      </div>
-      
-      <div class="hidden md:flex items-center gap-2 px-4 py-1.5 bg-white border border-slate-200 rounded-lg shadow-sm">
-        <span class="text-indigo-500 text-xs">🔒</span>
-        <span class="text-[11px] font-bold text-slate-500 tracking-tight uppercase">secure.ykofficial.gateway</span>
-      </div>
-
-      <button 
-        onclick="closePaymentModal()" 
-        class="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-200/50 text-slate-600 hover:bg-red-500 hover:text-white transition-all duration-300 shadow-sm"
+      <section
+        id="projects"
+        class="min-h-screen py-24 px-6 bg-[#f8fafc] relative"
       >
-        ✕
-      </button>
-    </div>
+        <div
+          class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"
+        ></div>
 
-    <div class="relative flex-1 bg-slate-100/30 flex flex-col">
-        
-        <div class="bg-white/80 backdrop-blur-sm px-8 py-3 border-b border-slate-100 flex justify-between items-center shrink-0">
-           <div class="flex flex-col">
-              <span class="text-[10px] text-slate-400 font-black uppercase tracking-widest">Transaction for:</span>
-              <h2 id="buyingProjectName" class="text-lg font-black text-slate-900 leading-none"></h2>
-           </div>
-           <div class="hidden sm:block text-right">
-              <span class="text-[10px] text-slate-400 font-black uppercase tracking-widest leading-none">Status</span>
-              <p class="text-green-600 text-xs font-bold flex items-center gap-1">
-                <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span> Ready to Pay
+        <div class="max-w-7xl mx-auto">
+          <div
+            class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
+          >
+            <div>
+              <h2
+                class="text-sm font-bold tracking-[0.3em] text-indigo-600 uppercase mb-3"
+              >
+                Portfolio
+              </h2>
+              <p
+                class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight"
+              >
+                Featured <span class="text-indigo-600">Projects</span>
               </p>
-           </div>
-        </div>
-
-        <div class="relative flex-1">
-            <div id="paymentLoader" class="absolute inset-0 flex flex-col items-center justify-center bg-white z-20 transition-opacity duration-500">
-                <div class="w-14 h-14 border-[4px] border-slate-100 border-t-indigo-600 rounded-full animate-spin"></div>
-                <div class="mt-6 flex flex-col items-center">
-                    <p class="text-slate-900 font-black text-sm uppercase tracking-[0.3em]">Processing</p>
-                    <p class="text-slate-400 text-[10px] font-medium mt-1 uppercase tracking-widest">Encrypting Secure Gateway...</p>
-                </div>
             </div>
-
-            <iframe 
-              id="paymentIframe" 
-              class="w-full h-full bg-transparent transition-opacity duration-700 opacity-0" 
-              src="" 
-              frameborder="0" 
-              onload="this.style.opacity='1'; document.getElementById('paymentLoader').style.opacity = '0'; setTimeout(() => document.getElementById('paymentLoader').style.display = 'none', 500)"
-            ></iframe>
-        </div>
-    </div>
-
-    <div class="px-8 py-4 bg-slate-900 text-white flex items-center justify-between shrink-0">
-        <div class="flex items-center gap-6">
-            <div class="flex items-center gap-2">
-                <span class="text-indigo-400 text-sm">🛡️</span>
-                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em]">SSL 256-Bit</span>
-            </div>
-            <div class="hidden md:flex items-center gap-2">
-                <span class="text-indigo-400 text-sm">✅</span>
-                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em]">Verified Secure</span>
-            </div>
-        </div>
-        <p class="text-[10px] font-black text-white/40 uppercase tracking-widest">© YK OFFICIAL SECURE</p>
-    </div>
-  </div>
-</div>
-
-  </div>
-</section>
-
-    
-
-     <!-- FAQ Section -->
-
-      <section class="py-24 bg-[#f8fafc] relative overflow-hidden">
-  <div class="absolute top-0 left-1/4 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-50 -z-10"></div>
-  <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-100 rounded-full blur-3xl opacity-50 -z-10"></div>
-
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-        Common <span class="text-blue-600">Questions</span>
-      </h2>
-      <div class="h-1 w-20 bg-indigo-600 mx-auto rounded-full mb-6"></div>
-      <p class="text-gray-500 max-w-lg mx-auto">
-        Everything you need to know about the YK OFFICIAL platform and our creative process.
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-6">
-      <div onclick="openFAQ('q1')" class="group relative bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden">
-        <div class="absolute left-0 top-0 h-full w-1.5 bg-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"></div>
-        <h3 class="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors">What is the purpose of YK OFFICIAL?</h3>
-        <div class="flex items-center mt-4 text-blue-500 font-medium text-sm">
-          <span>Explore Details</span>
-          <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-        </div>
-      </div>
-
-      <div onclick="openFAQ('q2')" class="group relative bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden">
-        <div class="absolute left-0 top-0 h-full w-1.5 bg-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"></div>
-        <h3 class="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors">What kind of projects are displayed?</h3>
-        <div class="flex items-center mt-4 text-blue-500 font-medium text-sm">
-          <span>Explore Details</span>
-          <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-        </div>
-      </div>
-
-      <div onclick="openFAQ('q3')" class="group relative bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden">
-        <div class="absolute left-0 top-0 h-full w-1.5 bg-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"></div>
-        <h3 class="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors">Can businesses collaborate with us?</h3>
-        <div class="flex items-center mt-4 text-blue-500 font-medium text-sm">
-          <span>Explore Details</span>
-          <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-        </div>
-      </div>
-
-      <div onclick="openFAQ('q4')" class="group relative bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden">
-        <div class="absolute left-0 top-0 h-full w-1.5 bg-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"></div>
-        <h3 class="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors">How can visitors send inquiries?</h3>
-        <div class="flex items-center mt-4 text-blue-500 font-medium text-sm">
-          <span>Explore Details</span>
-          <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-        </div>
-      </div>
-
-      <div onclick="openFAQ('q5')" class="group relative bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden">
-        <div class="absolute left-0 top-0 h-full w-1.5 bg-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"></div>
-        <h3 class="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors">Is the website regularly updated?</h3>
-        <div class="flex items-center mt-4 text-blue-500 font-medium text-sm">
-          <span>Explore Details</span>
-          <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-        </div>
-      </div>
-
-      <div onclick="openFAQ('q6')" class="group relative bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden">
-        <div class="absolute left-0 top-0 h-full w-1.5 bg-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"></div>
-        <h3 class="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors">Smooth experience on all devices?</h3>
-        <div class="flex items-center mt-4 text-blue-500 font-medium text-sm">
-          <span>Explore Details</span>
-          <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
- <!-- FAQ Popup -->
-<div id="faqPopup" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm hidden items-center justify-center z-[100] p-4">
-  <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden transform transition-all scale-95 opacity-0" id="modalContent">
-    <div class="p-8">
-      <div class="flex justify-between items-start mb-6">
-        <div id="popupLoader" class="flex items-center space-x-3">
-          <div class="w-6 h-6 border-3 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-          <span class="text-sm font-bold text-gray-400 uppercase tracking-widest">Fetching...</span>
-        </div>
-        <button onclick="closeFAQ()" class="p-2 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-full transition-colors">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
-      </div>
-
-      <div id="faqDisplayArea" class="hidden">
-        <div class="inline-block px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold rounded-full mb-4 uppercase tracking-wide">Answer</div>
-        <h3 id="faqTitle" class="text-2xl font-extrabold text-gray-900 mb-4 leading-tight"></h3>
-        <p id="faqAnswer" class="text-gray-600 text-lg leading-relaxed"></p>
-        
-        <div class="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
-            <span class="text-xs font-bold font-montserrat text-gray-900">YK <span class="text-blue-600">OFFICIAL</span></span>
-            <button onclick="closeFAQ()" class="bg-gray-900 text-white px-6 py-2 rounded-xl font-semibold text-sm hover:bg-blue-600 transition-colors">Got it</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-      <!-- Contact Section -->
-
-     <section id="contact" class="min-h-screen  py-24 px-6 bg-white relative overflow-hidden">
-  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-50/50 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2"></div>
-  <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-50/50 rounded-full blur-[120px] -z-10 -translate-x-1/2 translate-y-1/2"></div>
-
-  <div class="max-w-7xl mx-auto relative ">
-    
-    <div class="mb-16 md:mb-24">
-      <div class="flex items-center gap-4 mb-2">
-        <span class="h-px w-12 bg-indigo-600"></span>
-        <span class="text-indigo-600 font-semibold tracking-widest uppercase text-sm">Inquiry Gateway</span>
-      </div>
-      <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-        Let’s Build Something <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Legendary.</span>
-      </h2>
-    </div>
-
-    <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
-      
-      <div class="lg:col-span-5 flex flex-col justify-between space-y-12">
-        <div class="space-y-8">
-          <div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">Direct Communication</h3>
-            <p class="text-slate-500 leading-relaxed">
-              Available for cloud architecture consulting, full-stack development, and long-term DevOps partnerships.
+            <p class="text-slate-500 max-w-md md:text-right italic">
+              A curated selection of cloud-integrated web solutions and
+              automated deployment systems.
             </p>
           </div>
 
-          <div class="space-y-4">
-            <div class="group flex items-center gap-6 p-1 pr-6 rounded-2xl bg-slate-50 border border-slate-100 transition-all hover:bg-white hover:shadow-xl hover:shadow-indigo-500/5">
-              <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-white shadow-sm text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-                <i data-lucide="mail" class="w-6 h-6"></i>
+          <div
+            class="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+            id="projectsContainer"
+          ></div>
+
+          <div
+            id="projectModal"
+            class="fixed inset-0 hidden bg-slate-900/40 backdrop-blur-md justify-center items-center z-[100] p-4 transition-all duration-500"
+          >
+            <div
+              class="bg-white w-full max-w-6xl h-[85vh] rounded-[2rem] shadow-[0_30px_100px_rgba(0,0,0,0.4)] relative flex flex-col overflow-hidden border border-white/20"
+            >
+              <div
+                class="bg-slate-50 px-6 py-4 border-b flex items-center justify-between"
+              >
+                <div class="flex gap-2">
+                  <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                  <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                  <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                </div>
+                <h2
+                  id="projectModalTitle"
+                  class="text-sm font-bold text-slate-500 tracking-wide uppercase"
+                ></h2>
+                <button
+                  onclick="closeProjectModal()"
+                  class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-200 text-slate-600 hover:bg-red-500 hover:text-white transition-all font-bold"
+                >
+                  ✕
+                </button>
               </div>
-              <div class="flex-1">
-                <p class="text-[10px] uppercase font-black text-slate-400 tracking-widest">Digital Mail</p>
-                <p id="contactEmail" class="font-bold text-slate-800">Yegnesh7219@gmail.com</p>
+
+              <div class="flex-1 bg-slate-100 relative">
+                <iframe
+                  id="projectIframe"
+                  class="w-full h-full"
+                  src=""
+                  frameborder="0"
+                ></iframe>
               </div>
             </div>
+          </div>
 
-            <div class="group flex items-center gap-6 p-1 pr-6 rounded-2xl bg-slate-50 border border-slate-100 transition-all hover:bg-white hover:shadow-xl hover:shadow-indigo-500/5">
-              <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-white shadow-sm text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-                <i data-lucide="phone" class="w-6 h-6"></i>
-              </div>
-              <div class="flex-1">
-                <p class="text-[10px] uppercase font-black text-slate-400 tracking-widest">Direct Line</p>
-                <p id="contactPhone" class="font-bold text-slate-800">+91 7219274312</p>
-              </div>
-            </div>
+          <div
+            id="paymentModal"
+            class="fixed inset-0 hidden items-center justify-center bg-slate-900/60 backdrop-blur-xl z-[110] p-2 md:p-6 transition-all duration-500"
+          >
+            <div
+              class="relative w-full max-w-4xl bg-white rounded-[2rem] shadow-[0_40px_120px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col border border-white/20 animate-[popIn_0.4s_cubic-bezier(0.175,0.885,0.32,1.275)] h-[90vh]"
+            >
+              <div
+                class="bg-slate-50 px-6 py-5 border-b flex items-center justify-between shrink-0"
+              >
+                <div class="flex gap-2.5">
+                  <div
+                    class="w-3.5 h-3.5 rounded-full bg-[#ff5f56] shadow-sm"
+                  ></div>
+                  <div
+                    class="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] shadow-sm"
+                  ></div>
+                  <div
+                    class="w-3.5 h-3.5 rounded-full bg-[#27c93f] shadow-sm"
+                  ></div>
+                </div>
 
-            <div class="group flex items-center gap-6 p-1 pr-6 rounded-2xl bg-slate-50 border border-slate-100 transition-all hover:bg-white hover:shadow-xl hover:shadow-indigo-500/5">
-              <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-white shadow-sm text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                <div
+                  class="hidden md:flex items-center gap-2 px-4 py-1.5 bg-white border border-slate-200 rounded-lg shadow-sm"
+                >
+                  <span class="text-indigo-500 text-xs">🔒</span>
+                  <span
+                    class="text-[11px] font-bold text-slate-500 tracking-tight uppercase"
+                    >secure.ykofficial.gateway</span
+                  >
+                </div>
+
+                <button
+                  onclick="closePaymentModal()"
+                  class="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-200/50 text-slate-600 hover:bg-red-500 hover:text-white transition-all duration-300 shadow-sm"
+                >
+                  ✕
+                </button>
               </div>
-              <div class="flex-1">
-                <p class="text-[10px] uppercase font-black text-slate-400 tracking-widest">Base Operations</p>
-                <p class="font-bold text-slate-800 text-sm">Hanuman Nagar, Tekadi, Nagpur - 441404</p>
+
+              <div class="relative flex-1 bg-slate-100/30 flex flex-col">
+                <div
+                  class="bg-white/80 backdrop-blur-sm px-8 py-3 border-b border-slate-100 flex justify-between items-center shrink-0"
+                >
+                  <div class="flex flex-col">
+                    <span
+                      class="text-[10px] text-slate-400 font-black uppercase tracking-widest"
+                      >Transaction for:</span
+                    >
+                    <h2
+                      id="buyingProjectName"
+                      class="text-lg font-black text-slate-900 leading-none"
+                    ></h2>
+                  </div>
+                  <div class="hidden sm:block text-right">
+                    <span
+                      class="text-[10px] text-slate-400 font-black uppercase tracking-widest leading-none"
+                      >Status</span
+                    >
+                    <p
+                      class="text-green-600 text-xs font-bold flex items-center gap-1"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"
+                      ></span>
+                      Ready to Pay
+                    </p>
+                  </div>
+                </div>
+
+                <div class="relative flex-1">
+                  <div
+                    id="paymentLoader"
+                    class="absolute inset-0 flex flex-col items-center justify-center bg-white z-20 transition-opacity duration-500"
+                  >
+                    <div
+                      class="w-14 h-14 border-[4px] border-slate-100 border-t-indigo-600 rounded-full animate-spin"
+                    ></div>
+                    <div class="mt-6 flex flex-col items-center">
+                      <p
+                        class="text-slate-900 font-black text-sm uppercase tracking-[0.3em]"
+                      >
+                        Processing
+                      </p>
+                      <p
+                        class="text-slate-400 text-[10px] font-medium mt-1 uppercase tracking-widest"
+                      >
+                        Encrypting Secure Gateway...
+                      </p>
+                    </div>
+                  </div>
+
+                  <iframe
+                    id="paymentIframe"
+                    class="w-full h-full bg-transparent transition-opacity duration-700 opacity-0"
+                    src=""
+                    frameborder="0"
+                    onload="
+                      this.style.opacity = '1';
+                      document.getElementById('paymentLoader').style.opacity =
+                        '0';
+                      setTimeout(
+                        () =>
+                          (document.getElementById(
+                            'paymentLoader',
+                          ).style.display = 'none'),
+                        500,
+                      );
+                    "
+                  ></iframe>
+                </div>
+              </div>
+
+              <div
+                class="px-8 py-4 bg-slate-900 text-white flex items-center justify-between shrink-0"
+              >
+                <div class="flex items-center gap-6">
+                  <div class="flex items-center gap-2">
+                    <span class="text-indigo-400 text-sm">🛡️</span>
+                    <span
+                      class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em]"
+                      >SSL 256-Bit</span
+                    >
+                  </div>
+                  <div class="hidden md:flex items-center gap-2">
+                    <span class="text-indigo-400 text-sm">✅</span>
+                    <span
+                      class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em]"
+                      >Verified Secure</span
+                    >
+                  </div>
+                </div>
+                <p
+                  class="text-[10px] font-black text-white/40 uppercase tracking-widest"
+                >
+                  © YK OFFICIAL SECURE
+                </p>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <div class="pt-8 border-t border-slate-100">
-          <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Global Networks</p>
-          <div class="flex flex-wrap gap-4">
-            <a href="https://alvo.chat/5W5a" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-green-500 hover:border-green-200 hover:shadow-lg transition-all group">
-              <i class="fa-brands fa-whatsapp text-xl"></i>
-            </a>
-            <a href="https://instagram.com/yegnesh.kamble" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-pink-500 hover:border-pink-200 hover:shadow-lg transition-all">
-              <i class="fa-brands fa-instagram text-xl"></i>
-            </a>
-            <a href="https://github.com/yegneshkamble72" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-slate-900 hover:border-slate-900 hover:shadow-lg transition-all">
-              <i class="fa-brands fa-github text-xl"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/yegnesh-kamble-3a8669211" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-blue-600 hover:border-blue-200 hover:shadow-lg transition-all">
-              <i class="fa-brands fa-linkedin text-xl"></i>
-            </a>
-            <a href="https://www.facebook.com/yegnesh.kamble" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-blue-600 hover:border-blue-200 hover:shadow-lg transition-all">
-              <i class="fa-brands fa-facebook text-xl"></i>
-            </a>
+      <!-- FAQ Section -->
+
+      <section class="py-24 bg-[#f8fafc] relative overflow-hidden">
+        <div
+          class="absolute top-0 left-1/4 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-50 -z-10"
+        ></div>
+        <div
+          class="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-100 rounded-full blur-3xl opacity-50 -z-10"
+        ></div>
+
+        <div class="max-w-5xl mx-auto px-6">
+          <div class="text-center mb-16">
+            <h2
+              class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4"
+            >
+              Common <span class="text-blue-600">Questions</span>
+            </h2>
+            <div class="h-1 w-20 bg-indigo-600 mx-auto rounded-full mb-6"></div>
+            <p class="text-gray-500 max-w-lg mx-auto">
+              Everything you need to know about the YK OFFICIAL platform and our
+              creative process.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div
+              onclick="openFAQ('q1')"
+              class="group relative bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
+            >
+              <div
+                class="absolute left-0 top-0 h-full w-1.5 bg-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"
+              ></div>
+              <h3
+                class="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors"
+              >
+                What is the purpose of YK OFFICIAL?
+              </h3>
+              <div
+                class="flex items-center mt-4 text-blue-500 font-medium text-sm"
+              >
+                <span>Explore Details</span>
+                <svg
+                  class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+
+            <div
+              onclick="openFAQ('q2')"
+              class="group relative bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
+            >
+              <div
+                class="absolute left-0 top-0 h-full w-1.5 bg-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"
+              ></div>
+              <h3
+                class="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors"
+              >
+                What kind of projects are displayed?
+              </h3>
+              <div
+                class="flex items-center mt-4 text-blue-500 font-medium text-sm"
+              >
+                <span>Explore Details</span>
+                <svg
+                  class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+
+            <div
+              onclick="openFAQ('q3')"
+              class="group relative bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
+            >
+              <div
+                class="absolute left-0 top-0 h-full w-1.5 bg-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"
+              ></div>
+              <h3
+                class="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors"
+              >
+                Can businesses collaborate with us?
+              </h3>
+              <div
+                class="flex items-center mt-4 text-blue-500 font-medium text-sm"
+              >
+                <span>Explore Details</span>
+                <svg
+                  class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+
+            <div
+              onclick="openFAQ('q4')"
+              class="group relative bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
+            >
+              <div
+                class="absolute left-0 top-0 h-full w-1.5 bg-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"
+              ></div>
+              <h3
+                class="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors"
+              >
+                How can visitors send inquiries?
+              </h3>
+              <div
+                class="flex items-center mt-4 text-blue-500 font-medium text-sm"
+              >
+                <span>Explore Details</span>
+                <svg
+                  class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+
+            <div
+              onclick="openFAQ('q5')"
+              class="group relative bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
+            >
+              <div
+                class="absolute left-0 top-0 h-full w-1.5 bg-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"
+              ></div>
+              <h3
+                class="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors"
+              >
+                Is the website regularly updated?
+              </h3>
+              <div
+                class="flex items-center mt-4 text-blue-500 font-medium text-sm"
+              >
+                <span>Explore Details</span>
+                <svg
+                  class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+
+            <div
+              onclick="openFAQ('q6')"
+              class="group relative bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
+            >
+              <div
+                class="absolute left-0 top-0 h-full w-1.5 bg-blue-600 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-300"
+              ></div>
+              <h3
+                class="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors"
+              >
+                Smooth experience on all devices?
+              </h3>
+              <div
+                class="flex items-center mt-4 text-blue-500 font-medium text-sm"
+              >
+                <span>Explore Details</span>
+                <svg
+                  class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- FAQ Popup -->
+      <div
+        id="faqPopup"
+        class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm hidden items-center justify-center z-[100] p-4"
+      >
+        <div
+          class="bg-white rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden transform transition-all scale-95 opacity-0"
+          id="modalContent"
+        >
+          <div class="p-8">
+            <div class="flex justify-between items-start mb-6">
+              <div id="popupLoader" class="flex items-center space-x-3">
+                <div
+                  class="w-6 h-6 border-3 border-blue-600 border-t-transparent rounded-full animate-spin"
+                ></div>
+                <span
+                  class="text-sm font-bold text-gray-400 uppercase tracking-widest"
+                  >Fetching...</span
+                >
+              </div>
+              <button
+                onclick="closeFAQ()"
+                class="p-2 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-full transition-colors"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+
+            <div id="faqDisplayArea" class="hidden">
+              <div
+                class="inline-block px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold rounded-full mb-4 uppercase tracking-wide"
+              >
+                Answer
+              </div>
+              <h3
+                id="faqTitle"
+                class="text-2xl font-extrabold text-gray-900 mb-4 leading-tight"
+              ></h3>
+              <p
+                id="faqAnswer"
+                class="text-gray-600 text-lg leading-relaxed"
+              ></p>
+
+              <div
+                class="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between"
+              >
+                <span class="text-xs font-bold font-montserrat text-gray-900"
+                  >YK <span class="text-blue-600">OFFICIAL</span></span
+                >
+                <button
+                  onclick="closeFAQ()"
+                  class="bg-gray-900 text-white px-6 py-2 rounded-xl font-semibold text-sm hover:bg-blue-600 transition-colors"
+                >
+                  Got it
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="lg:col-span-7">
-        <div class="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-300 shadow-[0_30px_100px_rgba(0,0,0,0.04)]">
-          <form id="contactForm" class="space-y-8">
-            <input type="hidden" name="request_id" id="request_id" />
+      <!-- Contact Section -->
 
-            <div class="grid md:grid-cols-2 gap-8">
-              <div class="relative">
-                <input type="text" id="name" name="name" required placeholder=" "
-                  class="peer w-full bg-transparent border-b-2 border-slate-200 py-3 focus:outline-none focus:border-indigo-600 transition-colors placeholder-transparent" />
-                <label for="name" class="absolute left-0 -top-3 text-xs  uppercase tracking-widest text-slate-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:font-medium peer-focus:-top-3 peer-focus:text-xs peer-focus:text-indigo-600 ">
-                  Full Name
-                </label>
+      <section
+        id="contact"
+        class="min-h-screen py-24 px-6 bg-white relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-50/50 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2"
+        ></div>
+        <div
+          class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-50/50 rounded-full blur-[120px] -z-10 -translate-x-1/2 translate-y-1/2"
+        ></div>
+
+        <div class="max-w-7xl mx-auto relative">
+          <div class="mb-16 md:mb-24">
+            <div class="flex items-center gap-4 mb-2">
+              <span class="h-px w-12 bg-indigo-600"></span>
+              <span
+                class="text-indigo-600 font-semibold tracking-widest uppercase text-sm"
+                >Inquiry Gateway</span
+              >
+            </div>
+            <h2
+              class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight"
+            >
+              Let’s Build Something
+              <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600"
+                >Legendary.</span
+              >
+            </h2>
+          </div>
+
+          <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
+            <div class="lg:col-span-5 flex flex-col justify-between space-y-12">
+              <div class="space-y-8">
+                <div>
+                  <h3 class="text-2xl font-bold text-slate-900 mb-4">
+                    Direct Communication
+                  </h3>
+                  <p class="text-slate-500 leading-relaxed">
+                    Available for cloud architecture consulting, full-stack
+                    development, and long-term DevOps partnerships.
+                  </p>
+                </div>
+
+                <div class="space-y-4">
+                  <div
+                    class="group flex items-center gap-6 p-1 pr-6 rounded-2xl bg-slate-50 border border-slate-100 transition-all hover:bg-white hover:shadow-xl hover:shadow-indigo-500/5"
+                  >
+                    <div
+                      class="w-14 h-14 flex items-center justify-center rounded-2xl bg-white shadow-sm text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300"
+                    >
+                      <i data-lucide="mail" class="w-6 h-6"></i>
+                    </div>
+                    <div class="flex-1">
+                      <p
+                        class="text-[10px] uppercase font-black text-slate-400 tracking-widest"
+                      >
+                        Digital Mail
+                      </p>
+                      <p id="contactEmail" class="font-bold text-slate-800">
+                        Yegnesh7219@gmail.com
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="group flex items-center gap-6 p-1 pr-6 rounded-2xl bg-slate-50 border border-slate-100 transition-all hover:bg-white hover:shadow-xl hover:shadow-indigo-500/5"
+                  >
+                    <div
+                      class="w-14 h-14 flex items-center justify-center rounded-2xl bg-white shadow-sm text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300"
+                    >
+                      <i data-lucide="phone" class="w-6 h-6"></i>
+                    </div>
+                    <div class="flex-1">
+                      <p
+                        class="text-[10px] uppercase font-black text-slate-400 tracking-widest"
+                      >
+                        Direct Line
+                      </p>
+                      <p id="contactPhone" class="font-bold text-slate-800">
+                        +91 7219274312
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    class="group flex items-center gap-6 p-1 pr-6 rounded-2xl bg-slate-50 border border-slate-100 transition-all hover:bg-white hover:shadow-xl hover:shadow-indigo-500/5"
+                  >
+                    <div
+                      class="w-14 h-14 flex items-center justify-center rounded-2xl bg-white shadow-sm text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300"
+                    >
+                      <i data-lucide="map-pin" class="w-6 h-6"></i>
+                    </div>
+                    <div class="flex-1">
+                      <p
+                        class="text-[10px] uppercase font-black text-slate-400 tracking-widest"
+                      >
+                        Base Operations
+                      </p>
+                      <p class="font-bold text-slate-800 text-sm">
+                        Hanuman Nagar, Tekadi, Nagpur - 441404
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="relative">
-                <input type="email" id="email" name="email" required placeholder=" "
-                  class="peer w-full bg-transparent border-b-2 border-slate-200 py-3 focus:outline-none focus:border-indigo-600 transition-colors placeholder-transparent" />
-                <label for="email" class="absolute left-0 -top-3 text-xs  uppercase tracking-widest text-slate-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:font-medium peer-focus:-top-3 peer-focus:text-xs peer-focus:text-indigo-600 ">
-                  Email Address
-                </label>
+              <div class="pt-8 border-t border-slate-100">
+                <p
+                  class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6"
+                >
+                  Global Networks
+                </p>
+                <div class="flex flex-wrap gap-4">
+                  <a
+                    href="https://alvo.chat/5W5a"
+                    target="_blank"
+                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-green-500 hover:border-green-200 hover:shadow-lg transition-all group"
+                  >
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                  </a>
+                  <a
+                    href="https://instagram.com/yegnesh.kamble"
+                    target="_blank"
+                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-pink-500 hover:border-pink-200 hover:shadow-lg transition-all"
+                  >
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                  </a>
+                  <a
+                    href="https://github.com/yegneshkamble72"
+                    target="_blank"
+                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-slate-900 hover:border-slate-900 hover:shadow-lg transition-all"
+                  >
+                    <i class="fa-brands fa-github text-xl"></i>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/yegnesh-kamble-3a8669211"
+                    target="_blank"
+                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-blue-600 hover:border-blue-200 hover:shadow-lg transition-all"
+                  >
+                    <i class="fa-brands fa-linkedin text-xl"></i>
+                  </a>
+                  <a
+                    href="https://www.facebook.com/yegnesh.kamble"
+                    target="_blank"
+                    class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-blue-600 hover:border-blue-200 hover:shadow-lg transition-all"
+                  >
+                    <i class="fa-brands fa-facebook text-xl"></i>
+                  </a>
+                </div>
               </div>
             </div>
 
-            <div class="relative pt-4  rounded-2xl border border-slate-200">
-              <textarea id="message" name="message" rows="4" required placeholder=" "
-                class="peer w-full bg-slate-50/50 rounded-2xl p-6 focus:outline-none border-2 border-transparent  focus:bg-white transition-all resize-none">
-              </textarea>
-              <label for="message"  class="absolute left-6 top-1 text-[10px]  uppercase tracking-[0.2em] text-indigo-600 opacity-0 peer-focus:opacity-100 transition-opacity">
-                Your Inquiry
-              </label>
-              <div class="absolute left-6 top-6 pointer-events-none text-slate-400 peer-focus:hidden peer-placeholder-shown:block">
-                How can I help you? 
+            <div class="lg:col-span-7">
+              <div
+                class="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-300 shadow-[0_30px_100px_rgba(0,0,0,0.04)]"
+              >
+                <form id="contactForm" class="space-y-8">
+                  <input type="hidden" name="request_id" id="request_id" />
+
+                  <div class="grid md:grid-cols-2 gap-8">
+                    <div class="relative">
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        placeholder=" "
+                        class="peer w-full bg-transparent border-b-2 border-slate-200 py-3 focus:outline-none focus:border-indigo-600 transition-colors placeholder-transparent"
+                      />
+                      <label
+                        for="name"
+                        class="absolute left-0 -top-3 text-xs uppercase tracking-widest text-slate-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:font-medium peer-focus:-top-3 peer-focus:text-xs peer-focus:text-indigo-600"
+                      >
+                        Full Name
+                      </label>
+                    </div>
+
+                    <div class="relative">
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        placeholder=" "
+                        class="peer w-full bg-transparent border-b-2 border-slate-200 py-3 focus:outline-none focus:border-indigo-600 transition-colors placeholder-transparent"
+                      />
+                      <label
+                        for="email"
+                        class="absolute left-0 -top-3 text-xs uppercase tracking-widest text-slate-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:font-medium peer-focus:-top-3 peer-focus:text-xs peer-focus:text-indigo-600"
+                      >
+                        Email Address
+                      </label>
+                    </div>
+                  </div>
+
+                  <div
+                    class="relative pt-4 rounded-2xl border border-slate-200"
+                  >
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows="4"
+                      required
+                      placeholder=" "
+                      class="peer w-full bg-slate-50/50 rounded-2xl p-6 focus:outline-none border-2 border-transparent focus:bg-white transition-all resize-none"
+                    >
+                    </textarea>
+                    <label
+                      for="message"
+                      class="absolute left-6 top-1 text-[10px] uppercase tracking-[0.2em] text-indigo-600 opacity-0 peer-focus:opacity-100 transition-opacity"
+                    >
+                      Your Inquiry
+                    </label>
+                    <div
+                      class="absolute left-6 top-6 pointer-events-none text-slate-400 peer-focus:hidden peer-placeholder-shown:block"
+                    >
+                      How can I help you?
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="group relative w-full h-16 bg-slate-900 rounded-2xl overflow-hidden transition-all hover:shadow-2xl hover:shadow-indigo-500/20 active:scale-[0.98]"
+                  >
+                    <div
+                      class="absolute inset-0 bg-indigo-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                    ></div>
+                    <span
+                      class="relative flex items-center justify-center gap-3 text-white font-bold tracking-widest uppercase"
+                    >
+                      Initialize Dispatch
+                      <i
+                        data-lucide="send"
+                        class="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                      ></i>
+                    </span>
+                  </button>
+                </form>
+
+                <div
+                  class="mt-8 flex items-center justify-center gap-4 text-slate-400"
+                >
+                  <span
+                    class="w-2 h-2 bg-green-500 rounded-full animate-pulse"
+                  ></span>
+                  <p class="text-[10px] font-bold uppercase tracking-[0.2em]">
+                    Average response time: 4-6 Hours
+                  </p>
+                </div>
               </div>
             </div>
-
-            <button type="submit" class="group relative w-full h-16 bg-slate-900 rounded-2xl overflow-hidden transition-all hover:shadow-2xl hover:shadow-indigo-500/20 active:scale-[0.98]">
-              <div class="absolute inset-0 bg-indigo-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-              <span class="relative flex items-center justify-center gap-3 text-white font-bold tracking-widest uppercase">
-                Initialize Dispatch
-                <i data-lucide="send" class="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
-              </span>
-            </button>
-          </form>
-
-          <div class="mt-8 flex items-center justify-center gap-4 text-slate-400">
-            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            <p class="text-[10px] font-bold uppercase tracking-[0.2em]">Average response time: 4-6 Hours</p>
           </div>
         </div>
-      </div>
+      </section>
 
-    </div>
-  </div>
-</section>
+      <!-- Feedback Section  -->
+      <section class="max-w-7xl mx-auto px-6 py-16">
+        <!-- HEADER -->
+        <!-- PREMIUM HEADER -->
+        <div class="mb-20 relative">
+          <div class="flex items-center gap-4 mb-2">
+            <span class="h-px w-12 bg-black"></span>
+
+            <span class="text-black font-semibold tracking-widest text-xl">
+              Live <span class="text-indigo-600">Feedback</span> from Our Valued
+              Clients<span class="dots"></span>
+            </span>
+          </div>
+        </div>
+
+        <!-- LOADER -->
+        <div id="loading" class="flex justify-center items-center py-10">
+          <div
+            class="animate-spin rounded-full h-12 w-12 border-[3px] border-indigo-500 border-t-transparent"
+          ></div>
+        </div>
+
+        <!-- GRID -->
+        <div
+          id="testimonialGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        ></div>
+      </section>
+      <script>
+        const SCRIPT_URL =
+          "https://script.google.com/macros/s/AKfycbyvocv2fdiSc4opkuR0upzigWpAjm83_kzK7w_a1WfxSOsbzVbA94fspiW8S34nMlcz/exec";
+
+        async function fetchFeedback() {
+          try {
+            const response = await fetch(SCRIPT_URL);
+            const data = await response.json();
+
+            const grid = document.getElementById("testimonialGrid");
+            const loader = document.getElementById("loading");
+
+            loader.classList.add("hidden");
+
+            const latestData = data.reverse().slice(0, 6);
+
+            grid.innerHTML = latestData
+              .map(
+                (item) => `
+            <div class="testimonial-card p-8 rounded-3xl border border-slate-100 relative overflow-hidden">
+                
+                <!-- Quote Icon -->
+                <div class="quote-icon">❝</div>
+
+                <!-- Stars -->
+                <div class="flex gap-1 text-yellow-400 mb-4">
+                    ${Array(5)
+                      .fill(
+                        `
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-yellow-400" viewBox="0 0 24 24">
+                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.824 1.548 8.27L12 18.896l-7.484 4.504 1.548-8.27L0 9.306l8.332-1.151z"/>
+                        </svg>
+                    `,
+                      )
+                      .join("")}
+                </div>
+
+                <!-- MESSAGE -->
+                <p class="text-slate-600 mb-6 text-sm leading-relaxed italic">
+                    "${item.message}"
+                </p>
+
+                <!-- USER -->
+                <div class="flex items-center gap-3 mt-auto">
+                    
+                    <!-- Avatar -->
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white flex items-center justify-center font-bold shadow-md">
+                        ${item.name.charAt(0).toUpperCase()}
+                    </div>
+
+                    <!-- Info -->
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wide">
+                            ${item.name}
+                        </h4>
+                        <p class="text-[10px] text-indigo-500 font-semibold uppercase tracking-widest">
+                            Verified Client
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        `,
+              )
+              .join("");
+          } catch (error) {
+            console.error("Error fetching data:", error);
+            document.getElementById("loading").innerHTML = `
+            <p class="text-red-500 text-sm font-semibold">
+                Failed to load live feedback.
+            </p>`;
+          }
+        }
+
+        fetchFeedback();
+      </script>
 
       <!-- Footer -->
 
-      <footer class="relative bg-slate-950 text-slate-400 pt-20 pb-10 px-6 overflow-hidden">
-  
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-indigo-900/10 via-transparent to-transparent"></div>
-  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
+      <footer
+        class="relative bg-slate-950 text-slate-400 pt-20 pb-10 px-6 overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-indigo-900/10 via-transparent to-transparent"
+        ></div>
+        <div
+          class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent"
+        ></div>
 
-  <div class="max-w-7xl mx-auto relative ">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
-      
-      <div class="md:col-span-4 text-center md:text-left space-y-6">
-        <div>
-          <h2 class="text-2xl font-black text-white tracking-tighter">
-            YK <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">OFFICIAL</span>
-          </h2>
-          <div class="h-1 w-12 bg-indigo-600 mt-1 mx-auto md:mx-0 rounded-full"></div>
+        <div class="max-w-7xl mx-auto relative">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
+            <div class="md:col-span-4 text-center md:text-left space-y-6">
+              <div>
+                <h2 class="text-2xl font-black text-white tracking-tighter">
+                  YK
+                  <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400"
+                    >OFFICIAL</span
+                  >
+                </h2>
+                <div
+                  class="h-1 w-12 bg-indigo-600 mt-1 mx-auto md:mx-0 rounded-full"
+                ></div>
+              </div>
+              <p
+                class="text-sm leading-relaxed max-w-sm mx-auto md:mx-0 text-slate-400"
+              >
+                Architecting high-performance digital ecosystems. Specializing
+                in AWS Cloud infrastructure and bespoke web engineering for
+                modern enterprises.
+              </p>
+
+              <div class="flex justify-center md:justify-start gap-4">
+                <a
+                  href="https://instagram.com/yegnesh.kamble"
+                  target="_blank"
+                  class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-pink-500 hover:border-pink-500/50 transition-all duration-300"
+                >
+                  <i class="fa-brands fa-instagram text-lg"></i>
+                </a>
+                <a
+                  href="https://github.com/yegneshkamble72"
+                  target="_blank"
+                  class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-white hover:border-white/50 transition-all duration-300"
+                >
+                  <i class="fa-brands fa-github text-lg"></i>
+                </a>
+                <a
+                  href="https://wa.me/917219274312"
+                  target="_blank"
+                  class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-green-500 hover:border-green-500/50 transition-all duration-300"
+                >
+                  <i class="fa-brands fa-whatsapp text-lg"></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/yegnesh-kamble-3a8669211"
+                  target="_blank"
+                  class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-blue-500 hover:border-blue-500/50 transition-all duration-300"
+                >
+                  <i class="fa-brands fa-linkedin text-lg"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="md:col-span-2 text-center md:text-left">
+              <h3
+                class="text-xs font-bold uppercase tracking-[0.2em] text-white mb-6"
+              >
+                Navigation
+              </h3>
+              <ul class="space-y-4 text-sm font-medium">
+                <li>
+                  <a
+                    href="#home"
+                    class="hover:text-indigo-400 transition-colors"
+                    >Home Base</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#about"
+                    class="hover:text-indigo-400 transition-colors"
+                    >Experience</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#skills"
+                    class="hover:text-indigo-400 transition-colors"
+                    >Tech Stack</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#projects"
+                    class="hover:text-indigo-400 transition-colors"
+                    >Showcase</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="md:col-span-2 text-center md:text-left">
+              <h3
+                class="text-xs font-bold uppercase tracking-[0.2em] text-white mb-6"
+              >
+                Resources
+              </h3>
+              <ul class="space-y-4 text-sm font-medium">
+                <li>
+                  <button
+                    onclick="toggleNotify()"
+                    class="hover:text-indigo-400 transition-colors"
+                  >
+                    Notifications
+                  </button>
+                </li>
+                <li>
+                  <a
+                    href="doc.html"
+                    class="hover:text-indigo-400 transition-colors"
+                    >Documentation</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="resume.html"
+                    class="hover:text-indigo-400 transition-colors"
+                    >Executive CV</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="ykvideoplayer.html"
+                    class="hover:text-indigo-400 transition-colors"
+                    >Media Suite</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="md:col-span-4 text-center md:text-right space-y-4">
+              <h3
+                class="text-xs font-bold uppercase tracking-[0.2em] text-white mb-6"
+              >
+                Contact Terminal
+              </h3>
+              <div class="space-y-3">
+                <a
+                  href="mailto:yegnesh7219@gmail.com"
+                  class="block text-lg font-bold text-indigo-400 hover:underline"
+                  >yegnesh7219@gmail.com</a
+                >
+                <p class="text-sm text-white">+91 72192 74312</p>
+                <p
+                  class="text-[12px] text-white uppercase tracking-widest leading-loose"
+                >
+                  Tekadi, Nagpur, Maharashtra<br />India - 441404
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-6"
+          >
+            <p
+              class="text-[10px] font-bold uppercase tracking-widest text-slate-600"
+            >
+              © 2026 YK OFFICIAL. Engineered with Precision.
+            </p>
+
+            <div
+              class="flex items-center gap-8 text-[10px] font-bold tracking-widest"
+            >
+              <a href="privacy.html" class="hover:text-white transition-colors"
+                >Privacy Protocol</a
+              >
+              <a href="terms.html" class="hover:text-white transition-colors"
+                >Terms of Service</a
+              >
+            </div>
+          </div>
         </div>
-        <p class="text-sm leading-relaxed max-w-sm mx-auto md:mx-0 text-slate-400">
-          Architecting high-performance digital ecosystems. Specializing in AWS Cloud infrastructure and bespoke web engineering for modern enterprises.
-        </p>
-        
-        <div class="flex justify-center md:justify-start gap-4">
-          <a href="https://instagram.com/yegnesh.kamble" target="_blank" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-pink-500 hover:border-pink-500/50 transition-all duration-300">
-            <i class="fa-brands fa-instagram text-lg"></i>
-          </a>
-          <a href="https://github.com/yegneshkamble72" target="_blank" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-white hover:border-white/50 transition-all duration-300">
-            <i class="fa-brands fa-github text-lg"></i>
-          </a>
-          <a href="https://wa.me/917219274312" target="_blank" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-green-500 hover:border-green-500/50 transition-all duration-300">
-            <i class="fa-brands fa-whatsapp text-lg"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/yegnesh-kamble-3a8669211" target="_blank" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-blue-500 hover:border-blue-500/50 transition-all duration-300">
-            <i class="fa-brands fa-linkedin text-lg"></i>
-          </a>
-        </div>
-      </div>
 
-      <div class="md:col-span-2 text-center md:text-left">
-        <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-white mb-6">Navigation</h3>
-        <ul class="space-y-4 text-sm font-medium">
-          <li><a href="#home" class="hover:text-indigo-400 transition-colors">Home Base</a></li>
-          <li><a href="#about" class="hover:text-indigo-400 transition-colors">Experience</a></li>
-          <li><a href="#skills" class="hover:text-indigo-400 transition-colors">Tech Stack</a></li>
-          <li><a href="#projects" class="hover:text-indigo-400 transition-colors">Showcase</a></li>
-        </ul>
-      </div>
-
-      <div class="md:col-span-2 text-center md:text-left">
-        <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-white mb-6">Resources</h3>
-        <ul class="space-y-4 text-sm font-medium">
-          <li><button onclick="toggleNotify()" class="hover:text-indigo-400 transition-colors">Notifications</button></li>
-          <li><a href="doc.html" class="hover:text-indigo-400 transition-colors">Documentation</a></li>
-          <li><a href="resume.html" class="hover:text-indigo-400 transition-colors">Executive CV</a></li>
-          <li><a href="ykvideoplayer.html" class="hover:text-indigo-400 transition-colors">Media Suite</a></li>
-        </ul>
-      </div>
-
-      <div class="md:col-span-4 text-center md:text-right space-y-4">
-        <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-white mb-6">Contact Terminal</h3>
-        <div class="space-y-3">
-          <a href="mailto:yegnesh7219@gmail.com" class="block text-lg font-bold text-indigo-400 hover:underline">yegnesh7219@gmail.com</a>
-          <p class="text-sm text-white">+91 72192 74312</p>
-          <p class="text-[12px] text-white uppercase tracking-widest leading-loose">
-            Tekadi, Nagpur, Maharashtra<br>India - 441404
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-6">
-      <p class="text-[10px] font-bold uppercase tracking-widest text-slate-600">
-        © 2026 YK OFFICIAL. Engineered with Precision.
-      </p>
-      
-      <div class="flex items-center gap-8 text-[10px] font-bold  tracking-widest">
-        <a href="privacy.html" class="hover:text-white transition-colors">Privacy Protocol</a>
-        <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
-      </div>
-    </div>
-  </div>
-
-  <button
-    onclick="scrollToTop()"
-    class="fixed bottom-8 right-8 z-50 group flex items-center gap-3"
-  >
-    <!-- <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[10px] font-black uppercase tracking-widest text-indigo-500 bg-slate-900/80 backdrop-blur-md px-3 py-2 rounded-lg border border-slate-800">
+        <button
+          onclick="scrollToTop()"
+          class="fixed bottom-8 right-8 z-50 group flex items-center gap-3"
+        >
+          <!-- <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[10px] font-black uppercase tracking-widest text-indigo-500 bg-slate-900/80 backdrop-blur-md px-3 py-2 rounded-lg border border-slate-800">
       Return to Peak
     </span> -->
-    <div class="w-12 h-12 rounded-2xl bg-indigo-600 text-white shadow-[0_10px_30px_rgba(79,70,229,0.4)] flex items-center justify-center hover:-translate-y-2 transition-all duration-300">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-        <path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-  </button>
-</footer>
+          <div
+            class="w-12 h-12 rounded-2xl bg-indigo-600 text-white shadow-[0_10px_30px_rgba(79,70,229,0.4)] flex items-center justify-center hover:-translate-y-2 transition-all duration-300"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M5 15l7-7 7 7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </button>
+      </footer>
     </div>
 
     <!-- Resume Modal -->
@@ -2432,7 +3356,6 @@
         }, 1000);
       }
     </script>
-
 
     <script src="script1.js"></script>
   </body>
