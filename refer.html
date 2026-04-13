@@ -9,6 +9,33 @@
       type="image/svg+xml"
       href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
     />
+    
+    <!-- url id code  -->
+  <script>
+    /**
+     * Unique ID Generate aur URL update karne ka function
+     */
+    function updateUrlWithUniqueId() {
+        // 6 characters ki Random Unique ID (YK-XXXXXX)
+        const uniqueId = Math.random().toString(36).substring(2, 8).toUpperCase();
+        
+        // Current Page Name (Pathname se page name nikalna)
+        const pageName = window.location.pathname.split("/").pop().split(".")[0] || 'home';
+        
+        // Naya URL Hash format: #pageName?uid=YKOFFICIAL-${uniqueId}
+        const newHash = `#${pageName}?uid=yKOfFiciAl${uniqueId}`;
+        
+        // Browser ka URL update karna bina reload kiye
+        window.history.replaceState(null, null, newHash);
+    }
+
+    // Jab page pehli baar load ho
+    window.addEventListener('DOMContentLoaded', updateUrlWithUniqueId);
+
+    // Agar aapki site single page hai aur sections change hote hain
+    window.addEventListener('hashchange', updateUrlWithUniqueId);
+</script>
+    
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
