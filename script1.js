@@ -615,6 +615,9 @@ function renderSkills() {
   }, 100);
 }
 
+
+
+
 // ===== PROJECT DATA =====
 const projects = [
   {
@@ -696,39 +699,105 @@ const projects = [
 ];
 
 // ===== RENDER PROJECTS =====
-function renderProjects() {
-  const container = document.getElementById("projectsContainer");
-  container.innerHTML = projects
-    .map(
-      (p, index) => `
-    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
-      <div class="h-48 overflow-hidden">
-        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover transform hover:scale-105 transition duration-300" />
-      </div>
-      <div class="p-6">
-        <h3 class="text-xl font-bold text-gray-800 mb-2">${p.title}</h3>
-        <p class="text-gray-600 mb-4 text-sm line-clamp-2">${p.description}</p>
+// function renderProjects() {
+//   const container = document.getElementById("projectsContainer");
+//   container.innerHTML = projects
+//     .map(
+//       (p, index) => `
+//     <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
+//       <div class="h-48 overflow-hidden">
+//         <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover transform hover:scale-105 transition duration-300" />
+//       </div>
+//       <div class="p-6">
+//         <h3 class="text-xl font-bold text-gray-800 mb-2">${p.title}</h3>
+//         <p class="text-gray-600 mb-4 text-sm line-clamp-2">${p.description}</p>
         
-        <div class="flex flex-col gap-3 mt-6">
-  <button onclick="openProjectModal(${index})" 
-          class="group relative w-full flex items-center justify-center gap-2 bg-slate-50 text-slate-700 px-4 py-3 rounded-xl border border-slate-200 hover:bg-white hover:border-purple-400 hover:text-purple-600 hover:shadow-md transition-all duration-300">
-    <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:scale-110 transition-transform"></i>
-    <span class="text-sm font-bold tracking-tight">Live Preview</span>
-  </button>
+//         <div class="flex flex-col gap-3 mt-6">
+//   <button onclick="openProjectModal(${index})" 
+//           class="group relative w-full flex items-center justify-center gap-2 bg-slate-50 text-slate-700 px-4 py-3 rounded-xl border border-slate-200 hover:bg-white hover:border-purple-400 hover:text-purple-600 hover:shadow-md transition-all duration-300">
+//     <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:scale-110 transition-transform"></i>
+//     <span class="text-sm font-bold tracking-tight">Live Preview</span>
+//   </button>
 
-  <button onclick="openPaymentModal('${p.title}', ${p.price})" 
-          class="relative w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-3 rounded-xl font-bold text-sm shadow-[0_10px_20px_-10px_rgba(79,70,229,0.5)] hover:shadow-[0_15px_25px_-5px_rgba(79,70,229,0.4)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full hover:animate-[shimmer_1.5s_infinite]"></div>
+//   <button onclick="openPaymentModal('${p.title}', ${p.price})" 
+//           class="relative w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-3 rounded-xl font-bold text-sm shadow-[0_10px_20px_-10px_rgba(79,70,229,0.5)] hover:shadow-[0_15px_25px_-5px_rgba(79,70,229,0.4)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 overflow-hidden">
+//     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full hover:animate-[shimmer_1.5s_infinite]"></div>
     
-    <i class="fa-solid fa-bag-shopping text-sm"></i>
-    <span class="tracking-wide">Buy Now</span>
-  </button>
-</div>
-      </div>
-    </div>`,
-    )
-    .join("");
+//     <i class="fa-solid fa-bag-shopping text-sm"></i>
+//     <span class="tracking-wide">Buy Now</span>
+//   </button>
+// </div>
+//       </div>
+//     </div>`,
+//     )
+//     .join("");
+// }
+
+
+
+// 
+
+
+
+let visibleProjects = 6;
+
+function renderProjects() {
+    const container = document.getElementById("projectsContainer");
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
+    
+    // Slice the array based on visibleProjects count
+    const displayed = projects.slice(0, visibleProjects);
+    
+    container.innerHTML = displayed.map((p, index) => `
+        <div class="group bg-white rounded-[2rem] border border-slate-100 p-3 hover:border-indigo-200 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] transition-all duration-500">
+            <div class="relative h-64 overflow-hidden rounded-[1.5rem] mb-6">
+                <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                    <p class="text-white text-xs font-medium backdrop-blur-md bg-white/10 px-3 py-1 rounded-full border border-white/20">Web Solution</p>
+                </div>
+            </div>
+            
+            <div class="px-4 pb-4">
+                <h3 class="text-xl font-black text-slate-900 mb-2 tracking-tight">${p.title}</h3>
+                <p class="text-slate-500 text-sm mb-6 line-clamp-2 font-medium">${p.description}</p>
+                
+                <div class="flex gap-3">
+                    <button onclick="openProjectModal(${index})" 
+                            class="flex-1 flex items-center justify-center border border-slate-300 gap-2 bg-slate-50 text-slate-700 px-4 py-3.5 rounded-2xl font-bold text-xs hover:bg-slate-100 transition-colors">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        PREVIEW
+                        
+                    </button>
+
+                    <button onclick="openPaymentModal('${p.title}', 0)" 
+                            class="flex-[1.5] flex items-center justify-center gap-2 bg-slate-900 text-white px-4 py-3.5 rounded-2xl font-bold text-xs hover:bg-indigo-600 shadow-lg shadow-slate-200 hover:shadow-indigo-200 transition-all">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        GET SOURCE
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join("");
+
+    // Hide button if all projects are displayed
+    if (visibleProjects >= projects.length) {
+        loadMoreBtn.parentElement.style.display = "none";
+    }
 }
+
+function handleLoadMore() {
+    const btn = document.getElementById("loadMoreBtn");
+    btn.innerHTML = `<span class="flex items-center gap-2"><div class="w-4 h-4 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div> Loading...</span>`;
+    
+    setTimeout(() => {
+        visibleProjects += 3; // Load 3 more at a time
+        renderProjects();
+        btn.innerHTML = `<span class="relative z-10 flex items-center gap-3">Explore More Projects <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg></span>`;
+    }, 600);
+}
+
+// Initial Call
+renderProjects();
 
 // ===== PROJECT MODAL LOGIC =====
 function openProjectModal(index) {
