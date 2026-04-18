@@ -168,6 +168,7 @@
   </head>
 
   <body class="min-h-full flex flex-col text-slate-900">
+    <!-- Main Loader -->
     <div
       id="main-loader"
       class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white text-center"
@@ -188,6 +189,8 @@
         <div id="loader-bar" class="h-full bg-blue-600"></div>
       </div>
     </div>
+    
+    <!-- Navigation -->
 
     <nav class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-6xl">
       <div
@@ -203,20 +206,13 @@
           >
         </div>
 
-        <div
-          class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-500"
-        >
-          <!-- <a href="#" class="hover:text-blue-600 transition-colors">Home</a> -->
-          <a href="#gallery" class="hover:text-blue-600 transition-colors"
-            >Gallery</a
-          >
-          <button
-            onclick="openContact()"
-            class="bg-slate-900 text-white px-5 py-2 rounded-xl hover:bg-blue-600 transition-all text-xs"
-          >
-            Contact Support
-          </button>
-        </div>
+        <div class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-500">
+         <a href="#gallery" class="hover:text-blue-600 text-sky-500 transition-colors">Gallery</a>
+         <button onclick="openCertificates()" class="hover:text-blue-600 transition-colors">Certificates</button>
+         <button onclick="openContact()" class="bg-slate-900 text-white px-5 py-2 rounded-xl hover:bg-blue-600 transition-all text-xs">
+           Contact Support
+         </button>
+       </div>
 
         <button
           onclick="toggleMobileMenu()"
@@ -227,32 +223,78 @@
       </div>
 
       <div
-        id="mobile-menu"
-        class="absolute top-full left-0 right-0 mt-2 glass rounded-2xl p-4 shadow-2xl md:hidden"
-      >
-        <div
-          class="flex flex-col gap-4 text-center font-semibold text-slate-600"
-        >
-          <!-- <a href="#" onclick="toggleMobileMenu()" class="py-2 hover:bg-blue-50 rounded-lg">Home</a> -->
-          <a
-            href="#gallery"
-            onclick="toggleMobileMenu()"
-            class="py-2 hover:bg-blue-50 rounded-lg"
-            >Gallery</a
-          >
-          <button
-            onclick="
-              openContact();
-              toggleMobileMenu();
-            "
-            class="bg-blue-600 text-white py-3 rounded-xl"
-          >
-            Contact Support
-          </button>
+  id="mobile-menu"
+  class="absolute top-full left-0 right-0 mt-2 glass rounded-2xl p-4 shadow-2xl md:hidden z-[100]"
+>
+  <div class="flex flex-col gap-2 text-center font-semibold text-slate-600">
+    <a 
+      href="#gallery" 
+      onclick="toggleMobileMenu()" 
+      class="py-3 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all"
+    >
+      Gallery
+    </a>
+
+    <button 
+      onclick="openCertificates(); toggleMobileMenu();" 
+      class="py-3 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all"
+    >
+      Certificates
+    </button>
+
+    <button
+      onclick="openContact(); toggleMobileMenu();"
+      class="bg-blue-600 text-white py-3 mt-2 rounded-xl shadow-lg shadow-blue-200 active:scale-95 transition-all"
+    >
+      Contact Support
+    </button>
+  </div>
+</div>
+    </nav>
+     <!-- Certificates Overlay -->
+    <div id="certOverlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xl hidden items-center justify-center z-[110] px-4 md:px-10">
+  <div class="glass bg-white/80 rounded-[2.5rem] w-full max-w-5xl h-[85vh] shadow-2xl relative overflow-hidden flex flex-col animate-scale">
+    
+    <div class="p-6 border-b border-slate-200/50 flex items-center justify-between bg-white/50">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
+          <i data-lucide="award"></i>
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-slate-900">Professional Certifications</h2>
+          <p class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">YK Official Verified</p>
         </div>
       </div>
-    </nav>
+      <button onclick="closeCertificates()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-400 transition-all">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
 
+    <div class="flex-1 w-full h-full bg-slate-50/50">
+      <iframe src="Certification.html" class="w-full h-full border-none" title="Certificates"></iframe>
+    </div>
+    
+  </div>
+</div>
+
+<script>
+  // Open Certificates Popup
+function openCertificates() {
+  const overlay = document.getElementById("certOverlay");
+  overlay.classList.replace("hidden", "flex");
+  document.body.style.overflow = "hidden"; // Scroll block karne ke liye
+}
+
+// Close Certificates Popup
+function closeCertificates() {
+  const overlay = document.getElementById("certOverlay");
+  overlay.classList.replace("flex", "hidden");
+  document.body.style.overflow = "auto"; // Scroll wapas enable karne ke liye
+}
+</script>
+
+
+    <!-- Gallery Section -->
     <section class="pt-40 pb-16 px-6 text-center">
       <div class="max-w-3xl mx-auto">
         <span
@@ -271,13 +313,13 @@
       </div>
     </section>
 
-    <section id="gallery" hidden class="px-6 pb-20 max-w-7xl mx-auto w-full">
+    <section id="gallery" class="px-6 pb-20 max-w-7xl mx-auto w-full">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div
+        <!-- <div
           class="stagger-item rounded-3xl overflow-hidden bg-white border h-72 shadow-sm relative group"
         >
           <img
-            src="yk1.png"
+            src="imgyk/yk1.png"
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div
@@ -290,7 +332,7 @@
           class="stagger-item rounded-3xl overflow-hidden bg-white border h-72 shadow-sm relative group"
         >
           <img
-            src="yk2.png"
+            src="imgyk/yk2.png"
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div
@@ -303,7 +345,7 @@
           class="stagger-item rounded-3xl overflow-hidden bg-white border h-72 shadow-sm relative group"
         >
           <img
-            src="yk3.png"
+            src="imgyk/yk3.png"
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div
@@ -311,8 +353,8 @@
           >
             <h3 class="font-bold"></h3>
           </div>
-        </div>
-        <div class="stagger-item rounded-3xl overflow-hidden bg-white border h-72 shadow-sm relative group">
+        </div> -->
+        <!-- <div class="stagger-item rounded-3xl overflow-hidden bg-white border h-72 shadow-sm relative group">
            <img src="imgyk/yk4.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end text-white">
              <h3 class="font-bold"></h3>
@@ -371,7 +413,7 @@
            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end text-white">
              <h3 class="font-bold"></h3>
            </div>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -390,7 +432,7 @@
         <div class="relative z-10 flex flex-col items-center text-center">
           <span
             class="text-[11px] font-black uppercase tracking-[0.4em] text-blue-600 mb-4 block"
-            >New Generation</span
+            >Coming Soon 1st Generation</span
           >
           <h2
             class="text-4xl md:text-6xl font-grotesk font-bold text-slate-900 mb-6 tracking-tighter"
