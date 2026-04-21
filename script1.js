@@ -932,7 +932,7 @@ document.querySelectorAll(".mobile-nav-link").forEach((link) => {
   });
 });
 
-// Form submission
+// contact Form submission
 
 // EmailJS Init
 (function () {
@@ -953,37 +953,51 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
   const userMessage = document.getElementById("message").value.trim();
 
   const uniqueID = generateID();
-
-  // Hidden input me ID set
   document.getElementById("request_id").value = uniqueID;
+
+  // 🔥 LOADER START
+  const btnText = document.getElementById("btnText");
+  const btnLoader = document.getElementById("btnLoader");
+  const submitBtn = document.getElementById("submitBtn");
+
+  btnText.classList.add("hidden");
+  btnLoader.classList.remove("hidden");
+  submitBtn.disabled = true;
 
   // EmailJS Send
   emailjs.sendForm("service_vdvjq06", "template_8zo34mz", this).then(
     function () {
-      // Google Sheet Send
-      fetch(
-        "https://script.google.com/macros/s/AKfycby8zdl1bJX3nnCG8WGu6bD95ojgPr2mj2rLnx3fSMB8ruGVgNAH7h82rbvEC--wtOWJ5Q/exec",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            id: uniqueID,
-            name: userName,
-            email: userEmail,
-            message: userMessage,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
+      // Google Sheet
+      fetch("https://script.google.com/macros/s/AKfycby8zdl1bJX3nnCG8WGu6bD95ojgPr2mj2rLnx3fSMB8ruGVgNAH7h82rbvEC--wtOWJ5Q/exec", {
+        method: "POST",
+        body: JSON.stringify({
+          id: uniqueID,
+          name: userName,
+          email: userEmail,
+          message: userMessage,
+        }),
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
+
+      // 🔥 LOADER STOP
+      btnText.classList.remove("hidden");
+      btnLoader.classList.add("hidden");
+      submitBtn.disabled = false;
 
       showPopup(userName, uniqueID);
       document.getElementById("contactForm").reset();
     },
     function (error) {
+      // 🔥 LOADER STOP (ERROR CASE)
+      btnText.classList.remove("hidden");
+      btnLoader.classList.add("hidden");
+      submitBtn.disabled = false;
+
       showPopup("Error", "Something went wrong!");
       console.log("EmailJS Error:", error);
-    },
+    }
   );
 });
 
@@ -1043,6 +1057,10 @@ function showPopup(name, id) {
   popup.classList.add("popup-container");
   document.body.appendChild(popup);
 }
+
+
+
+
 // Language change
 let currentLang = "en";
 
