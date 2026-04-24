@@ -525,7 +525,6 @@
               <!-- GALLERY BUTTON -->
               <a
                 href="gallery.html"
-               
                 class="flex items-center gap-2 px-4 py-1.5 rounded-full text-white text-sm font-semibold bg-gradient-to-r from-gray-800 to-black backdrop-blur-md border border-white/20 hover:scale-105 hover:shadow-[0_0_15px_rgba(0,0,0,0.5)] transition duration-300 group"
               >
                 <!-- ICON -->
@@ -648,15 +647,12 @@
               class="mobile-nav-link flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-all"
             >
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-               <path d="M10 2l2.39 4.84L18 7.27l-4 3.9.94 5.48L10 14.77l-4.94 2.88L6 11.17l-4-3.9 5.61-.43L10 2z"/>
-             </svg>
+                <path
+                  d="M10 2l2.39 4.84L18 7.27l-4 3.9.94 5.48L10 14.77l-4.94 2.88L6 11.17l-4-3.9 5.61-.43L10 2z"
+                />
+              </svg>
               <span class="font-medium">Certification</span>
             </a>
-
-            
-
-
-
 
             <a
               href="#skills"
@@ -672,9 +668,6 @@
               ><span class="font-medium">Skills</span>
             </a>
             <div>
-
-
-
               <button
                 onclick="toggleMobileProjects()"
                 class="flex items-center justify-between w-full px-4 py-3 rounded-lg text-gray-700 hover:bg-purple-50"
@@ -687,7 +680,7 @@
                   </svg>
                   Projects
                 </span>
-                
+
                 <!-- ARROW -->
                 <svg
                   id="arrowIcon"
@@ -1036,13 +1029,13 @@
           id="notifyHeader"
           class="relative flex justify-between items-center p-5 border-b border-white/10 bg-gradient-to-r from-white/5 to-transparent cursor-move"
         >
-          <div class="flex items-center gap-3 ">
+          <div class="flex items-center gap-3">
             <div class="relative animate-pulse">
               <span
                 class="absolute inset-0 bg-indigo-500 blur-md opacity-50 animate-pulse"
               ></span>
               <span
-                class="relative flex h-3 w-3 rounded-full bg-indigo-400 "
+                class="relative flex h-3 w-3 rounded-full bg-indigo-400"
               ></span>
             </div>
             <h2 class="font-bold text-white tracking-wide uppercase text-xs">
@@ -2700,7 +2693,9 @@
           </div>
         </div>
       </div>
+
       <hr class="border-slate-200 my-0" />
+
       <!-- Contact Section -->
 
       <section
@@ -2810,6 +2805,87 @@
                 </div>
               </div>
 
+              <!-- QR SECTION (NEW ADD) -->
+              <div class="relative group w-full max-w-sm mx-auto">
+                <!-- Glow Background -->
+                <div
+                  class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"
+                ></div>
+
+                <!-- Main Card -->
+                <div
+                  class="relative bg-white/90 backdrop-blur-xl p-7 rounded-3xl border border-slate-200 shadow-xl text-center overflow-hidden"
+                >
+                  <!-- Animated Top Bar -->
+                  <div
+                    class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-pulse"
+                  ></div>
+
+                  <!-- Title -->
+                  <p
+                    class="text-xs font-bold text-slate-400 uppercase tracking-[3px] mb-5"
+                  >
+                    Scan for Location
+                  </p>
+
+                  <!-- QR Container -->
+                  <div class="relative inline-block">
+                    <!-- Rotating Ring -->
+                    <div
+                      class="absolute inset-0 rounded-2xl border-2 border-indigo-300 animate-spin-slow opacity-30"
+                    ></div>
+
+                    <!-- QR Image -->
+                    <img
+                      src="map.png"
+                      alt="QR Code"
+                      class="w-44 h-44 mx-auto rounded-2xl border p-2 shadow-lg bg-white hover:scale-110 transition duration-500"
+                    />
+
+                    <!-- Scan Effect -->
+                    <div
+                      class="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-200/40 to-transparent opacity-0 group-hover:opacity-100 animate-[scan_2s_linear_infinite]"
+                    ></div>
+                  </div>
+
+                  <!-- Button -->
+                  <a
+                    href="https://maps.app.goo.gl/TiF6rXV6BJ4Aopsp9"
+                    target="_blank"
+                    class="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-semibold rounded-full shadow-md hover:shadow-xl hover:scale-105 transition duration-300"
+                  >
+                    <!-- Icon -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M5.05 3.05a7 7 0 019.9 9.9l-4.24 4.24a1 1 0 01-1.42 0L5.05 12.95a7 7 0 010-9.9z"
+                      />
+                    </svg>
+
+                    Open in Maps
+                  </a>
+                </div>
+              </div>
+
+              <!-- Custom Animation QR MAP -->
+              <style>
+                @keyframes scan {
+                  0% {
+                    transform: translateY(-100%);
+                  }
+                  100% {
+                    transform: translateY(100%);
+                  }
+                }
+                .animate-spin-slow {
+                  animation: spin 6s linear infinite;
+                }
+              </style>
+
               <div class="pt-8 border-t border-slate-100">
                 <p
                   class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6"
@@ -2855,103 +2931,124 @@
                 </div>
               </div>
             </div>
-
+            <!-- right form -->
             <div class="lg:col-span-7">
               <div
-                class="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-300 shadow-[0_30px_100px_rgba(0,0,0,0.04)]"
+                class="relative bg-white p-6 sm:p-10 md:p-12 rounded-[2rem] border border-slate-200 shadow-[0_20px_60px_rgba(0,0,0,0.06)]"
               >
+                <h2
+                  class="text-2xl text-center font-bold text-slate-800 uppercase tracking-wider mb-6"
+                >
+                  User <span class="text-indigo-600">Inquiry</span> System
+                </h2>
+
                 <form id="contactForm" class="space-y-8">
                   <input type="hidden" name="request_id" id="request_id" />
 
-                  <div class="grid md:grid-cols-2 gap-8">
-                    <div class="relative">
+                  <!-- NAME + EMAIL -->
+                  <div class="grid md:grid-cols-2 gap-6">
+                    <!-- NAME FIELD -->
+                    <div class="relative group">
                       <input
                         type="text"
                         id="name"
                         name="name"
                         required
-                        placeholder=" "
-                        class="peer w-full bg-transparent border-b-2 border-slate-200 py-3 focus:outline-none focus:border-indigo-600 transition-colors placeholder-transparent"
+                        class="w-full px-4 pt-6 pb-2 border border-slate-300 rounded-xl bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 transition"
                       />
+
+                      <!-- Floating Label -->
                       <label
                         for="name"
-                        class="absolute left-0 -top-3 text-xs uppercase tracking-widest text-slate-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:font-medium peer-focus:-top-3 peer-focus:text-xs peer-focus:text-indigo-600"
+                        class="absolute left-4 top-2 text-xs text-indigo-600 font-semibold tracking-wide"
                       >
                         Full Name
                       </label>
+
+                      <!-- Bottom Accent -->
+                      <div
+                        class="absolute bottom-0 left-0 w-0 h-[2px] bg-indigo-600 group-focus-within:w-full transition-all duration-500"
+                      ></div>
                     </div>
 
-                    <div class="relative">
+                    <!-- EMAIL FIELD -->
+                    <div class="relative group">
                       <input
                         type="email"
                         id="email"
                         name="email"
                         required
-                        placeholder=" "
-                        class="peer w-full bg-transparent border-b-2 border-slate-200 py-3 focus:outline-none focus:border-indigo-600 transition-colors placeholder-transparent"
+                        class="w-full px-4 pt-6 pb-2 border border-slate-300 rounded-xl bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 transition"
                       />
+
                       <label
                         for="email"
-                        class="absolute left-0 -top-3 text-xs uppercase tracking-widest text-slate-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:font-medium peer-focus:-top-3 peer-focus:text-xs peer-focus:text-indigo-600"
+                        class="absolute left-4 top-2 text-xs text-indigo-600 font-semibold tracking-wide"
                       >
                         Email Address
                       </label>
+
+                      <div
+                        class="absolute bottom-0 left-0 w-0 h-[2px] bg-indigo-600 group-focus-within:w-full transition-all duration-500"
+                      ></div>
                     </div>
                   </div>
 
-                  <div
-                    class="relative pt-4 rounded-2xl border border-slate-200"
-                  >
+                  <!-- MESSAGE FIELD -->
+                  <div class="relative group">
                     <textarea
                       id="message"
                       name="message"
-                      rows="4"
+                      rows="5"
                       required
-                      placeholder=" "
-                      class="peer w-full bg-slate-50/50 rounded-2xl p-6 focus:outline-none border-2 border-transparent focus:bg-white transition-all resize-none"
-                    >
-                    </textarea>
+                      class="w-full px-4 pt-6 pb-3 border border-slate-300 rounded-xl bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 transition resize-none"
+                    ></textarea>
+
                     <label
-                      for="message"
-                      class="absolute left-6 top-1 text-[10px] uppercase tracking-[0.2em] text-indigo-600 opacity-0 peer-focus:opacity-100 transition-opacity"
+                      class="absolute left-4 top-2 text-xs text-indigo-600 font-semibold tracking-wide"
                     >
                       Your Inquiry
                     </label>
+
                     <div
-                      class="absolute left-6 top-6 pointer-events-none text-slate-400 peer-focus:hidden peer-placeholder-shown:block"
-                    >
-                      How can I help you?
-                    </div>
+                      class="absolute bottom-0 left-0 w-0 h-[2px] bg-indigo-600 group-focus-within:w-full transition-all duration-500"
+                    ></div>
                   </div>
 
+                  <!-- BUTTON -->
                   <button
-                   type="submit"
-                   id="submitBtn"
-                   class="group relative w-full h-16 bg-slate-900 rounded-2xl overflow-hidden transition-all hover:shadow-2xl hover:shadow-indigo-500/20 active:scale-[0.98]"
-                 >
-                   <div class="absolute inset-0 bg-indigo-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                 
-                   <!-- TEXT -->
-                   <span id="btnText"
-                     class="relative flex items-center justify-center gap-3 text-white font-bold tracking-widest uppercase">
-                     Initialize Dispatch
-                   </span>
-                 
-                   <!-- LOADER -->
-                   <span id="btnLoader" class="hidden absolute inset-0 flex items-center justify-center">
-                     <div class="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                   </span>
-                 </button>
+                    type="submit"
+                    id="submitBtn"
+                    class="relative w-full h-14 rounded-xl bg-indigo-600 text-white font-semibold tracking-wide uppercase transition-all hover:bg-indigo-700 active:scale-[0.97] shadow-md"
+                  >
+                    <span
+                      id="btnText"
+                      class="flex items-center justify-center gap-2"
+                    >
+                      Initialize Dispatch
+                    </span>
+
+                    <!-- Loader -->
+                    <span
+                      id="btnLoader"
+                      class="hidden absolute inset-0 flex items-center justify-center"
+                    >
+                      <div
+                        class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+                      ></div>
+                    </span>
+                  </button>
                 </form>
 
+                <!-- STATUS -->
                 <div
-                  class="mt-8 flex items-center justify-center gap-4 text-slate-400"
+                  class="mt-8 flex items-center justify-center gap-2 text-slate-500"
                 >
                   <span
-                    class="w-2 h-2 bg-green-500 rounded-full animate-pulse"
+                    class="w-2 h-2 bg-green-500 rounded-full animate-ping"
                   ></span>
-                  <p class="text-[10px] font-bold uppercase tracking-[0.2em]">
-                    Average response time: 4-6 Hours
+                  <p class="text-xs tracking-widest uppercase font-medium">
+                    Avg Response: 4-6 Hours
                   </p>
                 </div>
               </div>
@@ -2960,11 +3057,7 @@
         </div>
       </section>
 
-
-
       <hr class="border-slate-200 my-0" />
-
-
 
       <!-- Feedback Section  -->
       <section class="max-w-7xl mx-auto px-6 py-16">
