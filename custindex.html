@@ -10,30 +10,34 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <!-- url id code  -->
-  <script>
-    /**
-     * Unique ID Generate aur URL update karne ka function
-     */
-    function updateUrlWithUniqueId() {
+    <script>
+      /**
+       * Unique ID Generate aur URL update karne ka function
+       */
+      function updateUrlWithUniqueId() {
         // 6 characters ki Random Unique ID (YK-XXXXXX)
-        const uniqueId = Math.random().toString(36).substring(2, 8).toUpperCase();
-        
+        const uniqueId = Math.random()
+          .toString(36)
+          .substring(2, 8)
+          .toUpperCase();
+
         // Current Page Name (Pathname se page name nikalna)
-        const pageName = window.location.pathname.split("/").pop().split(".")[0] || 'home';
-        
+        const pageName =
+          window.location.pathname.split("/").pop().split(".")[0] || "home";
+
         // Naya URL Hash format: #pageName?uid=YKOFFICIAL-${uniqueId}
         const newHash = `#${pageName}?uid=yKOfFiciAl${uniqueId}`;
-        
+
         // Browser ka URL update karna bina reload kiye
         window.history.replaceState(null, null, newHash);
-    }
+      }
 
-    // Jab page pehli baar load ho
-    window.addEventListener('DOMContentLoaded', updateUrlWithUniqueId);
+      // Jab page pehli baar load ho
+      window.addEventListener("DOMContentLoaded", updateUrlWithUniqueId);
 
-    // Agar aapki site single page hai aur sections change hote hain
-    window.addEventListener('hashchange', updateUrlWithUniqueId);
-</script>
+      // Agar aapki site single page hai aur sections change hote hain
+      window.addEventListener("hashchange", updateUrlWithUniqueId);
+    </script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
 
@@ -230,6 +234,16 @@
               class="bg-emerald-600 hover:bg-emerald-500 w-1/2 rounded-xl font-bold transition-all uppercase text-sm text-white"
             >
               Verify Identity
+            </button>
+          </div>
+          <div class="mt-4 text-center">
+            <button
+              id="resendBtn"
+              onclick="sendOTP()"
+              disabled
+              class="text-sm text-slate-500 font-medium hover:text-indigo-400 transition-colors disabled:cursor-not-allowed disabled:hover:text-slate-500"
+            >
+              Resend OTP <span id="timer">(30s)</span>
             </button>
           </div>
         </div>
@@ -455,6 +469,31 @@
         document.getElementById("popup").classList.add("hidden");
       }
 
+      let timerInterval;
+
+      function startTimer() {
+        const resendBtn = document.getElementById("resendBtn");
+        const timerText = document.getElementById("timer");
+        let timeLeft = 30;
+
+        resendBtn.disabled = true;
+
+        // Clear any existing timer
+        clearInterval(timerInterval);
+
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            resendBtn.disabled = false;
+            timerText.innerText = ""; // Hide timer when ready
+          } else {
+            timerText.innerText = `(${timeLeft}s)`;
+          }
+        }, 1000);
+      }
+
+      // Modify your existing sendOTP function
       async function sendOTP() {
         let email = document.getElementById("email").value;
         if (!email || !email.includes("@"))
@@ -469,7 +508,11 @@
           });
           hideLoader();
           showPopup("Success", "Security code dispatched to your inbox.");
-          updateStepUI(2); // Move to Step 2
+
+          // --- NEW LOGIC START ---
+          updateStepUI(2);
+          startTimer(); // Start the 30s countdown
+          // --- NEW LOGIC END ---
         } catch (e) {
           hideLoader();
           showPopup("Error", "Failed to send verification code.");
