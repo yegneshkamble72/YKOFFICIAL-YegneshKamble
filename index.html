@@ -947,7 +947,7 @@
               <!-- DATE TIME -->
               <span
                 id="currentDateTime"
-                class="px-3 py-1.5 rounded-xl text-white text-xs sm:text-sm bg-white/10 backdrop-blur-md border border-white/20 shadow-inner tracking-wide"
+                class="hidden md:inline-block px-3 py-1.5 rounded-xl text-white text-xs sm:text-sm bg-white/10 backdrop-blur-md border border-white/20 shadow-inner tracking-wide"
               >
               </span>
 
@@ -998,7 +998,7 @@
                     // Mobile: Only Country | Desktop: Country • City
                     locationText.innerHTML = `
                      <span class="inline-block">${country}</span>
-                     <span class="hidden sm:inline"> • ${city}</span>
+                     <span class=" hidden sm:inline"> • ${city}</span>
                    `;
                   } catch (error) {
                     locationText.textContent = "📍 Location Unavailable";
@@ -1020,17 +1020,20 @@
               >
                 <div
                   id="networkVisual"
-                  class="relative flex items-center justify-center w-10 h-5"
+                  class="flex items-end gap-[2px] h-5 w-10 justify-center"
                 >
-                  <div
-                    class="pulse-ring absolute w-4 h-4 rounded-full bg-green-500/20 animate-ping"
-                  ></div>
-                  <div
-                    class="node avatar-1 absolute w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-tr from-purple-600 to-blue-500 border border-white/20"
-                  ></div>
-                  <div
-                    class="node avatar-2 absolute w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-tr from-pink-600 to-orange-500 border border-white/20"
-                  ></div>
+                  <span
+                    class="bar w-[3px] h-[4px] bg-white/30 rounded-sm"
+                  ></span>
+                  <span
+                    class="bar w-[3px] h-[7px] bg-white/30 rounded-sm"
+                  ></span>
+                  <span
+                    class="bar w-[3px] h-[10px] bg-white/30 rounded-sm"
+                  ></span>
+                  <span
+                    class="bar w-[3px] h-[13px] bg-white/30 rounded-sm"
+                  ></span>
                 </div>
 
                 <div class="hidden sm:flex flex-col leading-tight">
@@ -1095,6 +1098,46 @@
                 </div>
               </div>
               <script src="networklive.js"></script>
+
+              <style>
+                .bar {
+                  transition: all 0.3s ease;
+                }
+
+                /* Levels */
+                .signal-1 .bar:nth-child(1) {
+                  background: #22c55e;
+                }
+                .signal-2 .bar:nth-child(-n + 2) {
+                  background: #22c55e;
+                }
+                .signal-3 .bar:nth-child(-n + 3) {
+                  background: #22c55e;
+                }
+                .signal-4 .bar {
+                  background: #22c55e;
+                }
+
+                /* Weak */
+                .signal-1 .bar {
+                  opacity: 0.6;
+                }
+                .signal-2 .bar {
+                  opacity: 0.7;
+                }
+                .signal-3 .bar {
+                  opacity: 0.85;
+                }
+                .signal-4 .bar {
+                  opacity: 1;
+                }
+
+                /* Offline */
+                .is-offline .bar {
+                  background: #ef4444 !important;
+                  opacity: 0.5;
+                }
+              </style>
 
               <style>
                 /* Nodes Animation */
@@ -1258,79 +1301,86 @@
                 ></span>
               </button>
 
-              <!-- MOBILE MENU -->
+              <!-- MOBILE MENU (UPGRADED) -->
               <div
                 id="mobileMenu2"
-                class="md:hidden fixed top-[64px] left-0 w-full bg-slate-950/90 backdrop-blur-2xl border-b border-white/10 opacity-0 -translate-y-4 pointer-events-none transition-all duration-500 ease-out z-40 overflow-hidden"
+                class="md:hidden fixed top-[70px] left-0 w-full bg-gradient-to-b from-slate-950/95 to-black/90 backdrop-blur-3xl border-b border-white/10 opacity-0 -translate-y-6 scale-95 pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] z-40 overflow-hidden"
               >
-                <!-- Background Glow Decor -->
+                <!-- Glow Effects -->
                 <div
-                  class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-purple-600/20 blur-[100px] -z-10"
+                  class="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-72 bg-purple-600/20 blur-[120px]"
+                ></div>
+                <div
+                  class="absolute bottom-0 right-0 w-60 h-60 bg-pink-500/10 blur-[100px]"
                 ></div>
 
-                <div class="grid grid-cols-2 gap-3 p-5">
-                  <!-- Registration: Modern White Card -->
+                <!-- Content -->
+                <div class="grid grid-cols-2 gap-4 p-5 relative">
+                  <!-- Registration -->
                   <a
                     href="custindex.html"
-                    class="group flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white transition-all duration-300 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                    class="group flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white/90 backdrop-blur-xl text-slate-900 transition-all duration-300 active:scale-95 hover:shadow-[0_10px_40px_rgba(255,255,255,0.15)]"
                   >
                     <div
-                      class="p-3 rounded-xl bg-purple-100 text-purple-700 group-hover:scale-110 transition-transform"
+                      class="p-3 rounded-xl bg-purple-100 text-purple-700 group-hover:scale-110 transition"
                     >
+                      <!-- icon same -->
                       <svg
                         class="w-6 h-6"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
-                        stroke-width="2"
                       >
                         <path
                           stroke-linecap="round"
                           stroke-linejoin="round"
+                          stroke-width="2"
                           d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
                         />
                       </svg>
                     </div>
-                    <span
-                      class="text-slate-900 font-bold text-xs uppercase tracking-wider"
-                      >Registration</span
-                    >
+
+                    <span class="font-bold text-xs uppercase tracking-wider">
+                      Registration
+                    </span>
                   </a>
 
-                  <!-- Admin: Cyber Gradient Card -->
+                  <!-- Admin -->
                   <a
                     href="adminindex.html"
-                    class="group flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-700 text-white transition-all duration-300 active:scale-95 shadow-lg shadow-indigo-500/20"
+                    class="group flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-gradient-to-br from-indigo-600 via-purple-600 to-violet-700 text-white transition-all duration-300 active:scale-95 hover:shadow-[0_10px_40px_rgba(139,92,246,0.4)]"
                   >
                     <div
-                      class="p-3 rounded-xl bg-white/20 group-hover:rotate-12 transition-transform"
+                      class="p-3 rounded-xl bg-white/20 group-hover:rotate-12 transition"
                     >
                       <svg
                         class="w-6 h-6"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
-                        stroke-width="2"
                       >
                         <path
                           stroke-linecap="round"
                           stroke-linejoin="round"
+                          stroke-width="2"
                           d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                         />
                       </svg>
                     </div>
-                    <span class="font-bold text-xs uppercase tracking-wider"
-                      >Admin Panel</span
-                    >
+
+                    <span class="font-bold text-xs uppercase tracking-wider">
+                      Admin Panel
+                    </span>
                   </a>
 
-                  <!-- Live Meeting: Full Width Glass Card -->
+                  <!-- Live -->
                   <a
                     href="https://meet.google.com"
                     target="_blank"
-                    class="col-span-2 group flex items-center justify-between px-6 py-5 rounded-2xl bg-white/5 border border-white/10 text-white transition-all duration-300 hover:bg-white/10 active:scale-[0.98]"
+                    class="col-span-2 group flex items-center justify-between px-6 py-5 rounded-2xl bg-white/5 border border-white/10 text-white transition-all duration-300 hover:bg-white/10 active:scale-[0.97]"
                   >
                     <div class="flex items-center gap-4">
+                      <!-- Pulse Icon -->
                       <div class="relative">
                         <div
                           class="absolute inset-0 bg-red-500 animate-ping rounded-full opacity-20"
@@ -1344,28 +1394,28 @@
                             viewBox="0 0 24 24"
                           >
                             <path
-                              d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z"
+                              d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3z"
                             />
                           </svg>
                         </div>
                       </div>
+
                       <div class="flex flex-col">
                         <span class="font-bold text-sm">Join Live Session</span>
                         <span
                           class="text-[10px] text-white/40 uppercase tracking-[2px]"
-                          >Google Meet</span
                         >
+                          Google Meet
+                        </span>
                       </div>
                     </div>
+
+                    <!-- Arrow -->
                     <svg
-                      class="w-5 h-5 text-white/30 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                      class="w-5 h-5 text-white/30 group-hover:translate-x-1 transition"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        stroke="currentColor"
                         stroke-width="2"
                         d="M17 8l4 4m0 0l-4 4m4-4H3"
                       />
@@ -1413,6 +1463,26 @@
                     l3.classList.remove("-translate-y-[6px]", "-rotate-45");
                   }
                 }
+              </script>
+
+              <script>
+                document.addEventListener("click", function (e) {
+                  const menu = document.getElementById("mobileMenu2");
+
+                  if (!menu.contains(e.target) && !e.target.closest("button")) {
+                    menu.classList.add(
+                      "opacity-0",
+                      "-translate-y-6",
+                      "scale-95",
+                      "pointer-events-none",
+                    );
+                    menu.classList.remove(
+                      "opacity-100",
+                      "translate-y-0",
+                      "scale-100",
+                    );
+                  }
+                });
               </script>
             </div>
 
@@ -4185,191 +4255,7 @@
 </style> -->
 
     <!-- ADVANCED SOURCE PROTECTION -->
-
-    <script>
-      (function () {
-        const triggerSecurity = () => {
-          // Clear interval if user keeps spamming
-          const style = `
-        <style>
-          :root {
-            --bg: #030712;
-            --accent: #3b82f6;
-            --danger: #ef4444;
-            --glass: rgba(15, 23, 42, 0.8);
-            --border: rgba(255, 255, 255, 0.1);
-          }
-          
-          body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at center, #111827 0%, var(--bg) 100%);
-            font-family: 'Inter', -apple-system, sans-serif;
-            color: #f8fafc;
-            overflow: hidden;
-          }
-
-          .container {
-            position: relative;
-            width: 90%;
-            max-width: 500px;
-            padding: 40px;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-          }
-
-          .shield-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 24px;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            animation: pulse 2s infinite;
-          }
-
-          .title {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: -0.025em;
-            margin-bottom: 12px;
-            background: linear-gradient(to right, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-          }
-
-          .subtitle {
-            font-size: 15px;
-            color: #94a3b8;
-            line-height: 1.6;
-            margin-bottom: 30px;
-          }
-
-          .status-badge {
-            display: inline-block;
-            padding: 6px 12px;
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger);
-            border-radius: 100px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-          }
-
-          .info-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            padding-top: 25px;
-            border-top: 1px solid var(--border);
-            text-align: left;
-          }
-
-          .info-item {
-            font-size: 13px;
-            color: #64748b;
-          }
-
-          .info-item b { color: #e2e8f0; font-weight: 500; }
-
-          .timer-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 4px;
-            background: var(--accent);
-            width: 100%;
-            transform-origin: left;
-            animation: shrink 5s linear forwards;
-          }
-
-          @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.8; }
-          }
-
-          @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-
-          @keyframes shrink {
-            from { transform: scaleX(1); }
-            to { transform: scaleX(0); }
-          }
-        </style>
-      `;
-
-          document.body.innerHTML = `
-        ${style}
-        <div class="container">
-          <div class="status-badge">Integrity Breach Detected</div>
-          <div class="shield-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-          </div>
-          <h1 class="title">Security Protocol Active</h1>
-          <p class="subtitle">
-            Source code inspection and developer tools are restricted on this environment. 
-            Access has been logged and the session is being terminated.
-          </p>
-          
-          <div class="info-grid">
-            <div class="info-item">Provider: <b>YK OFFICIAL SECURITY</b></div>
-            <div class="info-item">Administrator: <b>Yegnesh Kamble</b></div>
-            <div class="info-item">Contact: <b>Yegnesh7219@gmail.com</b></div>
-          </div>
-
-          <div class="timer-bar"></div>
-        </div>
-      `;
-
-          setTimeout(() => location.reload(), 5000);
-        };
-
-        // Event Listeners
-        document.addEventListener("contextmenu", (e) => {
-          e.preventDefault();
-          triggerSecurity();
-        });
-
-        document.addEventListener("keydown", (e) => {
-          const keys = ["F12", "I", "J", "U", "C"];
-          if (
-            keys.includes(e.key) ||
-            (e.ctrlKey &&
-              e.shiftKey &&
-              (e.key === "I" || e.key === "J" || e.key === "C")) ||
-            (e.ctrlKey && e.key === "U")
-          ) {
-            e.preventDefault();
-            triggerSecurity();
-          }
-        });
-
-        // Detect DevTools by Window Resize
-        setInterval(() => {
-          const threshold = 160;
-          if (
-            window.outerWidth - window.innerWidth > threshold ||
-            window.outerHeight - window.innerHeight > threshold
-          ) {
-            triggerSecurity();
-          }
-        }, 1000);
-      })();
-    </script>
+    <script src="security.js"></script>
     <script src="script1.js"></script>
   </body>
 </html>
