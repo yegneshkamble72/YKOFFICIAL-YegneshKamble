@@ -10,7 +10,7 @@ function updateNetworkStatus() {
         if(visualContainer) visualContainer.classList.remove('is-offline');
         if(statusDot) {
             statusDot.innerHTML = "● LIVE";
-            statusDot.className = "text-[9px] text-green-400 font-medium animate-pulse";
+            statusDot.className = "text-[10px] text-green-400 font-bold animate-pulse";
         }
         // 2. Trigger Toast
         triggerToast('online');
@@ -19,7 +19,7 @@ function updateNetworkStatus() {
         if(visualContainer) visualContainer.classList.add('is-offline');
         if(statusDot) {
             statusDot.innerHTML = "● DISCONNECTED";
-            statusDot.className = "text-[9px] text-red-500 font-medium";
+            statusDot.className = "text-[10px] text-red-500 font-bold";
         }
         // 2. Trigger Toast
         triggerToast('offline');
@@ -78,14 +78,14 @@ function triggerToast(type) {
 window.addEventListener('online', () => {
     document.getElementById('networkVisual').classList.remove('is-offline');
     document.getElementById('statusDot').innerHTML = "● LIVE";
-    document.getElementById('statusDot').className = "text-[9px] text-green-400 font-medium animate-pulse";
+    document.getElementById('statusDot').className = "text-[10px] text-green-400 font-bold animate-pulse";
     triggerToast('online');
 });
 
 window.addEventListener('offline', () => {
     document.getElementById('networkVisual').classList.add('is-offline');
     document.getElementById('statusDot').innerHTML = "● DISCONNECTED";
-    document.getElementById('statusDot').className = "text-[9px] text-red-500 font-medium";
+    document.getElementById('statusDot').className = "text-[10px] text-red-500 font-bold";
     triggerToast('offline');
 });
 
@@ -101,51 +101,55 @@ window.addEventListener('load', () => {
         if(visualContainer) visualContainer.classList.remove('is-offline');
         if(statusDot) {
             statusDot.innerHTML = "● LIVE";
-            statusDot.className = "text-[9px] text-green-400 font-medium animate-pulse";
+            statusDot.className = "text-[10px] text-green-400 font-bold animate-pulse";
         }
     }
 });
 
+// bar update function using Network Information API (if supported)
+function updateNetworkBars() {
+  const container = document.getElementById("networkVisual");
 
+  // Reset classes
+  container.classList.remove("signal-1","signal-2","signal-3","signal-4","is-offline");
 
+  if (!navigator.onLine) {
+    container.classList.add("is-offline");
+    return;
+  }
 
+  // Approx strength using Network Information API
+  let level = 4; // default strong
 
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
+  if (connection) {
+    const downlink = connection.downlink;
 
+    if (downlink < 1) level = 1;
+    else if (downlink < 3) level = 2;
+    else if (downlink < 5) level = 3;
+    else level = 4;
+  }
 
-
-function openNetworkModal() {
-    const modal = document.getElementById('networkModal');
-    const content = document.getElementById('modalContent');
-    
-    // Update Modal Data before showing
-    const statusText = navigator.onLine ? "CONNECTED" : "OFFLINE";
-    const statusColor = navigator.onLine ? "#22c55e" : "#ef4444";
-    const speed = navigator.connection ? navigator.connection.downlink + " Mbps" : "N/A";
-
-    document.getElementById('modalStatus').innerText = statusText;
-    document.getElementById('modalStatus').style.color = statusColor;
-    document.getElementById('modalSpeed').innerText = speed;
-
-    // Show Modal with Animation
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    
-    setTimeout(() => {
-        content.classList.remove('scale-95', 'opacity-0');
-        content.classList.add('scale-100', 'opacity-100');
-    }, 10);
+  container.classList.add("signal-" + level);
 }
 
-function closeNetworkModal() {
-    const modal = document.getElementById('networkModal');
-    const content = document.getElementById('modalContent');
+// Run on load
+updateNetworkBars();
 
-    content.classList.remove('scale-100', 'opacity-100');
-    content.classList.add('scale-95', 'opacity-0');
+// Listen changes
+window.addEventListener("online", updateNetworkBars);
+window.addEventListener("offline", updateNetworkBars);
 
-    setTimeout(() => {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-    }, 300);
+if (navigator.connection) {
+  navigator.connection.addEventListener("change", updateNetworkBars);
 }
+
+
+
+
+
+
+
+
