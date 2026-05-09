@@ -1,311 +1,634 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YK OFFICIAL | Admin Portal</title>
     <link rel="icon" href="https://i.ibb.co/hJCHgThF/logo-yk-crop.png" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
     <!-- url id code  -->
-  <script>
-    /**
-     * Unique ID Generate aur URL update karne ka function
-     */
-    function updateUrlWithUniqueId() {
+    <script>
+      /**
+       * Unique ID Generate aur URL update karne ka function
+       */
+      function updateUrlWithUniqueId() {
         // 6 characters ki Random Unique ID (YK-XXXXXX)
-        const uniqueId = Math.random().toString(36).substring(2, 8).toUpperCase();
-        
+        const uniqueId = Math.random()
+          .toString(36)
+          .substring(2, 8)
+          .toUpperCase();
+
         // Current Page Name (Pathname se page name nikalna)
-        const pageName = window.location.pathname.split("/").pop().split(".")[0] || 'home';
-        
+        const pageName =
+          window.location.pathname.split("/").pop().split(".")[0] || "home";
+
         // Naya URL Hash format: #pageName?uid=YKOFFICIAL-${uniqueId}
         const newHash = `#${pageName}?Ad=yKOfFiciAl${uniqueId}`;
-        
+
         // Browser ka URL update karna bina reload kiye
         window.history.replaceState(null, null, newHash);
-    }
+      }
 
-    // Jab page pehli baar load ho
-    window.addEventListener('DOMContentLoaded', updateUrlWithUniqueId);
+      // Jab page pehli baar load ho
+      window.addEventListener("DOMContentLoaded", updateUrlWithUniqueId);
 
-    // Agar aapki site single page hai aur sections change hote hain
-    window.addEventListener('hashchange', updateUrlWithUniqueId);
-</script>
+      // Agar aapki site single page hai aur sections change hote hain
+      window.addEventListener("hashchange", updateUrlWithUniqueId);
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
-        
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #020617;
-            color: #f8fafc;
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap");
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background: #020617;
+        color: #f8fafc;
+      }
+
+      .glass {
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .cyber-gradient {
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      }
+
+      /* Custom Table Scrollbar */
+      .custom-scroll::-webkit-scrollbar {
+        height: 6px;
+        width: 6px;
+      }
+      .custom-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scroll::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 10px;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
         }
-
-        .glass {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
+      .animate-fade {
+        animation: fadeIn 0.4s ease forwards;
+      }
 
-        .cyber-gradient {
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      /* Loader */
+      .yk-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(99, 102, 241, 0.1);
+        border-top: 3px solid #6366f1;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin {
+        100% {
+          transform: rotate(360deg);
         }
+      }
 
-        /* Custom Table Scrollbar */
-        .custom-scroll::-webkit-scrollbar { height: 6px; width: 6px; }
-        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade { animation: fadeIn 0.4s ease forwards; }
-
-        /* Loader */
-        .yk-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(99, 102, 241, 0.1);
-            border-top: 3px solid #6366f1;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        #pageLoader {
-            position: fixed; inset: 0; background: #000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999;
-        }
+      #pageLoader {
+        position: fixed;
+        inset: 0;
+        background: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
     </style>
-</head>
+  </head>
 
-<body class="antialiased">
-
+  <body class="antialiased">
     <div id="pageLoader">
-        <div class="yk-spinner"></div>
-        <div class="mt-6 text-indigo-500 font-bold tracking-widest animate-pulse">YK OFFICIAL ADMIN</div>
+      <div class="yk-spinner"></div>
+      <div class="mt-6 text-indigo-500 font-bold tracking-widest animate-pulse">
+        YK OFFICIAL ADMIN
+      </div>
     </div>
 
-    <div id="loginPage" class="relative flex items-center justify-center min-h-screen p-4 overflow-hidden">
-    <div style="background-image: url('adminbg.png'); background-size: cover; background-position: center; filter: brightness(0.2) ; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></div>
+    <div id="loginPage" class="relative flex items-center justify-center min-h-screen p-4 overflow-hidden bg-slate-950">
+    <!-- Animated Background Layer -->
+    <div
+        style="
+            background-image: url('adminbg.png');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.25) saturate(1.2);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        "
+        class="animate-background-slow"
+    ></div>
 
-    <div class="glass relative p-8 bg-white bg-opacity-5 rounded-3xl w-full max-w-md shadow-2xl animate-fade border border-indigo-500/20 z-10">
-        <div class="text-center mb-8">
-            <img src="https://i.ibb.co/hJCHgThF/logo-yk-crop.png" class="w-16 h-16 mx-auto mb-4 rounded-full border-2 border-indigo-500 p-1 shadow-lg shadow-indigo-500/20">
-            <h2 class="text-2xl font-bold">Admin <span class="text-indigo-400">Portal</span></h2>
-            <p class="text-slate-400 text-sm mt-1">Authorized Access Only</p>
+    <!-- Glassmorphic Login Card -->
+    <div class="glass relative p-8 bg-white/5 rounded-3xl w-full max-w-md shadow-2xl border border-white/10 z-10 backdrop-blur-xl">
+        <!-- Glow Effect behind logo -->
+        <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-32 h-32 bg-indigo-500/20 blur-3xl rounded-full"></div>
+
+        <div class="text-center mb-8 relative">
+            <img
+                src="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
+                class="w-20 h-20 mx-auto mb-4 rounded-full border-2 border-indigo-500/50 p-1.5 shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:rotate-6 transition-transform duration-500"
+            />
+            <h2 class="text-2xl font-black tracking-tight text-white">
+                ADMIN <span class="text-indigo-400">PORTAL</span>
+            </h2>
+            <div class="flex justify-center items-center gap-2 mt-2">
+                <span class="h-[1px] w-8 bg-gradient-to-r from-transparent to-slate-500"></span>
+                <p class="text-slate-400 text-xs font-bold uppercase tracking-[0.2em]">Authorized Only</p>
+                <span class="h-[1px] w-8 bg-gradient-to-l from-transparent to-slate-500"></span>
+            </div>
         </div>
 
-        <div class="space-y-4">
-            <div>
-                <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1 block">Username</label>
-                <input id="user" type="text" class="w-full bg-slate-900/50 border border-slate-700 p-3 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
+        <div class="space-y-5">
+            <div class="group">
+                <label class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-1.5 ml-1 block">Username</label>
+                <input
+                    id="user"
+                    type="text"
+                    placeholder="Enter admin ID"
+                    class="w-full bg-slate-900/40 border border-white/10 p-3.5 rounded-xl text-white placeholder:text-slate-600 focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all duration-300"
+                />
             </div>
-            <div>
-                <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1 block">Password</label>
-                <input id="pass" type="password" class="w-full bg-slate-900/50 border border-slate-700 p-3 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
+            <div class="group">
+                <label class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-1.5 ml-1 block">Password</label>
+                <input
+                    id="pass"
+                    type="password"
+                    placeholder="••••••••"
+                    class="w-full bg-slate-900/40 border border-white/10 p-3.5 rounded-xl text-white placeholder:text-slate-600 focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all duration-300"
+                />
             </div>
-            <button onclick="login()" class="cyber-gradient w-full py-4 rounded-xl font-bold text-white shadow-lg shadow-indigo-500/25 hover:scale-[1.02] transition-transform active:scale-95">
-                Sign In
+            
+            <button
+                onclick="login()"
+                class="relative overflow-hidden group w-full py-4 rounded-xl font-black uppercase tracking-widest text-white bg-indigo-600 shadow-lg shadow-indigo-500/20 hover:bg-indigo-500 active:scale-95 transition-all duration-300"
+            >
+                <span class="relative z-10">Sign In System</span>
+                <!-- Button Shine Effect -->
+                <div class="absolute inset-0 w-1/2 h-full bg-white/20 -skew-x-[30deg] -translate-x-full group-hover:animate-shine"></div>
             </button>
         </div>
     </div>
 </div>
+
+<style>
+/* Smooth Background Movement (Ken Burns Effect) */
+@keyframes backgroundSlow {
+    0% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.1) translate(-1%, -1%); }
+    100% { transform: scale(1) translate(0, 0); }
+}
+
+.animate-background-slow {
+    animation: backgroundSlow 20s ease-in-out infinite;
+}
+
+/* Button Shine Animation */
+@keyframes shine {
+    100% { transform: translateX(300%) skewX(-30deg); }
+}
+
+.animate-shine {
+    animation: shine 0.75s infinite;
+}
+
+/* Glass effect fallback for non-supporting browsers */
+.glass {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+</style>
+
 
     <div id="dashboard" class="hidden min-h-screen flex flex-col md:flex-row">
-        
-        <aside class="w-full md:w-64 glass border-r border-slate-800 p-6 flex flex-col">
-            <div class="flex items-center gap-3 mb-10">
-                <img src="https://i.ibb.co/hJCHgThF/logo-yk-crop.png" class="w-8 h-8 rounded-full">
-                <span class="font-bold text-xl tracking-tight">YK <span class="text-indigo-400">ADMIN</span></span>
+      <aside
+        class="w-full md:w-64 glass border-r border-slate-800 p-6 flex flex-col"
+      >
+        <div class="flex items-center gap-3 mb-10">
+          <img
+            src="https://i.ibb.co/hJCHgThF/logo-yk-crop.png"
+            class="w-8 h-8 rounded-full"
+          />
+          <span class="font-bold text-xl tracking-tight"
+            >YK <span class="text-indigo-400">ADMIN</span></span
+          >
+        </div>
+
+        <nav class="space-y-2 flex-grow">
+          <button
+            class="w-full flex items-center gap-3 p-3 rounded-xl bg-indigo-500/10 text-indigo-400 font-semibold border border-indigo-500/20"
+          >
+            <i class="fa-solid fa-chart-line w-5 text-center"></i> Dashboard
+          </button>
+          <a
+            href="owner-notification.html"
+            class="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white transition-all"
+          >
+            <i class="fa-solid fa-bell w-5 text-center"></i> Notifications -
+            Panel
+          </a>
+          <button
+            onclick="showSystemHelp()"
+            class="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white transition-all"
+          >
+            <i class="fa-solid fa-circle-question w-5 text-center"></i> System
+            Help
+          </button>
+          <button
+            onclick="showSupport()"
+            class="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white transition-all"
+          >
+            <i class="fa-solid fa-headset w-5 text-center"></i> Support
+          </button>
+        </nav>
+
+        <button
+          onclick="logout()"
+          class="mt-auto flex items-center gap-3 p-3 text-red-400 hover:bg-red-500/10 rounded-xl transition-all"
+        >
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </aside>
+
+      <main class="flex-grow p-4 md:p-8 overflow-y-auto">
+        <header
+          class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8"
+        >
+          <div>
+            <h1 class="text-3xl font-bold">Client Overview</h1>
+            <p class="text-slate-400 text-sm">
+              Manage project requests and inquiries
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <i
+                class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm"
+              ></i>
+              <input
+                id="search"
+                onkeyup="searchClient()"
+                type="text"
+                placeholder="Search records..."
+                class="bg-slate-900/80 border border-slate-700 pl-10 pr-4 py-2 rounded-full text-sm focus:ring-2 focus:ring-indigo-500 outline-none w-full md:w-64"
+              />
             </div>
-
-            <nav class="space-y-2 flex-grow">
-                <button class="w-full flex items-center gap-3 p-3 rounded-xl bg-indigo-500/10 text-indigo-400 font-semibold border border-indigo-500/20">
-                    <i class="fa-solid fa-chart-line w-5 text-center"></i> Dashboard
-                </button>
-                <a href="owner-notification.html" class="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white transition-all">
-                    <i class="fa-solid fa-bell w-5 text-center"></i> Notifications - Panel
-                </a>
-                <button onclick="showSystemHelp()" class="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white transition-all">
-                   <i class="fa-solid fa-circle-question w-5 text-center"></i> System Help
-               </button>
-               <button onclick="showSupport()" class="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white transition-all">
-                   <i class="fa-solid fa-headset w-5 text-center"></i> Support
-               </button>
-            </nav>
-
-            <button onclick="logout()" class="mt-auto flex items-center gap-3 p-3 text-red-400 hover:bg-red-500/10 rounded-xl transition-all">
-                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            <button
+              onclick="openAdd()"
+              class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-full text-sm font-bold transition-all flex items-center gap-2"
+            >
+              <i class="fa-solid fa-plus text-xs"></i>
+              <span class="hidden sm:inline">Add Client</span>
             </button>
-        </aside>
+            <button
+              onclick="loadData()"
+              class="bg-slate-800 hover:bg-slate-700 p-2 rounded-full text-slate-300"
+            >
+              <i class="fa-solid fa-rotate"></i>
+            </button>
+          </div>
+        </header>
 
-        <main class="flex-grow p-4 md:p-8  overflow-y-auto">
-            
-            <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-                <div>
-                    <h1 class="text-3xl font-bold">Client Overview</h1>
-                    <p class="text-slate-400 text-sm">Manage project requests and inquiries</p>
-                </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div class="glass p-5 rounded-2xl border-l-4 border-indigo-500">
+            <p
+              class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1"
+            >
+              Total Leads
+            </p>
+            <h3 id="totalClients" class="text-3xl font-bold">0</h3>
+          </div>
+          <div
+            class="glass p-5 rounded-2xl border-l-4 border-emerald-500 transition-all duration-500"
+            id="statusCard"
+          >
+            <p
+              class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1"
+            >
+              System Status
+            </p>
+            <h3 class="text-xl font-bold flex items-center gap-2">
+              <span id="statusDot" class="relative flex h-3 w-3">
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+                ></span>
+                <span
+                  class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"
+                ></span>
+              </span>
+              <span id="statusText">Online</span>
+            </h3>
+          </div>
+          <!-- status card online offline -->
+          <script>
+            const updateOnlineStatus = () => {
+              const statusText = document.getElementById("statusText");
+              const statusDot = document.getElementById("statusDot");
+              const statusCard = document.getElementById("statusCard");
 
-                <div class="flex items-center gap-3">
-                    <div class="relative">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
-                        <input id="search" onkeyup="searchClient()" type="text" placeholder="Search records..." 
-                               class="bg-slate-900/80 border border-slate-700 pl-10 pr-4 py-2 rounded-full text-sm focus:ring-2 focus:ring-indigo-500 outline-none w-full md:w-64">
-                    </div>
-                    <button onclick="openAdd()" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-full text-sm font-bold transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-plus text-xs"></i> <span class="hidden sm:inline">Add Client</span>
-                    </button>
-                    <button onclick="loadData()" class="bg-slate-800 hover:bg-slate-700 p-2 rounded-full text-slate-300">
-                        <i class="fa-solid fa-rotate"></i>
-                    </button>
-                </div>
-            </header>
+              if (window.navigator.onLine) {
+                // Online State
+                statusText.textContent = "Online";
+                statusText.className =
+                  "text-emerald-500 transition-colors duration-300";
+                statusCard.style.borderColor = "#10b981"; // emerald-500
+                statusDot.innerHTML = `
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+        `;
+              } else {
+                // Offline State
+                statusText.textContent = "Offline";
+                statusText.className =
+                  "text-rose-500 transition-colors duration-300";
+                statusCard.style.borderColor = "#f43f5e"; // rose-500
+                statusDot.innerHTML = `
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
+        `;
+              }
+            };
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div class="glass p-5 rounded-2xl border-l-4 border-indigo-500">
-                    <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Total Leads</p>
-                    <h3 id="totalClients" class="text-3xl font-bold">0</h3>
-                </div>
-                <div class="glass p-5 rounded-2xl border-l-4 border-emerald-500">
-                    <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Status</p>
-                    <h3 class="text-xl font-bold flex items-center gap-2">
-                        <span class="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></span> Online
-                    </h3>
-                </div>
-                <div class="glass p-5 rounded-2xl border-l-4 border-amber-500">
-                    <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Priority</p>
-                    <h3 class="text-xl font-bold">High</h3>
-                </div>
-                <div class="glass p-5 rounded-2xl border-l-4 border-blue-500">
-                    <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Active Admin</p>
-                    <h3 class="text-lg font-bold truncate">YK Official</h3>
-                </div>
-            </div>
+            // Listen for connection changes
+            window.addEventListener("online", updateOnlineStatus);
+            window.addEventListener("offline", updateOnlineStatus);
 
-            <div class="glass rounded-2xl overflow-hidden shadow-2xl border border-slate-800">
-                <div class="overflow-x-auto custom-scroll">
-                    <table class="w-full text-left border-collapse">
-                        <thead class="bg-slate-800/50 text-slate-400 text-xs uppercase font-bold">
-                            <tr>
-                                <th class="p-4 border-b border-slate-800">ID & Name</th>
-                                <th class="p-4 border-b border-slate-800">Contact Details</th>
-                                <th class="p-4 border-b border-slate-800">Requested Service</th>
-                                <th class="p-4 border-b border-slate-800">Brief</th>
-                                <th class="p-4 border-b border-slate-800 text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableData" class="text-sm">
-                            </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <footer class="mt-8 text-center text-slate-500 text-xs uppercase tracking-[0.2em]">
-                © 2026 YK OFFICIAL &bull; All rights reserved
-            </footer>
-        </main>
+            // Initial check on load
+            updateOnlineStatus();
+          </script>
+          <div class="glass p-5 rounded-2xl border-l-4 border-amber-500">
+            <p
+              class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1"
+            >
+              Priority
+            </p>
+            <h3 class="text-xl font-bold">High</h3>
+          </div>
+          <div class="glass p-5 rounded-2xl border-l-4 border-blue-500">
+            <p
+              class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1"
+            >
+              Active Admin
+            </p>
+            <h3 class="text-lg font-bold truncate">YK Official</h3>
+          </div>
+        </div>
+
+        <div
+          class="glass rounded-2xl overflow-hidden shadow-2xl border border-slate-800"
+        >
+          <div class="overflow-x-auto custom-scroll">
+            <table class="w-full text-left border-collapse">
+              <thead
+                class="bg-slate-800/50 text-slate-400 text-xs uppercase font-bold"
+              >
+                <tr>
+                  <th class="p-4 border-b border-slate-800">ID & Name</th>
+                  <th class="p-4 border-b border-slate-800">Contact Details</th>
+                  <th class="p-4 border-b border-slate-800">
+                    Requested Service
+                  </th>
+                  <th class="p-4 border-b border-slate-800">Brief</th>
+                  <th class="p-4 border-b border-slate-800 text-right">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="tableData" class="text-sm"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <footer
+          class="mt-8 text-center text-slate-500 text-xs uppercase tracking-[0.2em]"
+        >
+          © 2026 YK OFFICIAL &bull; All rights reserved
+        </footer>
+      </main>
     </div>
- <div id="modalOverlay" class="hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-    
-    <div id="addModal" class="hidden glass p-8 rounded-3xl w-full max-w-lg shadow-2xl border border-indigo-500/30">
+    <div
+      id="modalOverlay"
+      class="hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+    >
+      <div
+        id="addModal"
+        class="hidden glass p-8 rounded-3xl w-full max-w-lg shadow-2xl border border-indigo-500/30"
+      >
         <h2 class="text-2xl font-bold mb-6 text-white">Create New Record</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-            <input id="addName" placeholder="Full Name" class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-indigo-500">
-            <input id="addEmail" placeholder="Email" class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-indigo-500">
-            <input id="addPhone" placeholder="Phone" class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-indigo-500">
-            <input id="addService" placeholder="Service" class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-indigo-500">
+          <input
+            id="addName"
+            placeholder="Full Name"
+            class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-indigo-500"
+          />
+          <input
+            id="addEmail"
+            placeholder="Email"
+            class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-indigo-500"
+          />
+          <input
+            id="addPhone"
+            placeholder="Phone"
+            class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-indigo-500"
+          />
+          <input
+            id="addService"
+            placeholder="Service"
+            class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-indigo-500"
+          />
         </div>
-        <textarea id="addMessage" placeholder="Project Brief" class="w-full bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-indigo-500 mb-6 h-32"></textarea>
+        <textarea
+          id="addMessage"
+          placeholder="Project Brief"
+          class="w-full bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-indigo-500 mb-6 h-32"
+        ></textarea>
         <div class="flex justify-end gap-3">
-            <button onclick="closeModals()" class="px-6 py-2 text-slate-400 font-bold uppercase text-xs">Cancel</button>
-            <button onclick="addClient()" class="bg-indigo-600 px-8 py-2 rounded-xl text-white font-bold hover:bg-indigo-500">Add Client</button>
+          <button
+            onclick="closeModals()"
+            class="px-6 py-2 text-slate-400 font-bold uppercase text-xs"
+          >
+            Cancel
+          </button>
+          <button
+            onclick="addClient()"
+            class="bg-indigo-600 px-8 py-2 rounded-xl text-white font-bold hover:bg-indigo-500"
+          >
+            Add Client
+          </button>
         </div>
-    </div>
+      </div>
 
-    <div id="editModal" class="hidden glass p-8 rounded-3xl w-full max-w-lg border border-blue-500/30">
+      <div
+        id="editModal"
+        class="hidden glass p-8 rounded-3xl w-full max-w-lg border border-blue-500/30"
+      >
         <h2 class="text-2xl font-bold mb-6 text-white">Update Lead</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-            <input id="editName" class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-blue-500">
-            <input id="editEmail" class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-blue-500">
-            <input id="editPhone" class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-blue-500">
-            <input id="editService" class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-blue-500">
+          <input
+            id="editName"
+            class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-blue-500"
+          />
+          <input
+            id="editEmail"
+            class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-blue-500"
+          />
+          <input
+            id="editPhone"
+            class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-blue-500"
+          />
+          <input
+            id="editService"
+            class="bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-blue-500"
+          />
         </div>
-        <textarea id="editMessage" class="w-full bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-blue-500 mb-6 h-32"></textarea>
+        <textarea
+          id="editMessage"
+          class="w-full bg-slate-900 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-blue-500 mb-6 h-32"
+        ></textarea>
         <div class="flex justify-end gap-3">
-            <button onclick="closeModals()" class="px-6 py-2 text-slate-400 font-bold uppercase text-xs">Close</button>
-            <button onclick="saveEdit()" class="bg-blue-600 px-8 py-2 rounded-xl text-white font-bold hover:bg-blue-500">Save Changes</button>
+          <button
+            onclick="closeModals()"
+            class="px-6 py-2 text-slate-400 font-bold uppercase text-xs"
+          >
+            Close
+          </button>
+          <button
+            onclick="saveEdit()"
+            class="bg-blue-600 px-8 py-2 rounded-xl text-white font-bold hover:bg-blue-500"
+          >
+            Save Changes
+          </button>
         </div>
-    </div>
+      </div>
 
-    <div id="helpModal" class="hidden glass p-8 rounded-3xl w-full max-w-md border border-indigo-500/30 text-center">
+      <div
+        id="helpModal"
+        class="hidden glass p-8 rounded-3xl w-full max-w-md border border-indigo-500/30 text-center"
+      >
         <h2 class="text-2xl font-bold mb-4 text-white">System Guide</h2>
         <div class="text-left space-y-3 text-sm text-slate-300 mb-6">
-            <p>• <b class="text-indigo-400">Refresh:</b> Syncs with Google Sheets.</p>
-            <p>• <b class="text-indigo-400">Search:</b> Live filtering of clients.</p>
-            <p>• <b class="text-indigo-400">Security:</b> Auto-blocks DevTools.</p>
+          <p>
+            • <b class="text-indigo-400">Refresh:</b> Syncs with Google Sheets.
+          </p>
+          <p>
+            • <b class="text-indigo-400">Search:</b> Live filtering of clients.
+          </p>
+          <p>
+            • <b class="text-indigo-400">Security:</b> Auto-blocks DevTools.
+          </p>
         </div>
-        <button onclick="closeModals()" class="bg-indigo-600 w-full py-3 rounded-xl font-bold">Close Guide</button>
-    </div>
+        <button
+          onclick="closeModals()"
+          class="bg-indigo-600 w-full py-3 rounded-xl font-bold"
+        >
+          Close Guide
+        </button>
+      </div>
 
-    <div id="supportModal" class="hidden glass p-8 rounded-3xl w-full max-w-md border border-emerald-500/30 text-center">
-        <div class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400">
-            <i class="fa-solid fa-headset text-2xl"></i>
+      <div
+        id="supportModal"
+        class="hidden glass p-8 rounded-3xl w-full max-w-md border border-emerald-500/30 text-center"
+      >
+        <div
+          class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400"
+        >
+          <i class="fa-solid fa-headset text-2xl"></i>
         </div>
         <h2 class="text-2xl font-bold text-white mb-2">Technical Support</h2>
-        <p class="text-slate-400 text-sm mb-6">Contact the developer for system issues:</p>
+        <p class="text-slate-400 text-sm mb-6">
+          Contact the developer for system issues:
+        </p>
         <div class="bg-slate-900/50 p-4 rounded-2xl mb-6 text-sm">
-            <p class="text-white font-bold">Yegnesh Kamble</p>
-            <p class="text-slate-400">yegnesh7219@gmail.com</p>
+          <p class="text-white font-bold">Yegnesh Kamble</p>
+          <p class="text-slate-400">yegnesh7219@gmail.com</p>
         </div>
-        <button onclick="closeModals()" class="bg-slate-800 w-full py-3 rounded-xl font-bold">Close</button>
+        <button
+          onclick="closeModals()"
+          class="bg-slate-800 w-full py-3 rounded-xl font-bold"
+        >
+          Close
+        </button>
+      </div>
     </div>
 
-</div>
-
-    <div id="loader" class="hidden fixed inset-0 z-[1000] bg-black/60 backdrop-blur-sm flex items-center justify-center">
-        <div class="yk-spinner"></div>
+    <div
+      id="loader"
+      class="hidden fixed inset-0 z-[1000] bg-black/60 backdrop-blur-sm flex items-center justify-center"
+    >
+      <div class="yk-spinner"></div>
     </div>
 
     <script>
-        // Core Config
-        const API = "https://script.google.com/macros/s/AKfycbwnBjAJdDDIwefyafJ1_1jAh84Vsgr9oslrvaPTYC5BN5Bpra-PkfgcDQ4dlWGw7q6T/exec";
-        let editID = "";
+      // Core Config
+      const API =
+        "https://script.google.com/macros/s/AKfycbwnBjAJdDDIwefyafJ1_1jAh84Vsgr9oslrvaPTYC5BN5Bpra-PkfgcDQ4dlWGw7q6T/exec";
+      let editID = "";
 
-        // UI Handlers
-        window.addEventListener("load", () => {
-            setTimeout(() => {
-                document.getElementById("pageLoader").style.opacity = "0";
-                setTimeout(() => document.getElementById("pageLoader").style.display = "none", 500);
-            }, 800);
-        });
+      // UI Handlers
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document.getElementById("pageLoader").style.opacity = "0";
+          setTimeout(
+            () =>
+              (document.getElementById("pageLoader").style.display = "none"),
+            500,
+          );
+        }, 800);
+      });
 
-        function showLoader() { document.getElementById("loader").classList.remove("hidden"); }
-        function hideLoader() { document.getElementById("loader").classList.add("hidden"); }
+      function showLoader() {
+        document.getElementById("loader").classList.remove("hidden");
+      }
+      function hideLoader() {
+        document.getElementById("loader").classList.add("hidden");
+      }
 
-        function login() {
-            let u = document.getElementById("user").value;
-            let p = document.getElementById("pass").value;
-            if (u === "admin" && p === "1234") {
-                document.getElementById("loginPage").style.display = "none";
-                document.getElementById("dashboard").classList.remove("hidden");
-                loadData();
-            } else {
-                alert("Unauthorized Access Attempt Blocked.");
-            }
+      function login() {
+        let u = document.getElementById("user").value;
+        let p = document.getElementById("pass").value;
+        if (u === "admin" && p === "1234") {
+          document.getElementById("loginPage").style.display = "none";
+          document.getElementById("dashboard").classList.remove("hidden");
+          loadData();
+        } else {
+          alert("Unauthorized Access Attempt Blocked.");
         }
+      }
 
-        function logout() { location.reload(); }
+      function logout() {
+        location.reload();
+      }
 
-        async function loadData() {
-            showLoader();
-            try {
-                let res = await fetch(API);
-                let data = await res.json();
-                document.getElementById("totalClients").innerText = data.length;
-                let html = "";
-                data.reverse().forEach((c) => {
-                    html += `
+      async function loadData() {
+        showLoader();
+        try {
+          let res = await fetch(API);
+          let data = await res.json();
+          document.getElementById("totalClients").innerText = data.length;
+          let html = "";
+          data.reverse().forEach((c) => {
+            html += `
                         <tr class="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
                             <td class="p-4">
                                 <div class="font-bold text-white">${c.name}</div>
@@ -324,101 +647,127 @@
                                 <button onclick="deleteClient('${c.id}')" class="p-2 text-red-400 hover:bg-red-400/10 rounded-lg transition-all"><i class="fa-solid fa-trash-can"></i></button>
                             </td>
                         </tr>`;
-                });
-                document.getElementById("tableData").innerHTML = html;
-            } catch (e) { console.error("Load Error", e); }
-            hideLoader();
+          });
+          document.getElementById("tableData").innerHTML = html;
+        } catch (e) {
+          console.error("Load Error", e);
         }
+        hideLoader();
+      }
 
-        function searchClient() {
-            let input = document.getElementById("search").value.toLowerCase();
-            let rows = document.querySelectorAll("#tableData tr");
-            rows.forEach(row => {
-                row.style.display = row.innerText.toLowerCase().includes(input) ? "" : "none";
-            });
-        }
+      function searchClient() {
+        let input = document.getElementById("search").value.toLowerCase();
+        let rows = document.querySelectorAll("#tableData tr");
+        rows.forEach((row) => {
+          row.style.display = row.innerText.toLowerCase().includes(input)
+            ? ""
+            : "none";
+        });
+      }
 
-        // Modal Management
-        const overlay = document.getElementById("modalOverlay");
-        function openAdd() { overlay.classList.remove("hidden"); document.getElementById("addModal").classList.remove("hidden"); }
-        function closeAdd() { overlay.classList.add("hidden"); document.getElementById("addModal").classList.add("hidden"); }
-        function closeEdit() { overlay.classList.add("hidden"); document.getElementById("editModal").classList.add("hidden"); }
+      // Modal Management
+      const overlay = document.getElementById("modalOverlay");
+      function openAdd() {
+        overlay.classList.remove("hidden");
+        document.getElementById("addModal").classList.remove("hidden");
+      }
+      function closeAdd() {
+        overlay.classList.add("hidden");
+        document.getElementById("addModal").classList.add("hidden");
+      }
+      function closeEdit() {
+        overlay.classList.add("hidden");
+        document.getElementById("editModal").classList.add("hidden");
+      }
 
-        async function addClient() {
-            showLoader();
-            let data = {
-                action: "add",
-                name: document.getElementById("addName").value,
-                email: document.getElementById("addEmail").value,
-                phone: document.getElementById("addPhone").value,
-                service: document.getElementById("addService").value,
-                message: document.getElementById("addMessage").value
-            };
-            await fetch(API, { method: "POST", body: JSON.stringify(data) });
-            closeAdd(); loadData();
-        }
+      async function addClient() {
+        showLoader();
+        let data = {
+          action: "add",
+          name: document.getElementById("addName").value,
+          email: document.getElementById("addEmail").value,
+          phone: document.getElementById("addPhone").value,
+          service: document.getElementById("addService").value,
+          message: document.getElementById("addMessage").value,
+        };
+        await fetch(API, { method: "POST", body: JSON.stringify(data) });
+        closeAdd();
+        loadData();
+      }
 
-        function editClient(c) {
-            editID = c.id;
-            document.getElementById("editName").value = c.name;
-            document.getElementById("editEmail").value = c.email;
-            document.getElementById("editPhone").value = c.phone;
-            document.getElementById("editService").value = c.service;
-            document.getElementById("editMessage").value = c.message;
-            overlay.classList.remove("hidden");
-            document.getElementById("editModal").classList.remove("hidden");
-        }
+      function editClient(c) {
+        editID = c.id;
+        document.getElementById("editName").value = c.name;
+        document.getElementById("editEmail").value = c.email;
+        document.getElementById("editPhone").value = c.phone;
+        document.getElementById("editService").value = c.service;
+        document.getElementById("editMessage").value = c.message;
+        overlay.classList.remove("hidden");
+        document.getElementById("editModal").classList.remove("hidden");
+      }
 
-        async function saveEdit() {
-            showLoader();
-            let data = {
-                action: "update",
-                id: editID,
-                name: document.getElementById("editName").value,
-                email: document.getElementById("editEmail").value,
-                phone: document.getElementById("editPhone").value,
-                service: document.getElementById("editService").value,
-                message: document.getElementById("editMessage").value
-            };
-            await fetch(API, { method: "POST", body: JSON.stringify(data) });
-            closeEdit(); loadData();
-        }
+      async function saveEdit() {
+        showLoader();
+        let data = {
+          action: "update",
+          id: editID,
+          name: document.getElementById("editName").value,
+          email: document.getElementById("editEmail").value,
+          phone: document.getElementById("editPhone").value,
+          service: document.getElementById("editService").value,
+          message: document.getElementById("editMessage").value,
+        };
+        await fetch(API, { method: "POST", body: JSON.stringify(data) });
+        closeEdit();
+        loadData();
+      }
 
-        async function deleteClient(id) {
-            if (!confirm("Are you sure? This cannot be undone.")) return;
-            showLoader();
-            await fetch(API + "?action=delete&id=" + id);
-            loadData();
-        }
+      async function deleteClient(id) {
+        if (!confirm("Are you sure? This cannot be undone.")) return;
+        showLoader();
+        await fetch(API + "?action=delete&id=" + id);
+        loadData();
+      }
 
-        // Function to hide all modals and the overlay
-function closeModals() {
-    overlay.classList.add("hidden");
-    document.getElementById("helpModal").classList.add("hidden");
-    document.getElementById("supportModal").classList.add("hidden");
-    document.getElementById("addModal").classList.add("hidden");
-    document.getElementById("editModal").classList.add("hidden");
-}
+      // Function to hide all modals and the overlay
+      function closeModals() {
+        overlay.classList.add("hidden");
+        document.getElementById("helpModal").classList.add("hidden");
+        document.getElementById("supportModal").classList.add("hidden");
+        document.getElementById("addModal").classList.add("hidden");
+        document.getElementById("editModal").classList.add("hidden");
+      }
 
-// System Help Button
-function showSystemHelp() {
-    overlay.classList.remove("hidden");
-    document.getElementById("helpModal").classList.remove("hidden");
-}
+      // System Help Button
+      function showSystemHelp() {
+        overlay.classList.remove("hidden");
+        document.getElementById("helpModal").classList.remove("hidden");
+      }
 
-// Support Button
-function showSupport() {
-    overlay.classList.remove("hidden");
-    document.getElementById("supportModal").classList.remove("hidden");
-}
+      // Support Button
+      function showSupport() {
+        overlay.classList.remove("hidden");
+        document.getElementById("supportModal").classList.remove("hidden");
+      }
 
-// Update your old close functions to use the master close
-function closeAdd() { closeModals(); }
-function closeEdit() { closeModals(); }
+      // Update your old close functions to use the master close
+      function closeAdd() {
+        closeModals();
+      }
+      function closeEdit() {
+        closeModals();
+      }
 
-        // Security
-        document.addEventListener("contextmenu", e => e.preventDefault());
-        document.onkeydown = e => { if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false; };
+      // Security
+      document.addEventListener("contextmenu", (e) => e.preventDefault());
+      document.onkeydown = (e) => {
+        if (
+          e.keyCode == 123 ||
+          (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) ||
+          (e.ctrlKey && e.keyCode == 85)
+        )
+          return false;
+      };
     </script>
-</body>
+  </body>
 </html>
