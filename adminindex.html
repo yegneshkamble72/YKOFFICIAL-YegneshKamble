@@ -922,5 +922,158 @@ function login() {
           return false;
       };
     </script>
+
+    <!-- SESSION EXPIRED OVERLAY -->
+<div id="sessionExpiredPopup" class="session-expired-popup">
+    <div class="session-box">
+        <div class="session-icon">⚠</div>
+
+        <h1>Session Expired</h1>
+
+        <p>
+            No activity detected for 10 minutes.<br>
+            Your session has expired for security reasons.
+        </p>
+
+        <button onclick="refreshSessionPage()" class="refresh-btn">
+            Refresh Page
+        </button>
+    </div>
+</div>
+
+<style>
+/* FULL SCREEN OVERLAY */
+.session-expired-popup{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5,10,25,0.92);
+    backdrop-filter: blur(12px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    animation: fadeIn 0.5s ease;
+}
+
+/* BOX */
+.session-box{
+    width: 90%;
+    max-width: 430px;
+    padding: 40px 30px;
+    border-radius: 24px;
+    text-align: center;
+    background: linear-gradient(145deg,#101828,#1E293B);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    color: white;
+    animation: popupScale 0.4s ease;
+}
+
+/* ICON */
+.session-icon{
+    width: 90px;
+    height: 90px;
+    margin: auto;
+    border-radius: 50%;
+    background: rgba(244,67,54,0.15);
+    border: 2px solid rgba(244,67,54,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    color: #ff5252;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+}
+
+/* TEXT */
+.session-box h1{
+    font-size: 32px;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.session-box p{
+    color: #cbd5e1;
+    line-height: 1.7;
+    margin-bottom: 28px;
+    font-size: 15px;
+}
+
+/* BUTTON */
+.refresh-btn{
+    border: none;
+    outline: none;
+    background: linear-gradient(135deg,#00C853,#43A047);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 32px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 10px 30px rgba(67,160,71,0.3);
+}
+
+.refresh-btn:hover{
+    transform: translateY(-3px) scale(1.03);
+}
+
+/* ANIMATIONS */
+@keyframes pulse{
+    0%{transform: scale(1);}
+    50%{transform: scale(1.08);}
+    100%{transform: scale(1);}
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+@keyframes popupScale{
+    from{
+        transform: scale(0.8);
+        opacity:0;
+    }
+    to{
+        transform: scale(1);
+        opacity:1;
+    }
+}
+</style>
+
+<script>
+    // 10 minutes = 600000 ms
+    let sessionTimeout;
+    const SESSION_LIMIT = 10 * 60 * 1000;
+
+    // Show popup
+    function showSessionExpired() {
+        document.getElementById("sessionExpiredPopup").style.display = "flex";
+    }
+
+    // Refresh page button
+    function refreshSessionPage() {
+        location.reload();
+    }
+
+    // Reset timer on user activity
+    function resetSessionTimer() {
+        clearTimeout(sessionTimeout);
+        sessionTimeout = setTimeout(showSessionExpired, SESSION_LIMIT);
+    }
+
+    // Detect user activity
+    window.onload = resetSessionTimer;
+
+    document.onmousemove = resetSessionTimer;
+    document.onkeypress = resetSessionTimer;
+    document.onclick = resetSessionTimer;
+    document.onscroll = resetSessionTimer;
+    document.ontouchstart = resetSessionTimer;
+</script>
   </body>
 </html>
