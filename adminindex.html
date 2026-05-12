@@ -10,6 +10,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- url id code  -->
     <script>
@@ -111,6 +112,24 @@
         justify-content: center;
         z-index: 9999;
       }
+
+      /* Shake Effect for error */
+@keyframes shakeEffect {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+}
+
+.animate-shake {
+    animation: shakeEffect 0.4s cubic-bezier(.36,.07,.19,.97) both;
+    box-shadow: 0 0 15px rgba(244, 63, 94, 0.4);
+}
+
+/* SweetAlert Custom Styling */
+.swal2-popup.swal2-toast {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
     </style>
   </head>
 
@@ -179,6 +198,67 @@
                     class="w-full bg-slate-900/40 border border-white/10 p-3.5 rounded-xl text-white placeholder:text-slate-600 focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all duration-300"
                 />
             </div>
+         <!-- CAPTCHA Section -->
+<div class="group">
+  <label
+    class="text-[10px] font-bold text-cyan-400 uppercase tracking-[0.25em] mb-2 ml-1 block"
+  >
+    Verification Code
+  </label>
+
+  <div class="relative flex items-center gap-3 mb-3">
+    
+    <!-- CAPTCHA DISPLAY -->
+    <div
+      id="captchaBox"
+      class="relative flex-1 overflow-hidden rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-5 py-4 flex items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.08)]"
+    >
+      <!-- Animated Glow -->
+      <div
+        class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_60%)]"
+      ></div>
+
+      <!-- Noise Lines -->
+      <div
+        class="absolute inset-0 opacity-20 bg-[linear-gradient(135deg,transparent_25%,rgba(255,255,255,0.08)_25%,rgba(255,255,255,0.08)_50%,transparent_50%,transparent_75%,rgba(255,255,255,0.08)_75%)] bg-[length:18px_18px]"
+      ></div>
+
+      <!-- Captcha Text -->
+      <span
+        class="relative z-10 font-mono text-2xl md:text-3xl font-bold tracking-[0.45em] text-cyan-300 skew-x-[-12deg] select-none"
+      >
+        <!-- Code yahan generate hoga -->
+      </span>
+    </div>
+
+    <!-- REFRESH BUTTON -->
+    <button
+      onclick="generateCaptcha()"
+      class="relative overflow-hidden h-[60px] w-[60px] rounded-2xl border border-cyan-500/20 bg-slate-900/70 backdrop-blur-xl flex items-center justify-center text-cyan-400 hover:text-white hover:border-cyan-400/50 transition-all duration-300 hover:rotate-180"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-indigo-500/10"
+      ></div>
+
+      <i class="fa-solid fa-arrows-rotate relative z-10 text-lg"></i>
+    </button>
+  </div>
+
+  <!-- INPUT -->
+  <div class="relative">
+    <input
+      id="captchaInput"
+      type="text"
+      placeholder="Type verification code"
+      class="w-full rounded-2xl border border-white/10 bg-slate-900/50 px-4 py-3.5 text-white placeholder:text-slate-500 outline-none transition-all duration-300 focus:border-cyan-400/50 focus:bg-slate-900/80 focus:shadow-[0_0_20px_rgba(34,211,238,0.12)]"
+    />
+
+    <!-- Left Accent -->
+    <div
+      class="absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-gradient-to-b from-cyan-400 to-indigo-500 opacity-70"
+    ></div>
+  </div>
+</div>
             
             <button
                 onclick="login()"
@@ -604,17 +684,90 @@
         document.getElementById("loader").classList.add("hidden");
       }
 
-      function login() {
-        let u = document.getElementById("user").value;
-        let p = document.getElementById("pass").value;
-        if (u === "admin" && p === "1234") {
-          document.getElementById("loginPage").style.display = "none";
-          document.getElementById("dashboard").classList.remove("hidden");
-          loadData();
+     let currentCaptcha = "";
+
+// Naya Captcha Generate karne ka function
+function generateCaptcha() {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // Confusion se bachne ke liye O, 0, I, 1 hataye hain
+    let result = "";
+    for (let i = 0; i < 5; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    currentCaptcha = result;
+    document.getElementById("captchaBox").innerText = result;
+}
+
+// Page load par captcha dikhane ke liye
+window.addEventListener("DOMContentLoaded", () => {
+    updateUrlWithUniqueId();
+    generateCaptcha(); // Captcha call
+});
+
+// Login function ko update karein
+function login() {
+    // 1. Inputs collect karna
+    const u = document.getElementById("user").value;
+    const p = document.getElementById("pass").value;
+    const cInput = document.getElementById("captchaInput").value.trim().toUpperCase();
+    const captchaField = document.getElementById("captchaInput");
+
+    // 2. SweetAlert Config (Popups ke liye)
+    const YKToast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        background: '#0f172a',
+        color: '#f8fafc'
+    });
+
+    // 3. Pehle Username aur Password check karein
+    if (u === "admin" && p === "1234") {
+        
+        // 4. Ab Captcha check karein (CRITICAL STEP)
+        if (cInput === currentCaptcha) {
+            // SUCCESS: Dono sahi hain
+            YKToast.fire({
+                icon: 'success',
+                title: 'Access Granted',
+                text: 'Welcome to YK Admin Portal'
+            });
+
+            setTimeout(() => {
+                document.getElementById("loginPage").style.display = "none";
+                document.getElementById("dashboard").classList.remove("hidden");
+                loadData();
+            }, 1000);
+
         } else {
-          alert("Unauthorized Access Attempt Blocked.");
+            // ERROR: Captcha galat hai
+            YKToast.fire({
+                icon: 'error',
+                title: 'Verification Failed',
+                text: 'Wrong CAPTCHA! Please try again.',
+                iconColor: '#f43f5e'
+            });
+
+            // Shake Effect
+            captchaField.classList.add("animate-shake");
+            setTimeout(() => captchaField.classList.remove("animate-shake"), 500);
+
+            generateCaptcha(); // Naya captcha generate karein
+            document.getElementById("captchaInput").value = ""; // Input saaf karein
+            return; // YAHAN SE WAPAS CHALE JAYEIN (Dashboard nahi khulega)
         }
-      }
+
+    } else {
+        // ERROR: ID/Pass galat hai
+        YKToast.fire({
+            icon: 'warning',
+            title: 'Unauthorized',
+            text: 'Admin ID or Password incorrect!'
+        });
+        generateCaptcha();
+    }
+}
 
       function logout() {
         location.reload();
