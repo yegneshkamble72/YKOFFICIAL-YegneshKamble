@@ -923,6 +923,7 @@
               class="flex items-center justify-center md:justify-start gap-3 flex-wrap"
             >
               <!-- NOTIFICATION -->
+              <!-- NOTIFICATION -->
               <button
                 onclick="toggleNotify()"
                 class="relative group flex items-center justify-center w-10 h-9 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] transition duration-300"
@@ -942,19 +943,34 @@
                   id="notifyDot"
                   class="hidden absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-ping"
                 ></span>
+
+                <!-- TOOLTIP TEXT (Neeche added hai) -->
+                <span
+                  class="absolute top-12 scale-0 transition-all rounded bg-black/80 p-2 text-xs text-white group-hover:scale-100 font-medium whitespace-nowrap shadow-lg"
+                >
+                  Notification
+                </span>
               </button>
 
               <!-- DATE TIME -->
               <span
                 id="currentDateTime"
-                class="hidden md:inline-block px-3 py-1.5 rounded-xl text-white text-xs sm:text-sm bg-white/10 backdrop-blur-md border border-white/20 shadow-inner tracking-wide"
+                class="hidden md:inline-flex relative group items-center px-3 py-1.5 rounded-xl text-white text-xs sm:text-sm bg-white/10 backdrop-blur-md border border-white/20 shadow-inner tracking-wide cursor-pointer"
               >
+                <!-- Aapka JavaScript dynamic text yahan insert karega -->
+
+                <!-- TOOLTIP TEXT -->
+                <span
+                  class="absolute top-10 left-1/2 -translate-x-1/2 scale-0 transition-all rounded bg-black/80 px-2 py-1 text-xs text-white group-hover:scale-100 font-medium whitespace-nowrap shadow-lg z-50"
+                >
+                  Date & Time
+                </span>
               </span>
 
               <!-- LOCATION with Flag -->
               <div
                 id="locationBox"
-                class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 shadow-inner text-xs sm:text-sm text-white min-w-[60px] sm:min-w-[140px] justify-center sm:justify-start"
+                class="relative group flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-inner text-xs sm:text-sm text-white min-w-[60px] sm:min-w-[140px] justify-center sm:justify-start cursor-pointer"
               >
                 <!-- Flag Image -->
                 <img
@@ -970,6 +986,13 @@
                 >
                   <span>Detecting...</span>
                 </div>
+
+                <!-- TOOLTIP TEXT (Yahan add kiya hai) -->
+                <span
+                  class="absolute top-10 left-1/2 -translate-x-1/2 scale-0 transition-all rounded bg-black/80 px-2 py-1 text-xs text-white group-hover:scale-100 font-medium whitespace-nowrap shadow-lg z-50"
+                >
+                  Location
+                </span>
               </div>
 
               <script>
@@ -1054,25 +1077,27 @@
               <!-- UNIQUE MODERN TOAST -->
               <div
                 id="networkToast"
-                class="fixed bottom-2 z-50 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-6 z-[100] pointer-events-none opacity-0 scale-95 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                class="group fixed bottom-2 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-6 z-[100] opacity-100 scale-100 transition-all duration-500"
               >
+                <!-- TOAST -->
                 <div
                   id="toastContent"
-                  class="relative overflow-hidden min-w-[280px] flex items-center gap-4 px-5 py-4 rounded-2xl border border-white/20 bg-black/60 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                  class="relative overflow-visible min-w-[280px] flex items-center gap-4 px-5 py-4 rounded-2xl border border-white/20 bg-black/60 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:scale-[1.02] transition-all duration-300"
                 >
-                  <!-- Animated Icon Container -->
+                  <!-- ICON -->
                   <div class="relative flex items-center justify-center">
                     <div
                       id="toastRing"
                       class="absolute w-8 h-8 rounded-full border-2 animate-ping opacity-20"
                     ></div>
+
                     <div
                       id="toastIcon"
-                      class="relative z-10 w-3 h-3 rounded-full shadow-[0_0_15px_currentcolor]"
+                      class="relative z-10 w-3 h-3 rounded-full bg-green-400 shadow-[0_0_15px_currentcolor]"
                     ></div>
                   </div>
 
-                  <!-- Text Content -->
+                  <!-- TEXT -->
                   <div class="flex flex-col">
                     <p
                       id="toastStatus"
@@ -1080,13 +1105,23 @@
                     >
                       System Message
                     </p>
+
                     <p
                       id="toastMessage"
                       class="text-sm font-bold tracking-wide text-white"
-                    ></p>
+                    >
+                      Network Connected Successfully
+                    </p>
                   </div>
 
-                  <!-- Micro-Progress Bar (Bottom line) -->
+                  <!-- TOOLTIP -->
+                  <div
+                    class="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg bg-black/90 text-white text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-[0_0_15px_rgba(255,255,255,0.15)]"
+                  >
+                    Network Status
+                  </div>
+
+                  <!-- Progress -->
                   <div
                     class="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-transparent via-white/40 to-transparent w-full"
                   >
@@ -1491,9 +1526,10 @@
               class="hidden md:flex justify-center md:justify-end items-center gap-2 sm:gap-3 flex-wrap"
             >
               <!-- REGISTRATION -->
+              <!-- REGISTRATION -->
               <a
                 href="custindex.html"
-                class="flex items-center gap-1 px-3 sm:px-4 py-1.5 rounded-full text-purple-700 bg-white font-semibold text-xs sm:text-sm hover:scale-105 hover:shadow-lg transition"
+                class="group relative flex items-center gap-1 px-3 sm:px-4 py-1.5 rounded-full text-purple-700 bg-white font-semibold text-xs sm:text-sm hover:scale-105 hover:shadow-lg transition duration-300"
               >
                 <!-- ICON -->
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -1503,27 +1539,20 @@
                 </svg>
 
                 Registration
+
+                <!-- HOVER POPUP -->
+                <span
+                  class="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 text-xs font-semibold text-white bg-black/80 backdrop-blur-md rounded-lg opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 shadow-lg pointer-events-none"
+                >
+                  Registration
+                </span>
               </a>
 
-              <!-- ADMIN -->
-              <a
-                href="adminindex.html"
-                class="flex items-center gap-1 px-3 sm:px-4 py-1.5 rounded-full text-white bg-gradient-to-r from-pink-500 to-red-500 font-semibold text-xs sm:text-sm hover:scale-105 hover:shadow-[0_0_15px_rgba(255,0,100,0.4)] transition"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    d="M10 2a4 4 0 014 4v2h2a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2v-6a2 2 0 012-2h2V6a4 4 0 014-4z"
-                  />
-                </svg>
-
-                Admin
-              </a>
-
-              <!-- MEETING -->
+              <!-- LIVE MEETING -->
               <a
                 href="https://meet.google.com"
                 target="_blank"
-                class="flex items-center gap-1 px-3 sm:px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white font-medium text-xs sm:text-sm hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] transition duration-300"
+                class="group relative flex items-center gap-1 px-3 sm:px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white font-medium text-xs sm:text-sm hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] transition duration-300"
               >
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path
@@ -1531,7 +1560,32 @@
                   />
                 </svg>
 
-                Live
+                Live Meeting
+
+                <!-- HOVER POPUP -->
+                <span
+                  class="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 text-xs font-semibold text-white bg-black/80 backdrop-blur-md rounded-lg opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 shadow-lg pointer-events-none"
+                >
+                  Join Live Meeting
+                </span>
+              </a>
+              <a
+                href="adminindex.html"
+                class="group relative flex items-center justify-center bg-gradient-to-r from-pink-400 to-indigo-400 rounded-full hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] transition duration-300"
+              >
+                <!-- ICON -->
+                <img
+                  src="https://img.icons8.com/bubbles/100/administrator-male.png"
+                  alt="Admin Dashboard"
+                  class="w-10 h-10 relative z-10"
+                />
+
+                <!-- HOVER POPUP -->
+                <span
+                  class="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 text-xs font-semibold text-white bg-black/80 backdrop-blur-md rounded-lg opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 shadow-lg"
+                >
+                  Admin Dashboard
+                </span>
               </a>
             </div>
           </div>
@@ -1796,9 +1850,6 @@
         </div>
       </div>
 
-
-
-
       <!-- Home Section -->
 
       <section
@@ -1815,7 +1866,7 @@
           autoplay
           loop
           muted
-          class="absolute inset-0 w-full h-full object-cover grayscale-[30%] brightness-[0.1] "
+          class="absolute inset-0 w-full h-full object-cover grayscale-[30%] brightness-[0.1]"
         >
           <source src="bgvid.mp4" type="video/mp4" />
         </video>
